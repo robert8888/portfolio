@@ -1,0 +1,52 @@
+/* line 4, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/_header.scss */
+body {
+  background: #222831; }
+
+/* line 8, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/_header.scss */
+a:link, a:visited {
+  color: #c9c9c9; }
+
+/* line 12, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/_header.scss */
+#header {
+  height: 40px;
+  background: #3e1f47ff;
+  color: #000;
+  box-shadow: 0 7px 2px -7px #0008 inset,  0 -7px 2px -7px #0008 inset; }
+
+/* line 23, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/_header.scss */
+#branding h1 a:link, #branding h1 a:visited {
+  color: #c9c9c9;
+  font-weight: 800; }
+
+/* line 30, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/_header.scss */
+#user-tools {
+  color: white; }
+  /* line 32, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/_header.scss */
+  #user-tools strong {
+    margin-right: 10px; }
+  /* line 36, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/_header.scss */
+  #user-tools a:hover {
+    color: #353535; }
+
+/* line 41, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/_header.scss */
+div.breadcrumbs {
+  background-color: #272640ff; }
+
+/* line 6, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+div.app-projects.module caption {
+  background-color: #0b525bff; }
+
+/* line 9, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+div.app-projects.module table {
+  color: #c9c9c9;
+  background: #222831; }
+  /* line 12, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+  div.app-projects.module table tr:nth-child(odd) {
+    background: #393e46; }
+  /* line 15, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+  div.app-projects.module table tr:nth-child(even) {
+    background: #505762; }
+  /* line 18, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+  div.app-projects.module table th, div.app-projects.module table td {
+    border-bottom-color: #393e46;
+    color: #c9c9c9; }

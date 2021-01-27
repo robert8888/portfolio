@@ -1,0 +1,208 @@
+@import "./calendar-widget";
+
+@mixin addButton() {
+    @include link--icon-background-before('../img/add.svg', $icon-color, $icon-color-hover);
+    font-size: 1.1em;
+    &::before{
+        background-size: 1.1em;
+    }
+}
+
+@mixin changeButton() {
+    @include link--icon-background-before('../img/pencil.svg', $icon-color, $icon-color-hover);
+    font-size: 1.1em;
+    &::before{
+        background-size: 1.1em;
+    }
+}
+
+form{
+    fieldset.module{
+        color: $color-text;
+        background: transparent;
+
+        label{
+            color: $color-text;
+        }
+
+        input[type=text], input[type=number], select, textarea{
+            background: $color-bg-secondary;
+            color: $color-text;
+            outline: none;
+            border-color: $midnight-green-eagle-green-3;
+            &:focus{
+                border-color: lighten($russian-violet-2, 30%);
+            }
+        }
+
+        .form-row{
+            border-bottom: 1px solid $color-separator;
+        }
+
+        .related-widget-wrapper{
+            a.add-related {
+                @include addButton();
+                display: inline-block;
+                height: 30px;
+                margin-bottom: 10px;
+                & > img {
+                    display: none;
+                }
+                &::after{
+                    content: "add";
+                    line-height: 30px;
+                    vertical-align: middle;
+                }
+            }
+            a.change-related{
+                @include changeButton();
+                & > img {
+                    display: none;
+                }
+            }
+            
+            .selector{
+                float: none;
+                .selector-filter,
+                .selector-chosen h2,
+                .selector-available h2
+                {
+                    background: $dark-purple;
+                    border: none;
+                    color: $color-text
+                }
+                .selector-chosen h2, 
+                .selector-available h2{
+                    background: $russian-violet-2;
+                    border-bottom: 1px solid $color-separator-2;
+                }
+                select{
+                    @include scroll(
+                        $color-separator-2,
+                        $midnight-green-eagle-green-3, 
+                        $skobeloff
+                    )
+                }
+            }
+        }
+    }
+
+    .inline-group{
+        overflow: initial;
+        h2 {
+            background: $russian-violet-2;
+        }
+        fieldset.module table{
+            th{
+                background:  $dark-purple;
+                color: $color-text;
+                border-color: #fff2;
+            }
+            tr:nth-child(odd){
+                background-color: $color-bg-primary;
+            }
+            tr:nth-child(even){
+                background-color: lighten($color-bg-primary, 3%);
+            }
+            td{
+                border-bottom: #fff2;
+            }
+            tbody tr.add-row > td{
+                background-color: $color-bg-primary;
+                border: none;
+                a{
+                    @include addButton();
+                }
+    
+            }
+        }
+
+        &[data-inline-type="stacked"]{
+
+            div.add-row {
+                background-color: $color-bg-primary;
+                border:none;
+                border-top: 1px solid $color-separator;
+                a{
+                    @include addButton();
+                }
+               
+            }
+            
+            .inline-related{
+                border:none;
+                overflow: initial;
+                fieldset.module{
+                    display: flex;
+                    flex-wrap: wrap;
+                    & > * {
+                        flex: 1 0 auto;
+                    }
+
+                    .form-row{
+                        border-color: #fff2;
+                        max-width: 100%;
+                        @media(max-width: 772px) {
+                            & > div {
+                                width: calc(100vw - 50px);
+                            }
+                        }
+                    }
+                }
+                h3 {
+                    background: $dark-purple;
+                    color: $color-text;
+                    border-color: $color-bg-secondary;
+                    span.delete{
+                        margin-left: auto;
+                        flex: unset;
+                    }
+                }
+            }
+        }
+    }
+
+    input[type="file"]{
+        &::-webkit-file-upload-button {
+            color: $color-text;
+            display: inline-block;
+            background: $midnight-green-eagle-green-3;
+            border: none;
+            padding: 7px 15px;
+            font-weight: 700;
+            border-radius: 3px;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 10pt;
+        }
+        &:hover{
+            &::-webkit-file-upload-button {
+                background: $midnight-green-eagle-green;
+            }
+        }
+    }
+
+    .submit-row{
+        background: $color-bg-primary;
+        border: none;
+        border-top: 2px solid $color-separator-2;
+        border-radius: 0;
+        input[type="submit"]{
+            background: $midnight-green-eagle-green-3;
+            &.default{
+                background: $skobeloff;
+            }
+        }
+    }
+
+    .file-upload{
+        a {
+            max-width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+        }
+    }
+}
+

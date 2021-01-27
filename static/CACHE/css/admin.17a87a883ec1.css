@@ -1,0 +1,19 @@
+/* line 3, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+body {
+  background: #222831; }
+
+/* line 7, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+#header {
+  height: 40px;
+  background: #008891;
+  color: #000;
+  box-shadow: 0px 2px 5px #8888 inset,  0px -2px 5px #8888 inset; }
+
+/* line 21, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+#branding h1 a:link, #branding h1 a:visited {
+  color: #353535;
+  font-weight: 800; }
+
+/* line 29, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+#user-tools a:hover {
+  color: #353535; }

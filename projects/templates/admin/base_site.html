@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+{% load compress %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'admin/css/admin.scss' %}" />
+{% endcompress %}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ _('Portfolio') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -1,0 +1,20 @@
+#content{
+    h1{
+        color: $color-text;
+    }
+
+    .object-tools{
+        a {
+            background: $charcoal;
+        }
+    }
+
+    #change-history{
+        thead tr,
+        thead th {
+            background:  $dark-purple;
+            color: $color-text;
+            border-color: #fff2;
+        }
+    }
+}

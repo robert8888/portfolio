@@ -1,0 +1,19 @@
+div.module{
+    caption{
+      background-color: $midnight-green-eagle-green-2;
+    }
+    table{
+      color: $color-text;
+      background: $color-bg-primary;
+      tr:nth-child(odd){
+        background: $color-bg-secondary;
+      }
+      tr:nth-child(even){
+        background: lighten($color-bg-secondary,10%);
+      }
+      th, td{
+        border-bottom-color: $color-bg-secondary;
+        color: $color-text;
+      }
+    }
+  }

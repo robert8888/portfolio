@@ -1,0 +1,57 @@
+@mixin blackSvgToColor($hue, $brightens: 0){
+    filter: 
+        invert(27%) 
+        sepia(51%) 
+        saturate(2878%)
+        hue-rotate($hue) 
+        brightness(100% + $brightens) 
+        contrast(97%);
+}
+
+@mixin link--icon-background-before($url, $color, $color-hover) {
+    background: none;
+    padding-left: 25px;
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        width: 25px;
+        height: 100%;
+        background-image: url($url);
+        background-repeat: no-repeat;
+        background-size: 16px 16px;
+        background-position: center left;
+        @include blackSvgToColor(map-get($color, "hue"), map-get($color, "brightness"));
+    }
+    @if variable-exists('color-hover'){
+        &:hover::before{
+            @include blackSvgToColor(map-get($color-hover, "hue"), map-get($color-hover, "brightness"));
+        }
+    }
+}
+
+@mixin scroll(
+    $track-color,
+    $thumb-color,
+    $thumb-hover-color,
+    $width: 20px
+){
+    &::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+    &::-webkit-scrollbar-track {
+        background: $track-color;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: $thumb-color;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: $thumb-hover-color;
+    }
+}

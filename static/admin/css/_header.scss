@@ -1,0 +1,38 @@
+
+body {
+    background: $color-bg-primary;
+}
+  
+
+#header{
+    height: 40px;
+    background: $russian-violet;
+    color: #000;
+    box-shadow: 
+        0 7px 2px -7px #0008 inset, 
+        0 -7px 2px -7px #0008 inset;
+}
+
+#branding {
+    h1{
+        & a:link, & a:visited{
+        color: $color-text;
+        font-weight: 800;
+        }   
+    }
+}
+
+#user-tools{
+    color: white;
+    strong{
+        margin-right: 10px;
+
+    }
+    a:hover{
+        color: $color-text-secondary;
+    }
+}
+
+div.breadcrumbs{
+    background-color: $space-cadet;
+}

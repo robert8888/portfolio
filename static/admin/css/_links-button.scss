@@ -1,0 +1,17 @@
+
+a:link, a:visited{
+    color: $color-text;
+}
+
+
+.module {
+    .addlink{
+        @include link--icon-background-before('../img/add.svg', $icon-color, $icon-color-hover) 
+    }
+
+    .changelink{
+        @include link--icon-background-before('../img/pencil.svg', $icon-color, $icon-color-hover) 
+    }
+}
+
+

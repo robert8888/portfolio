@@ -1,0 +1,18 @@
+
+#content-related{
+    background: $color-bg-secondary;
+    border: 1px solid $charcoal;
+    .module{
+        h2, h3{
+            color: $color-text;
+        }
+        h2{
+            border-bottom-color: $charcoal;
+        }
+    }
+    .actionlist{
+        li{
+            padding-left: 30px;
+        }
+    }
+}

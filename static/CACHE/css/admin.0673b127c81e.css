@@ -1,0 +1,13 @@
+/* line 1, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+#header {
+  height: 50px;
+  background: #aabbdd;
+  color: #000; }
+
+/* line 6, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+#header a:link, #header a:visited {
+  color: #2b6471; }
+
+/* line 9, d:/projekty/apki/portfolio-cv/portfolio/static/admin/css/admin.scss */
+#branding h1 {
+  color: #000; }
