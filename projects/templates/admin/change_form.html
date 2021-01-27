@@ -1,0 +1,10 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+{% load compress %}
+
+{% block admin_change_form_document_ready %}
+{{ block.super }}
+    <!-- {{ block.compress js inline}}
+    <script src="{% static 'admin/js/formset_handlers.js' %}"></script>
+    {{ endcompress }} -->
+{% endblock %}

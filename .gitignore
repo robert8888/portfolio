@@ -120,3 +120,6 @@ GitHub.sublime-settings
 
 /media/*
 .env
+/static/CACHE/*
+static/CACHE/*
+static/CACHE
