@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #- custom
     'compressor',
+    'compressor_toolkit',
     'solo.apps.SoloAppConfig',
     'projects.apps.ProjectsConfig',
     'django.contrib.admin',
@@ -138,6 +139,8 @@ STATICFILES_FINDERS = [
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
