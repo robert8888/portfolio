@@ -123,3 +123,9 @@ GitHub.sublime-settings
 /static/CACHE/*
 static/CACHE/*
 static/CACHE
+
+/node_modules
+node_modules/
+node_modules/*
+
+/static_compiled

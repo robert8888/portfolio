@@ -5,9 +5,8 @@
 {% block extrastyle %}
     {{ block.super }}
         <link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}">
-        {% compress css %}
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'admin/css/login.scss' %}" />
-        {% endcompress %}
+
+        <link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}" />
     {{ form.media }}
 {% endblock %}
 

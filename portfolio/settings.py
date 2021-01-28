@@ -42,9 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #- custom
-    'compressor',
-    'compressor_toolkit',
-    'solo.apps.SoloAppConfig',
+
     'projects.apps.ProjectsConfig',
     'django.contrib.admin',
 ]
@@ -129,19 +127,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static_compiled'),
+]
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
 ]
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
-
-ALLOWED_HOSTS = ['rkaminski.herokuapp.com']
+ALLOWED_HOSTS = ['rkaminski.herokuapp.com', "127.0.0.1"]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
