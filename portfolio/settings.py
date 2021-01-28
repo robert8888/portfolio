@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #- custom
-
+    'solo.apps.SoloAppConfig',
     'projects.apps.ProjectsConfig',
     'django.contrib.admin',
 ]
