@@ -1,0 +1,22 @@
+{% extends "base_page.html" %}
+
+{% load render_bundle from webpack_loader %}
+
+{% block style %}
+{% render_bundle 'main' 'css' %}
+{% endblock %}
+
+{% block content %}
+    <div id="app">
+        <gallery>
+            test
+        </gallery>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% render_bundle 'chunk-vendors' %}
+{% render_bundle 'main' 'js' %}
+
+{% endblock %}
