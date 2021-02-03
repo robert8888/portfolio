@@ -20,7 +20,7 @@
 
     "postinstall": "npm install --prefix ./components_src",
 
-    "heroku-prebuild": "npm install --prefix ./components_src && npm run build",
+    "heroku-prebuild": "cd components_src && npm install && npm run build",
     "heroku-postbuild": "run-s compile:sass compile:js"
 
   },
