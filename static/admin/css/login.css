@@ -1,0 +1,44 @@
+.login {
+  background: #222831;
+}
+.login p, .login span, .login label {
+  color: #c9c9c9;
+}
+.login #container {
+  border: none;
+  background: none;
+}
+.login .content {
+  background: #393e46;
+  box-shadow: 0 0 2px #fff5;
+}
+.login .form-row label {
+  color: white;
+}
+.login .form-row input[type=text], .login .form-row input[type=password] {
+  background: #222831;
+  color: #c9c9c9;
+  outline: none;
+  border-color: #144552ff;
+}
+.login .form-row input[type=text]:focus, .login .form-row input[type=password]:focus {
+  border-color: #c13fc1;
+}
+.login .form-row input[type=text]:-webkit-autofill, .login .form-row input[type=text]:-webkit-autofill:hover, .login .form-row input[type=text]:-webkit-autofill:focus, .login .form-row input[type=password]:-webkit-autofill, .login .form-row input[type=password]:-webkit-autofill:hover, .login .form-row input[type=password]:-webkit-autofill:focus {
+  background: #222831;
+  border: 1px solid #144552ff;
+  -webkit-text-fill-color: #c9c9c9;
+  -webkit-box-shadow: 0 0 0px 1000px #222831 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.login .form-row input[type=text]:-webkit-autofill:hover, .login .form-row input[type=password]:-webkit-autofill:hover {
+  border: 1px solid #c13fc1;
+}
+.login .submit-row input[type=submit] {
+  background: #065a60ff;
+}
+.login .submit-row input[type=submit]:hover {
+  background: #098790;
+}
+
+/*# sourceMappingURL=login.css.map */
