@@ -1,7 +1,7 @@
 @import "./calendar-widget";
 
 @mixin addButton() {
-    @include link--icon-background-before('./../../assets/img/add.svg', $icon-color, $icon-color-hover);
+    @include link--icon-background-before('./../../img/add.svg', $icon-color, $icon-color-hover);
     font-size: 1.1em;
     &::before{
         background-size: 1.1em;
@@ -9,7 +9,7 @@
 }
 
 @mixin changeButton() {
-    @include link--icon-background-before('./../../assets/img/pencil.svg', $icon-color, $icon-color-hover);
+    @include link--icon-background-before('./../../img/pencil.svg', $icon-color, $icon-color-hover);
     font-size: 1.1em;
     &::before{
         background-size: 1.1em;
