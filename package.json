@@ -18,9 +18,9 @@
     "dev": "run-p compile:sass:w compile:js:w compile:components:w",
     "build": "run-s compile:sass compile:js compile:components",
 
-    "postinstall": "npm install --prefix ./components_src npm run build",
+    "postinstall": "npm install --prefix ./components_src",
 
-    "heroku-prebuild": "npm install --prefix ./components_src npm run build",
+    "heroku-prebuild": "npm install --prefix ./components_src && npm run build",
     "heroku-postbuild": "run-s compile:sass compile:js"
 
   },
