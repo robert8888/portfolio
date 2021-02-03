@@ -18,7 +18,7 @@
     "dev": "run-p compile:sass:w compile:js:w compile:components:w",
     "build": "run-s compile:sass compile:js compile:components",
 
-    "heroku-prebuild": "npm install -g @vue/cli-service",
+    "heroku-prebuild": "cd components_src && npm install",
     "postinstall": "cd components_src && npm install"
   },
   "repository": {
