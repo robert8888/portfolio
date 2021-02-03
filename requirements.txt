@@ -10,6 +10,7 @@ django-heroku==0.3.1
 django-libsass==0.8
 django-resized==0.3.11
 django-solo==1.1.5
+django-webpack-loader==0.6.0
 filelock==3.0.12
 gunicorn==20.0.4
 libsass==0.20.1
@@ -29,4 +30,3 @@ virtualenv-clone==0.5.4
 virtualenvwrapper==4.8.4
 virtualenvwrapper-win==1.2.6
 whitenoise==5.2.0
-
