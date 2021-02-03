@@ -45,6 +45,7 @@ module.exports = {
 
         config.resolve.alias
             .set('__STATIC__', 'static')
+            //.set('vue', '@vue/runtime-dom')
 
         config.devServer
             .public('http://localhost:8080')
