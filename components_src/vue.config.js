@@ -6,7 +6,6 @@ const pages = {
         chunks: ['chunk-vendors'],
     },
 }
-console.log("------------------------- node env in dept ------------------",  process.env.NODE_ENV)
 
 module.exports = {
     pages: pages,

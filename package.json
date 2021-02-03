@@ -12,7 +12,7 @@
     "compile:sass:w": "cross-var sass --watch $npm_package_config_src_dir:$npm_package_config_dest_dir",
     "compile:js": "cross-var npx babel $npm_package_config_src_dir --out-dir $npm_package_config_dest_dir",
     "compile:js:w": "cross-var npx babel --watch $npm_package_config_src_dir --out-dir $npm_package_config_dest_dir",
-    "compile:components": "cd components_src npm run build",
+    "compile:components": "cd components_src && npm run build",
     "compile:components:w": "cd components_src && npm start",
 
     "dev": "run-p compile:sass:w compile:js:w compile:components:w",
