@@ -35,14 +35,17 @@ class Owner(SingletonModel):
         )
 
     photo = models.ImageField(
-            upload_to='author', 
-            height_field=None, 
-            width_field=None, 
-            max_length=255,
-            verbose_name='Photo', 
-            help_text='Select author photo'
+            upload_to = 'author',
+            height_field = 'photo_height',
+            width_field = 'photo_width',
+            max_length = 255,
+            verbose_name = 'Photo',
+            help_text = 'Select author photo'
         )
 
+    photo_width = models.PositiveIntegerField(default = 0)
+
+    photo_height = models.PositiveIntegerField(default = 0)
 
     def __str__(self):
         return "Owner"

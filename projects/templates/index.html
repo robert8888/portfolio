@@ -1,28 +1,18 @@
 {% extends "base_page.html" %}
-
 {% load render_bundle from webpack_loader %}
-
+{% load static %}}
 {% block style %}
+{{ block.super }}
+<link href="{% static 'client/css/index.css' %}" rel="stylesheet" type="text/css"/>
 {% render_bundle 'main' 'css' %}
 {% endblock %}
 
 {% block content %}
-    <vue-component>
-        <gallery>
-            test
-        </gallery>
-    </vue-component>
-
-    <vue-component>
-        <gallery>
-            test2
-        </gallery>
-    </vue-component>
+    {% include "owner.html" %}
+    {% include "projects_list.html" %}
 {% endblock %}
 
 {% block scripts %}
-
 {% render_bundle 'chunk-vendors' %}
 {% render_bundle 'main' 'js' %}
-
 {% endblock %}

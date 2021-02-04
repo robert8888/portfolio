@@ -30,10 +30,14 @@ class Technology(SingletonModel):
 
     logo = models.ImageField(
             upload_to='technology', 
-            height_field=None, 
-            width_field=None, 
+            height_field='logo_width',
+            width_field='logo_height',
             max_length=255
         )
+
+    logo_width = models.PositiveIntegerField(default = 0)
+
+    logo_height = models.PositiveIntegerField(default = 0)
 
     weight = models.PositiveIntegerField(
             verbose_name ="Order weight", 

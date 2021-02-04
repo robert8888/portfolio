@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%n^#1&uwpwlv(*l@s^lh2t977imfz%)540)g7=6gxq5b1e-yh^'
+SECRET_KEY = os.getenv("DJANGO_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #- custom
+    'storages',
     'webpack_loader',
     'solo.apps.SoloAppConfig',
     'projects.apps.ProjectsConfig',
@@ -124,6 +125,19 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+
+
+# AWS S3 SETTINGS
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_URL = os.getenv('AWS_URL')
+AWS_DEFAULT_ACL = None
+AWS_S3_REGION_NAME = 'eu-central-1'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+
+
 VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'components_src')
 
 WEBPACK_LOADER = {
@@ -155,5 +169,8 @@ STATICFILES_FINDERS = [
 
 ALLOWED_HOSTS = ['rkaminski.herokuapp.com', "127.0.0.1"]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+MEDIA_ROOT = AWS_URL + '/media/'
+MEDIA_URL = AWS_URL + '/media/'
+DEFAULT_FILE_STORAGE = 'portfolio.storage.MediaStorage'

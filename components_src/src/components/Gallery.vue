@@ -1,10 +1,13 @@
-<template>
+<template v-slot="gallery">
   <div class="gallery">
-    <h4>tekst</h4>
-    <h1>value {{value}}</h1>
-    <slot/>
-    <button v-on:click="increment">more</button>
-    <button v-on:click="decrement">less</button>
+     <div class="gallery__container">
+        <ul class="gallery__items">
+          <slot/>
+        </ul>
+        <button>prev</button>
+        <button>next</button>
+        <button>close</button>
+     </div>
   </div>
 </template>
 

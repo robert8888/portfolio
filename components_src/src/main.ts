@@ -2,17 +2,16 @@ import { createApp, App } from 'vue';
 
 import storePlugin from "./store"
 
-import Gallery from "./components/Gallery.vue";
+import * as components from "./components";
 
 customElements.define('vue-component', class extends HTMLElement{
   private app: App | undefined;
 
   createComponent(){
-     this.app = createApp({
-         components: {Gallery},
-     })
-     this.app.use(storePlugin)
-     this.app.mount(this, true)
+    this.app = createApp({ components })
+    this.app.use(storePlugin)
+    this.setAttribute("data-server-rendered", "true");
+    this.app.mount(this, true);
   }
 
   connectedCallback(){
@@ -20,7 +19,7 @@ customElements.define('vue-component', class extends HTMLElement{
   }
 
   disconnectedCallback(){
-      if(!this.app) return;
-      this.app.unmount(this)
+    if(!this.app) return;
+    this.app.unmount(this)
   }
 })
