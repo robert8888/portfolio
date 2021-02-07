@@ -67,7 +67,9 @@ ROOT_URLCONF = 'portfolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'projects/templates/front')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -222,7 +224,6 @@ CKEDITOR_CONFIGS = {
             'dialog',
             'dialogui',
             'elementspath',
-            'uploadimage',
         ]),
         'templates_files': ['/static/ckeditor/content_templates/templates.js'],
     }

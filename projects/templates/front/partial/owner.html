@@ -1,0 +1,18 @@
+{% load solo_tags %}
+{% get_solo 'projects.Owner' as owner %}
+<div class="owner_container l-row">
+    <div class="l-col-lg-6 l-col-sm-12">
+        <vue-component>
+            <sliding-img src="{{owner.photo.url}}"/>
+        </vue-component>
+    </div>
+    <div class="l-col-lg-6 l-col-sm-12">
+        <h2 class="owner__title">About</h2>
+        <p class="owner__text">
+            {{ owner.about_short|safe }}
+        </p>
+        <div class="owner__technologies">
+
+        </div>
+    </div>
+</div>

@@ -3,13 +3,13 @@
 {% load static %}}
 {% block style %}
 {{ block.super }}
-<link href="{% static 'client/css/index.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'front/css/index.css' %}" rel="stylesheet" type="text/css"/>
 {% render_bundle 'main' 'css' %}
 {% endblock %}
 
 {% block content %}
-    {% include "owner.html" %}
-    {% include "projects_list.html" %}
+    {% include "partial/owner.html" %}
+    {% include "partial/projects_list.html" %}
 {% endblock %}
 
 {% block scripts %}
