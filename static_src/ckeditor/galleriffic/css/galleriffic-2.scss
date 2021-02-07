@@ -1,0 +1,24 @@
+@import '../../../css/colors';
+@import '../../../css/mixins';
+@import "base";
+
+body{
+  background: $color-bg-secondary;
+  color: $color-text;
+}
+div#page{
+  background: $color-bg-primary;
+  border-color: darken($color-bg-primary, 10%);
+}
+
+input[type="submit"].default{
+  @include input-submit();
+}
+
+input[type="text"]{
+  @include input();
+}
+
+label[for="id_q"]{
+  margin-right: 20px;
+}

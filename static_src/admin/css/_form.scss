@@ -26,13 +26,7 @@ form{
         }
 
         input[type=text], input[type=number], select, textarea{
-            background: $color-bg-secondary;
-            color: $color-text;
-            outline: none;
-            border-color: $midnight-green-eagle-green-3;
-            &:focus{
-                border-color: lighten($russian-violet-2, 30%);
-            }
+            @include input();
         }
 
         .form-row{
@@ -163,23 +157,7 @@ form{
     }
 
     input[type="file"]{
-        &::-webkit-file-upload-button {
-            color: $color-text;
-            display: inline-block;
-            background: $midnight-green-eagle-green-3;
-            border: none;
-            padding: 7px 15px;
-            font-weight: 700;
-            border-radius: 3px;
-            white-space: nowrap;
-            cursor: pointer;
-            font-size: 10pt;
-        }
-        &:hover{
-            &::-webkit-file-upload-button {
-                background: $midnight-green-eagle-green;
-            }
-        }
+        @include input-file();
     }
 
     .submit-row{
@@ -188,21 +166,11 @@ form{
         border-top: 1px solid $color-separator-3;
         border-radius: 0;
         input[type="submit"]{
-            background: $midnight-green-eagle-green-3;
-            &:hover{
-                background: lighten($midnight-green-eagle-green-3, 10%);
-            }
-            &.default{
-                background: $skobeloff;
-                &:hover{
-                    background: lighten($skobeloff, 10%);
-                }
-            }
+            @include input-submit();
         }
     }
 
     .file-upload{
-
         a {
             line-height: 1em;
             vertical-align: middle;
@@ -216,3 +184,53 @@ form{
     }
 }
 
+
+.input-number{
+    padding-right: 20px;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button{
+        -webkit-appearance: none;
+
+        margin: 0;
+    };
+    &__wrapper{
+        display: inline-block;
+        position: relative;
+    }
+    &__btn{
+        position: absolute;
+        width: 20px;
+        height:  50%;
+        right: 1px;
+        border: none;
+        outline: none;
+        padding: 0;
+        background: transparent;
+        color:  $midnight-green-eagle-green;
+        cursor: pointer;
+        &:hover:before{
+            color: lighten($russian-violet-2, 30%);
+        }
+        &:before{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: block;
+            vertical-align: middle;
+        }
+        &--increase{
+            &:before{
+                content: "\25B2";
+            }
+        }
+        &--decrease{
+            top: 50%;
+            &:before{
+                content: "\25BC";
+            }
+        }
+    }
+}

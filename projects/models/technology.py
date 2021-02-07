@@ -1,18 +1,25 @@
 from django.db import models
-from solo.models import SingletonModel
 
-class Technology(SingletonModel):
+class Technology(models.Model):
     name = models.CharField(
             max_length=255, 
-            default='Name', 
-            help_text='Enter technology name'
+            default='',
+            help_text='Technology name'
         )
 
     description = models.CharField(
             max_length=255, 
-            default="Description", 
-            help_text='Enter technology description', 
+            default="",
+            help_text='Technology description',
             blank = True, 
+            null = True
+        )
+
+    url = models.CharField(
+            max_length=255,
+            default="",
+            help_text="Technology url eg. official page",
+            blank = True,
             null = True
         )
 
@@ -48,4 +55,4 @@ class Technology(SingletonModel):
         return self.name
 
     class Meta:
-        verbose_name = "Technologie"
+        verbose_name = "Technology"

@@ -23,13 +23,11 @@ class Owner(SingletonModel):
         )
 
     about_short = models.TextField(
-            max_length = 255, 
             default = '', 
             verbose_name = "Short description"
         )
 
     about_full = models.TextField(
-            max_length = 1000, 
             default = '', 
             verbose_name = 'Full description'
         )

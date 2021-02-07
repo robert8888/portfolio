@@ -2,7 +2,9 @@ const path = require("path");
 
 
 const entries = [
-    "admin/ts/form.ts"
+    "admin/ts/form_input_number.ts",
+    'admin/ts/sidebar.ts',
+    'ckeditor/content_templates/templates.ts'
 ].reduce((acc, path) => {
     const key =
         path.split("/")
@@ -23,14 +25,25 @@ module.exports = {
         filename: "[name].js"
     },
     module: {
-        rules: [{
-            // Include ts, tsx, js, and jsx files.
-            test: /\.(ts|js)x?$/,
-            exclude: [/node_modules/],
-            use: [{
-                loader: 'ts-loader',
-                options: {}
-            }]
-        }],
+        rules: [
+            {
+                // Include ts, tsx, js, and jsx files.
+                test: /\.(ts|js)x?$/,
+                exclude: [/node_modules/],
+                use: [{
+                    loader: 'ts-loader',
+                    options: {}
+                }]
+            },
+            {
+               test: /\.template.html$/,
+                use: [{
+                   loader: 'raw-loader',
+                    options: {
+                        esModule: false,
+                    },
+                }]
+            }
+        ],
     },
 }

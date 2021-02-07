@@ -1,0 +1,123 @@
+.cke_button_icon{
+  filter: hue-rotate(137deg) brightness(0.9) contrast(.8);
+}
+
+.cke{
+  .cke_top, .cke_bottom{
+    background: $color-bg-primary;
+  }
+}
+
+.cke_dialog{
+  & &_body{
+    background: $color-bg-primary;
+    label{
+      color: $color-text;
+    }
+  }
+  & &_title{
+    color: $color-text;
+    background: $color-bg-primary;
+  }
+  a.cke_dialog_tab{
+    background: $color-bg-primary;
+    &_selected{
+      color: lighten($skobeloff, 10%);
+      border-bottom-color: lighten($russian-violet-2, 20%);
+      &:hover{
+        border-bottom-color: lighten($russian-violet-2, 40%);
+      }
+    }
+    &:hover{
+      background: $color-bg-secondary;
+      color: $color-text;
+    }
+    &:focus, &:focus:active, &:focus:hover{
+      border-bottom-color: lighten($russian-violet-2, 40%);
+    }
+  }
+  a.cke_btn_reset,
+  a.cke_btn_locked,
+  a.cke_dialog_close_button{
+    filter: hue-rotate(458deg) brightness(.75);
+  }
+
+  & &_contents{
+    &_body{
+      background: $color-bg-primary;
+    }
+  }
+  tbody tr,
+  tbody tr td,
+  tbody tr td > *
+  {
+    background: $color-bg-primary;
+    color: $color-text;
+  }
+
+  input.cke_dialog_ui_input_text,
+  select.cke_dialog_ui_input_select
+  {
+    background-color: $color-bg-secondary !important;
+    @include input();
+    border-color: $midnight-green-eagle-green-3 !important;
+    &:focus{
+      border-color: lighten($russian-violet-2, 30%) !important;
+    }
+  }
+  select.cke_dialog_ui_input_select{
+    @include select();
+  }
+
+  a.cke_dialog_ui_button{
+    background: $skobeloff;
+    &:hover{
+      background: lighten($skobeloff, 10%);
+    }
+    border:none;
+    &, & > * {
+      color: $color-text;
+    }
+  }
+  div.cke_dialog_ui_html{
+    color: $color-text;
+  }
+
+  div.ImagePreviewBox{
+    border-color: darken($color-bg-primary ,10%);
+    background: $color-bg-secondary;
+    @include scroll(
+      $color-bg-primary,
+      $midnight-green-eagle-green-3,
+      $skobeloff
+    )
+  }
+
+  div.cke_tpl_list{
+    background: $color-bg-primary;
+    color: $color-text;
+    resize: vertical;
+    @include scroll(
+        $color-bg-primary,
+        $midnight-green-eagle-green-3,
+        $skobeloff
+    );
+
+    div.cke_tpl_item{
+      background: $color-bg-primary;
+    }
+  }
+}
+
+.cke_notification{
+  @at-root div#{&}#{&}_info{
+    color: $color-text;
+    background: $russian-violet;
+    border-color: $color-separator;
+  }
+  p#{&}_message{
+    color: $color-text;
+    background: $russian-violet;
+  }
+}
+

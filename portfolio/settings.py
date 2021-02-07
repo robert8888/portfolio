@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'solo.apps.SoloAppConfig',
     'projects.apps.ProjectsConfig',
     'django.contrib.admin',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -136,8 +138,6 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = 'eu-central-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
-
-
 VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'components_src')
 
 WEBPACK_LOADER = {
@@ -174,3 +174,56 @@ ALLOWED_HOSTS = ['rkaminski.herokuapp.com', "127.0.0.1"]
 MEDIA_ROOT = AWS_URL + '/media/'
 MEDIA_URL = AWS_URL + '/media/'
 DEFAULT_FILE_STORAGE = 'portfolio.storage.MediaStorage'
+
+
+CKEDITOR_UPLOAD_PATH = "upload"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'prestige',
+        'toolbar': 'Basic',
+        'toolbar_Basic': [
+            {'name': 'document', 'items': ['Templates', 'Source']},
+            {'name': 'images', 'items': ['Image']},
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat', '-',
+                       'PasteFromWord']},
+
+            {'name': 'paragraph',
+             'items': ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'NumberedList', 'BulletedList',
+                       '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
+                       ]},
+            {'name': 'insert',
+             'items': ['Table', 'HorizontalRule', 'SpecialChar', 'PageBreak']},
+
+        ],
+        'extraPlugins': ','.join(['sharedspace', 'save', 'autolink', ]),
+        'removePlugins': ','.join(['resize', ]),
+        'width': 'auto',
+        'height': '4cm',
+        'sharedSpaces': {
+            'top': 'id-top-ckeditor-toolbar',
+            'bottom': 'id-bottom-ckeditor-toolbar'
+        },
+        'contentsCss': '/static/admin/css/ckeditor-content.css',
+        'extraPlugins': ','.join([
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'templates',
+            # 'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath',
+            'uploadimage',
+        ]),
+        'templates_files': ['/static/ckeditor/content_templates/templates.js'],
+    }
+}

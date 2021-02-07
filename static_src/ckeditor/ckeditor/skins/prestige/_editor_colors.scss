@@ -1,0 +1,29 @@
+@import "../../../../css/colors.scss";
+
+div.cke_menu{
+  background: green;
+}
+
+span.cke_menu_item{
+  background-color: red;
+}
+
+span.cke_menubutton_inner{
+  background-color: $color-bg-primary;
+}
+span.cke_menubutton_icon{
+  background-color: $color-bg-primary !important;
+}
+
+span.cke_menubutton_icon span.cke_button_icon{
+  background-color: $color-bg-primary !important;
+}
+
+span.cke_menubutton_icon span.cke_button_icon{
+  background-color: $color-bg-primary;
+  filter: hue-rotate(140deg);
+}
+
+span.cke_menubutton_label {
+  color: white !important;
+}

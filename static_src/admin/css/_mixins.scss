@@ -33,25 +33,3 @@
     }
 }
 
-@mixin scroll(
-    $track-color,
-    $thumb-color,
-    $thumb-hover-color,
-    $width: 20px
-){
-    &::-webkit-scrollbar {
-        width: 10px;
-      }
-      
-    &::-webkit-scrollbar-track {
-        background: $track-color;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-        background: $thumb-color;
-    }
-    
-    &::-webkit-scrollbar-thumb:hover {
-        background: $thumb-hover-color;
-    }
-}

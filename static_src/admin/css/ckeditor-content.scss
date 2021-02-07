@@ -1,0 +1,14 @@
+@import "./../../css/colors.scss";
+@import "./../../css/mixins.scss";
+body{
+  background: $color-bg-secondary;
+  color: $color-text;
+}
+
+html{
+  @include scroll(
+      $color-bg-primary,
+      $midnight-green-eagle-green-3,
+      $skobeloff
+  )
+}

@@ -15,4 +15,9 @@
 <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ _('Portfolio') }}</a></h1>
 {% endblock %}
 
-{% block nav-global %}{% endblock %}
+{% block bottomscripts %}
+{{ block.super }}
+<!-- extra scripts --->
+{% load static %}
+<script async defer src="{% static 'admin/js/sidebar.js' %}"></script>
+{% endblock %}
