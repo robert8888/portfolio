@@ -9,18 +9,18 @@ span.cke_menu_item{
 }
 
 span.cke_menubutton_inner{
-  background-color: $color-bg-primary;
+  background-color: var(--color-bg-primary);
 }
 span.cke_menubutton_icon{
-  background-color: $color-bg-primary !important;
+  background-color: var(--color-bg-primary) !important;
 }
 
 span.cke_menubutton_icon span.cke_button_icon{
-  background-color: $color-bg-primary !important;
+  background-color: var(--color-bg-primary) !important;
 }
 
 span.cke_menubutton_icon span.cke_button_icon{
-  background-color: $color-bg-primary;
+  background-color: var(--color-bg-primary);
   filter: hue-rotate(140deg);
 }
 

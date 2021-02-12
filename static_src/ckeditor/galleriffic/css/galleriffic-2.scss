@@ -3,12 +3,12 @@
 @import "base";
 
 body{
-  background: $color-bg-secondary;
-  color: $color-text;
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
 }
 div#page{
-  background: $color-bg-primary;
-  border-color: darken($color-bg-primary, 10%);
+  background: var(--color-bg-primary);
+  border-color: var(--color-bg-primary-darken);
 }
 
 input[type="submit"].default{

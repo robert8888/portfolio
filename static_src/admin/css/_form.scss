@@ -1,7 +1,7 @@
 @import "./calendar-widget";
 
 @mixin addButton() {
-    @include link--icon-background-before('./../../img/add.svg', $icon-color, $icon-color-hover);
+    @include link--icon-background-before('./../../img/add.svg');
     font-size: 1.1em;
     &::before{
         background-size: 1.1em;
@@ -9,7 +9,7 @@
 }
 
 @mixin changeButton() {
-    @include link--icon-background-before('./../../img/pencil.svg', $icon-color, $icon-color-hover);
+    @include link--icon-background-before('./../../img/pencil.svg');
     font-size: 1.1em;
     &::before{
         background-size: 1.1em;
@@ -18,11 +18,11 @@
 
 form{
     fieldset.module{
-        color: $color-text;
+        color: var(--color-text);
         background: transparent;
 
         label{
-            color: $color-text;
+            color: var(--color-text);
         }
 
         input[type=text], input[type=number], select, textarea{
@@ -30,7 +30,7 @@ form{
         }
 
         .form-row{
-            border-bottom: 1px solid $color-separator;
+            border-bottom: 1px solid var(--color-separator);
         }
 
         .related-widget-wrapper{
@@ -61,20 +61,20 @@ form{
                 .selector-chosen h2,
                 .selector-available h2
                 {
-                    background: $dark-purple;
+                    background: var(--color-pallet-8);
                     border: none;
                     color: $color-text
                 }
                 .selector-chosen h2, 
                 .selector-available h2{
-                    background: $russian-violet-2;
-                    border-bottom: 1px solid $color-separator-2;
+                    background: var(--color-pallet-9);
+                    border-bottom: 1px solid var(--color-separator-2);
                 }
                 select{
                     @include scroll(
-                        $color-separator-2,
-                        $midnight-green-eagle-green-3, 
-                        $skobeloff
+                        var(--color-separator-2),
+                        var(--color-pallet-4),
+                        $color-pallet-1
                     )
                 }
             }
@@ -84,25 +84,25 @@ form{
     .inline-group{
         overflow: initial;
         h2 {
-            background: $russian-violet-2;
+            background: var(--color-pallet-9);
         }
         fieldset.module table{
             th{
-                background:  $dark-purple;
-                color: $color-text;
+                background:  var(--color-pallet-8);
+                color: var(--color-text);
                 border-color: #fff2;
             }
             tr:nth-child(odd){
-                background-color: $color-bg-primary;
+                background-color: var(--color-bg-primary);
             }
             tr:nth-child(even){
-                background-color: lighten($color-bg-primary, 3%);
+                background-color: var(--color-bg-primary--light);
             }
             td{
                 border-bottom: #fff2;
             }
             tbody tr.add-row > td{
-                background-color: $color-bg-primary;
+                background-color: var(--color-bg-primary);
                 border: none;
                 a{
                     @include addButton();
@@ -114,9 +114,9 @@ form{
         &[data-inline-type="stacked"]{
 
             div.add-row {
-                background-color: $color-bg-primary;
+                background-color: var(--color-bg-primary);
                 border:none;
-                border-top: 1px solid $color-separator;
+                border-top: 1px solid var(--color-separator);
                 a{
                     @include addButton();
                 }
@@ -144,9 +144,9 @@ form{
                     }
                 }
                 h3 {
-                    background: $dark-purple;
-                    color: $color-text;
-                    border-color: $color-bg-secondary;
+                    background: var(--color-pallet-8);
+                    color: var(--color-text);
+                    border-color: var(--color-bg-secondary);
                     span.delete{
                         margin-left: auto;
                         flex: unset;
@@ -161,9 +161,9 @@ form{
     }
 
     .submit-row{
-        background: $color-bg-primary;
+        background: var(--color-bg-primary);
         border: none;
-        border-top: 1px solid $color-separator-3;
+        border-top: 1px solid var(--color-separator-3);
         border-radius: 0;
         input[type="submit"]{
             @include input-submit();
@@ -208,10 +208,10 @@ form{
         outline: none;
         padding: 0;
         background: transparent;
-        color:  $midnight-green-eagle-green;
+        color:  var(--color-pallet-2);
         cursor: pointer;
         &:hover:before{
-            color: lighten($russian-violet-2, 30%);
+            color: var(--color-pallet-9-light);
         }
         &:before{
             position: absolute;

@@ -2,17 +2,17 @@
 
 #changelist form#changelist-form{
     .actions{
-        color: $color-text;
-        background: $russian-violet;
+        color: var(--color-text);
+        background: var(--color-pallet-9);
         width: auto;
-        border-bottom-color: $color-separator;
+        border-bottom-color: var(--color-separator);
         select{
-            //ackground: $color-bg-secondary;
-            color: $color-text;
+            //ackground: var(--color-bg-secondary);
+            color: var(--color-text);
             outline: none;
-          //  border-color: $midnight-green-eagle-green-3;
+          //  border-color: var(--color-pallet-4);
             &:focus{
-                border-color: lighten($russian-violet-2, 30%);
+                border-color: var(--color-pallet-9-light);
             }
         }
     }
@@ -20,13 +20,13 @@
     div.results table{
         thead {
             tr, tr > th , tr > td{
-                background: $dark-purple;
-                color: $color-text;
-                border-bottom-color: $color-separator;
-                border-top-color: $color-separator-2;
+                background: var(--color-pallet-8);
+                color: var(--color-text);
+                border-bottom-color: var(--color-separator);
+                border-top-color: var(--color-separator-2);
             }
             tr > th > div.text > a:hover{
-                background: $russian-violet-2;
+                background: var(--color-pallet-9);
                 color: white;
             }
         }
@@ -42,16 +42,16 @@
                 }
             }
             tr > th, tr > td {
-                border-bottom-color: $color-separator;
+                border-bottom-color: var(--color-separator);
             }
         }
     }
 
     p.paginator{
         width: auto;
-        background: $color-bg-primary;
+        background: var(--color-bg-primary);
         border-bottom: none;
-        border-color: $color-separator-3;
-        color: $color-text;
+        border-color: var(--color-separator-3);
+        color: var(--color-text);
     }
 }

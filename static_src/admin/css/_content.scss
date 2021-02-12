@@ -1,29 +1,29 @@
 #content{
     
     h1, h2, h3, h4, h5, h6, p , span, div, ul li, ol{
-        color: $color-text;
+        color: var(--color-text);
     }
 
     .object-tools{
         a {
-            background: $charcoal;
+            background: var(--color-pallet-5);
         }
     }
 
     #change-history{
         thead tr,
         thead th {
-            background:  $dark-purple;
-            color: $color-text;
-            border-color: #fff2;
+            background: var(--color-pallet-8);
+            color: var(--color-text);
+            border-color: var(--color-separator);
         }
     }
 }
 .content{
     ul.messagelist{
         li{
-            background: $skobeloff;
-            color: $color-text;
+            background: var(--color-pallet-1);
+            color: var(--color-text);
             position: relative;
             &.success{
                 &::before{

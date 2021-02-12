@@ -1,19 +1,19 @@
 div.module{
     caption{
-      background-color: $midnight-green-eagle-green-2;
+      background-color: $color-pallet-3
     }
     table{
-      color: $color-text;
-      background: $color-bg-primary;
+      color: var(--color-text);
+      background: var(--color-bg-primary);
       tr:nth-child(odd){
-        background: $color-bg-secondary;
+        background: var(--color-bg-secondary);
       }
       tr:nth-child(even){
-        background: lighten($color-bg-secondary,10%);
+        background: var(--color-bg-secondary-light);
       }
       th, td{
-        border-bottom-color: $color-bg-secondary;
-        color: $color-text;
+        border-bottom-color: var(--color-bg-secondary);
+        color: var(--color-text);
       }
     }
   }

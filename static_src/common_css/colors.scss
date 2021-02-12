@@ -10,14 +10,69 @@ $dark-purple: #312244ff;
 $russian-violet: #3e1f47ff;
 $russian-violet-2: #4d194dff;
 
+$charleston-green: #101317;
+$gunmetal: #23262b;
+$cultured: #c9c9c9;
+$davys-grey: #353535;
+$gray-1: #fff2;
+$gray-2: #fff8;
+$gray-3: #fff6;
 
-$color-bg-primary: #222831;
-$color-bg-secondary:#393e46; 
-$color-text: #c9c9c9;
-$color-text-secondary: #353535;
-$color-separator: #fff2;
-$color-separator-2: #fff8;
-$color-separator-3: #fff6;
+
+$color-pallet-1: $skobeloff;
+$color-pallet-2: $midnight-green-eagle-green;
+$color-pallet-3: $midnight-green-eagle-green-2;
+$color-pallet-4: $midnight-green-eagle-green-3;
+$color-pallet-5: $charcoal;
+$color-pallet-6: $prussian-blue;
+$color-pallet-7: $space-cadet;
+$color-pallet-8: $dark-purple;
+$color-pallet-9: $russian-violet;
+$color-pallet-10: $russian-violet-2;
+
+$color-bg-primary: $charleston-green;
+$color-bg-secondary: $gunmetal;
+$color-text: $cultured;
+$color-text-secondary: $davys-grey;
+$color-separator: $gray-1;
+$color-separator-2: $gray-2;
+$color-separator-3: $gray-3;
 
 $icon-color: ("hue": 170deg, "brightness": 20%);
 $icon-color-hover: ("hue": 170deg, "brightness": 60%);
+
+:root{
+  --color-pallet-1: #{$color-pallet-1};
+  --color-pallet-1-light: #{lighten($color-pallet-1, 10%)};
+  --color-pallet-2: #{$color-pallet-2};
+  --color-pallet-2-light: #{lighten($color-pallet-2, 10%)};
+  --color-pallet-2-o: #{rgba($color-pallet-2, .1)};
+  --color-pallet-3: #{$color-pallet-3};
+  --color-pallet-4: #{$color-pallet-4};
+  --color-pallet-4-light: #{lighten($color-pallet-4, 10%)};
+  --color-pallet-5: #{$color-pallet-5};
+  --color-pallet-6: #{$color-pallet-6};
+  --color-pallet-7: #{$color-pallet-7};
+  --color-pallet-8: #{$color-pallet-8};
+  --color-pallet-9: #{$color-pallet-9};
+  --color-pallet-9-light: #{lighten($color-pallet-9, 30%)};
+  --color-pallet-10: #{$color-pallet-10};
+  --color-pallet-10-light: #{lighten($color-pallet-10, 30%)};
+
+  --color-bg-primary: #{$charleston-green};
+  --color-bg-primary-darken: #{darken($color-bg-primary, 10%)};
+  --color-bg-primary--light: #{lighten($charleston-green, 3%)};
+  --color-bg-secondary: #{$gunmetal};
+  --color-bg-secondary-light: #{lighten($gunmetal, 10%)};
+  --color-text: #{$cultured};
+  --color-text-secondary: #{$davys-grey};
+  --color-separator: #{$gray-1};
+  --color-separator-2: #{$gray-2};
+  --color-separator-3: #{$gray-3};
+
+  --black-icon-hue: 170deg;
+  --black-icon-brightness: 120%;
+
+  --black-icon-hover-hue: 170deg;
+  --black-icon-hover-brightness: 160%;
+}

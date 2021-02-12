@@ -1,13 +1,13 @@
 
 #content-related{
-    background: $color-bg-secondary;
-    border: 1px solid $charcoal;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-pallet-5);
     .module{
         h2, h3{
-            color: $color-text;
+            color: var(--color-text);
         }
         h2{
-            border-bottom-color: $charcoal;
+            border-bottom-color: var(--color-pallet-5);
         }
     }
     .actionlist{

@@ -9,12 +9,12 @@
   "scripts": {
     "compile:sass": "cross-var sass $npm_package_config_src_dir:$npm_package_config_dest_dir",
     "compile:sass:w": "cross-var sass --watch $npm_package_config_src_dir:$npm_package_config_dest_dir",
-    "compile:js": "cross-var npx webpack",
-    "compile:js:w": "cross-var npx webpack --watch",
+    "compile:assets": "cross-var npx webpack",
+    "compile:assets:w": "cross-var npx webpack --watch",
     "compile:components": "cd components_src && npm run build",
     "compile:components:w": "cd components_src && npm start",
-    "dev": "run-p compile:sass:w compile:js:w compile:components:w",
-    "build": "run-s compile:sass compile:js compile:components",
+    "dev": "run-p compile:assets:w compile:components:w",
+    "build": "run-s compile:assets compile:components",
     "postinstall": "npm install --prefix ./components_src"
   },
   "repository": {
@@ -28,14 +28,22 @@
   },
   "homepage": "https://github.com/robert8888/portfolio#readme",
   "devDependencies": {
+    "autoprefixer": "^10.2.4",
     "cross-var": "^1.1.0",
+    "file-loader": "^6.2.0",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.6",
+    "postcss-loader": "^5.0.0",
+    "postcss-preset-env": "^6.7.0",
     "raw-loader": "^4.0.2",
     "sass": "^1.32.5",
+    "sass-loader": "^11.0.1",
     "ts-loader": "^8.0.14",
     "typescript": "^4.1.3",
     "webpack": "^5.20.1",
     "webpack-cli": "^4.5.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "remove-files-webpack-plugin": "^1.4.4"
+  }
 }

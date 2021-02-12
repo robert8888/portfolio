@@ -4,36 +4,36 @@
 
 .cke{
   .cke_top, .cke_bottom{
-    background: $color-bg-primary;
+    background: var(--color-bg-primary);
   }
 }
 
 .cke_dialog{
   & &_body{
-    background: $color-bg-primary;
+    background: var(--color-bg-primary);
     label{
-      color: $color-text;
+      color: var(--color-text);
     }
   }
   & &_title{
-    color: $color-text;
-    background: $color-bg-primary;
+    color: var(--color-text);
+    background: var(--color-bg-primary);
   }
   a.cke_dialog_tab{
-    background: $color-bg-primary;
+    background: var(--color-bg-primary);
     &_selected{
-      color: lighten($skobeloff, 10%);
-      border-bottom-color: lighten($russian-violet-2, 20%);
+      color: var(--color-pallet-1-light);
+      border-bottom-color: var(--color-pallet-9-light);
       &:hover{
-        border-bottom-color: lighten($russian-violet-2, 40%);
+        border-bottom-color: var(--color-pallet-10-light);
       }
     }
     &:hover{
-      background: $color-bg-secondary;
-      color: $color-text;
+      background: var(--color-bg-secondary);
+      color: var(--color-text);
     }
     &:focus, &:focus:active, &:focus:hover{
-      border-bottom-color: lighten($russian-violet-2, 40%);
+      border-bottom-color: var(--color-pallet-10-light);
     }
   }
   a.cke_btn_reset,
@@ -44,25 +44,25 @@
 
   & &_contents{
     &_body{
-      background: $color-bg-primary;
+      background: var(--color-bg-primary);
     }
   }
   tbody tr,
   tbody tr td,
   tbody tr td > *
   {
-    background: $color-bg-primary;
-    color: $color-text;
+    background: var(--color-bg-primary);
+    color: var(--color-text);
   }
 
   input.cke_dialog_ui_input_text,
   select.cke_dialog_ui_input_select
   {
-    background-color: $color-bg-secondary !important;
+    background-color: var(--color-bg-secondary) !important;
     @include input();
-    border-color: $midnight-green-eagle-green-3 !important;
+    border-color: var(--color-pallet-4) !important;
     &:focus{
-      border-color: lighten($russian-violet-2, 30%) !important;
+      border-color: var(--color-pallet-10-light) !important;
     }
   }
   select.cke_dialog_ui_input_select{
@@ -70,54 +70,54 @@
   }
 
   a.cke_dialog_ui_button{
-    background: $skobeloff;
+    background: var(--color-pallet-1);
     &:hover{
-      background: lighten($skobeloff, 10%);
+      background: var(--color-pallet-1-light);
     }
     border:none;
     &, & > * {
-      color: $color-text;
+      color: var(--color-text);
     }
   }
   div.cke_dialog_ui_html{
-    color: $color-text;
+    color: var(--color-text);
   }
 
   div.ImagePreviewBox{
-    border-color: darken($color-bg-primary ,10%);
-    background: $color-bg-secondary;
+    border-color: var(--color-bg-primary-darken);
+    background: var(--color-bg-secondary);
     @include scroll(
-      $color-bg-primary,
-      $midnight-green-eagle-green-3,
-      $skobeloff
+      var(--color-bg-primary),
+      var(--color-pallet-4),
+      var(--color-pallet-1)
     )
   }
 
   div.cke_tpl_list{
-    background: $color-bg-primary;
-    color: $color-text;
+    background: var(--color-bg-primary);
+    color: var(--color-text);
     resize: vertical;
     @include scroll(
-        $color-bg-primary,
-        $midnight-green-eagle-green-3,
-        $skobeloff
+        var(--color-bg-primary),
+        var(--color-pallet-4),
+        var(--color-pallet-1)
     );
 
     div.cke_tpl_item{
-      background: $color-bg-primary;
+      background: var(--color-bg-primary);
     }
   }
 }
 
 .cke_notification{
   @at-root div#{&}#{&}_info{
-    color: $color-text;
-    background: $russian-violet;
-    border-color: $color-separator;
+    color: var(--color-text);
+    background: var(--color-pallet-9);
+    border-color: var(--color-separator);
   }
   p#{&}_message{
-    color: $color-text;
-    background: $russian-violet;
+    color: var(--color-text);
+    background: var(--color-pallet-9);
   }
 }
 

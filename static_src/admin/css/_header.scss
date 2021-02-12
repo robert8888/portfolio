@@ -1,12 +1,12 @@
 
 body {
-    background: $color-bg-primary;
+    background: var(--color-bg-primary);
 }
   
 
 #header{
     height: 40px;
-    background: $russian-violet;
+    background: var(--color-pallet-9);
     color: #000;
     box-shadow: 
         0 7px 2px -7px #0008 inset, 
@@ -16,7 +16,7 @@ body {
 #branding {
     h1{
         & a:link, & a:visited{
-        color: $color-text;
+        color: var(--color-text);
         font-weight: 800;
         }   
     }
@@ -29,10 +29,10 @@ body {
 
     }
     a:hover{
-        color: $color-text-secondary;
+        color: var(--color-text-secondary);
     }
 }
 
 div.breadcrumbs{
-    background-color: $space-cadet;
+    background-color: var(--color-pallet-7);
 }

@@ -1,14 +1,15 @@
-@import "./../../common_css/colors.scss";
 @import "./../../common_css/mixins.scss";
+@import "./../../common_css/colors.scss";
+
 body{
-  background: $color-bg-secondary;
-  color: $color-text;
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
 }
 
 html{
   @include scroll(
-      $color-bg-primary,
-      $midnight-green-eagle-green-3,
-      $skobeloff
+      var(--color-bg-primary),
+      var(--color-pallet-4),
+      var(--color-pallet-1)
   )
 }

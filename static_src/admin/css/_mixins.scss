@@ -1,14 +1,23 @@
-@mixin blackSvgToColor($hue, $brightens: 0){
+@mixin blackSvgToColor(){
     filter: 
         invert(27%) 
         sepia(51%) 
         saturate(2878%)
-        hue-rotate($hue) 
-        brightness(100% + $brightens) 
+        hue-rotate(var(--black-icon-hue))
+        brightness(var(--black-icon-brightness))
         contrast(97%);
+    &:hover{
+        filter:
+            invert(27%)
+            sepia(51%)
+            saturate(2878%)
+            hue-rotate(var(--black-icon-hover-hue))
+            brightness(var(--black-icon-hover-brightness))
+            contrast(97%);
+    }
 }
 
-@mixin link--icon-background-before($url, $color, $color-hover) {
+@mixin link--icon-background-before($url) {
     background: none;
     padding-left: 25px;
     position: relative;
@@ -24,12 +33,7 @@
         background-repeat: no-repeat;
         background-size: 16px 16px;
         background-position: center left;
-        @include blackSvgToColor(map-get($color, "hue"), map-get($color, "brightness"));
-    }
-    @if variable-exists('color-hover'){
-        &:hover::before{
-            @include blackSvgToColor(map-get($color-hover, "hue"), map-get($color-hover, "brightness"));
-        }
+        @include blackSvgToColor();
     }
 }
 

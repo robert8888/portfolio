@@ -2,9 +2,9 @@
 
 
 .login{
-    background: $color-bg-primary;
+    background: var(--color-bg-primary);
     p, span, label{
-        color: $color-text;
+        color: var(--color-text);
     }
     #container{
         border: none;
@@ -12,7 +12,7 @@
      
     }
     .content{
-        background: $color-bg-secondary;
+        background: var(--color-bg-secondary);
         box-shadow: 0 0 2px #fff5;
     }
     
@@ -22,33 +22,33 @@
         }
 
         input[type=text], input[type=password]{
-            background: $color-bg-primary;
-            color: $color-text;
+            background: var(--color-bg-primary);
+            color: var(--color-text);
             outline: none;
-            border-color: $midnight-green-eagle-green-3;
+            border-color: var(--color-pallet-4);
             &:focus{
-                border-color: lighten($russian-violet-2, 30%);
+                border-color: var(--color-pallet-10-light);
             }
             &:-webkit-autofill,
             &:-webkit-autofill:hover, 
             &:-webkit-autofill:focus{
-                background: $color-bg-primary;
-                border: 1px solid $midnight-green-eagle-green-3;
-                -webkit-text-fill-color: $color-text;
-                -webkit-box-shadow: 0 0 0px 1000px $color-bg-primary inset;
+                background: var(--color-bg-primary);
+                border: 1px solid var(--color-pallet-4);
+                -webkit-text-fill-color: var(--color-text);
+                -webkit-box-shadow: 0 0 0px 1000px var(--color-bg-primary) inset;
                 transition: background-color 5000s ease-in-out 0s;
             }
             &:-webkit-autofill:hover{
-                border: 1px solid lighten($russian-violet-2, 30%);
+                border: 1px solid var(--color-pallet-10-light);
             }
         }
     }
 
     .submit-row{
         input[type=submit]{
-            background: $midnight-green-eagle-green;
+            background: var(--color-pallet-2);
             &:hover{
-                background: lighten($midnight-green-eagle-green, 10%);
+                background: var(--color-pallet-2-light);
             }
         }
     }
