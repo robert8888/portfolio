@@ -16,14 +16,14 @@ import {computed, defineComponent} from 'vue';
 import {useStore} from "@/store";
 
 export default defineComponent({
-  setup(){
-    const store = useStore();
-    return {
-      value: computed(() => store.state.counter.value),
-      increment: () => store.commit('increment', 1),
-      decrement: () => store.commit('decrement', 1)
-    }
-  }
+  // setup(){
+  //   const store = useStore();
+  //   return {
+  //     value: computed(() => store.state.counter.value),
+  //     increment: () => store.commit('increment', 1),
+  //     decrement: () => store.commit('decrement', 1)
+  //   }
+  // }
 })
 
 

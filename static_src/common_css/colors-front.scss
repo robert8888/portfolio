@@ -1,18 +1,20 @@
 $color-background-primary: #101317;
 $color-text-primary: #B2B3B3;
+$color-text-primary-alpha-5: rgba(#B2B3B3, .5);
 $color-pallet-primary: #138392;
 $color-pallet-secondary: #614C7C;
 $color-separator: #B2B3B3;
 
 :root{
-  --color-background-primary: $color-background-primary;
+  --color-background-primary: #{$color-background-primary};
 
-  --color-text-primary:$color-text-primary;
+  --color-text-primary:#{$color-text-primary};
+  --color-text-primary-alpha-5:#{$color-text-primary-alpha-5};
 
-  --color-pallet-priamry: $color-pallet-primary;
-  --color-pallet-priamry-alpha: rgba($color-pallet-primary, .6);
+  --color-pallet-priamry: #{$color-pallet-primary};
+  --color-pallet-priamry-alpha: #{rgba($color-pallet-primary, .6)};
 
-  --color-pallet-secondary: $color-pallet-secondary;
+  --color-pallet-secondary: #{$color-pallet-secondary};
 
-  --color-separator: $color-separator;
+  --color-separator: #{$color-separator};
 }

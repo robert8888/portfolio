@@ -3,32 +3,32 @@ from solo.models import SingletonModel
 
 class Owner(SingletonModel):
     name = models.CharField(
-            max_length = 255, 
-            default = '', 
+            max_length = 255,
+            default = '',
             verbose_name  = 'Name'
         )
 
     surname = models.CharField(
-            max_length = 255, 
-            default = '', 
+            max_length = 255,
+            default = '',
             verbose_name = 'Surname'
         )
 
     birthdate = models.DateField(
-            auto_now=False, 
-            auto_now_add=False, 
+            auto_now=False,
+            auto_now_add=False,
             verbose_name = "Birthdate",
-            blank = True, 
+            blank = True,
             null = True
         )
 
     about_short = models.TextField(
-            default = '', 
+            default = '',
             verbose_name = "Short description"
         )
 
     about_full = models.TextField(
-            default = '', 
+            default = '',
             verbose_name = 'Full description'
         )
 

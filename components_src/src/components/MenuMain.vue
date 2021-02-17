@@ -1,0 +1,41 @@
+<template slot="item">
+  <main class="navigation navigation--main">
+    <button class="navigation__btn"
+            @click="toggle"
+            :aria-expanded="expanded"
+            aria-label="Menu expand">
+    </button>
+    <nav id="mainNavContainer" :class="['navigation__container', {'navigation__container--collapsed': !expanded}]">
+      <ul class="navigation__list">
+        <slot/>
+      </ul>
+    </nav>
+  </main>
+</template>
+
+<script lang="ts">
+import {computed, defineComponent} from 'vue';
+import {useStore, MUTATIONS} from "@/store";
+import scrollDisableMixin from "./../mixins/scrollDisable";
+
+export default defineComponent({
+  mixins: [scrollDisableMixin],
+
+  setup(){
+    const store = useStore();
+    return {
+      expanded: computed(() => store.state.menu.expanded),
+      toggle: () => store.commit(MUTATIONS.TOGGLE, 1),
+    }
+  },
+
+  watch: {
+    expanded: function(){
+      this.expanded ? this.scrollDisable() :this.scrollEnable();
+    }
+  }
+
+})
+
+
+</script>

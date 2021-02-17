@@ -1,2 +1,6 @@
-@import "./../../common_css/colors-front.scss";
-@import "./../../common_css/grid.scss";
+@import "./../../common_css/colors-front";
+@import "./../../common_css/grid";
+@import "./../../common_css/mixins-front";
+@import "general";
+@import "header";
+@import "sections/index";

@@ -1,0 +1,18 @@
+{% extends "base_page.html" %}
+{% load render_bundle from webpack_loader %}
+{% load static %}}
+{% block style %}
+{{ block.super }}
+<link href="{% static 'front/css/index.css' %}" rel="stylesheet" type="text/css"/>
+{% render_bundle 'main' 'css' %}
+{% endblock %}
+
+{% block content %}
+    {% include "partial/owner.html" %}
+{% endblock %}
+
+{% block scripts %}
+{% render_bundle 'chunk-vendors' %}
+{% render_bundle 'main' 'js' %}
+<script src="{% static 'front/js/index.js' %}"></script>
+{% endblock %}

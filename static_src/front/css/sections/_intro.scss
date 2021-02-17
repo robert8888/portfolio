@@ -1,0 +1,51 @@
+.intro{
+  padding-top: 75px;
+  .l-row{
+   & > div:first-child{
+     min-height: 50vh;
+   }
+  }
+
+  &__subtitle{
+    font-family: "Source Sans Pro", Roboto, sans-serif;
+    line-height: 1.4em;
+    color: var(--color-pallet-priamry);
+    margin-left: 35px;
+    margin-bottom: 1.5em;
+    &--small{
+      margin-top: 2em;
+      margin-bottom: 0.3em;
+    }
+  }
+
+  &__img{
+    @keyframes sliding-img {
+      from{
+        transform: translateY(0);
+      }
+     to {
+       transform: translateY(-95%);
+     }
+    }
+    animation-name: sliding-img;
+    animation-duration: 120s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    &__container{
+      clip-path: url(#codeClip);
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 70%;
+      height: 140%;
+    }
+    &__wrapper{
+      position: relative;
+      padding-top: 40%;
+      filter: drop-shadow(0px 0px 2px var(--color-text-primary-alpha-5));
+    }
+
+  }
+}
+

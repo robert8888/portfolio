@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'solo.apps.SoloAppConfig',
     'projects.apps.ProjectsConfig',
+    'index_app.apps.IndexAppConfig',
     'django.contrib.admin',
     'ckeditor',
     'ckeditor_uploader',
@@ -68,7 +69,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'projects/templates/front'),
+            #os.path.join(BASE_DIR, 'projects/templates/front'),
             os.path.join(BASE_DIR, 'portfolio/templates')
         ],
         'APP_DIRS': True,

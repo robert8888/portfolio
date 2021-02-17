@@ -2,9 +2,12 @@ const path = require("path");
 const RemovePlugin = require('remove-files-webpack-plugin');
 
 const tsEntries = [
+    //admin
     "admin/ts/form_input_number.ts",
-    'admin/ts/sidebar.ts',
-    'ckeditor/content_templates/templates.ts'
+   // 'admin/ts/sidebar.ts',
+    'ckeditor/content_templates/templates.ts',
+    //front
+    'front/ts/index.ts'
 ]
 
 const sassEntries = [

@@ -1,0 +1,373 @@
+{% load solo_tags %}
+{% load static %}
+{% get_solo 'projects.Owner' as owner %}
+<header>
+    <div class="l-container">
+        <div class="l-row">
+            <aside class="navigation navigation--aside">
+                <nav class="navigation__container">
+                    <ul class="navigation__list">
+                        <li class="navigation__item navigation__item--home">#</li>
+                        <li class="navigation__item">
+                            <a href="#intro" class="navigation__item__link">
+                                <span class="navigation__item__counter"/>
+                                <span class="navigation__item__content"> Hi' im robert </span>
+                            </a>
+                        </li>
+                        <li class="navigation__item  navigation__item--current">
+                            <a href="#intro" class="navigation__item__link">
+                                <span class="navigation__item__counter"/>
+                                <span class="navigation__item__content">
+                                    Stack
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navigation__item">
+                            <a href="#intro" class="navigation__item__link">
+                                <span class="navigation__item__counter"/>
+                                <span class="navigation__item__content">
+                                    Projects
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navigation__item">
+                            <a href="#intro" class="navigation__item__link">
+                                <span class="navigation__item__counter"/>
+                                <span class="navigation__item__content">
+                                    About me
+                                </span>
+                            </a>
+                        </li>
+                        <li class="navigation__item">
+                            <a href="#intro" class="navigation__item__link">
+                                <span class="navigation__item__counter"/>
+                                <span class="navigation__item__content">
+                                    Contact
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <vue-component>
+                <menu-main class="nav">
+                    <menu-main-item>
+                        <a href="/projects" class="navigation__item__link">
+                            PROJECTS
+                        </a>
+                    </menu-main-item>
+                    <menu-main-item>
+                        <a href="/#contact" class="navigation__item__link">
+                            CONTACT
+                        </a>
+                    </menu-main-item>
+                </menu-main>
+            </vue-component>
+
+        </div>
+    </div>
+</header>
+
+<section class="intro">
+    <div class="l-container">
+        <div class="l-row">
+            <div class="l-col-xs-12 l-col-lg-6">
+                <h5 class="intro__subtitle">Hi i’m Robert and i...</h5>
+                <h1 class="intro__title">Building creative web solutions you deserve</h1>
+                <h6 class="intro__subtitle intro__subtitle--small">I will transform your plans and requirements into
+                    the best solutions based on cutting edge trends
+                    and technologies aligned with best practices.
+                </h6>
+            </div>
+            <div class="l-col-xs-12 l-col-lg-6">
+                <div class="intro__img__wrapper">
+                    <svg class="intro__img__mask" width="0" height="0">
+                        <defs>
+                            <clipPath id="codeClip" clipPathUnits="objectBoundingBox">
+                                <path d="M 0.1038 0.3756 L 0.307 0.4657 V 0.591 L 0 0.4275 V 0.3217 L 0.307 0.1582 V 0.2837 L 0.1038 0.3756 Z" fill="black"/>
+                                <path d="M 0.4243 0.7085 H 0.3476 L 0.5387 0 H 0.6154 L 0.4243 0.7085 Z" fill="black"/>
+                                <path d="M 0.8753 0.3742 L 0.6682 0.2832 V 0.1586 L 0.9787 0.3222 V 0.4275 L 0.6682 0.5916 V 0.4665 L 0.8753 0.3742 Z" fill="black"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <div class="intro__img__container">
+                        <img class="intro__img"  src="{% static 'img/code.png' %}" alt="Code">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="technology">
+    <div class="l-container technology--chosen">
+        <div class="l-row">
+            <div class="l-col l-col-xs-12">
+                <a class="technology__link technology__link--js">
+                    <img style="--x: 0; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+                </a>
+                <a class="technology__link technology__link--ts">
+                    <img style="--x: -135px; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+            </div>
+            <div class="l-col l-col-xs-12">
+                <a class="technology__link technology__link--css">
+                    <img style="--x: 0; --y: -100px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+                <a class="technology__link technology__link--html">
+                    <img style="--x: -135px; --y: -100px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+            </div>
+            <div class="l-col l-col-xs-12">
+                <a class="technology__link technology__link--sass">
+                    <img style="--x: 0; --y: -200px; --w: 140px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+                <a class="technology__link technology__link--php">
+                    <img style="--x: -135px; --y: -200px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+            </div>
+            <div class="l-col l-col-xs-12">
+                <a class="technology__link technology__link--python">
+                    <img style="--x: -75px; --y: -290px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+                <a class="technology__link technology__link--python">
+                    <img style="--x: -75px; --y: -290px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+            </div>
+        </div>
+        <div class="l-row">
+            <div class="l-col l-col-xs-12">
+                <a class="technology__link technology__link--react">
+                    <img style="--x: 0; --y: -395px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+                <a class="technology__link technology__link--native">
+                    <img style="--x: -135px; --y: -390px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+            </div>
+            <div class="l-col l-col-xs-12">
+                <a class="technology__link technology__link--vue">
+                    <img style="--x: 0; --y: -500px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+                <a class="technology__link technology__link--node">
+                    <img style="--x: -135px; --y: -500px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+            </div>
+            <div class="l-col l-col-xs-12">
+                <a class="technology__link technology__link--express">
+                    <img style="--x: 0; --y: -610px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+                <a class="technology__link technology__link--django">
+                    <img style="--x: -135px; --y: -610px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+            </div>
+            <div class="l-col l-col-xs-12">
+                <a class="technology__link technology__link--laravel">
+                    <img style="--x: 0; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+                <a class="technology__link technology__link--laravel">
+                    <img style="--x: 0; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="technology--all">
+        <div class="l-container">
+            <vue-component>
+                <overlay button-open-text="See all" test="a">
+                    <div class="l-container">
+                        <div class="l-row">
+                            <div class="l-col l-col-xs-12">
+                                <h3>Languages</h3>
+                                <ul class="technology__list">
+                                    <li class="technology__list__item">Java Script</li>
+                                    <li class="technology__list__item">Type Script</li>
+                                    <li class="technology__list__item">Css / Sass</li>
+                                    <li class="technology__list__item">PHP</li>
+                                    <li class="technology__list__item">Python</li>
+                                    <li class="technology__list__item">GraphQl</li>
+                                </ul>
+                            </div>
+                            <div class="l-col l-col-xs-12">
+                                <h3>Frameworks</h3>
+                                <ul class="technology__list">
+                                    <li class="technology__list__item">React / React Native / Vue</li>
+                                    <li class="technology__list__item">Express / Nest</li>
+                                    <li class="technology__list__item">Boostrap / Materialize</li>
+                                    <li class="technology__list__item">Django</li>
+                                    <li class="technology__list__item">Laravel</li>
+                                </ul>
+                            </div>
+                            <div class="l-col l-col-xs-12">
+                                <h3>Tools</h3>
+                                <ul class="technology__list">
+                                    <li class="technology__list__item">Git</li>
+                                    <li class="technology__list__item">Npm / Yarn</li>
+                                    <li class="technology__list__item">Composer</li>
+                                    <li class="technology__list__item">Pip</li>
+                                </ul>
+                            </div>
+                            <div class="l-col l-col-xs-12">
+                                <h3>Services</h3>
+                                <ul class="technology__list">
+                                    <li class="technology__list__item">Github</li>
+                                    <li class="technology__list__item">Amazon</li>
+                                    <li class="technology__list__item">Heroku</li>
+                                </ul>
+                            </div>
+                            <div class="l-col l-col-xs-12">
+                                <h3>Editors</h3>
+                                <ul class="technology__list">
+                                    <li class="technology__list__item">WebStorm</li>
+                                    <li class="technology__list__item">Vs Code</li>
+                                    <li class="technology__list__item">Figma</li>
+                                    <li class="technology__list__item">PhotoShop</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="l-row">
+                            <div class="l-col-xs-12">
+                                <h3>Chosen Favorite js libraries</h3>
+                                <ul class="technology__list">
+                                    <li class="technology__list__item">Webpack</li>
+                                    <li class="technology__list__item">Sequalizer</li>
+                                    <li class="technology__list__item">TypeORM</li>
+                                    <li class="technology__list__item">Axios</li>
+                                    <li class="technology__list__item">Socket IO</li>
+                                </ul>
+                                <ul class="technology__list">
+                                    <li class="technology__list__item">Jest</li>
+                                    <li class="technology__list__item">Jasmine</li>
+                                    <li class="technology__list__item">Karma</li>
+                                    <li class="technology__list__item">Mocha</li>
+                                </ul>
+                                <ul class="technology__list">
+                                    <li class="technology__list__item">Redux</li>
+                                    <li class="technology__list__item">MobX</li>
+                                    <li class="technology__list__item">Recoile.js</li>
+                                    <li class="technology__list__item">Vuex</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </overlay>
+            </vue-component>
+        </div>
+    </div>
+</section>
+<section class="projects">
+    <div class="l-container">
+        <div class="l-row">
+            <div class="l-col-xs-12">
+                <div class="slider">
+                    <div class="slider__item">
+                        <div class="card card--project">
+                            <header>
+                                <h3>DJ TRUCK</h3>
+                                <button class="btn btn--max"/>
+                            </header>
+                            <div class="card__gallery">
+                                <div class="card__gallery__item"><img src="{% static 'img/project-thumbnail.png' %}" alt="-"></div>
+                                <div class="card__gallery__item"><img src="{% static 'img/project-thumbnail.png' %}" alt="-"></div>
+                                <div class="card__gallery__item"><img src="{% static 'img/project-thumbnail.png' %}" alt="-"></div>
+                            </div>
+                            <h4 class="card__subtitle">Digital dj software in browser</h4>
+                            <p class="car__content">
+                                Online dj software allowing mixing tracks from external source
+                                like youtube or soundcloud and record and store gigs. Two channel
+                                mixer with three band equlization low and hi pass filters
+                                cue channel monitoring and build two channel
+                            </p>
+                            <ul class="card__technology-list">
+                                <li class="card__technology-list__item">Javascript</li>
+                                <li class="card__technology-list__item">React</li>
+                                <li class="card__technology-list__item">Express</li>
+                                <li class="card__technology-list__item">Auth0</li>
+                                <li class="card__technology-list__item">Postgresql</li>
+                            </ul>
+                            <a class="card__link card__link--more" href="/projects">more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="l-row">
+            <button class="btn btn--all">See all</button>
+        </div>
+    </div>
+</section>
+<section class="about">
+    <div class="l-container">
+        <div class="l-row">
+            <div class="l-col-xs-12">
+                <h2>About <span class="text-highlighted">me.</span></h2>
+            </div>
+            <div class="l-col-xs-12">
+                <p>
+                    I will transform your plans and requirements into the best solutions
+                    based on cutting edge technologies and trends align with best practices.
+                    I will transform your plans and requirements into the best solutions
+                    based on cutting edge technologies and trends align with best practices.
+
+                    I will transform your plans and requirements into the best solutions
+                    based on cutting edge technologies and trends align with best practices.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="contact">
+    <div class="l-container">
+        <div class="l-row">
+            <div class="l-col-xs-12">
+                <form class="form">
+                    <input class="form__input form__input--email"
+                           type="text"
+                           placeholder=" "
+                           aria-label="email">
+                    <input class="form__input form__input--subject"
+                           type="text"
+                           placeholder=" "
+                           aria-label="subject">
+                    <textarea placeholder=" " aria-label="message"></textarea>
+                    <div class="form__captcha">
+                    </div>
+                    <button class="btn btn--send">Send message</button>
+                </form>
+            </div>
+        </div>
+        <div class="l-row">
+            <div class="l-col-xs-12">
+                <h3>How about cooperation ?</h3>
+                <p>
+                    I will transform your plans and requirements into the best solutions based on
+                    cutting edge technologies and trends align with best practices.
+                    I will transform your plans and requirements into the best
+                    solutions based on cutting edge technologies and trends align with best practices.
+                </p>
+                <p>
+                    I will transform your plans and requirements into the best solutions
+                    based on cutting edge technologies and trends align with best practices.
+                </p>
+            </div>
+        </div>
+        <div class="l-row">
+            <div class="l-col-xs-12">
+                <span class="contact__portal-logo contact__portal-logo--github"/>
+                <span class="contact__portal-logo contact__portal-logo--stack"/>
+                <span class="contact__portal-logo contact__portal-logo--linked"/>
+                <span class="contact__portal-logo contact__portal-logo--lee-code"/>
+                <span class="contact__portal-logo contact__portal-logo--facebook"/>
+                <span class="contact__portal-logo contact__portal-logo--gmail"/>
+                <span class="contact__portal-logo contact__portal-logo--phone"/>
+            </div>
+            <div class="l-col-xs-12">
+                <button class="contact__btn btn contact__btn--download">Download Reasume</button>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <p class="text--small">
+        © 2021 Robert Kamiński - All Rights Reserved
+    </p>
+</footer>
