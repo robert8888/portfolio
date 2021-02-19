@@ -258,36 +258,142 @@
     <div class="l-container">
         <div class="l-row">
             <div class="l-col-xs-12">
-                <div class="slider">
-                    <div class="slider__item">
-                        <div class="card card--project">
-                            <header>
-                                <h3>DJ TRUCK</h3>
-                                <button class="btn btn--max"/>
-                            </header>
-                            <div class="card__gallery">
-                                <div class="card__gallery__item"><img src="{% static 'img/project-thumbnail.png' %}" alt="-"></div>
-                                <div class="card__gallery__item"><img src="{% static 'img/project-thumbnail.png' %}" alt="-"></div>
-                                <div class="card__gallery__item"><img src="{% static 'img/project-thumbnail.png' %}" alt="-"></div>
-                            </div>
-                            <h4 class="card__subtitle">Digital dj software in browser</h4>
-                            <p class="car__content">
-                                Online dj software allowing mixing tracks from external source
-                                like youtube or soundcloud and record and store gigs. Two channel
-                                mixer with three band equlization low and hi pass filters
-                                cue channel monitoring and build two channel
-                            </p>
-                            <ul class="card__technology-list">
-                                <li class="card__technology-list__item">Javascript</li>
-                                <li class="card__technology-list__item">React</li>
-                                <li class="card__technology-list__item">Express</li>
-                                <li class="card__technology-list__item">Auth0</li>
-                                <li class="card__technology-list__item">Postgresql</li>
-                            </ul>
-                            <a class="card__link card__link--more" href="/projects">more</a>
-                        </div>
-                    </div>
-                </div>
+                <vue-component>
+                    <slider>
+                        <slider-item>
+                            <card-project title="DJ TRUCK 1">
+                                <gallery>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                </gallery>
+
+                                <h4 class="card-project__subtitle">Digital dj software in browser</h4>
+                                <p class="card-project__text">
+                                    Online dj software allowing mixing tracks from external source
+                                    like youtube or soundcloud and record and store gigs. Two channel
+                                    mixer with three band equlization low and hi pass filters
+                                    cue channel monitoring and build two channel
+                                </p>
+                                <template #additional>
+                                    <ul class="card-project__technology-list">
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link js"> Javascript </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link react">
+                                                React
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link express">
+                                                Express
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link auth0">
+                                                Auth0
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link postgresql">
+                                                Postgresql
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </template>
+                            </card-project>
+                        </slider-item>
+                        <slider-item>
+                            <card-project title="DJ TRUCK 2">
+                                <gallery>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                </gallery>
+
+                                <h4 class="card-project__subtitle">Digital dj software in browser</h4>
+                                <p class="card-project__text">
+                                    Online dj software allowing mixing tracks from external source
+                                    like youtube or soundcloud and record and store gigs. Two channel
+                                    mixer with three band equlization low and hi pass filters
+                                    cue channel monitoring and build two channel
+                                </p>
+                                <template #additional>
+                                    <ul class="card-project__technology-list">
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link js"> Javascript </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link react">
+                                                React
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link express">
+                                                Express
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link auth0">
+                                                Auth0
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link postgresql">
+                                                Postgresql
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </template>
+                            </card-project>
+                        </slider-item>
+                        <slider-item>
+                            <card-project title="DJ TRUCK 3">
+                                <gallery>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                    <gallery-item src="{% static 'img/project-thumbnail.png' %}"></gallery-item>
+                                </gallery>
+
+                                <h4 class="card-project__subtitle">Digital dj software in browser</h4>
+                                <p class="card-project__text">
+                                    Online dj software allowing mixing tracks from external source
+                                    like youtube or soundcloud and record and store gigs. Two channel
+                                    mixer with three band equlization low and hi pass filters
+                                    cue channel monitoring and build two channel
+                                </p>
+                                <template #additional>
+                                    <ul class="card-project__technology-list">
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link js"> Javascript </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link react">
+                                                React
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link express">
+                                                Express
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link auth0">
+                                                Auth0
+                                            </a>
+                                        </li>
+                                        <li class="card-project__technology-list__item">
+                                            <a class="card-project__technology__link postgresql">
+                                                Postgresql
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </template>
+                            </card-project>
+                        </slider-item>
+                    </slider>
+                </vue-component>
             </div>
         </div>
         <div class="l-row">

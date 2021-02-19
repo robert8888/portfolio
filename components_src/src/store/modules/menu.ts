@@ -4,7 +4,7 @@ export interface MenuState {
 }
 
 export const MUTATIONS = {
-    TOGGLE: "toggle",
+    TOGGLE_MENU_MAIN: "toggle",
 }
 
 export const ACTIONS = {
@@ -20,7 +20,7 @@ export default {
         mainExpanded: false,
     }),
     mutations: {
-        [MUTATIONS.TOGGLE](state: MenuState) {
+        [MUTATIONS.TOGGLE_MENU_MAIN](state: MenuState) {
             state.expanded = !state.expanded;
         },
     },

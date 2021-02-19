@@ -25,7 +25,7 @@ export default defineComponent({
     const store = useStore();
     return {
       expanded: computed(() => store.state.menu.expanded),
-      toggle: () => store.commit(MUTATIONS.TOGGLE, 1),
+      toggle: () => store.commit(MUTATIONS.TOGGLE_MENU_MAIN),
     }
   },
 

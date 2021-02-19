@@ -1,19 +1,34 @@
 <template>
   <li class="gallery__item">
-    <img v-bind:src="src" alt=""/>
+    <img :src="src" alt="" :width="containerSize.w"/>
   </li>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {inject, computed, defineComponent} from 'vue';
+
+interface Size{
+  w: number;
+  h: number;
+}
 
 export default defineComponent({
+  setup(){
+    const containerSize = inject('containerSize') as Size;
+    return {containerSize:  containerSize};
+  },
   props:{
     src: String,
   },
   data: function(){
     return {
-      src: this.src
+    }
+  },
+
+  watch:{
+    containerSize(){
+      //@ts-ignore
+      //console.log(this.containerSize)
     }
   }
 })

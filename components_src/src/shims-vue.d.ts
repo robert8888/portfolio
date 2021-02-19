@@ -1,4 +1,6 @@
 /* eslint-disable */
+import "./../types/ResizeObserver.d.ts"
+
 declare module '*.vue' {
   import { Component } from 'vue'
   const component: Component
@@ -13,4 +15,3 @@ declare module '@vue/runtime-core' {
     $store: Store<State>;
   }
 }
-

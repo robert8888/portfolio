@@ -48,7 +48,7 @@ button {
   color: var(--color-text-primary);
   border-radius: 4px;
   cursor: pointer;
-  &:hover, &:active {
+  &:hover, &:focus {
     border-color: var(--color-pallet-secondary);
   }
 }
@@ -66,6 +66,11 @@ a, a:link, a:visited{
     &:hover{
       color: var(--color-text-primary);
     }
+  }
+  &:focus{
+    outline-color: var(--color-pallet-secondary);
+    outline-style: solid;
+    outline-offset: 0.3em;
   }
 }
 

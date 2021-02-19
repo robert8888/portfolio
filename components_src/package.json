@@ -9,11 +9,14 @@
     "start": "vue-cli-service serve"
   },
   "dependencies": {
+    "@types/resize-observer-browser": "^0.1.5",
     "core-js": "^3.6.5",
+    "nanoid": "^3.1.20",
     "sass-loader": "^10.1.1",
     "vue": "3.0.4",
     "vue-class-component": "^8.0.0-0",
     "vue-decorator": "^1.1.2",
+    "vue-resize-observer": "^1.0.37",
     "vuex": "^4.0.0",
     "vuex-persistedstate": "^4.0.0-beta.3"
   },

@@ -12,7 +12,8 @@ $color-separator: #B2B3B3;
   --color-text-primary-alpha-5:#{$color-text-primary-alpha-5};
 
   --color-pallet-priamry: #{$color-pallet-primary};
-  --color-pallet-priamry-alpha: #{rgba($color-pallet-primary, .6)};
+  --color-pallet-priamry-alpha: #{rgba($color-pallet-primary, .5)};
+  --color-pallet-priamry-alpha-2: #{rgba($color-pallet-primary, .2)};
 
   --color-pallet-secondary: #{$color-pallet-secondary};
 

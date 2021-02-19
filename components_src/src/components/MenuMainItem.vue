@@ -1,4 +1,4 @@
-<template  v-slot:item>
+<template>
     <li class="navigation__item">
         <slot/>
     </li>
@@ -9,19 +9,6 @@ import { defineComponent} from 'vue';
 
 
 export default defineComponent({
-  // props:{
-  //   href: String,
-  // },
-  //
-  // data: function(){
-  //   return {
-  //     href: this.href
-  //   }
-  // },
-
-  // setup(){
-  //
-  // }
 
 })
 
