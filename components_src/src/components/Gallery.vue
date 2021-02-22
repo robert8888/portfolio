@@ -5,17 +5,23 @@
           <slot/>
         </ul>
        <div class="gallery__controls">
-         <button class="gallery__controls__btn" @mouseup="prev" tabindex="-1"/>
-         <button class="gallery__controls__btn" @mouseup="next" tabindex="-1"/>
+         <button class="gallery__controls__btn"
+                 @mouseup="prev"
+                 :disabled="prevDisabled"
+                 tabindex="-1"/>
+         <button class="gallery__controls__btn"
+                 @mouseup="next"
+                 :disabled="nextDisabled"
+                 tabindex="-1"/>
        </div>
      </div>
   </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import {computed, defineComponent, inject} from 'vue';
 import toRange from "@/utils/toRange";
-
+import {useStore, MUTATIONS, GETTERS} from "@/store";
 
 export default defineComponent({
   data(){
@@ -26,18 +32,42 @@ export default defineComponent({
       },
       index: 0,
       position: 0,
-      isDragged: false,
-      length: 0,
+      isAnimated: false,
+      prevDisabled: true,
+      nextDisabled: false,
     }
   },
+
+  setup(){
+     const id = inject("id");
+     const store = useStore();
+     const updateIndex = (index: number) => store.commit(MUTATIONS.SET_GALLERY_INDEX, {id, index})
+     const syncIndex = computed(() => store.getters[GETTERS.GET_GALLERY_INDEX](id));
+     return {id, updateIndex, syncIndex};
+  },
+
+
   provide(){
     return {
       containerSize: computed(() => this.containerSize)
     }
   },
 
+
   mounted() {
-    this.length = (this.$refs.list as HTMLElement).children.length
+    this.list.addEventListener('transitionend', event => {
+        this.isAnimated = false;
+    });
+  },
+
+  computed: {
+    list(): HTMLElement{
+      return this.$refs.list as HTMLElement;
+    },
+
+    length(): number{
+      return this.list?.children?.length || 0;
+    },
   },
 
   methods: {
@@ -46,21 +76,19 @@ export default defineComponent({
         w: rect.width,
         h: rect.height
       }
-      this.updatePosition();
+      this.updatePositionFromIndex(undefined, false);
     },
 
     next(){
-      this.index = toRange(this.index + 1, 0 , this.length - 1);
-      this.updatePosition();
+      this.setIndex(this.index + 1)
+      this.updatePositionFromIndex();
     },
     prev(){
-      this.index = toRange(this.index - 1, 0 , this.length - 1);
-      this.updatePosition();
+      this.setIndex(this.index - 1)
+      this.updatePositionFromIndex();
     },
 
     touchStart(event: TouchEvent){
-      this.isDragged = true;
-      //@ts-ignore
       let list = this.$refs.list as HTMLElement;
       list = list as HTMLElement;
 
@@ -75,13 +103,17 @@ export default defineComponent({
       }
 
       const touchMove = (event: TouchEvent) => {
+        if(event.cancelable)
+          event.preventDefault();
+        event.stopPropagation();
+
         const clientX = event.touches[0]?.clientX - startX;
-        this.position = boundPosition(startPosition + clientX);
+        const position = boundPosition(startPosition + clientX);
+        this.updatePosition(position, false);
         shiftX = clientX;
       }
 
       const finishDragging = () => {
-        this.isDragged = false;
         if(!shiftX) return;
         shiftX < 0
           ? this.next()
@@ -97,22 +129,45 @@ export default defineComponent({
       })
     },
 
-    updatePosition(){
-      this.position = this.containerSize.w * -this.index
+    setIndex(index: number){
+       const nextIndex = toRange(index, 0 , this.length - 1);
+       if(nextIndex === 0){
+         this.prevDisabled = true;
+       } else if(nextIndex === this.length - 1){
+         this.nextDisabled = true;
+       } else {
+         this.prevDisabled = false;
+         this.nextDisabled = false;
+       }
+      this.updateIndex(nextIndex)
+      this.index = nextIndex;
+      return nextIndex;
+    },
+
+    getPosition(index: number){
+        return this.containerSize.w * -index;
+    },
+
+    updatePositionFromIndex(index?: number, animate = true){
+      index = index || this.index;
+      const position = this.getPosition(index);
+      this.updatePosition(position, animate);
+    },
+
+    updatePosition(position: number, animate = true){
+      this.isAnimated = animate;
+      this.list.style.transform = `translateX(${position}px)`
+      this.list.style.transitionProperty = animate ? "transform" : "none";
+      this.position = position;
     }
   },
 
-  watch: {
-    position(){
-      (this.$refs.list as HTMLElement).style.transform = `translateX(${this.position}px)`
-    },
-    isDragged(){
-     this.isDragged
-        ? (this.$refs.list as HTMLElement).style.transition = 'none'
-        : (this.$refs.list as HTMLElement).style.transition = 'transform 1s ease'
+  watch:{
+    syncIndex(){
+      if(this.isAnimated) return;
+      this.updatePositionFromIndex(this.syncIndex, false);
     }
   }
-
 })
 </script>
 <style lang="scss">
@@ -122,8 +177,10 @@ export default defineComponent({
   }
   &__list{
     display: flex;
-    transition: transform 1s ease;
     list-style: none;
+    will-change: transfrom;
+    transition-duration: .4s;
+    transition-timing-function: ease-in-out;
   }
 
 }

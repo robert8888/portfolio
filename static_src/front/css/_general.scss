@@ -8,10 +8,14 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-snap-type: y mandatory;
+  scroll-padding: 100px;
+}
+
 html, body{
   background: var(--color-background-primary);
   width: 100%;
-
   padding: 0;
   margin: 0;
   min-height: 100vh;
@@ -56,8 +60,9 @@ button {
 a, a:link, a:visited{
   color: var(--color-pallet-priamry);
   text-decoration: none;
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", "Roboto", sans-serif;
   font-weight: bold;
+  cursor: pointer;
   &:hover{
     color: var(--color-pallet-secondary);
   }
@@ -67,7 +72,9 @@ a, a:link, a:visited{
       color: var(--color-text-primary);
     }
   }
-  &:focus{
+  &:focus,
+  &:active,
+  &:focus:active{
     outline-color: var(--color-pallet-secondary);
     outline-style: solid;
     outline-offset: 0.3em;
@@ -77,9 +84,4 @@ a, a:link, a:visited{
 ul{
   margin: 0;
   padding: 0;
-}
-
-section{
-  min-height: 100vh;
-  min-height: calc(var(--vh) * 100);
 }

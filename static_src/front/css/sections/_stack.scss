@@ -44,7 +44,7 @@
       &--open{}
       &--close{
         @include buttonBackground(
-            url("/static/img/cross.svg"),
+            $cross-svg,
             var(--color-pallet-priamry),
             var(--color-pallet-secondary),
             54px,

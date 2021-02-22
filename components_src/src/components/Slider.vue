@@ -2,45 +2,46 @@
   <div class="slider">
     <div class="slider__container"
          ref="container"
-         v-size="updateContainerSize"
-         v-on:touchstart="touchStart">
-      <div  >
+         v-size="updateContainerSize">
+      <div>
         <node-cloner
             is="ul"
-            :times="3"
+            :times="times"
             :initial-items="setNumberOfInitialItems"
+            :swap-items="setItemSwapHandler"
+            @click="catchExpandIndex"
             class="slider__list"
-            ref="list"
-            :style="translation" >
+            ref="list">
           <slot/>
         </node-cloner>
       </div>
 
     </div>
     <div class="slider__controls">
-      <button @click="prev"
-              class="slider__controls__btn slider__controls__btn--prev">
-        pre
-      </button>
-      <button @click="next"
-              class="slider__controls__btn slider__controls__btn--next">
-        next
-      </button>
+      <button @click="next" class="slider__controls__btn slider__controls__btn--next"/>
+      <button @click="prev" class="slider__controls__btn slider__controls__btn--prev"/>
     </div>
 
   </div>
 </template>
 <script>
-import {defineComponent, computed} from "vue";
+import {defineComponent, computed, nextTick} from "vue";
 import {extractTransformX} from "@/utils/regexs";
 import NodeCloner from "./NodeCloner";
+import toRange from "@/utils/toRange";
+import throttle from "@/utils/throttle";
+
 
 export default defineComponent({
 
-
   props: {
      duration: {
+       type: Number,
        default: 1000
+     },
+     minMargin: {
+       type: Number,
+       default: 20
      }
   },
 
@@ -48,11 +49,16 @@ export default defineComponent({
     return {
       containerSize: {},
       numberOfItems: 0,
+      numberOfInitialItems: 0,
+      numberOfVisibleItems: 0,
       itemWidth: 0,
       itemMargin: 0,
       position: 0,
       correction: 0,
       index: 0,
+      times: 3,
+
+      lastExpandedCardIndex: null,
     }
   },
 
@@ -60,95 +66,142 @@ export default defineComponent({
 
   provide(){
     return{
-      containerSize: computed(() => this.containerSize),
-      numberOfItems: computed(() => this.numberOfItems),
-      onMargin: (margin, isMin) =>{
-        this.itemMargin = margin;
-        isMin
-          ? this.correction = -margin
-          : this.correction = 0
+      itemMargin: computed(() => this.itemMargin),
+      itemSizeChange: () => {
+        console.log("imtem size change")
       }
     }
   },
 
   mounted() {
     this.numberOfItems = this.list.children.length;
+    window.addEventListener("touchstart", this.initTouchStart);
+    this.list.addEventListener("transitionend", () => this.balance.call(this));
+  },
+
+  unmounted() {
+    window.removeEventListener("touchstart", this.initTouchStart)
   },
 
   computed: {
     itemSize(){return this.itemWidth + this.itemMargin * 2},
-    translation(){
-      return `transform: translateX(${this.position}px)`;
-    },
+
     list(){
       return this.$refs.list.$el;
+    },
+
+    numberOfHiddenItems(){
+      return this.numberOfItems - this.numberOfVisibleItems;
+    },
+
+    startIndex(){
+      return this.times === 1
+        ? 0
+        : -this.numberOfInitialItems;
     }
   },
 
   methods:{
-    setNumberOfInitialItems(number){
-      this.numberOfInitalItems = number;
-      this.index = -number;
+    catchExpandIndex(e){
+      if(e.target.matches(".card-project__btn--expand")){
+        this.lastExpandedCardIndex =
+            [...this.list.children].findIndex(child =>
+                child === e.target.closest(".slider__item")
+            )
+      }
     },
+
+    initTouchStart(e){
+      if(e.target.closest(".slider__container"))
+        this.touchStart(e);
+    },
+
+    setItemSwapHandler(handler){
+      this.swapHanlder = handler;
+    },
+
+    setNumberOfInitialItems(itemNum){
+      this.numberOfInitialItems = itemNum;
+      this.index = -itemNum;
+    },
+
+    updateItemWidth(){
+      const itemWidth = [...this.list.children].reduce((a,e,i)=>(a*i + e.clientWidth)/(i+1), 0);
+      this.itemWidth = itemWidth;
+      return itemWidth;
+    },
+
     updateContainerSize(rect){
       this.containerSize = rect;
-      this.itemWidth = this.list.children[0].clientWidth;
-      this.setPosition(this.getTargetPosition())
+      this.updateItemWidth();
+      this.index = -this.lastExpandedCardIndex || this.index;
+      nextTick(() =>
+          this.setPosition(this.getPositionFromIndex(this.index), false)
+      );
     },
 
     next(){
-      this.index++;
-      this.animatePosition(this.index);
+      this.setIndex(this.index + 1)
+      this.setPositionToIndex(this.index);
     },
 
     prev(){
-      this.index--;
-      this.animatePosition(this.index);
+      this.setIndex(this.index - 1);
+      this.setPositionToIndex(this.index);
     },
 
     getIndexFromPosition(position){
-        return Math.round((position - this.correction) / this.itemSize);
+      const index = Math.round((position - this.correction) / this.itemSize);
+      return toRange(index, -this.numberOfHiddenItems, 0)
+    },
+
+    setIndex(index){
+      this.index = toRange(index, -this.numberOfHiddenItems, 0);
     },
 
     getCurrentPosition(){
       return window.getComputedStyle(this.list).transform?.match(extractTransformX)?.groups?.translate || 0;
     },
 
-    getTargetPosition(index = this.index){
+    getPositionFromIndex(index = this.index){
       return index * this.itemSize + this.correction;
     },
 
-    animatePosition(index = this.index){
-      const list = this.list;
-      const lastAnimation = list.getAnimations() || [];
 
-      const currentPosition = +this.getCurrentPosition() || this.position;
-      lastAnimation.forEach(a => a.cancel());
-
-      const targetPosition = this.getTargetPosition(index)
-
-      const distance = Math.abs(targetPosition - currentPosition)
-
-      const duration = this.duration * distance / this.itemSize;
-
-      const animation = list.animate([
-        {transform: `translateX(${currentPosition}px)`},
-        {transform: `translateX(${targetPosition}px)`},
-      ], {
-        duration: duration,
-        fill: "forwards"
-      });
-      animation.onfinish = () => {
-        this.position = targetPosition;
-      }
+    setPositionToIndex(index = this.index, animated = true){
+      const targetPosition = this.getPositionFromIndex(index)
+      this.setPosition(targetPosition, animated)
     },
 
-    setPosition(position){
+    updateStyle(position, animated){
+       this.list.style =  `transform: translateX(${position}px); transition: ${animated ? "transform 1s" : "none"}`;
+    },
+
+    setPosition(position, animated = true){
+      position = toRange(position,
+          this.times === 1
+              ? - this.itemSize / 3
+              : -this.numberOfHiddenItems * this.itemSize - this.itemSize / 3,
+          this.itemSize / 3);
+      this.updateStyle(position, animated)
       this.position = position;
     },
 
-    balance(){
-      console.log("duapte")
+
+    balancedIndex(index){
+      let nextIndex = index;
+      if(index === 0){
+        nextIndex = this.times ===  1 ? 0 :  -this.numberOfInitialItems;
+      } else if(index <= -this.numberOfInitialItems * (this.times - 1)){
+        nextIndex = this.times ===  1 ? 0 : -this.numberOfInitialItems + (index % this.numberOfInitialItems);
+      }
+      return nextIndex;
+    },
+
+    balance(nextIndex){
+      const _nextIndex = nextIndex || this.balancedIndex(this.index);
+      this.setPosition(this.getPositionFromIndex(_nextIndex), false)
+      this.index = _nextIndex;
     },
 
     touchStart(event){
@@ -157,40 +210,76 @@ export default defineComponent({
 
       const list = this.list;
       const lastAnimations = list.getAnimations() || [];
-      const startPosition = +this.getCurrentPosition();
-
-      console.log("start position", startPosition, this.position)
-
+      const startPositionX = +this.getCurrentPosition();
       lastAnimations.forEach(a => a.cancel());
-      this.setPosition(startPosition);
+
+      this.setPosition(startPositionX, false);
 
       const startX = event.clientX || event.touches[0]?.clientX || 0;
 
+      let wasDragged = false;
       const touchMove = (event) =>{
         const clientX = event.clientX || event.touches[0]?.clientX || 0;
         const diffX = clientX - startX;
-        this.setPosition(startPosition + diffX)
+        this.setPosition(startPositionX + diffX, false);
+
+        wasDragged = true;
       }
 
       const finishMove = () => {
-          this.index = this.getIndexFromPosition(this.position);
-          this.animatePosition(this.index);
+        if(!wasDragged) return;
+        this.index = this.getIndexFromPosition(this.position);
+        this.setPositionToIndex(this.index);
       }
 
-      list.addEventListener('touchmove', touchMove, {passive: false});
-      list.addEventListener('touchend', function touchEnd(){
-          list.removeEventListener('touchmove', touchMove, {passive: false});
-          list.removeEventListener('touchend', touchEnd);
+      window.addEventListener('touchmove', touchMove, {passive: false});
+      window.addEventListener('touchend', function touchEnd(){
+        window.removeEventListener('touchmove', touchMove, {passive: false});
+        window.removeEventListener('touchend', touchEnd);
           finishMove();
       })
     }
   },
 
+  watch: {
+    containerSize(){
+      const minMargin = this.minMargin;
+      const width = this.containerSize.width;
+      const itemWidth = this.itemWidth;
+      let whole = Math.floor((width - minMargin) / (itemWidth + minMargin)) || 1
 
+      if(whole > this.numberOfInitialItems){
+         whole = this.numberOfInitialItems;
+         this.times = 1;
+         this.setPosition(this.getPositionFromIndex(0))
+         this.index = 0;
+      } else if(this.times === 1) {
+        this.times = 3
+        this.index = this.startIndex;
+      }
+
+      const marginSum = width - (whole * itemWidth);
+
+      if(isNaN(marginSum))
+        return;
+      let margin = marginSum / whole / 2;
+
+      if(margin < minMargin){
+        margin = minMargin;
+        this.correction = -minMargin + ((width - (itemWidth * whole)) / 2 / whole);
+      } else {
+        this.correction = 0;
+      }
+
+      this.numberOfVisibleItems = whole;
+      this.itemMargin = margin;
+    }
+  }
 })
 </script>
 <style lang="scss">
 .slider{
+  position: relative;
   &__container{
     overflow: hidden;
   }
@@ -198,6 +287,16 @@ export default defineComponent({
     list-style: none;
     display: flex;
     will-change: transform;
+  }
+  &__controls{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
   }
 }
 </style>

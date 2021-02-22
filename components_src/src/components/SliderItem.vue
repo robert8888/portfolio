@@ -15,52 +15,20 @@ export default defineComponent({
   data(){
     return {
       size: new DOMRect(),
-      itemMargin: 0,
     }
   },
 
   setup(){
-    const containerSize = inject('containerSize') as DOMRect;
-    const numberOfItems = inject('numberOfItems') as number;
-    const emitMargin = inject('onMargin') as (m: number, min: boolean) => void;
-
-    return {containerSize, numberOfItems, emitMargin};
+    const itemMargin = inject('itemMargin') as number;
+    return {itemMargin}
   },
 
-
   methods:{
-    updateSize(rect: DOMRect){ this.size = rect; },
-
-
-    updateMargin(){
-      const minMargin = 20;
-      const width = this.containerSize.width;
-      const whole = Math.min(Math.floor((width - minMargin) / (this.size.width + minMargin)), this.numberOfItems) || 1;
-      const marginSum = width - (whole * this.size.width);
-      if(isNaN(marginSum))
-        return;
-      let margin = marginSum / whole / 2;
-      let isMin = false;
-      if(margin < minMargin){
-        margin = minMargin;
-        isMin = true;
-      }
-      this.emitMargin(margin, isMin);
-      this.itemMargin = margin;
+    updateSize(rect: DOMRect){
+      this.size = rect;
     },
   },
 
-  computed: {
-    widths: function (): string{
-      if(!this.containerSize.width || !this.size.width) return "";
-      return this.containerSize.width.toString() + "-" + this.size.width.toString();
-    }
-  },
-
-  watch: {
-    //@ts-ignore
-    widths(){ this.updateMargin()}
-  }
 })
 
 </script>

@@ -1,0 +1,59 @@
+@import "./../../common_css/grid";
+
+section{
+  min-height: 100vh;
+  min-height: calc(var(--vh) * 100);
+  padding: 15px;
+}
+
+
+body > footer,
+body > header
+{ padding: 15px}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'md')) {
+  section{
+    padding: 20px;
+
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
+  section{
+    padding: 20px;
+    .l-container{
+      max-width: 1020px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'xl')) {
+  section{
+    padding-left: 160px;
+    .l-container{
+      max-width: 1200px;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'xxl')) {
+  section{
+    padding-left: 160px;
+
+    .l-container{
+      max-width: 1200px;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'xxxl')) {
+  section{
+    padding-left: 220px;
+
+    .l-container{
+      max-width: 1300px;
+    }
+  }
+}

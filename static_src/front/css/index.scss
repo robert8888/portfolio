@@ -1,7 +1,9 @@
 @import "./../../common_css/colors-front";
-@import "./../../common_css/grid";
 @import "./../../common_css/mixins-front";
+@import "./../../common_css/assets";
+
 @import "general";
-@import "header";
+@import "layout";
+@import "header/header";
 @import "sections/index";
-@import "project-card";
+

@@ -7,7 +7,8 @@ const tsEntries = [
    // 'admin/ts/sidebar.ts',
     'ckeditor/content_templates/templates.ts',
     //front
-    'front/ts/index.ts'
+    'front/ts/index.ts',
+    'front/ts/window-height.ts'
 ]
 
 const sassEntries = [
@@ -77,11 +78,26 @@ module.exports = [
             }
         })
     ],
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname),
+        }
+    },
     module: {
         rules: [{
             test: /\.s[ac]ss?$/,
             type: 'asset/resource',
-            use: [{
+            use: [
+              "extract-loader",
+            {
+                loader: 'css-loader',
+                options: {
+                    url: (assetPath, filePath) => (/.svg/.test(assetPath) && /front/.test(filePath)),
+                    modules: false,
+                    import: false,
+                }
+            },
+            {
                 loader: "postcss-loader",
                 options: {
                     postcssOptions: {
@@ -99,7 +115,18 @@ module.exports = [
                     webpackImporter: false,
                 }
             }]
-        }]
+        },
+            {
+            test: /\.svg/,
+            use: {
+                loader: "svg-url-loader",
+                options: {
+                    encoding: "base64",
+                    iesafe: true,
+                }
+            },
+        }
+        ]
     }
 }]
 

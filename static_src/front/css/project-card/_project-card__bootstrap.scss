@@ -1,9 +1,17 @@
 .card-project{
   border: 1px solid var(--color-pallet-priamry-alpha-2);
- // box-shadow: 0 0 2px var(--color-pallet-priamry);
   min-width: 250px;
-  max-width: 320px;
+  max-width: 310px;
+  min-height: 500px;
+  height: max-content;
   position: relative;
+  z-index: 100;
+
+  @keyframes opacity {
+    from{ opacity: 0; }
+    to{ opacity: 1; }
+  }
+  animation: opacity 1s forwards;
   &:before{
     content: "";
     display: block;
@@ -15,19 +23,11 @@
     box-shadow: 0 0 4px var(--color-pallet-priamry);
     opacity: 0;
   }
-  &:hover{
+  &:hover {
     border-color: var(--color-pallet-priamry-alpha);
-    &:before{
-      opacity: 1;
-    }
 
-  .gallery__controls__btn{
-      &:before{
-        content: "\29BE";
-      }
-      &:hover:before{
-        content: "\29BF";
-      }
+    &:before {
+      opacity: 1;
     }
   }
 
@@ -46,59 +46,31 @@
 
   &__btn{
     @include buttonBackground(
-        url("/static/img/maximize.svg"),
-        var(--color-pallet-priamry),
-        var(--color-pallet-secondary),
-        20px,
-        20px
+      $maximize-svg,
+      var(--color-pallet-priamry),
+      var(--color-pallet-secondary),
+      23px,
+      23px
     );
     padding: 0;
     margin: 0 10px 0 0;
+    z-index: 10000;
   }
 
   footer{
     display: flex;
     justify-content: flex-end;
     padding: .5em 0;
+    margin-top: auto;
   }
 
-  .gallery{
-    margin: 4% 0;
-    position: relative;
-    &__container{
-      border: 1px solid var(--color-text-primary-alpha-5);
-    }
-    &__controls{
-      pointer-events: none;
-      display: flex;
-      justify-content: space-between;
-      position: absolute;
-      width: 120%;
-      top: 50%;
-      left: -10%;
-      transform: translateY(-50%);
-      display: none;
-      &__btn{
-        background: none;
-        pointer-events: all;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 10%;
-        height: 100px;
-        padding: 0;
-        border: 1px solid var(--color-pallet-priamry);
-        &:before{
-          content: "";
-        }
-
-      }
-    }
+  &__gallery{
+    padding: 0 15px;
   }
 
   &__subtitle{
     padding:0;
-    margin: 1em 0;
+    margin: 0;
     letter-spacing: 0.05em;
   }
 
@@ -114,6 +86,22 @@
 
   &__content{
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+  }
+
+  &__col:last-of-type{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   &__additional{
@@ -122,6 +110,7 @@
       display: none;
     }
   }
+
 
   &__technology-list{
     list-style: none;
@@ -142,4 +131,15 @@
   }
 
 
+  //-----------galleryy
+
+  &--collapsed{
+    .gallery__controls__btn::before{
+      width: 20px;
+      height: 20px;
+    }
+  }
+
 }
+
+

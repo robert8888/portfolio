@@ -1,0 +1,82 @@
+
+@media screen and (hover: hover) {
+  .projects .slider{
+    padding: 0 50px;
+    &__controls{
+      display: flex;
+    }
+  }
+}
+
+
+.projects {
+  .l-row:first-of-type {
+    margin-top: 2.5vh;
+  }
+
+  .l-row:last-of-type {
+    margin: 10vh 0;
+  }
+}
+
+
+@media screen and (max-height: map-get($grid-breakpoints-vertical, "sm")) {
+  .projects{
+    .l-row:first-of-type{
+      margin-top: 5vh;
+    }
+    .l-row:last-of-type{
+      margin: 5vh 0;
+    }
+  }
+}
+
+@media screen and (max-height: map-get($grid-breakpoints-vertical, "md")) {
+  .projects{
+    .l-row:first-of-type{
+      margin-top: 5vh;
+    }
+    .l-row:last-of-type{
+      margin: 5vh 0;
+    }
+  }
+}
+
+@media screen and (min-height: map-get($grid-breakpoints-vertical, "md")) {
+  .projects{
+    .l-row:first-of-type{
+      margin-top: 15vh;
+    }
+    .l-row:last-of-type{
+      margin-top: 10vh;
+    }
+  }
+}
+
+
+
+
+
+@media screen and (min-width: map-get($grid-breakpoints, 'xl')) {
+  .projects{
+    .slider{
+      min-width: 1020px;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'xxl')) {
+  .projects{
+    .slider{
+      min-width: 1080px;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'xxxl')) {
+  .projects{
+    .slider{
+      min-width: 1200px;
+    }
+  }
+}

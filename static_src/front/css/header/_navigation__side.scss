@@ -1,0 +1,45 @@
+
+.navigation {
+  $self: &;
+
+  &__list {
+    list-style: none;
+  }
+
+  &--aside {
+    & #{$self}__list {
+      display: flex;
+      align-items: center;
+    }
+
+    #{$self}__item {
+      counter-increment: navigation;
+      font-size: 1.125em;
+
+      &:not(:first-of-type) {
+        margin-left: 25px;
+      }
+
+      &__link {
+        white-space: nowrap;
+      }
+
+      &__counter::before {
+        content: "0" counter(navigation);
+      }
+
+      &__content {
+        white-space: nowrap;
+      }
+
+      &:not(:first-of-type):not(&--current) {
+        display: none;
+      }
+
+      &--home {
+        font-size: 2em;
+        font-weight: 500;
+      }
+    }
+  }
+}

@@ -1,15 +1,21 @@
 $grid-breakpoints: (
-        xs: 0,
-        sm: 576px,
-        md: 768px,
-        lg: 992px,
-        xl: 1200px,
-        xxl: 1400px
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1280px,
+    xxl: 1400px,
+    xxxl: 1600px,
+);
+
+$grid-breakpoints-vertical: (
+    xs: 0,
+    sm: 640px,
+    md: 969px,
 );
 
 .l-container{
   width: 100%;
-  padding: 15px;
   box-sizing: border-box;
 }
 
@@ -32,7 +38,6 @@ $grid-breakpoints: (
     @media screen and (min-width: $width) {
       .l-col-#{$break-point}-#{$size} {
         width: 100% *  ($size / 12);
-        padding: 0 16px;
       };
     }
   }
@@ -42,7 +47,6 @@ $grid-breakpoints: (
   @media screen and (max-width: map-get($grid-breakpoints, "xs")) {
     .l-col-xs-#{$size} {
       width: 100% *  ($size / 12);
-      padding: 0 16px;
     }
   }
 }
