@@ -4,7 +4,6 @@
     <slot/>
     </div>
     <div class="form__summary">
-
       <div class="form__summary__group">
         <spinner v-if="isSending" label="sending"/>
         <p class="form__message" :data-succes="isSuccessMessage">{{message}}</p>

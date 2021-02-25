@@ -2,6 +2,7 @@ $color-background-primary: #101317;
 $color-text-primary: #B2B3B3;
 $color-pallet-primary: #138392;
 $color-pallet-secondary: #8362ac;
+$color-pallet-secondary-dark: #704c99;
 $color-separator: #B2B3B3;
 $color-warning: #fa3b4d;
 
@@ -20,6 +21,8 @@ $color-warning: #fa3b4d;
 
   --color-pallet-secondary: #{$color-pallet-secondary};
   --color-pallet-secondary-alpha-05: #{rgba($color-pallet-secondary, .05)};
+
+  --color-pallet-secondary-dark: #{$color-pallet-secondary-dark};
 
   --color-pallet-warning: #{$color-warning};
 

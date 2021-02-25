@@ -1,10 +1,8 @@
 @import "mixins-common";
 
-@mixin buttonBackground($url, $color, $color-h, $w, $h){
-  border: none;
+@mixin svgMask($url, $color, $color-h, $w, $h){
   width: $w;
   height: $h;
-  border-radius: 0;
   mask-image: $url;
   background-color: $color;
   mask-repeat: no-repeat;

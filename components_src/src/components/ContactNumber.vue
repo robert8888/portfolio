@@ -2,24 +2,25 @@
   <a :class="$props.class" @click="linkClick" :aria-role="$attrs.ariaRole">
     <slot/>
   </a>
-  <modal :open="modalOpen" @close="onModalClose">
-    <spinner v-if="isLoading"/>
-    <div v-if="!isSuccess" class="error-message__container">
-      <p class="error-message">{{errorMessage}}</p>
+  <modal :open="modalOpen" @close="onModalClose" class="contact-number__modal" ref="modal">
+    <div class="contact-number__container">
+      <transition name="fade-in" mode="out-in">
+        <span v-if="number && !confirmMessage" class="contact-number__number">{{number}}</span>
+        <span v-else>{{confirmMessage}}</span>
+      </transition>
+      <spinner v-if="isLoading" :label="loadingLabel"/>
+      <div v-if="!isSuccess" class="contact-number__error-message__container">
+        <p class="contact-number__error-message">{{errorMessage}}</p>
+      </div>
     </div>
-    <div class="phone-number__container">
-      <span v-if="number" class="phone-number">{{number}}</span>
-
+    <div class="contact-number__controls" ref="controls" @click="controlsClick">
+      <slot name="controls"/>
     </div>
-
-
-
   </modal>
 </template>
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, nextTick} from "vue";
 import Modal from "./Modal.vue";
-import {load} from "recaptcha-v3";
 import getCaptchaToken from "@/utils/getCaptchaToken";
 import Spinner from "@/components/Spinner.vue";
 
@@ -29,6 +30,9 @@ export default defineComponent({
   props: {
     class: {
       type: String
+    },
+    loadingLabel:{
+      type: String,
     }
   },
 
@@ -39,6 +43,7 @@ export default defineComponent({
       isLoading: false,
       errorMessage: "Retrieve a number from the database failed",
       isSuccess: true,
+      confirmMessage: "",
     }
   },
 
@@ -63,12 +68,12 @@ export default defineComponent({
         })
 
         const data = await response.json();
-        this.number = data.number;
+        this.number = this.formatPhoneNumber(data.number);
 
       } catch(error){
         this.isSuccess = false;
       } finally{
-        this.isLoading = false
+        this.isLoading = false;
       }
     },
 
@@ -80,8 +85,69 @@ export default defineComponent({
 
     onModalClose(): void{
       this.modalOpen = false;
+    },
+
+    formatPhoneNumber(number: string): string{
+      const match = number.toString().match(new RegExp("(.{3})".repeat(4) + "?"))
+      return match ? match.slice(1).join(" ") : "Ops. :("
+    },
+
+    formatStripFormatting(number: string): string{
+      return this.number.replace(/\s/g, "");
+    },
+
+    controlsClick(event: Event): void{
+      event.preventDefault();
+      const target = event.target as HTMLElement;
+      const actionName = target.getAttribute("data-action") as "copy" | "call";
+      const actionConfirm = target.getAttribute("data-action-confirm") as string
+      if(!actionName || !this[actionName] || typeof this[actionName] !== "function")
+        return;
+      this[actionName](actionConfirm);
+    },
+
+    call(msg: string){
+      const link = document.createElement("a");
+      link.href = "tel:" + this.formatStripFormatting(this.number);
+      link.click();
+      setTimeout(() =>{
+        this.modalOpen = false
+      }, 1)
+    },
+
+    copy(msg: string){
+      const textarea = document.createElement("textarea");
+      textarea.innerText = this.formatStripFormatting(this.number)
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+      this.confirmMessage = msg;
+      setTimeout(() => {
+        this.confirmMessage = "";
+        this.modalOpen = false
+      }, 3000)
     }
-  }
+  },
+
+
+
+  mounted() {
+    this.$watch('isLoading', (isLoading: boolean) => {
+      nextTick(() => {
+          const controlsContainer = this.$refs.controls as HTMLElement;
+          if(!controlsContainer)
+            return;
+          const buttons = controlsContainer.querySelectorAll("button");
+          [...buttons].forEach(button =>
+              isLoading
+                  ? button.setAttribute('disabled', "disabled")
+                  : button.removeAttribute('disabled')
+          )
+      })
+    }, {immediate: true})
+  },
+
 
 })
 </script>

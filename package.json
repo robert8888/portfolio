@@ -44,7 +44,9 @@
     "ts-loader": "^8.0.14",
     "typescript": "^4.1.3",
     "webpack": "^5.20.1",
-    "webpack-cli": "^4.5.0"
+    "webpack-bundle-tracker": "^1.0.0-alpha.1",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "remove-files-webpack-plugin": "^1.4.4"

@@ -4,6 +4,7 @@
   &--main{
     position: relative;
     #{$self}__btn--burger{
+
     }
     #{$self}__container{
       display: block;
@@ -19,7 +20,9 @@
       }
     }
     #{$self}__btn{
-      @include buttonBackground(
+      border-radius: 0;
+      padding: 0;
+      @include svgMask(
           $burger-svg,
           var(--color-pallet-priamry),
           var(--color-pallet-secondary),

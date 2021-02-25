@@ -2,6 +2,26 @@
   &--chosen .l-col{
     position: relative;
     display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .l-container{
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .l-row{
+    &:first-of-type{
+      margin-top: auto;
+      margin-bottom: 50px;
+    }
+    &:last-of-type{
+      margin-top: auto;
+      margin-bottom: auto;
+    }
   }
 
   &__link{
@@ -10,6 +30,7 @@
     grid-template-areas: 'img';
     width: 50%;
     place-items: center;
+    min-width: 130px;
     & > img{
       grid-area: img;
       width: var(--w);
@@ -36,12 +57,11 @@
     }
   }
 
-
   .overlay{
     &__btn{
       &--open{}
       &--close{
-        @include buttonBackground(
+        @include svgMask(
             $cross-svg,
             var(--color-pallet-priamry),
             var(--color-pallet-secondary),
@@ -57,6 +77,14 @@
     &__content{
       background: var(--color-background-primary);
       padding: 50px 0;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, "xl")){
+  .technology .l-row{
+    &:first-of-type{
+      margin-bottom: 100px;
     }
   }
 }

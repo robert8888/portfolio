@@ -1,5 +1,7 @@
 <template>
-  <li class="slider__item" v-size="updateSize" :style="{margin: '5px ' + itemMargin + 'px' }">
+  <li class="slider__item"
+      v-size="updateSize"
+      :style="{margin: '5px ' + itemMargin + 'px' }">
     <slot/>
   </li>
 </template>

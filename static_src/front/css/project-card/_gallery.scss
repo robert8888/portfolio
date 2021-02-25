@@ -49,7 +49,7 @@
 
       &:before{
         content: "";
-        @include buttonBackground(
+        @include svgMask(
                         $arrow-svg,
                         var(--color-text-primary-alpha-5),
                         var(--color-pallet-secondary),

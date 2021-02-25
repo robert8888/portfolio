@@ -40,7 +40,7 @@
   }
 
   &__btn{
-    @include buttonBackground(
+    @include svgMask(
       $maximize-svg,
       var(--color-pallet-priamry),
       var(--color-pallet-secondary),

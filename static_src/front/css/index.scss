@@ -2,9 +2,11 @@
 @import "@common/mixins/mixins-front";
 @import "@common/assets";
 
-@import "general";
 @import "layout";
+@import "general";
+@import "animations";
 @import "header/header";
 @import "sections/index";
 @import "footer";
+
 

@@ -1,5 +1,6 @@
 .intro{
   .l-row{
+    height: 100%;
    & > div:first-child{
      min-height: 50vh;
    }
@@ -45,7 +46,71 @@
       padding-top: 40%;
       filter: drop-shadow(0px 0px 2px var(--color-text-primary-alpha-5));
     }
-
   }
 }
 
+
+@media screen and(min-width: map-get($grid-breakpoints, "lg")){
+  .intro{
+    &__title{
+      font-size: 3.5rem;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+    }
+    &__subtitle{
+      font-size: 1.5rem;
+      margin-left: 1em;
+      &--small {
+        margin-left: 3.5em;
+        margin-top: 3.5em;
+      }
+    }
+    &__container{
+      margin-top: 105px;
+    }
+    .l-row > div:last-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    &__img{
+      &__wrapper{
+        margin-bottom: 1.5em;
+        padding-top: 60%;
+      }
+      &__container{
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+@media screen and(min-width: map-get($grid-breakpoints, "xl")){
+  .intro{
+    &__title{
+      font-size: 3.5rem;
+      margin-top: 1.5em;
+      margin-bottom: 1.5em;
+    }
+    &__container{
+      margin-top: 105px;
+    }
+  }
+}
+
+@media screen and(min-width: map-get($grid-breakpoints, "xxl")){
+  .intro{
+    &__title{
+      font-size: 4.5rem;
+    }
+  }
+}
+
+@media screen and(min-width: map-get($grid-breakpoints, "xxxl")){
+  .intro{
+    &__title{
+      margin-left: -1em;
+    }
+  }
+}

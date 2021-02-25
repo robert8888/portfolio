@@ -1,14 +1,14 @@
 <template>
   <teleport to="body" v-if="isOpen">
     <div class="modal__container" @click="containerClick">
-      <div class="modal">
+      <div :class="['modal', $props.class]">
         <slot/>
       </div>
     </div>
   </teleport>
 </template>
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, ref} from "vue";
 
 export default defineComponent({
   emits: ["close"],
@@ -18,12 +18,25 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    class:{
+      type: String
+    }
+  },
+
+  setup() {
+    return {
+      container: ref(null),
+    };
   },
 
   data(){
     return {
       isOpen: this.open
     }
+  },
+
+  mounted() {
+    console.log("modal ref", this.$refs)
   },
 
   methods:{
@@ -42,7 +55,7 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .modal{
 
   &__container{
@@ -61,7 +74,6 @@ export default defineComponent({
 
   max-width: 600px;
   min-width: 280px;
-  width: 400px;
 
   max-height: 300px;
   min-height: 180px;

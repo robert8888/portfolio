@@ -1,9 +1,8 @@
 <template>
-  <div class="slider">
+  <div class="slider" >
     <div class="slider__container"
          ref="container"
          v-size="updateContainerSize">
-
         <node-cloner
             is="ul"
             :times="times"
@@ -14,8 +13,6 @@
             ref="list">
           <slot/>
         </node-cloner>
-
-
     </div>
     <div class="slider__controls">
       <button @click="next" class="slider__controls__btn slider__controls__btn--next"/>

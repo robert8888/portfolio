@@ -61,7 +61,7 @@
         border: none;
         background: var(--color-text-primary);
         padding:0;
-        @include buttonBackground(
+        @include svgMask(
             $arrow-up-svg,
             var(--color-text-primary),
             var(--color-pallet-priamry),

@@ -1,7 +1,7 @@
 <template>
-  <div class="spinner">
+  <div class="spinner component">
     <div class="spinner__ring"/>
-    <sapn class="spinner__label">{{label}}</sapn>
+    <span class="spinner__label">{{label}}</span>
   </div>
 </template>
 <script lang="ts">
