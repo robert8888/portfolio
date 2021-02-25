@@ -1,29 +1,4 @@
-@mixin scroll(
-  $track-color,
-  $thumb-color,
-  $thumb-hover-color,
-  $width: 15px
-){
-  cursor: pointer;
-  &::-webkit-scrollbar {
-    width: $width;
-  }
-
-  &::-webkit-scrollbar-track,
-  &::-webkit-scrollbar-track-piece,
-  &::-webkit-scrollbar-corner{
-    background: $track-color;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: $thumb-color;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: $thumb-hover-color;
-  }
-
-}
+@import "mixins-common";
 
 @mixin input(){
   background: var(--color-bg-secondary);
@@ -131,3 +106,46 @@
     outline: 0;
   }
 }
+
+
+@mixin blackSvgToColor(){
+  filter:
+          invert(27%)
+          sepia(51%)
+          saturate(2878%)
+          hue-rotate(var(--black-icon-hue))
+          brightness(var(--black-icon-brightness))
+          contrast(97%);
+  &:hover{
+    filter:
+            invert(27%)
+            sepia(51%)
+            saturate(2878%)
+            hue-rotate(var(--black-icon-hover-hue))
+            brightness(var(--black-icon-hover-brightness))
+            contrast(97%);
+  }
+}
+
+@mixin link--icon-background-before($url) {
+  background: none;
+  padding-left: 25px;
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 25px;
+    height: 100%;
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: center left;
+    @include blackSvgToColor();
+  }
+}
+
+
+

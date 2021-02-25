@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {inject, computed, defineComponent} from 'vue';
+import {inject,  defineComponent} from 'vue';
 
 interface Size{
   w: number;

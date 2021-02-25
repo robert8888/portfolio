@@ -1,9 +1,10 @@
-@import "./../../common_css/colors-front";
-@import "./../../common_css/mixins-front";
-@import "./../../common_css/assets";
+@import "@common/colors-front";
+@import "@common/mixins/mixins-front";
+@import "@common/assets";
 
 @import "general";
 @import "layout";
 @import "header/header";
 @import "sections/index";
+@import "footer";
 

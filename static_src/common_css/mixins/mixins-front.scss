@@ -1,0 +1,16 @@
+@import "mixins-common";
+
+@mixin buttonBackground($url, $color, $color-h, $w, $h){
+  border: none;
+  width: $w;
+  height: $h;
+  border-radius: 0;
+  mask-image: $url;
+  background-color: $color;
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  &:hover,
+  &:focus{
+    background-color: $color-h;
+  }
+}

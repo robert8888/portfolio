@@ -1,0 +1,225 @@
+.contact{
+  min-height: calc(80 * var(--vh));
+  .l-container > .l-row > * {
+    min-height: 50vh;
+  }
+
+  &__title{
+    margin-bottom: 40px;
+  }
+
+  .form{
+    padding: 0 5px;
+    &__summary{
+      display: flex;
+      flex-direction: column;
+      padding-left: 2.5em;
+      padding-right: 1em;
+      &__group{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+      }
+    }
+
+    &__btn--send{
+      margin-left: auto;
+      margin-top: 20px;
+    }
+
+    &__message{
+      color: var(--color-text-primary);
+      min-height: 2.4em;
+      margin: 2em 0 0 0;
+      max-width: 300px;
+      &[data-succes=false]{
+        color: var(--color-pallet-warning);
+      }
+    }
+  }
+
+  input{
+    display: block;
+    width: 200px;
+  }
+
+  .spinner{
+    margin-top: 20px;
+    --spinner-color: var(--color-pallet-priamry);
+    --spinner-bg-color: var(--color-text-primary);
+    &__label{
+      letter-spacing: .5px;
+    }
+  }
+
+  &__info{
+    &__container{
+      margin-top: 5vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    &__text{
+      color: var(--color-pallet-priamry);
+    }
+  }
+
+  &__portals{
+    &__container{
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      max-width: 400px;
+      margin: auto 0 25px;
+    }
+    &__link{
+      position: relative;
+      display: inline-block;
+      & > img{
+        width: var(--w);
+        height: var(--h);
+        background-image: var(--url);
+        background-position: var(--x) var(--y);
+        background-repeat: no-repeat;
+        filter: grayscale(1);
+        transition: filter .1s;
+        &:hover{
+          filter: grayscale(0);
+        }
+      }
+    }
+  }
+
+  &__resume{
+    &__container{
+      padding: 0 20px;
+      margin-top: auto;
+    }
+    &__btn{
+      display: block;
+      margin-left: auto;
+    }
+  }
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, 'sm')) {
+  .contact{
+    //&__title{
+    //  padding-left: 1em;
+    //  margin-left: unset;
+    //}
+    &__portals{
+      &__container{
+        max-width: 250px;
+        margin: 25px auto;
+      }
+    }
+    &__resume{
+      &__btn{
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .form{
+      &__summary{
+        padding-left: unset;
+      }
+      &__message{
+        margin-top: 0;
+        margin-left: 1em;
+      }
+      &__btn{
+        margin-right: auto;
+      }
+    }
+
+    .spinner{
+      width: 100%;
+      &__label{
+        margin-right: auto;
+      }
+      &__ring{
+        margin-left: auto;
+      }
+    }
+  }
+
+  label.floating{
+    textarea, input{
+      left: unset;
+      width: calc(100% - 1.0em);
+    }
+
+    input + span,
+    textarea + span{
+      left: 1.5em;
+    }
+
+    input:not(:placeholder-shown) + span,
+    textarea:not(:placeholder-shown) + span{
+      top: -1em;
+      left: 0;
+      right: unset;
+    }
+
+    p{
+      margin-left: 1em;
+      font-size: 0.875em;
+    }
+  }
+
+
+}
+
+
+@media screen and (min-width: map-get($grid-breakpoints, 'sm')) {
+  .contact{
+    &__portals{
+      &__container{
+        max-width: 400px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'md')) {
+  .contact{
+    &__portals{
+      &__container{
+        max-width: 450px;
+      }
+    }
+    &__resume{
+      &__btn{
+        margin-top: 25px;
+      }
+    }
+
+    &__info{
+      &__container{
+        padding-left: 2em;
+      }
+      &__title{
+        margin-left: -1em;
+      }
+    }
+  }
+
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
+  .contact{
+    &__info{
+      &__container{
+        margin-top: 0;
+      }
+      &__text{
+        &:first-of-type{
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+}
+

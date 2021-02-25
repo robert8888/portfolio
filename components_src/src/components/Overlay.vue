@@ -1,8 +1,6 @@
 <template>
+  <button class="overlay__btn overlay__btn--open" @click="expand">{{buttonOpenText}}</button>
   <div class="overlay">
-    <div class="l-row">
-      <button class="overlay__btn overlay__btn--open" @click="expand">{{buttonOpenText}}</button>
-    </div>
     <div :class="['overlay__content', {
     'overlay__content--collapsed': isCollapsed}]"
     :aria-hidden="isCollapsed"

@@ -1,7 +1,7 @@
 .card-project{
   border: 1px solid var(--color-pallet-priamry-alpha-2);
   min-width: 250px;
-  max-width: 310px;
+  max-width: 300px;
   min-height: 500px;
   height: max-content;
   position: relative;
@@ -36,11 +36,6 @@
     justify-content: space-between;
     align-items: center;
     height: 45px;
-    h3 {
-      font-family: "Source Sans Pro", "Roboto", sans-serif;
-      font-weight: 700;
-      margin: 0 0 0 15px;
-    }
     border-bottom: 1px solid var(--color-pallet-priamry);
   }
 
@@ -66,6 +61,12 @@
 
   &__gallery{
     padding: 0 15px;
+  }
+
+  &__title{
+    font-family: "Source Sans Pro", "Roboto", sans-serif;
+    font-weight: 700;
+    margin: 0 0 0 15px;
   }
 
   &__subtitle{

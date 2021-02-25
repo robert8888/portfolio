@@ -81,6 +81,7 @@ module.exports = [
     resolve: {
         alias: {
             "@": path.resolve(__dirname),
+            "@common": path.resolve(__dirname, "static_src", "common_css")
         }
     },
     module: {
@@ -112,7 +113,7 @@ module.exports = [
             }, {
                 loader: 'sass-loader',
                 options: {
-                    webpackImporter: false,
+                    webpackImporter: true,
                 }
             }]
         },

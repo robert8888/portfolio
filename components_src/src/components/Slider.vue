@@ -3,7 +3,7 @@
     <div class="slider__container"
          ref="container"
          v-size="updateContainerSize">
-      <div>
+
         <node-cloner
             is="ul"
             :times="times"
@@ -14,7 +14,7 @@
             ref="list">
           <slot/>
         </node-cloner>
-      </div>
+
 
     </div>
     <div class="slider__controls">
@@ -29,10 +29,10 @@ import {defineComponent, computed, nextTick} from "vue";
 import {extractTransformX} from "@/utils/regexs";
 import NodeCloner from "./NodeCloner";
 import toRange from "@/utils/toRange";
-import throttle from "@/utils/throttle";
 
 
 export default defineComponent({
+  components: {NodeCloner},
 
   props: {
      duration: {
@@ -62,7 +62,6 @@ export default defineComponent({
     }
   },
 
-  components: {NodeCloner},
 
   provide(){
     return{
@@ -246,32 +245,32 @@ export default defineComponent({
       const minMargin = this.minMargin;
       const width = this.containerSize.width;
       const itemWidth = this.itemWidth;
-      let whole = Math.floor((width - minMargin) / (itemWidth + minMargin)) || 1
+      let visible = Math.floor((width - (2 * minMargin)) / (itemWidth + minMargin)) || 1
 
-      if(whole > this.numberOfInitialItems){
-         whole = this.numberOfInitialItems;
-         this.times = 1;
-         this.setPosition(this.getPositionFromIndex(0))
-         this.index = 0;
+      if(visible > this.numberOfInitialItems){
+        visible = this.numberOfInitialItems;
+        this.times = 1;
+        this.setPosition(this.getPositionFromIndex(0))
+        this.index = 0;
       } else if(this.times === 1) {
         this.times = 3
         this.index = this.startIndex;
       }
 
-      const marginSum = width - (whole * itemWidth);
+      const marginSum = width - (visible * itemWidth);
 
       if(isNaN(marginSum))
         return;
-      let margin = marginSum / whole / 2;
+      let margin = marginSum / visible / 2;
 
       if(margin < minMargin){
         margin = minMargin;
-        this.correction = -minMargin + ((width - (itemWidth * whole)) / 2 / whole);
+        this.correction = -minMargin + ((width - (itemWidth * visible)) / Math.max(visible, 2) / visible);
       } else {
         this.correction = 0;
       }
 
-      this.numberOfVisibleItems = whole;
+      this.numberOfVisibleItems = visible;
       this.itemMargin = margin;
     }
   }

@@ -1,5 +1,4 @@
 .intro{
-  padding-top: 75px;
   .l-row{
    & > div:first-child{
      min-height: 50vh;
@@ -15,6 +14,7 @@
     &--small{
       margin-top: 2em;
       margin-bottom: 0.3em;
+      font-weight: normal;
     }
   }
 

@@ -1,7 +1,6 @@
 
 .navigation {
   $self: &;
-
   &--main{
     position: relative;
     #{$self}__btn--burger{
@@ -21,11 +20,11 @@
     }
     #{$self}__btn{
       @include buttonBackground(
-                      $burger-svg,
-                      var(--color-pallet-priamry),
-                      var(--color-pallet-secondary),
-                      54px,
-                      50px
+          $burger-svg,
+          var(--color-pallet-priamry),
+          var(--color-pallet-secondary),
+          54px,
+          50px
       );
 
       &:hover {
@@ -45,7 +44,37 @@
       &__link{
         color: var(--color-text-primary);
         font-size: 1.5rem;
-        font-family: "Source Sans Pro";
+        font-family: "Source Sans Pro", "Roboto" ,sans-serif;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, "xl")){
+  .navigation{
+    $self: &;
+    &--main{
+      #{$self}__btn{
+        display: none;
+      }
+      #{$self}__list{
+        display: flex;
+        margin: 0;
+      }
+      #{$self}__item{
+        margin: 0 30px;
+        &__link{
+          font-weight: normal;
+        }
+      }
+      #{$self}__container{
+        display: block;
+        position: relative;
+        top: unset;
+        left: unset;
+        height: unset;
+        width: unset;
+        z-index: 101;
       }
     }
   }

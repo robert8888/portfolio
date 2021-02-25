@@ -12,6 +12,7 @@
     "@types/resize-observer-browser": "^0.1.5",
     "core-js": "^3.6.5",
     "nanoid": "^3.1.20",
+    "recaptcha-v3": "^1.8.0",
     "sass-loader": "^10.1.1",
     "vue": "3.0.4",
     "vue-class-component": "^8.0.0-0",

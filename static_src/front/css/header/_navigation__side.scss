@@ -13,6 +13,7 @@
     }
 
     #{$self}__item {
+
       counter-increment: navigation;
       font-size: 1.125em;
 
@@ -24,21 +25,162 @@
         white-space: nowrap;
       }
 
-      &__counter::before {
-        content: "0" counter(navigation);
+      &__counter {
+        color: var(--color-pallet-priamry)
       }
 
       &__content {
         white-space: nowrap;
+        margin: 0 6px;
+      }
+
+      &--current{
+        & #{$self}__item__counter{
+          color: var(--color-text-primary)
+        }
       }
 
       &:not(:first-of-type):not(&--current) {
         display: none;
       }
 
-      &--home {
+      &:first-of-type {
         font-size: 2em;
         font-weight: 500;
+      }
+    }
+
+
+    #{$self}__fast-scroll {
+      width: 100%;
+      display: none;
+      justify-content: center;
+      margin-top: auto;
+      margin-bottom: auto;
+      &__btn{
+        border: none;
+        background: var(--color-text-primary);
+        padding:0;
+        @include buttonBackground(
+            $arrow-up-svg,
+            var(--color-text-primary),
+            var(--color-pallet-priamry),
+            15px,
+            25px
+        );
+        transition: transform .5s;
+        &--down{
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    #{$self}__progress{
+      display: none;
+      $barWidth: 2px;
+      $thumbWidth: 12px;
+      $thumbHeight: 35px;
+      position: absolute;
+      width: $barWidth;
+      height: 100%;
+      top: 0;
+      left: 100%;
+      background: var(--color-separator);
+      &__thumb{
+        width: $thumbWidth;
+        height: $thumbHeight;
+        position: absolute;
+        top:0;
+        left: -($thumbWidth - $barWidth) / 2;
+        background: white;
+        transition: transform .5s;
+      }
+    }
+
+
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, "sm")){
+
+  .navigation{
+    $self: &;
+    &--aside{
+
+      #{$self}__item {
+        display: block;
+        &:not(:first-of-type):not(&--current) {
+          display: block;
+        }
+
+        &:not(:first-of-type):not(&--current) {
+          display: block;
+          & #{$self}__item__content {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, "xl")){
+  .navigation{
+    $self: &;
+    &--aside{
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 140px;
+
+      #{$self}__progress{
+        display: block;
+      }
+
+      #{$self}__container{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      & #{$self}__list {
+        flex-direction: column;
+        align-items: center;
+        height: 80%;
+        justify-content: space-around;
+      }
+
+      #{$self}__item {
+        display: block;
+
+
+        &:not(:first-of-type):not(&--current) {
+          display: block;
+          & #{$self}__item__content {
+            display: none;
+          }
+        }
+
+
+        &:not(:first-of-type){
+          margin: 0;
+          width: 100%;
+        }
+        &__content,
+        &__counter{
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+        &__content{
+          margin-top: 15px;
+          margin-left: 0;
+        }
+      }
+
+      #{$self}__fast-scroll {
+        display: flex;
       }
     }
   }

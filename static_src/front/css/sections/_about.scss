@@ -1,0 +1,44 @@
+.about{
+  .l-row{
+    height: 100%;
+  }
+
+
+  &__photo__container,
+  &__content__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__photo{
+    max-width: 100%;
+
+  }
+
+  &__content{
+    &__container{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__text{
+      font-family: "Source Sans Pro", "Roboto", sans-serif;
+      color: var(--color-pallet-priamry);
+      line-height: 1.4em;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'md')) {
+  .about{
+    &__content {
+      padding-left: 2em;
+      &__title {
+        margin-left: -1em;
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,26 @@
+@mixin scroll(
+  $track-color,
+  $thumb-color,
+  $thumb-hover-color,
+  $width: 15px
+){
+  cursor: pointer;
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track-piece,
+  &::-webkit-scrollbar-corner{
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
+
+}

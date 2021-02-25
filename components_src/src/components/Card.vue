@@ -1,7 +1,7 @@
 <template>
   <div :class="['card-project', {'card-project--extended': isExpanded, 'card-project--collapsed': !isExpanded}]">
     <header>
-      <h3>{{title}}</h3>
+      <h4 class="card-project__title">{{title}}</h4>
       <button
           v-if="extended"
           class="card-project__btn card-project__btn--expand"

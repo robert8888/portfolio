@@ -4,51 +4,16 @@
 <header>
     <div class="l-container">
         <div class="l-row">
-            <aside class="navigation navigation--aside">
-                <nav class="navigation__container">
-                    <ul class="navigation__list">
-                        <li class="navigation__item navigation__item--home">#</li>
-                        <li class="navigation__item">
-                            <a href="#intro" class="navigation__item__link">
-                                <span class="navigation__item__counter"/>
-                                <span class="navigation__item__content"> Hi' im robert </span>
-                            </a>
-                        </li>
-                        <li class="navigation__item  navigation__item--current">
-                            <a href="#intro" class="navigation__item__link">
-                                <span class="navigation__item__counter"/>
-                                <span class="navigation__item__content">
-                                    Stack
-                                </span>
-                            </a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#intro" class="navigation__item__link">
-                                <span class="navigation__item__counter"/>
-                                <span class="navigation__item__content">
-                                    Projects
-                                </span>
-                            </a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#intro" class="navigation__item__link">
-                                <span class="navigation__item__counter"/>
-                                <span class="navigation__item__content">
-                                    About me
-                                </span>
-                            </a>
-                        </li>
-                        <li class="navigation__item">
-                            <a href="#intro" class="navigation__item__link">
-                                <span class="navigation__item__counter"/>
-                                <span class="navigation__item__content">
-                                    Contact
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
+            <vue-component>
+                <menu-aside>
+                    <menu-aside-item>#</menu-aside-item>
+                    <menu-aside-item href="#intro" default-current>Hi' im robert</menu-aside-item>
+                    <menu-aside-item href="#technology">Stack</menu-aside-item>
+                    <menu-aside-item href="#projects">Projects</menu-aside-item>
+                    <menu-aside-item href="#about">About me</menu-aside-item>
+                    <menu-aside-item href="#contact">Contact</menu-aside-item>
+                </menu-aside>
+            </vue-component>
             <vue-component>
                 <menu-main class="nav">
                     <menu-main-item>
@@ -63,19 +28,18 @@
                     </menu-main-item>
                 </menu-main>
             </vue-component>
-
         </div>
     </div>
 </header>
 
-<section class="intro">
+<section class="intro" id="intro">
     <div class="l-container">
         <div class="l-row">
             <div class="l-col-xs-12 l-col-lg-6">
                 <h5 class="intro__subtitle">Hi i’m Robert and i...</h5>
                 <h1 class="intro__title">Building creative web solutions you deserve</h1>
                 <h6 class="intro__subtitle intro__subtitle--small">I will transform your plans and requirements into
-                    the best solutions based on cutting edge trends
+                    the finest solutions based on cutting edge trends
                     and technologies aligned with best practices.
                 </h6>
             </div>
@@ -98,7 +62,7 @@
         </div>
     </div>
 </section>
-<section class="technology">
+<section class="technology" id="technology">
     <div class="l-container technology--chosen">
         <div class="l-row">
             <div class="l-col l-col-xs-12">
@@ -169,92 +133,93 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="technology--all">
-        <div class="l-container">
-            <vue-component>
-                <overlay button-open-text="See all" test="a">
-                    <div class="l-container">
-                        <div class="l-row">
-                            <div class="l-col l-col-xs-12">
-                                <h3>Languages</h3>
-                                <ul class="technology__list">
-                                    <li class="technology__list__item">Java Script</li>
-                                    <li class="technology__list__item">Type Script</li>
-                                    <li class="technology__list__item">Css / Sass</li>
-                                    <li class="technology__list__item">PHP</li>
-                                    <li class="technology__list__item">Python</li>
-                                    <li class="technology__list__item">GraphQl</li>
-                                </ul>
+        <div class="l-row">
+            <div class="l-col-xs-12 flex-center">
+                    <vue-component>
+                        <overlay button-open-text="See all">
+                            <div class="l-container">
+                                <div class="l-row">
+                                    <div class="l-col l-col-xs-12">
+                                        <h3>Languages</h3>
+                                        <ul class="technology__list">
+                                            <li class="technology__list__item">Java Script</li>
+                                            <li class="technology__list__item">Type Script</li>
+                                            <li class="technology__list__item">Css / Sass</li>
+                                            <li class="technology__list__item">PHP</li>
+                                            <li class="technology__list__item">Python</li>
+                                            <li class="technology__list__item">GraphQl</li>
+                                        </ul>
+                                    </div>
+                                    <div class="l-col l-col-xs-12">
+                                        <h3>Frameworks</h3>
+                                        <ul class="technology__list">
+                                            <li class="technology__list__item">React / React Native / Vue</li>
+                                            <li class="technology__list__item">Express / Nest</li>
+                                            <li class="technology__list__item">Boostrap / Materialize</li>
+                                            <li class="technology__list__item">Django</li>
+                                            <li class="technology__list__item">Laravel</li>
+                                        </ul>
+                                    </div>
+                                    <div class="l-col l-col-xs-12">
+                                        <h3>Tools</h3>
+                                        <ul class="technology__list">
+                                            <li class="technology__list__item">Git</li>
+                                            <li class="technology__list__item">Npm / Yarn</li>
+                                            <li class="technology__list__item">Composer</li>
+                                            <li class="technology__list__item">Pip</li>
+                                        </ul>
+                                    </div>
+                                    <div class="l-col l-col-xs-12">
+                                        <h3>Services</h3>
+                                        <ul class="technology__list">
+                                            <li class="technology__list__item">Github</li>
+                                            <li class="technology__list__item">Amazon</li>
+                                            <li class="technology__list__item">Heroku</li>
+                                        </ul>
+                                    </div>
+                                    <div class="l-col l-col-xs-12">
+                                        <h3>Editors</h3>
+                                        <ul class="technology__list">
+                                            <li class="technology__list__item">WebStorm</li>
+                                            <li class="technology__list__item">Vs Code</li>
+                                            <li class="technology__list__item">Figma</li>
+                                            <li class="technology__list__item">PhotoShop</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="l-row">
+                                    <div class="l-col-xs-12">
+                                        <h3>Chosen Favorite js libraries</h3>
+                                        <ul class="technology__list">
+                                            <li class="technology__list__item">Webpack</li>
+                                            <li class="technology__list__item">Sequalizer</li>
+                                            <li class="technology__list__item">TypeORM</li>
+                                            <li class="technology__list__item">Axios</li>
+                                            <li class="technology__list__item">Socket IO</li>
+                                        </ul>
+                                        <ul class="technology__list">
+                                            <li class="technology__list__item">Jest</li>
+                                            <li class="technology__list__item">Jasmine</li>
+                                            <li class="technology__list__item">Karma</li>
+                                            <li class="technology__list__item">Mocha</li>
+                                        </ul>
+                                        <ul class="technology__list">
+                                            <li class="technology__list__item">Redux</li>
+                                            <li class="technology__list__item">MobX</li>
+                                            <li class="technology__list__item">Recoile.js</li>
+                                            <li class="technology__list__item">Vuex</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="l-col l-col-xs-12">
-                                <h3>Frameworks</h3>
-                                <ul class="technology__list">
-                                    <li class="technology__list__item">React / React Native / Vue</li>
-                                    <li class="technology__list__item">Express / Nest</li>
-                                    <li class="technology__list__item">Boostrap / Materialize</li>
-                                    <li class="technology__list__item">Django</li>
-                                    <li class="technology__list__item">Laravel</li>
-                                </ul>
-                            </div>
-                            <div class="l-col l-col-xs-12">
-                                <h3>Tools</h3>
-                                <ul class="technology__list">
-                                    <li class="technology__list__item">Git</li>
-                                    <li class="technology__list__item">Npm / Yarn</li>
-                                    <li class="technology__list__item">Composer</li>
-                                    <li class="technology__list__item">Pip</li>
-                                </ul>
-                            </div>
-                            <div class="l-col l-col-xs-12">
-                                <h3>Services</h3>
-                                <ul class="technology__list">
-                                    <li class="technology__list__item">Github</li>
-                                    <li class="technology__list__item">Amazon</li>
-                                    <li class="technology__list__item">Heroku</li>
-                                </ul>
-                            </div>
-                            <div class="l-col l-col-xs-12">
-                                <h3>Editors</h3>
-                                <ul class="technology__list">
-                                    <li class="technology__list__item">WebStorm</li>
-                                    <li class="technology__list__item">Vs Code</li>
-                                    <li class="technology__list__item">Figma</li>
-                                    <li class="technology__list__item">PhotoShop</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="l-row">
-                            <div class="l-col-xs-12">
-                                <h3>Chosen Favorite js libraries</h3>
-                                <ul class="technology__list">
-                                    <li class="technology__list__item">Webpack</li>
-                                    <li class="technology__list__item">Sequalizer</li>
-                                    <li class="technology__list__item">TypeORM</li>
-                                    <li class="technology__list__item">Axios</li>
-                                    <li class="technology__list__item">Socket IO</li>
-                                </ul>
-                                <ul class="technology__list">
-                                    <li class="technology__list__item">Jest</li>
-                                    <li class="technology__list__item">Jasmine</li>
-                                    <li class="technology__list__item">Karma</li>
-                                    <li class="technology__list__item">Mocha</li>
-                                </ul>
-                                <ul class="technology__list">
-                                    <li class="technology__list__item">Redux</li>
-                                    <li class="technology__list__item">MobX</li>
-                                    <li class="technology__list__item">Recoile.js</li>
-                                    <li class="technology__list__item">Vuex</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </overlay>
-            </vue-component>
+                        </overlay>
+                    </vue-component>
+            </div>
         </div>
     </div>
+
 </section>
-<section class="projects">
+<section class="projects" id="projects">
     <div class="l-container">
         <div class="l-row">
             <div class="l-col-xs-12">
@@ -400,83 +365,143 @@
             </div>
         </div>
         <div class="l-row">
-            <button class="btn btn--all">See all</button>
-        </div>
-    </div>
-</section>
-<section class="about">
-    <div class="l-container">
-        <div class="l-row">
-            <div class="l-col-xs-12">
-                <h2>About <span class="text-highlighted">me.</span></h2>
-            </div>
-            <div class="l-col-xs-12">
-                <p>
-                    I will transform your plans and requirements into the best solutions
-                    based on cutting edge technologies and trends align with best practices.
-                    I will transform your plans and requirements into the best solutions
-                    based on cutting edge technologies and trends align with best practices.
-
-                    I will transform your plans and requirements into the best solutions
-                    based on cutting edge technologies and trends align with best practices.
-                </p>
+            <div class="l-col-xs-12 flex-center">
+                <button class="btn btn--all">See all</button>
             </div>
         </div>
     </div>
 </section>
-<section class="contact">
+<section class="about" id="about">
     <div class="l-container">
         <div class="l-row">
-            <div class="l-col-xs-12">
-                <form class="form">
-                    <input class="form__input form__input--email"
-                           type="text"
-                           placeholder=" "
-                           aria-label="email">
-                    <input class="form__input form__input--subject"
-                           type="text"
-                           placeholder=" "
-                           aria-label="subject">
-                    <textarea placeholder=" " aria-label="message"></textarea>
-                    <div class="form__captcha">
-                    </div>
-                    <button class="btn btn--send">Send message</button>
-                </form>
+            <div class="l-col-xs-12 l-col-lg-6 about__photo__container">
+                <div class="about__photo">
+                    <img class="about__photo" src="{% static '/img/fake-me.png'%}" alt="owner photo"/>
+                </div>
+            </div>
+            <div class="l-col-xs-12 l-col-lg-6 about__content__container">
+                <div class="about__content">
+                    <h2 class="about__content__title">About <span class="highlighted">me.</span></h2>
+                    <p class="about__content__text text">
+                        I will transform your plans and requirements into the best solutions
+                        based on cutting edge technologies and trends align with best practices.
+                        I will transform your plans and requirements into the best solutions
+                    </p>
+                    <p class="about__content__text text">
+                        I will transform your plans and requirements into the best solutions
+                        based on cutting edge technologies and trends align with best practices.
+                        I will transform your plans and requirements into the best solutions
+                    </p>
+                    <p class="about__content__text text">
+                        I will transform your plans and requirements into the best solutions
+                        based on cutting edge technologies and trends align with best practices.
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="l-row">
-            <div class="l-col-xs-12">
-                <h3>How about cooperation ?</h3>
-                <p>
+    </div>
+</section>
+<section class="contact" id="contact">
+    <div class="l-container">
+        <div class="l-row contact__container">
+            <div class="l-col-xs-12 l-col-lg-6">
+                <h3 class="contact__title">Just let me know</h3>
+                <vue-component>
+                    <contact-form aria-label="Send contact message">
+                        {% csrf_token %}
+                        <contact-form-label for="emailField" label="Email" class="floating">
+                            <input class="form__input form__input--email"
+                                   id="emailField"
+                                   name="emailField"
+                                   type="text"
+                                   placeholder=" "
+                                   autocomplete="email"
+                                   aria-label="email"
+                                   required>
+                        </contact-form-label>
+                        <contact-form-label for="subjectField" label="subject" class="floating">
+                            <input class="form__input form__input--subject"
+                                   id="subjectField"
+                                   name="subjectField"
+                                   type="text"
+                                   placeholder=" "
+                                   aria-label="subject"
+                                   required>
+                            </label>
+                        </contact-form-label>
+                        <contact-form-label for="messageField" label="message" class="floating">
+                            <textarea class="form__text form__text--message"
+                                      placeholder=" "
+                                      id="messageField"
+                                      name="messageField"
+                                      aria-label="message"
+                                      rows="10"
+                                      required></textarea>
+                        </contact-form-label>
+                    </contact-form>
+                </vue-component>
+            </div>
+            <div class="l-col-xs-12 l-col-lg-6 contact__info__container">
+                <h3 class="contact__info__title">How about <span class="dont-break">cooperation ?</span></h3>
+                <p class="contact__info__text text">
                     I will transform your plans and requirements into the best solutions based on
                     cutting edge technologies and trends align with best practices.
                     I will transform your plans and requirements into the best
                     solutions based on cutting edge technologies and trends align with best practices.
+                    I will transform your plans and requirements into the best solutions based on
+                    cutting edge technologies and trends align with best practices.
+                    I will transform your plans and requirements into the best solutions based on
+                    cutting edge technologies and trends align with best practicess
+                    I will transform your plans and requirements into the best
+                    solutions based on cutting edge technologies and trends align with best practices.
                 </p>
-                <p>
+                <p class="contact__info__text text">
                     I will transform your plans and requirements into the best solutions
                     based on cutting edge technologies and trends align with best practices.
                 </p>
+
+                <div class="contact__portals__container">
+                    <a class="contact__portals__link contact__portals__link--github">
+                        <img style="--x: 0; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                    </a>
+                    <a class="contact__portals__link contact__portals__link--stackoverflow">
+                        <img style="--x: -47.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                    </a>
+                    <a class="contact__portals__link contact__portals__link--leecode">
+                        <img style="--x: -90px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                    </a>
+                    <a class="contact__portals__link contact__portals__link--linkedin">
+                        <img style="--x: -132.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                    </a>
+                    <a class="contact__portals__link contact__portals__link--facebook">
+                        <img style="--x: -179px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                    </a>
+                    <a class="contact__portals__link contact__portals__link--gmail">
+                        <img style="--x: -223.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                    </a>
+                    <vue-component>
+                        <contact-number class="contact__portals__link contact__portals__link--phone" aria-role="link">
+                            <img style="--x: -275px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                        </contact-number>
+                    </vue-component>
+                </div>
+
+                <div class="contact__resume__container">
+                    <button class="contact__resume__btn btn contact__resume__btn--download">Download Reasume</button>
+                </div>
             </div>
-        </div>
-        <div class="l-row">
-            <div class="l-col-xs-12">
-                <span class="contact__portal-logo contact__portal-logo--github"/>
-                <span class="contact__portal-logo contact__portal-logo--stack"/>
-                <span class="contact__portal-logo contact__portal-logo--linked"/>
-                <span class="contact__portal-logo contact__portal-logo--lee-code"/>
-                <span class="contact__portal-logo contact__portal-logo--facebook"/>
-                <span class="contact__portal-logo contact__portal-logo--gmail"/>
-                <span class="contact__portal-logo contact__portal-logo--phone"/>
-            </div>
-            <div class="l-col-xs-12">
-                <button class="contact__btn btn contact__btn--download">Download Reasume</button>
-            </div>
+
         </div>
     </div>
 </section>
-<footer>
-    <p class="text--small">
-        © 2021 Robert Kamiński - All Rights Reserved
-    </p>
+<footer class="footer">
+    <div class="l-container">
+        <div class="l-row">
+            <div class="l-col-xs-12 footer__container">
+                <p class="text--small">
+                    © 2021 Robert Kamiński - All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </div>
 </footer>
