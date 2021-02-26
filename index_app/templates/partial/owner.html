@@ -6,7 +6,7 @@
         <div class="l-row">
             <vue-component>
                 <menu-aside>
-                    <menu-aside-item>#</menu-aside-item>
+<!--                    <menu-aside-item>#</menu-aside-item>-->
                     <menu-aside-item href="#intro" default-current>Hi' im robert</menu-aside-item>
                     <menu-aside-item href="#technology">Stack</menu-aside-item>
                     <menu-aside-item href="#projects">Projects</menu-aside-item>
@@ -35,17 +35,18 @@
 <section class="intro" id="intro">
     <div class="l-container">
         <div class="l-row">
-            <div class="l-col-xs-12 l-col-lg-6">
+            <div class="l-col-xs-12 l-col-lg-6 intro__column">
                 <div class="intro__container">
-                    <h5 class="intro__subtitle">Hi i’m Robert and i...</h5>
+                    <h5 class="intro__subtitle">Hi I’m Robert and I ...</h5>
                     <h1 class="intro__title">Building creative web solutions you deserve</h1>
-                    <h6 class="intro__subtitle intro__subtitle--small">I will transform your plans and requirements into
+                    <h6 class="intro__subtitle intro__subtitle--small">
+                        I will transform your plans and requirements into
                         the finest solutions based on cutting edge trends
                         and technologies aligned with best practices.
                     </h6>
                 </div>
             </div>
-            <div class="l-col-xs-12 l-col-lg-6">
+            <div class="l-col-xs-12 l-col-lg-6 intro__column">
                 <div class="intro__img__wrapper">
                     <svg class="intro__img__mask" width="0" height="0">
                         <defs>
@@ -222,8 +223,8 @@
 
 </section>
 <section class="projects" id="projects">
-    <div class="l-container">
-        <div class="l-row">
+    <div class="l-container projects__container">
+        <div class="l-row projects__row">
             <div class="l-col-xs-12">
                 <vue-component>
                     <slider>
@@ -366,7 +367,7 @@
                 </vue-component>
             </div>
         </div>
-        <div class="l-row">
+        <div class="l-row projects__row">
             <div class="l-col-xs-12 flex-center">
                 <button class="btn btn--all">See all</button>
             </div>
@@ -463,37 +464,39 @@
                 </p>
 
                 <div class="contact__portals__container">
-                    <a class="contact__portals__link contact__portals__link--github">
-                        <img style="--x: 0; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                    </a>
-                    <a class="contact__portals__link contact__portals__link--stackoverflow">
-                        <img style="--x: -47.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                    </a>
-                    <a class="contact__portals__link contact__portals__link--leecode">
-                        <img style="--x: -90px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                    </a>
-                    <a class="contact__portals__link contact__portals__link--linkedin">
-                        <img style="--x: -132.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                    </a>
-                    <a class="contact__portals__link contact__portals__link--facebook">
-                        <img style="--x: -179px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                    </a>
-                    <a class="contact__portals__link contact__portals__link--gmail">
-                        <img style="--x: -223.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                    </a>
-                    <vue-component>
-                        <contact-number class="contact__portals__link contact__portals__link--phone contact-number" aria-role="link" loading-label="loading">
-                            <img style="--x: -275px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                            <template #controls>
-                                <button class="contact-number__btn contact-number__btn--copy"
-                                        data-action="copy"
-                                        data-action-confirm="Number was copied to clipboard">
-                                    copy
-                                </button>
-                                <button class="contact-number__btn contact-number__btn--call" data-action="call">call</button>
-                            </template>
-                        </contact-number>
-                    </vue-component>
+                    <div class="contact__portals__wrapper">
+                        <a class="contact__portals__link contact__portals__link--github">
+                            <img style="--x: 0; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                        </a>
+                        <a class="contact__portals__link contact__portals__link--stackoverflow">
+                            <img style="--x: -47.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                        </a>
+                        <a class="contact__portals__link contact__portals__link--leecode">
+                            <img style="--x: -90px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                        </a>
+                        <a class="contact__portals__link contact__portals__link--linkedin">
+                            <img style="--x: -132.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                        </a>
+                        <a class="contact__portals__link contact__portals__link--facebook">
+                            <img style="--x: -179px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                        </a>
+                        <a class="contact__portals__link contact__portals__link--gmail">
+                            <img style="--x: -223.5px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                        </a>
+                        <vue-component>
+                            <contact-number class="contact__portals__link contact__portals__link--phone contact-number" aria-role="link" loading-label="loading">
+                                <img style="--x: -275px; --y: 0px; --w: 45px; --h: 45px; --url: url({% static 'img/portals.png' %})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+                                <template #controls>
+                                    <button class="contact-number__btn contact-number__btn--copy"
+                                            data-action="copy"
+                                            data-action-confirm="Number was copied to clipboard">
+                                        copy
+                                    </button>
+                                    <button class="contact-number__btn contact-number__btn--call" data-action="call">call</button>
+                                </template>
+                            </contact-number>
+                        </vue-component>
+                    </div>
                 </div>
 
                 <div class="contact__resume__container">

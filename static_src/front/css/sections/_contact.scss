@@ -2,6 +2,12 @@
   min-height: calc(80 * var(--vh));
   .l-container > .l-row > * {
     min-height: 50vh;
+
+  }
+
+  &__container{
+    display: flex;
+    justify-content: center;
   }
 
   &__title{
@@ -65,15 +71,22 @@
 
   &__portals{
     &__container{
+      max-width: 425px;
+      margin: auto 0 25px;
+    }
+    &__wrapper{
       display: flex;
       justify-content: space-evenly;
       flex-wrap: wrap;
-      max-width: 400px;
-      margin: auto 0 25px;
     }
     &__link{
       position: relative;
       display: inline-block;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       & > img{
         width: var(--w);
         height: var(--h);
@@ -169,10 +182,6 @@
 
 @media screen and (max-width: map-get($grid-breakpoints, 'sm')) {
   .contact{
-    //&__title{
-    //  padding-left: 1em;
-    //  margin-left: unset;
-    //}
     &__portals{
       &__container{
         max-width: 250px;
@@ -209,32 +218,6 @@
       }
     }
   }
-
-  //label.floating{
-  //  textarea, input{
-  //    left: unset;
-  //    width: calc(100% - 1.0em);
-  //  }
-  //
-  //  input + span,
-  //  textarea + span{
-  //    left: 1.5em;
-  //  }
-  //
-  //  input:not(:placeholder-shown) + span,
-  //  textarea:not(:placeholder-shown) + span{
-  //    top: -1em;
-  //    left: 0;
-  //    right: unset;
-  //  }
-  //
-  //  p{
-  //    margin-left: 1em;
-  //    font-size: 0.875em;
-  //  }
-  //}
-
-
 }
 
 
@@ -242,7 +225,7 @@
   .contact{
     &__portals{
       &__container{
-        max-width: 400px;
+        max-width: 425px;
       }
     }
     .form__summary__group{
@@ -291,3 +274,35 @@
   }
 }
 
+@media screen and (min-width: map-get($grid-breakpoints, 'xxl') + 50px) {
+  .contact__portals{
+    &__wrapper{
+      flex-direction: column;
+      height: 450px;
+    }
+    &__container{
+      position: fixed;
+      height: 100%;
+      top: 0;
+      right: calc((100vw - 160px - 25px - 1200px) / 2 / 2) ;
+      width: 50px;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      & > :first-child{
+        margin-top: auto;
+      }
+      & > :last-child{
+        margin-bottom: auto;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: map-get($grid-breakpoints, 'xxxl')) {
+  .contact__portals{
+    &__container{
+      right: calc((100vw - 220px - 25px - 1300px) / 2 / 2) ;
+    }
+  }
+}

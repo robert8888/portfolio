@@ -10,16 +10,24 @@
     & #{$self}__list {
       display: flex;
       align-items: center;
+      max-height: 500px;
+    }
+
+    #{$self}__container{
+      display: flex;
+    }
+
+    #{$self}__home{
+      font-size: 2em;
+      font-weight: 500;
     }
 
     #{$self}__item {
 
       counter-increment: navigation;
       font-size: 1.125em;
+      margin-left: 25px;
 
-      &:not(:first-of-type) {
-        margin-left: 25px;
-      }
 
       &__link {
         white-space: nowrap;
@@ -40,13 +48,8 @@
         }
       }
 
-      &:not(:first-of-type):not(&--current) {
+      &:not(&--current) {
         display: none;
-      }
-
-      &:first-of-type {
-        font-size: 2em;
-        font-weight: 500;
       }
     }
 
@@ -79,7 +82,7 @@
       display: none;
       $barWidth: 2px;
       $thumbWidth: 12px;
-      $thumbHeight: 35px;
+      $thumbHeight: 55px;
       position: absolute;
       width: $barWidth;
       height: 100%;
@@ -109,11 +112,11 @@
 
       #{$self}__item {
         display: block;
-        &:not(:first-of-type):not(&--current) {
+        &:not(&--current) {
           display: block;
         }
 
-        &:not(:first-of-type):not(&--current) {
+        &:not(&--current) {
           display: block;
           & #{$self}__item__content {
             display: none;
@@ -138,9 +141,16 @@
         display: block;
       }
 
+      #{$self}__home{
+        font-size: 2em;
+        font-weight: 500;
+        margin-top: 35px;
+        margin-bottom: auto;
+      }
+
+
       #{$self}__container{
         height: 100%;
-        display: flex;
         flex-direction: column;
       }
 
@@ -155,7 +165,7 @@
         display: block;
 
 
-        &:not(:first-of-type):not(&--current) {
+        &:not(&--current) {
           display: block;
           & #{$self}__item__content {
             display: none;
@@ -163,10 +173,10 @@
         }
 
 
-        &:not(:first-of-type){
+        //&:not(:first-of-type){
           margin: 0;
           width: 100%;
-        }
+        //}
         &__content,
         &__counter{
           display: block;
@@ -181,7 +191,20 @@
 
       #{$self}__fast-scroll {
         display: flex;
+        margin-top: auto;
+        margin-bottom: 40px;
       }
+    }
+  }
+}
+
+
+
+@media screen and (min-width: map-get($grid-breakpoints, "xxxl") + 50px){
+  .navigation{
+    $self: &;
+    &--aside {
+      width: 160px;
     }
   }
 }

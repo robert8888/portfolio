@@ -1,6 +1,11 @@
 <template>
   <aside class="navigation navigation--aside" >
     <nav class="navigation__container" >
+      <div class="navigation__home">
+        <a href="/" class="navigation__item__link">
+          <span class="navigation__item__content">#</span>
+        </a>
+      </div>
       <list class="navigation__list" ref="list">
         <slot/>
       </list>
@@ -112,7 +117,8 @@ export default defineComponent({
     },
 
     updateThumbPosition(){
-      const currentSelectedItem = this.listRef()?.children[this.currentIntersectedIndex || 0];
+      const index = this.currentIntersectedIndex || 0
+      const currentSelectedItem = this.listRef()?.children[index - 1];
       if(!currentSelectedItem) return;
       this.thumbTopPosition = currentSelectedItem.getBoundingClientRect().top;
     },

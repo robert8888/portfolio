@@ -81,10 +81,35 @@
   }
 }
 
+//@media screen and (min-width: map-get($grid-breakpoints, "xl"))  {
+//  .technology{
+//    .l-container{
+//      padding-left: 60px;
+//    }
+//  }
+//}
+
 @media screen and (min-width: map-get($grid-breakpoints, "xl")){
   .technology .l-row{
     &:first-of-type{
       margin-bottom: 100px;
     }
   }
+
 }
+//@media screen and (min-width: map-get($grid-breakpoints, "xxl"))  {
+//  .technology{
+//    .l-container{
+//      padding-left: 40px;
+//    }
+//  }
+//}
+//
+//
+//@media screen and (min-width: map-get($grid-breakpoints, "xxxl"))  {
+//  .technology{
+//    .l-container{
+//      padding-left: 20px;
+//    }
+//  }
+//}

@@ -41,7 +41,7 @@ export default defineComponent({
       modalOpen: false,
       number: "",
       isLoading: false,
-      errorMessage: "Retrieve a number from the database failed",
+      errorMessage: "Ops. What a shame :(",
       isSuccess: true,
       confirmMessage: "",
     }
@@ -50,6 +50,7 @@ export default defineComponent({
   methods:{
     async getNumber(){
       this.isLoading = true;
+
       try{
         const captchaToken =  await getCaptchaToken();
         const csrfToken = (window as any).csrfToken  as string;
@@ -67,7 +68,9 @@ export default defineComponent({
           })
         })
 
+
         const data = await response.json();
+
         this.number = this.formatPhoneNumber(data.number);
 
       } catch(error){

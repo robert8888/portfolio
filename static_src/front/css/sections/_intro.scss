@@ -6,6 +6,15 @@
    }
   }
 
+  &__column:first-of-type{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title{
+    max-width: 565px;
+  }
   &__subtitle{
     font-family: "Source Sans Pro", Roboto, sans-serif;
     line-height: 1.4em;
@@ -16,6 +25,8 @@
       margin-top: 2em;
       margin-bottom: 0.3em;
       font-weight: normal;
+      line-height: 1.5em;
+      letter-spacing: 2px;
     }
   }
 
@@ -50,23 +61,50 @@
 }
 
 
+@media screen and(min-width: map-get($grid-breakpoints, "sm")){
+  .intro {
+    &__subtitle{
+      font-size: 1.75rem;
+      margin-left: 1.5em;
+      &--small {
+        font-size: 1.5rem;
+        margin-top: 3em;
+        margin-left: 3em;
+        margin-right: 3em;
+        max-width: 480px;
+      }
+    }
+  }
+}
+
+
+
 @media screen and(min-width: map-get($grid-breakpoints, "lg")){
   .intro{
+    &__column:first-of-type{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     &__title{
       font-size: 3.5rem;
-      margin-top: 1.5em;
-      margin-bottom: 1.5em;
+      margin-top: 1em;
+      margin-bottom: 1em;
     }
     &__subtitle{
-      font-size: 1.5rem;
-      margin-left: 1em;
+      font-size: 1.75rem;
+      margin-left: 1.5em;
       &--small {
-        margin-left: 3.5em;
-        margin-top: 3.5em;
+        font-size: 1.5rem;
+        margin-top: 3em;
+        margin-left: 3em;
+        margin-right: -4em;
+        max-width: unset;
       }
     }
     &__container{
-      margin-top: 105px;
+      margin-bottom: 3em;
     }
     .l-row > div:last-child {
       display: flex;
@@ -75,7 +113,7 @@
     }
     &__img{
       &__wrapper{
-        margin-bottom: 1.5em;
+        margin-bottom: 0;
         padding-top: 60%;
       }
       &__container{
@@ -90,11 +128,18 @@
   .intro{
     &__title{
       font-size: 3.5rem;
-      margin-top: 1.5em;
-      margin-bottom: 1.5em;
+      margin-top: 1.25em;
+      margin-bottom: 1.25em;
     }
-    &__container{
-      margin-top: 105px;
+    &__subtitle{
+      font-size: 1.75rem;
+      margin-left: 1.5em;
+      &--small {
+        font-size: 1.25rem;
+        margin-top: 1.5em;
+        margin-left: 4em;
+        margin-right: -3em;
+      }
     }
   }
 }
@@ -104,6 +149,15 @@
     &__title{
       font-size: 4.5rem;
     }
+    &__subtitle{
+      margin-left: 2em;
+      letter-spacing: 2px;
+      &--small {
+        font-size: 1.5rem;
+        margin-left: 3em;
+        margin-right: -2em;
+      }
+    }
   }
 }
 
@@ -111,6 +165,19 @@
   .intro{
     &__title{
       margin-left: -1em;
+    }
+    &__subtitle{
+      font-size: 2rem;
+      margin-left: -.5em;
+      letter-spacing: 3px;
+      &--small {
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+        margin-left: 2em;
+      }
+    }
+    &__container{
+      margin-bottom: 6em;
     }
   }
 }

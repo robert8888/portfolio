@@ -8,53 +8,42 @@
   }
 }
 
-
 .projects {
-  .l-row:first-of-type {
-    margin-top: 2.5vh;
-  }
-
-  .l-row:last-of-type {
-    margin: 10vh 0;
-  }
-}
-
-
-@media screen and (max-height: map-get($grid-breakpoints-vertical, "sm")) {
-  .projects{
-    .l-row:first-of-type{
+  &__row{
+    padding-left: 0;
+    padding-right: 0;
+    &:first-of-type{
       margin-top: 5vh;
     }
-    .l-row:last-of-type{
+    &:last-of-type{
       margin: 5vh 0;
     }
+    & > * {
+      padding: 0;
+    }
   }
 }
 
-@media screen and (max-height: map-get($grid-breakpoints-vertical, "md")) {
+
+@media screen and (min-height: map-get($grid-breakpoints-vertical, "sm")) {
   .projects{
-    .l-row:first-of-type{
-      margin-top: 5vh;
+    &__container{
+      display: flex;
+      flex-direction: column;
     }
-    .l-row:last-of-type{
-      margin: 5vh 0;
-    }
-  }
-}
-
-@media screen and (min-height: map-get($grid-breakpoints-vertical, "md")) {
-  .projects{
-    .l-row:first-of-type{
-      margin-top: 15vh;
-    }
-    .l-row:last-of-type{
-      margin-top: 10vh;
+    &__row{
+      padding-left: 0;
+      padding-right: 0;
+      &:first-of-type{
+        margin-top: auto;
+      }
+      &:last-of-type{
+        margin-bottom: auto;
+        margin-top: auto;
+      }
     }
   }
 }
-
-
-
 
 
 @media screen and (min-width: map-get($grid-breakpoints, 'xl')) {

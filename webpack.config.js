@@ -1,6 +1,5 @@
 const path = require("path");
 const RemovePlugin = require('remove-files-webpack-plugin');
-const BundleTracker = require('webpack-bundle-tracker');
 
 const tsEntries = [
     //admin
@@ -64,7 +63,6 @@ module.exports = [
     mode: 'production',
     entry: transformEntries(sassEntries),
     output:{
-        publicPath: 'http://localhost:9000/static/',
         path: path.resolve(__dirname, 'static_compiled'),
         assetModuleFilename: pathData => pathData.filename.replace('static_src', '').replace('.scss', '.css'),
         filename: "[name]-to-remove.js"
@@ -79,10 +77,6 @@ module.exports = [
                 }],
             }
         }),
-        new BundleTracker({
-            path: __dirname,
-            filename: 'webpack-stats.json',
-        })
     ],
     resolve: {
         alias: {
@@ -135,14 +129,7 @@ module.exports = [
         }
         ]
     },
-    devServer:{
-        port: 9000,
-        contentBase: '/assets',
-        headers: {
-            'Access-Control-Allow-Origin': '*'
-        },
-        hot: true
-    }
+
 }]
 
 function transformEntries(entries){
