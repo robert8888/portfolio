@@ -1,6 +1,6 @@
 {% extends "base_page.html" %}
 {% load render_bundle from webpack_loader %}
-{% load static %}}
+{% load static %}
 {% block style %}
 {{ block.super }}
 <link href="{% static 'front/css/index.css' %}" rel="stylesheet" type="text/css"/>
@@ -8,11 +8,16 @@
 {% endblock %}
 
 {% block content %}
-    {% include "partial/owner.html" %}
+    {% include "partial/header.html" %}
+    {% include "partial/section-intro.html" %}
+    {% include "partial/section-stack.html" %}
+    {% include "partial/section-projects.html" %}
+    {% include "partial/section-about.html" %}
+    {% include "partial/section-contact.html" %}
+    {% include "partial/footer.html" %}
 {% endblock %}
 
 {% block scripts %}
-
 {% render_bundle 'chunk-vendors' %}
 {% render_bundle 'main' 'js' %}
 <script src="{% static 'front/js/index.js' %}"></script>

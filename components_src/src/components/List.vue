@@ -18,7 +18,7 @@ export default defineComponent({
     children(){
       const defaultSlot = this.$slots.default();
       return defaultSlot[0].children.map((node, index) => {
-        node.props = {... node.props, index};
+        node.props = {... node.props, index: index + 1};
         return node;
       })
     },
