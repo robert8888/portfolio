@@ -1,3 +1,6 @@
+//@use "@common/grid" as *;
+//@use "@common/mixins/mixins-front" as *;
+//@use "@common/assets" as *;
 
 .navigation {
   $self: &;
@@ -200,11 +203,11 @@
 
 
 
-@media screen and (min-width: map-get($grid-breakpoints, "xxxl") + 50px){
-  .navigation{
-    $self: &;
-    &--aside {
-      width: 160px;
-    }
-  }
-}
+//@media screen and (min-width: map-get($grid-breakpoints, "xxxl") + 50px){
+//  .navigation{
+//    $self: &;
+//    &--aside {
+//      width: 160px;
+//    }
+//  }
+//}

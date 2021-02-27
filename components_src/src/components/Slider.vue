@@ -39,6 +39,10 @@ export default defineComponent({
      minMargin: {
        type: Number,
        default: 20
+     },
+     wide:{
+       type: Boolean,
+       default: false
      }
   },
 
@@ -239,10 +243,13 @@ export default defineComponent({
 
   watch: {
     containerSize(){
+      const wideMode = false;
       const minMargin = this.minMargin;
       const width = this.containerSize.width;
       const itemWidth = this.itemWidth;
-      let visible = Math.floor((width - (2 * minMargin)) / (itemWidth + minMargin)) || 1
+      // let visible = Math.floor((width - (2 * minMargin)) / (itemWidth + minMargin)) || 1
+      let visible = Math.floor((width) / (itemWidth + minMargin)) || 1
+
 
       if(visible > this.numberOfInitialItems){
         visible = this.numberOfInitialItems;
@@ -254,17 +261,24 @@ export default defineComponent({
         this.index = this.startIndex;
       }
 
+      if(this.wide && this.visible > 2){
+        this.wideMode = true;
+      }
+
       const marginSum = width - (visible * itemWidth);
 
       if(isNaN(marginSum))
         return;
-      let margin = marginSum / visible / 2;
+
+      let margin = wideMode
+          ? marginSum / (visible - 1 || 1) / 2
+          : marginSum / visible / 2;
 
       if(margin < minMargin){
         margin = minMargin;
         this.correction = -minMargin + ((width - (itemWidth * visible)) / Math.max(visible, 2) / visible);
       } else {
-        this.correction = 0;
+        this.correction = wideMode ? -margin : 0;
       }
 
       this.numberOfVisibleItems = visible;

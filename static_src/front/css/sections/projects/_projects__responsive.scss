@@ -1,7 +1,10 @@
+//@use "@common/grid" as *;
 
 @media screen and (hover: hover) {
   .projects .slider{
     padding: 0 50px;
+    margin-left: -25px;
+    margin-right: -25px;
     &__controls{
       display: flex;
     }
@@ -9,6 +12,10 @@
 }
 
 .projects {
+  &__container{
+    display: flex;
+    flex-direction: column;
+  }
   &__row{
     padding-left: 0;
     padding-right: 0;
@@ -16,7 +23,7 @@
       margin-top: 5vh;
     }
     &:last-of-type{
-      margin: 5vh 0;
+      margin: 7.5vh 0;
     }
     & > * {
       padding: 0;
@@ -25,15 +32,9 @@
 }
 
 
-@media screen and (min-height: map-get($grid-breakpoints-vertical, "sm")) {
+@media screen and (min-width: map-get($grid-breakpoints, "lg")) {
   .projects{
-    &__container{
-      display: flex;
-      flex-direction: column;
-    }
     &__row{
-      padding-left: 0;
-      padding-right: 0;
       &:first-of-type{
         margin-top: auto;
       }

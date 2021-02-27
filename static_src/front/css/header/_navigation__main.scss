@@ -1,3 +1,6 @@
+//@use "@common/grid" as *;
+//@use "@common/mixins/mixins-front" as *;
+//@use "@common/assets" as *;
 
 .navigation {
   $self: &;
@@ -65,7 +68,7 @@
         margin: 0;
       }
       #{$self}__item{
-        margin: 0 30px;
+        margin-left: 60px;
         &__link{
           font-weight: normal;
         }

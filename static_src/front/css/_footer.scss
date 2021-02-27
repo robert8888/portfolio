@@ -1,6 +1,11 @@
+
 .footer{
   padding-bottom: 0;
-  margin-top: 5vh;
+ // margin-top: 5vh;
+  &__container{
+
+  }
+
   &__container{
     border-top: 1px solid var(--color-pallet-priamry);
     display: flex;

@@ -1,7 +1,7 @@
 {% load static %}
 <section class="technology" id="technology">
-    <div class="l-container technology--chosen">
-        <div class="l-row">
+    <div class="l-container ">
+        <div class="l-row technology--chosen">
             <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
                 <a class="technology__link technology__link--js">
                     <img style="--x: 0; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
@@ -36,7 +36,7 @@
                 </a>
             </div>
         </div>
-        <div class="l-row">
+        <div class="l-row technology--chosen">
             <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
                 <a class="technology__link technology__link--react">
                     <img style="--x: 0; --y: -395px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
@@ -73,78 +73,98 @@
         <div class="l-row">
             <div class="l-col-xs-12 flex-center">
                 <vue-component>
-                    <overlay button-open-text="See all">
-                        <div class="l-container">
-                            <div class="l-row">
-                                <div class="l-col l-col-xs-12">
-                                    <h3>Languages</h3>
-                                    <ul class="technology__list">
-                                        <li class="technology__list__item">Java Script</li>
-                                        <li class="technology__list__item">Type Script</li>
-                                        <li class="technology__list__item">Css / Sass</li>
-                                        <li class="technology__list__item">PHP</li>
-                                        <li class="technology__list__item">Python</li>
-                                        <li class="technology__list__item">GraphQl</li>
-                                    </ul>
+                    <overlay button-open-text="See all" class="technology-all">
+                        <div class="l-container technology-all__container">
+                            <div class="l-row technology-all__row">
+                                <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-4 l-col-xl-2 technology-all__col">
+                                    <div class="technology-all__category">
+                                        <h3 class="technology-all__category-title">Languages</h3>
+                                        <ul class="technology-all__list">
+                                            <li class="technology-all__item">Java Script</li>
+                                            <li class="technology-all__item">Type Script</li>
+                                            <li class="technology-all__item">Css / Sass</li>
+                                            <li class="technology-all__item">PHP</li>
+                                            <li class="technology-all__item">Python</li>
+                                            <li class="technology-all__item">GraphQl</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="l-col l-col-xs-12">
-                                    <h3>Frameworks</h3>
-                                    <ul class="technology__list">
-                                        <li class="technology__list__item">React / React Native / Vue</li>
-                                        <li class="technology__list__item">Express / Nest</li>
-                                        <li class="technology__list__item">Boostrap / Materialize</li>
-                                        <li class="technology__list__item">Django</li>
-                                        <li class="technology__list__item">Laravel</li>
-                                    </ul>
+                                <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-4 l-col-xl-2 technology-all__col">
+                                    <div class="technology-all__category">
+                                        <h3 class="technology-all__category-title">Frameworks</h3>
+                                        <ul class="technology-all__list">
+                                            <li class="technology-all__item">React / React Native / Vue</li>
+                                            <li class="technology-all__item">Express / Nest</li>
+                                            <li class="technology-all__item">Boostrap / Materialize</li>
+                                            <li class="technology-all__item">Django</li>
+                                            <li class="technology-all__item">Laravel</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="l-col l-col-xs-12">
-                                    <h3>Tools</h3>
-                                    <ul class="technology__list">
-                                        <li class="technology__list__item">Git</li>
-                                        <li class="technology__list__item">Npm / Yarn</li>
-                                        <li class="technology__list__item">Composer</li>
-                                        <li class="technology__list__item">Pip</li>
-                                    </ul>
+                                <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-4 l-col-xl-2 technology-all__col">
+                                    <div class="technology-all__category">
+                                        <h3 class="technology-all__category-title">Tools</h3>
+                                        <ul class="technology-all__list">
+                                            <li class="technology-all__item">Git</li>
+                                            <li class="technology-all__item">Npm / Yarn</li>
+                                            <li class="technology-all__item">Composer</li>
+                                            <li class="technology-all__item">Pip</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="l-col l-col-xs-12">
-                                    <h3>Services</h3>
-                                    <ul class="technology__list">
-                                        <li class="technology__list__item">Github</li>
-                                        <li class="technology__list__item">Amazon</li>
-                                        <li class="technology__list__item">Heroku</li>
-                                    </ul>
+                                <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-4 l-col-xl-2 technology-all__col">
+                                    <div class="technology-all__category">
+                                        <h3 class="technology-all__category-title">Services</h3>
+                                        <ul class="technology-all__list">
+                                            <li class="technology-all__item">Github</li>
+                                            <li class="technology-all__item">Amazon</li>
+                                            <li class="technology-all__item">Heroku</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="l-col l-col-xs-12">
-                                    <h3>Editors</h3>
-                                    <ul class="technology__list">
-                                        <li class="technology__list__item">WebStorm</li>
-                                        <li class="technology__list__item">Vs Code</li>
-                                        <li class="technology__list__item">Figma</li>
-                                        <li class="technology__list__item">PhotoShop</li>
-                                    </ul>
+                                <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-4 l-col-xl-2 technology-all__col">
+                                    <div class="technology-all__category">
+                                        <h3 class="technology-all__category-title">Editors</h3>
+                                        <ul class="technology-all__list">
+                                            <li class="technology-all__item">WebStorm</li>
+                                            <li class="technology-all__item">Vs Code</li>
+                                            <li class="technology-all__item">Figma</li>
+                                            <li class="technology-all__item">PhotoShop</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="l-row">
+                            <div class="l-row technology-all__row">
                                 <div class="l-col-xs-12">
-                                    <h3>Chosen Favorite js libraries</h3>
-                                    <ul class="technology__list">
-                                        <li class="technology__list__item">Webpack</li>
-                                        <li class="technology__list__item">Sequalizer</li>
-                                        <li class="technology__list__item">TypeORM</li>
-                                        <li class="technology__list__item">Axios</li>
-                                        <li class="technology__list__item">Socket IO</li>
+                                    <h3 class="technology-all__category-title">
+                                        Chosen Favorite js libraries
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="l-row technology-all__row">
+                                <div class="l-col-xs-12 l-col-sm-6 l-col-lg-2 technology-all__col">
+                                    <ul class="technology-all__list">
+                                        <li class="technology-all__item">Webpack</li>
+                                        <li class="technology-all__item">Sequalizer</li>
+                                        <li class="technology-all__item">TypeORM</li>
+                                        <li class="technology-all__item">Axios</li>
+                                        <li class="technology-all__item">Socket IO</li>
                                     </ul>
-                                    <ul class="technology__list">
-                                        <li class="technology__list__item">Jest</li>
-                                        <li class="technology__list__item">Jasmine</li>
-                                        <li class="technology__list__item">Karma</li>
-                                        <li class="technology__list__item">Mocha</li>
+                                </div>
+                                <div class="l-col-xs-12 l-col-sm-6 l-col-lg-2 technology-all__col">
+                                    <ul class="technology-all__list">
+                                        <li class="technology-all__item">Jest</li>
+                                        <li class="technology-all__item">Jasmine</li>
+                                        <li class="technology-all__item">Karma</li>
+                                        <li class="technology-all__item">Mocha</li>
                                     </ul>
-                                    <ul class="technology__list">
-                                        <li class="technology__list__item">Redux</li>
-                                        <li class="technology__list__item">MobX</li>
-                                        <li class="technology__list__item">Recoile.js</li>
-                                        <li class="technology__list__item">Vuex</li>
+                                </div>
+                                <div class="l-col-xs-12 l-col-sm-6 l-col-lg-2 technology-all__col">
+                                    <ul class="technology-all__list">
+                                        <li class="technology-all__item">Redux</li>
+                                        <li class="technology-all__item">MobX</li>
+                                        <li class="technology-all__item">Recoile.js</li>
+                                        <li class="technology-all__item">Vuex</li>
                                     </ul>
                                 </div>
                             </div>

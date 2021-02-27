@@ -1,3 +1,4 @@
+
 .contact{
   min-height: calc(80 * var(--vh));
   .l-container > .l-row > * {
@@ -15,12 +16,11 @@
   }
 
   .form{
-    padding: 0 5px;
     &__summary{
       display: flex;
       flex-direction: column;
-      padding-left: 2.5em;
-      padding-right: 1em;
+      padding-left: 45px;
+      padding-right: 0;
       &__group{
         display: flex;
         flex-wrap: wrap;
@@ -59,6 +59,7 @@
 
   &__info{
     &__container{
+      @extend .indented;
       margin-top: 5vh;
       display: flex;
       flex-direction: column;
@@ -71,8 +72,9 @@
 
   &__portals{
     &__container{
-      max-width: 425px;
-      margin: auto 0 25px;
+      max-width: 250px;
+      width: 420px;
+      margin: 25px auto;
     }
     &__wrapper{
       display: flex;
@@ -104,7 +106,6 @@
 
   &__resume{
     &__container{
-      padding: 0 20px;
       margin-top: auto;
     }
     &__btn{
@@ -184,6 +185,7 @@
   .contact{
     &__portals{
       &__container{
+        width: 450px;
         max-width: 250px;
         margin: 25px auto;
       }
@@ -223,13 +225,14 @@
 
 @media screen and (min-width: map-get($grid-breakpoints, 'sm')) {
   .contact{
-    &__portals{
-      &__container{
-        max-width: 425px;
-      }
-    }
     .form__summary__group{
       flex-wrap: nowrap;
+    }
+    &__portals{
+      &__container{
+        max-width: unset;
+        margin-left: 0;
+      }
     }
   }
 }
@@ -238,7 +241,8 @@
   .contact{
     &__portals{
       &__container{
-        max-width: 450px;
+        max-width: unset;
+        margin-left: 0;
       }
     }
     &__resume{
@@ -247,16 +251,16 @@
       }
     }
 
-    &__info{
-      &__container{
-        padding-left: 2em;
-      }
-      &__title{
-        margin-left: -1em;
-      }
-    }
+    //&__info{
+    //  &__container{
+    //    //padding-left: $paragraph-indent + 15px;
+    //    @extend .indented;
+    //  }
+    //  &__title{
+    //    margin-left: -$paragraph-indent;
+    //  }
+    //}
   }
-
 }
 
 @media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
@@ -273,6 +277,7 @@
     }
   }
 }
+
 
 @media screen and (min-width: map-get($grid-breakpoints, 'xxl') + 50px) {
   .contact__portals{

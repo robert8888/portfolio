@@ -1,3 +1,7 @@
+//@use "@common/grid" as *;
+//@use "@common/mixins/mixins-front" as *;
+//@use "@common/assets" as *;
+
 body > header{
   height: 75px;
   border-bottom: 1px solid var(--color-separator);

@@ -1,3 +1,5 @@
+//@use "@common/grid" as *;
+
 @media screen and (max-height: map-get($grid-breakpoints-vertical, "sm")) {
   .card-project{
     $self: &;

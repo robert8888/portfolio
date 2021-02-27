@@ -22,5 +22,33 @@
   &::-webkit-scrollbar-thumb:hover {
     background: $thumb-hover-color;
   }
+}
 
+
+@mixin scrollTight(
+  $track-color,
+  $thumb-color,
+  $thumb-hover-color,
+  $width: 15px
+){
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track-piece,
+  &::-webkit-scrollbar-corner{
+    background-image: linear-gradient(to left, $track-color 1px, transparent 2px);
+    background-size: 2px 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
 }

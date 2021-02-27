@@ -1,14 +1,19 @@
-@import "@common/grid";
+$paragraph-indent: 45px;
 
 section{
   min-height: calc(var(--vh) * 100 - 100px);
-  padding: 15px;
   display: flex;
+  margin: 75px 0;
   &:first-of-type{
     margin-top: 75px;
   }
+  &:last-of-type{
+    margin-bottom: 25px;
+  }
 }
 
+
+section,
 body > footer,
 body > header
 { padding: 15px}
@@ -18,38 +23,55 @@ body > header
   justify-content: center;
 }
 
-@media screen and (min-width: map-get($grid-breakpoints, 'xsm')) {
-  .l-row > * {
-    padding: 0 10px;
+.indented{
+  @media screen and (min-width: map-get($grid-breakpoints, 'md')) {
+    padding-left: $paragraph-indent + 15px;
+    & > :matches(h1, h2, h3, h4):first-of-type{
+      margin-left: -$paragraph-indent;
+    }
+  }
+  @media screen and (min-width: map-get($grid-breakpoints, 'xl')) {
+    padding-left: $paragraph-indent + 25px;
   }
 }
 
+@media screen and (min-width: map-get($grid-breakpoints, 'xsm')) {
+}
+
 @media screen and (min-width: map-get($grid-breakpoints, 'sm')) {
-  .l-row > * {
-    padding: 0 20px;
+  section,
+  section > footer {
+    .l-container {
+      padding: 0 15px;
+    }
   }
 }
 
 @media screen and (min-width: map-get($grid-breakpoints, 'md')) {
-  section{
+  section,
+  body > footer{
     padding: 20px;
-
+    margin: unset;
   }
-  body > footer,
-  body > header {
-    padding-left: 25px;
-    padding-right: 25px;
+  section,
+  body > footer {
+    .l-container {
+      padding: 0 25px;
+    }
   }
 }
 
 @media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
-  section{
-    padding: 25px;
+  section,
+  body > footer{
     .l-container{
       max-width: 1030px;
       margin-right: auto;
       margin-left: auto;
     }
+  }
+  section:last-of-type{
+    margin-bottom: unset;
   }
 }
 
@@ -61,7 +83,8 @@ body > header
     .l-container{
       margin-right: auto;
       margin-left: auto;
-      max-width: 1100px;
+      max-width: 1050px;
+      padding: unset;
     }
   }
   section{
@@ -75,8 +98,8 @@ body > header
   section,
   body > header,
   body > footer{
-    padding-left: 160px;
-    padding-right: 120px;
+    padding-left: 200px;
+    padding-right: 100px;
     .l-container{
       max-width: 1200px;
     }
@@ -88,6 +111,7 @@ body > header
   body > header,
   body > footer{
     padding-left: 220px;
+    padding-right: 120px;
     .l-container{
       max-width: 1300px;
     }

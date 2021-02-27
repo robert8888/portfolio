@@ -1,3 +1,6 @@
+//@use "@common/grid" as *;
+//@use "@common/mixins/mixins-front" as *;
+//@use "@common/assets" as *;
 
 .gallery{
   margin: 4% 0;
@@ -50,11 +53,11 @@
       &:before{
         content: "";
         @include svgMask(
-                        $arrow-svg,
-                        var(--color-text-primary-alpha-5),
-                        var(--color-pallet-secondary),
-                        30px,
-                        30px
+            $arrow-svg,
+            var(--color-text-primary-alpha-5),
+            var(--color-pallet-secondary),
+            30px,
+            30px
         );
       };
 

@@ -1,18 +1,20 @@
 <template>
   <button class="overlay__btn overlay__btn--open" @click="expand">{{buttonOpenText}}</button>
-  <div class="overlay">
-    <div :class="['overlay__content', {
+  <teleport to="body">
+    <div :class="['overlay', $props.class]">
+      <div :class="['overlay__content', {
     'overlay__content--collapsed': isCollapsed}]"
-    :aria-hidden="isCollapsed"
-    >
-      <button
-          @click="collapse"
-          class="overlay__btn overlay__btn--close"
-          aria-label="Close">
-      </button>
-      <slot/>
+           :aria-hidden="isCollapsed"
+      >
+        <button
+            @click="collapse"
+            class="overlay__btn overlay__btn--close"
+            aria-label="Close">
+        </button>
+        <slot/>
+      </div>
     </div>
-  </div>
+  </teleport>
 </template>
 
 <script lang="ts">
@@ -24,6 +26,7 @@ export default defineComponent({
 
   props: {
     buttonOpenText: String,
+    class: String,
   },
 
   data(){
