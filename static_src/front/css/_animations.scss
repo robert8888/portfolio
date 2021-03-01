@@ -20,6 +20,15 @@
   }
 }
 
+@mixin scale-vertical-keyframes($origin: "top"){
+  transform-origin: $origin;
+  transform: scaleY(0);
+  @keyframes scale-vertical {
+    from {transform: scaleY(0)}
+    to {transform: scaleY(1)}
+  }
+}
+
 @mixin background--color-keyframes($from, $to){
   @keyframes background--color{
     from{
