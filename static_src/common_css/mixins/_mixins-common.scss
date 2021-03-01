@@ -31,6 +31,9 @@
   $thumb-hover-color,
   $width: 15px
 ){
+  //for firefox
+  scrollbar-color: $thumb-color $track-color;
+  //for rest
   &::-webkit-scrollbar {
     width: $width;
   }
@@ -50,5 +53,26 @@
 
   &::-webkit-scrollbar-thumb:hover {
     background: $thumb-hover-color;
+  }
+}
+
+
+@mixin pseudo($type: 'after', $position: 'absolute', $stretch: true){
+  @if $position == 'absolute' {
+    position: relative;
+    &:#{$type}{
+      position: absolute;
+      @if $stretch == true {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+  &:#{$type}{
+    content: "";
+    display: block;
+    @content
   }
 }

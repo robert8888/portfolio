@@ -5,3 +5,122 @@
 .fade-in-enter-from, .fade-in-leave-to {
   opacity: 0;
 }
+
+@mixin opacity-keyframes(){
+  @keyframes opacity {
+    from {opacity: 0}
+    to {opacity: 1}
+  }
+}
+
+@mixin sliding-up-keyframes(){
+  @keyframes sliding-up {
+    from{ transform: translateY(0);}
+    to { transform: translateY(-95%); }
+  }
+}
+
+@mixin background--color-keyframes($from, $to){
+  @keyframes background--color{
+    from{
+      background-color: $from;
+    }
+    to {
+      background-color: $to;
+    }
+  }
+}
+
+
+@mixin fade-in-animation($delay, $duration, $type){
+  @keyframes fade-in-#{$type} {
+    from{
+      opacity: 0;
+      @content;
+    }
+    to{
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+  @content;
+  opacity: 0;
+  animation: fade-in-#{$type};
+  animation-delay: $delay;
+  animation-duration: $duration;
+  animation-fill-mode: forwards;
+}
+
+@mixin fade-bottom-down-animation($delay, $duration){
+  @include fade-in-animation($delay, $duration, $type:'bottom-down'){
+    transform: translate(50px, 50px);
+  }
+}
+
+@mixin fade-left-animation($delay, $duration){
+  @include fade-in-animation($delay, $duration, $type:'left'){
+    transform: translate(-50px, 0);
+  }
+}
+
+
+//
+//[data-animation="logo-clip"]{
+//  path{
+//    transition: .3s;
+//    transition-timing-function: linear;
+//  }
+//
+//  &[data-animation-frame="0"]{
+//    path:nth-of-type(1){
+//      d: path("M259.5 211.113L285.5 237.125L279.14 243.35L253.024 217.495L252.989 204.385L279.01 178.364L285.5 185.125L259.5 211.113Z");
+//    }
+//    path:nth-of-type(2){
+//      d: path("M286 237.125L260 211.125L286 185.125L312 211.125L286 237.125Z");
+//      fill: #000;
+//    }
+//    path:nth-of-type(3){
+//      d: path("M312.5 211.125L286.5 185.125L292.816 178.203L318.932 204.319L319.128 216.937L292.847 243.48L286.5 237.125L312.5 211.125Z");
+//      fill: #000;
+//    }
+//  }
+//  &[data-animation-frame="1"]{
+//    path:nth-of-type(1){
+//      d: path("M215 208.5L285.5 279L267.958 296.119L197.316 226.184L197.222 190.722L267.605 120.34L285.5 138L215 208.5Z");
+//      fill: #001;
+//    }
+//    path:nth-of-type(2){
+//      d: path("M286 269L225 208.5L286 148L348.5 209L286 269Z");
+//      fill: #001;
+//    }
+//    path:nth-of-type(3){
+//      d: path("M356.5 209L286.5 138L303.986 119.85L374.628 190.492L375.159 224.622L304.069 296.42L286.5 279L356.5 209Z");
+//      fill: #001;
+//    }
+//  }
+//  &[data-animation-frame="2"]{
+//    path:nth-of-type(1){
+//      d: path("M146 220.065L287.234 361.299L251.879 395.24L110.645 255.421L110.457 184.523L251.172 43.8084L286.527 79.1634L146 220.065Z");
+//      fill: #000;
+//    }
+//    path:nth-of-type(2){
+//      d: path("M289 282L225.5 219.814L288 157.5L350 219.814L289 282Z");
+//      fill: #000;
+//    }
+//    path:nth-of-type(3){
+//      d: path("M428 220L287.17 78.3924L322.879 42.6835L464.113 183.917L465.173 252.153L323.045 395.696L287.69 360.341L428 220Z");
+//      fill: #000;
+//    }
+//  }
+//  &[data-animation-frame="3"]{
+//      path:nth-of-type(1){
+//        d: path("M63.5419 213.888L179.854 268.109L178.476 340.531L3.08569 242.752L4.24709 181.711L183.23 90.6747L181.852 163.097L63.5419 213.888Z");
+//      }
+//      path:nth-of-type(2){
+//        d: path("M244.892 409.585L200.647 408.744L318.732 1.91626L362.977 2.75809L244.892 409.585Z");
+//      }
+//      path:nth-of-type(3){
+//        d: path("M508.89 221.585L390.324 166.805L391.692 94.8998L569.14 192.717L567.983 253.5L386.938 344.756L388.311 272.592L508.89 221.585Z");
+//      }
+//  }
+//}

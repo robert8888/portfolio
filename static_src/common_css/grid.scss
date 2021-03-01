@@ -73,3 +73,19 @@ $grid-breakpoints-vertical: (
     }
   }
 }
+
+
+
+//media queries
+
+@mixin media($size, $type: min) {
+  @if map_has_key($grid-breakpoints, $size) {
+    $width: map_get($grid-breakpoints, $size);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <li class="gallery__item">
-    <img :src="src" alt="" :width="containerSize.w"/>
+    <img :src="src" alt="" :width="containerSize.w"  loading="lazy"/>
   </li>
 </template>
 

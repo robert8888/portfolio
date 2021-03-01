@@ -3,8 +3,6 @@
 @media screen and (hover: hover) {
   .projects .slider{
     padding: 0 50px;
-    margin-left: -25px;
-    margin-right: -25px;
     &__controls{
       display: flex;
     }
@@ -31,6 +29,12 @@
   }
 }
 
+@media screen and (hover: hover) and (min-width: map-get($grid-breakpoints, "lg")){
+  .projects .slider{
+    margin-left: -25px;
+    margin-right: -25px;
+  }
+}
 
 @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
   .projects{

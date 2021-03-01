@@ -1,0 +1,45 @@
+{% load webp_converter %}
+<section class="welcome" id="welcome">
+    <div class="l-container">
+        <div class="l-row">
+            <div class="l-col-xs-12 l-col-lg-6 welcome__column">
+                <div class="welcome__container">
+                    <h5 class="welcome__subtitle welcome__subtitle--big">Hi I’m Robert and I ...</h5>
+                    <h1 class="welcome__title">Building creative web solutions you deserve</h1>
+                    <h6 class="welcome__subtitle welcome__subtitle--small">
+                        I will transform your plans and requirements into
+                        the finest solutions based on cutting edge trends
+                        and technologies aligned with best practices.
+                    </h6>
+                </div>
+            </div>
+            <div class="l-col-xs-12 l-col-lg-6">
+                <div id="logoWrapper" class="logo__wrapper logo__wrapper--init">
+                    <div class="logo__container">
+                        <div class="logo__img-aspect">
+                            <div class="logo__img-aspect__inside">
+                                <svg class="logo__img-mask" viewBox="0 0 572 411" width="0" height="0">
+                                    <defs>
+                                        <clipPath id="codeClip"
+                                                  clipPathUnits="objectBoundingBox"
+                                                  transform="scale(0.00174825174826, 0.002433090024330901)"
+                                                  data-svg-animation="logoClipSvg"
+                                                  data-svg-animation-noscroll="true">
+                                            <path d="M281.159 204.859L285.788 209.49L284.656 210.598L280.006 205.995L280 203.661L284.632 199.029L285.788 200.232L281.159 204.859Z" fill="black"/>
+                                            <path d="M285.877 209.49L281.248 204.861L285.877 200.232L290.506 204.861L285.877 209.49Z" fill="black"/>
+                                            <path d="M290.595 204.861L285.966 200.232L287.09 199L291.74 203.65L291.775 205.896L287.096 210.621L285.966 209.49L290.595 204.861Z" fill="black"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <div id="logoContainer" class="logo__img-container">
+                                    <!--                        <div style="width: 100%; height: 100%; background: blue"/>-->
+                                    <img class="logo__img" src="{% static_webp 'img/code.png' %}" alt="Code">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

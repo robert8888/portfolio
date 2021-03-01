@@ -289,7 +289,7 @@
       position: fixed;
       height: 100%;
       top: 0;
-      right: calc((100vw - 160px - 25px - 1200px) / 2 / 2) ;
+      right: calc((100vw - 160px - 25px - 1200px) / 2 / 2 - 15px) ;
       width: 50px;
       flex-direction: column;
       display: flex;
@@ -307,7 +307,7 @@
 @media screen and (min-width: map-get($grid-breakpoints, 'xxxl')) {
   .contact__portals{
     &__container{
-      right: calc((100vw - 220px - 25px - 1300px) / 2 / 2) ;
+      right: calc((100vw - 220px - 25px - 1300px) / 2 / 2 - 15px) ;
     }
   }
 }
