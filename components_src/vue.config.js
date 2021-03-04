@@ -5,6 +5,10 @@ const pages = {
         entry: 'src/main.ts',
         chunks: ['chunk-vendors'],
     },
+    projects: {
+        entry: 'src/projects.ts',
+        chunks: ['chunk-vendors']
+    }
 }
 
 module.exports = {

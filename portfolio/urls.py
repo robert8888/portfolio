@@ -19,12 +19,14 @@ from django.urls import include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from projects_app import views as projectsViews
 
 urlpatterns = [
     path('', include('index_app.urls')),
-    path('projects/', include('projects.urls')),
-    path('admin/', admin.site.urls),
+    path('projects/', projectsViews.projects),
+    path('project', projectsViews.project),
 
+    path('admin/', admin.site.urls),
     ## from plugins
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 

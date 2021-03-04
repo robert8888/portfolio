@@ -1,5 +1,9 @@
+
+
 import animationsConfigs from './svg-animation-keyframes.json';
 import {AnimationKeyframes} from "./svg-animation-keyframes-type";
+import {getNoMotionObserver} from "./no-motion-observer";
+
 
 (function (){
         window.addEventListener("load", () => {
@@ -8,6 +12,7 @@ import {AnimationKeyframes} from "./svg-animation-keyframes-type";
                     animateSvg(target as HTMLElement);
                 })
         })
+        const noAnimation = getNoMotionObserver();
 
         function animateSvg(target: HTMLElement ){
             const animations = animationsConfigs as any as AnimationKeyframes;
@@ -22,9 +27,10 @@ import {AnimationKeyframes} from "./svg-animation-keyframes-type";
 
             const animationConfig = animations[animationName];
 
-            const runningAnimations = new Array<Promise<Event>>();
+            const runningAnimations = new Array<Promise<Event | boolean>>();
             for(const rule of animationConfig){
                 let element: Element | null;
+
                 if(rule.element.children !== undefined){
                     element = target.children[rule.element.children]
                 } else if(rule.element.selector){
@@ -33,7 +39,13 @@ import {AnimationKeyframes} from "./svg-animation-keyframes-type";
                     continue;
                 }
 
-                var animate = document.createElementNS("http://www.w3.org/2000/svg","animate");
+                if(noAnimation.current){
+                    element?.setAttribute(rule.attribute, [...rule.values].pop() || "");
+                    runningAnimations.push(Promise.resolve(true));
+                    continue;
+                }
+
+                const animate = document.createElementNS("http://www.w3.org/2000/svg","animate");
                 animate.setAttribute('attributeName', rule.attribute);
                 animate.setAttribute('dur', rule.duration);
                 animate.setAttribute('fill', rule.fill);
@@ -51,7 +63,7 @@ import {AnimationKeyframes} from "./svg-animation-keyframes-type";
             Promise.all(runningAnimations).then(() => {
                 target.dispatchEvent(new CustomEvent(`svg-animation-end`, {
                     bubbles: true,
-                }))
+                }));
             })
         }
 
@@ -70,10 +82,17 @@ import {AnimationKeyframes} from "./svg-animation-keyframes-type";
             if(!logoWrapper || !logoContainer)
                 return;
 
-            logoWrapper.addEventListener("svg-animation-end", (e) => {
+            logoContainer.setAttribute("data-init-anim-finished", "true");
 
+            logoWrapper.addEventListener("svg-animation-end", (e) => {
                 const initPosition = logoContainer.getBoundingClientRect();
                 logoWrapper.classList.remove('logo__wrapper--init');
+
+                if(noAnimation.current){
+                    setBodyScroll(false);
+                    return;
+                }
+
                 //forcing style calculation
                 window.getComputedStyle(logoWrapper);
                 const targetPosition = logoContainer.getBoundingClientRect()

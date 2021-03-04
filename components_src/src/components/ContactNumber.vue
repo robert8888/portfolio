@@ -21,8 +21,14 @@
 <script lang="ts">
 import {defineComponent, nextTick} from "vue";
 import Modal from "./Modal.vue";
-import getCaptchaToken from "@/utils/getCaptchaToken";
+import getCaptchaToken from "@/utils/get-captcha-token";
 import Spinner from "@/components/Spinner.vue";
+
+declare global {
+  interface Window {
+    csrfToken: string;
+  }
+}
 
 export default defineComponent({
   components: {Spinner, Modal},
@@ -53,7 +59,7 @@ export default defineComponent({
 
       try{
         const captchaToken =  await getCaptchaToken();
-        const csrfToken = (window as any).csrfToken  as string;
+        const csrfToken = window.csrfToken  as string;
 
         const response = await fetch(origin + "/api/contact-phone", {
           method: 'POST',
@@ -96,7 +102,7 @@ export default defineComponent({
     },
 
     formatStripFormatting(number: string): string{
-      return this.number.replace(/\s/g, "");
+      return number.replace(/\s/g, "");
     },
 
     controlsClick(event: Event): void{
@@ -109,7 +115,7 @@ export default defineComponent({
       this[actionName](actionConfirm);
     },
 
-    call(msg: string){
+    call(){
       const link = document.createElement("a");
       link.href = "tel:" + this.formatStripFormatting(this.number);
       link.click();

@@ -1,3 +1,5 @@
+@use "sass:selector";
+
 .navigation {
   $self: &;
 
@@ -16,12 +18,33 @@
       display: flex;
     }
 
+    //#{$self}__item{
+    //  opacity: 0;
+    //  @include opacity-keyframes();
+    //  @include animation(opacity, 0s, .5s);
+    //  @at-root #{selector.unify(&, div)}{
+    //    &:first-of-type{
+    //      animation-delay: 1s;
+    //    }
+    //    &:last-of-type{
+    //      animation-delay: 2s;
+    //    }
+    //  }
+    //  @for $i from 1 through 10 {
+    //    @at-root #{selector.unify(&, li)}{
+    //      &:nth-of-type(#{$i}){
+    //        animation-delay: calc(1s + .15s * #{$i});
+    //      }
+    //    }
+    //  }
+    //}
+
     #{$self}__home{
       font-size: 2em;
       font-weight: 500;
     }
 
-    #{$self}__item {
+    #{$self}__list-item {
       counter-increment: navigation;
       font-size: 1.125em;
       margin-left: 25px;
@@ -31,7 +54,7 @@
       }
 
       &__counter {
-        color: var(--color-pallet-priamry)
+        color: var(--color-pallet-primary)
       }
 
       &__content {
@@ -40,7 +63,7 @@
       }
 
       &--current{
-        & #{$self}__item__counter{
+        & #{$self}__list-item__counter{
           color: var(--color-text-primary)
         }
       }
@@ -63,7 +86,7 @@
         @include svgMask(
             $arrow-up-svg,
             var(--color-text-primary),
-            var(--color-pallet-priamry),
+            var(--color-pallet-primary),
             15px,
             25px
         );
@@ -73,7 +96,6 @@
         }
       }
     }
-
 
     #{$self}__progress{
       display: none;
@@ -85,17 +107,12 @@
       height: 100%;
       top: 0;
       left: 100%;
-      //background: var(--color-separator);
       @include pseudo($position: "relative"){
-        background: red;
+        @include scale-vertical-keyframes();
+        @include animation(scale-vertical, 1s, 1.4s);
+        background: var(--color-separator);
         width: 100%;
         height: 100%;
-        @include scale-vertical-keyframes();
-        animation: scale-vertical;
-        animation-duration: 3s;
-        animation-delay: 4s;
-        //transform-origin: top;
-        //transform: scaleY(0.1);
       }
       &__thumb{
         width: $thumbWidth;
@@ -105,15 +122,27 @@
         left: -($thumbWidth - $barWidth) / 2;
         background: white;
         transition: transform .5s;
+        z-index: 1;
+        @include no-motion(){
+          transition: none;
+        }
       }
     }
-
   }
 
-  $self: &;
+  @include media("sm", max){
+    &--aside{
+      #{$self}__container{
+        @include show-in-animation(1.5s, 1s)
+      }
+    }
+  }
+
+
+
   @include media("sm"){
     &--aside{
-      #{$self}__item {
+      #{$self}__list-item {
         display: block;
         &:not(&--current) {
           display: block;
@@ -121,8 +150,26 @@
 
         &:not(&--current) {
           display: block;
-          & #{$self}__item__content {
+          & #{$self}__list-item__content {
             display: none;
+          }
+        }
+      }
+      #{$self}__item{
+        @include show-in-animation(0s, .5s);
+        @at-root #{selector.unify(&, div)}{
+          &:first-of-type{
+            animation-delay: 1s;
+          }
+          &:last-of-type{
+            animation-delay: 2s;
+          }
+        }
+        @for $i from 1 through 10 {
+          @at-root #{selector.unify(&, li)}{
+            &:nth-of-type(#{$i}){
+              animation-delay: calc(1s + .15s * #{$i});
+            }
           }
         }
       }
@@ -145,8 +192,10 @@
       #{$self}__home{
         font-size: 2em;
         font-weight: 500;
-        margin-top: 35px;
+        margin-top: 50px;
         margin-bottom: auto;
+        width: 100%;
+        text-align: center;
       }
 
       #{$self}__container{
@@ -161,7 +210,7 @@
         justify-content: space-around;
       }
 
-      #{$self}__item {
+      #{$self}__list-item {
         display: block;
         margin: 0;
         width: 100%;
@@ -179,6 +228,7 @@
           width: 100%;
           text-align: center;
         }
+
         &__content{
           margin-top: 15px;
           margin-left: 0;
@@ -192,92 +242,3 @@
     }
   }
 }
-
-//@media screen and (min-width: map-get($grid-breakpoints, "sm")){
-//  .navigation{
-//    $self: &;
-//    &--aside{
-//      #{$self}__item {
-//        display: block;
-//        &:not(&--current) {
-//          display: block;
-//        }
-//
-//        &:not(&--current) {
-//          display: block;
-//          & #{$self}__item__content {
-//            display: none;
-//          }
-//        }
-//      }
-//    }
-//  }
-//}
-
-//@media screen and (min-width: map-get($grid-breakpoints, "xl")){
-//  .navigation{
-//    $self: &;
-//    &--aside{
-//      position: fixed;
-//      top: 0;
-//      left: 0;
-//      height: 100%;
-//      width: 140px;
-//
-//      #{$self}__progress{
-//        display: block;
-//      }
-//
-//      #{$self}__home{
-//        font-size: 2em;
-//        font-weight: 500;
-//        margin-top: 35px;
-//        margin-bottom: auto;
-//      }
-//
-//
-//      #{$self}__container{
-//        height: 100%;
-//        flex-direction: column;
-//      }
-//
-//      & #{$self}__list {
-//        flex-direction: column;
-//        align-items: center;
-//        height: 80%;
-//        justify-content: space-around;
-//      }
-//
-//      #{$self}__item {
-//        display: block;
-//        margin: 0;
-//        width: 100%;
-//
-//        &:not(&--current) {
-//          display: block;
-//          & #{$self}__item__content {
-//            display: none;
-//          }
-//        }
-//
-//        &__content,
-//        &__counter{
-//          display: block;
-//          width: 100%;
-//          text-align: center;
-//        }
-//        &__content{
-//          margin-top: 15px;
-//          margin-left: 0;
-//        }
-//      }
-//
-//      #{$self}__fast-scroll {
-//        display: flex;
-//        margin-top: auto;
-//        margin-bottom: 40px;
-//      }
-//    }
-//  }
-//}
-//

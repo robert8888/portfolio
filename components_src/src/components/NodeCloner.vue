@@ -52,7 +52,7 @@ export default defineComponent({
 
 
     children() {
-      let items = this.items.children;
+      const items = this.items.children;
       if(this.times === 1) {
         return items.slice(0, this.length);
       }

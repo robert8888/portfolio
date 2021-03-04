@@ -25,7 +25,8 @@ const sassEntries = [
 
     'ckeditor/galleriffic/css/galleriffic-2.scss',
     //front
-    'front/css/index.scss'
+    'front/css/index.scss',
+    'front/css/projects.scss'
 ]
 
 module.exports = [
@@ -35,6 +36,9 @@ module.exports = [
     output:{
         path: path.resolve(__dirname, 'static_compiled'),
         filename: "[name].js"
+    },
+    resolve: {
+        extensions: ['.ts', '.js', '.json']
     },
     module: {
         rules: [

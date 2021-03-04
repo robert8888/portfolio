@@ -1,7 +1,7 @@
 <template>
   <aside class="navigation navigation--aside" >
     <nav class="navigation__container" >
-      <div class="navigation__home">
+      <div class="navigation__item navigation__home">
         <a href="/" class="navigation__item__link">
           <span class="navigation__item__content">#</span>
         </a>
@@ -9,12 +9,14 @@
       <list class="navigation__list" ref="list">
         <slot/>
       </list>
-      <div class="navigation__fast-scroll">
+      <div class="navigation__item navigation__fast-scroll">
         <button @click="fastScroll" :class="fastScrollButtonClass"/>
       </div>
     </nav>
     <div class="navigation__progress">
-      <div class="navigation__progress__thumb" :style="thumbStyle"/>
+      <transition appear :duration="1400" name="block-thumb">
+        <div class="navigation__progress__thumb" :style="thumbStyle"/>
+      </transition>
     </div>
   </aside>
 </template>
@@ -56,7 +58,7 @@ export default defineComponent({
 
   created() {
     this.intersectionObserver = new IntersectionObserver(this.intersect, {
-      rootMargin: "-40% 0px -40% 0px"
+      rootMargin: "-49% 0px -49% 0px"
     })
 
     this.resizeObserver = new ResizeObserver(debounce(this.updateThumbPosition.bind(this), 50))
@@ -137,5 +139,11 @@ export default defineComponent({
 
   },
 })
-
 </script>
+<style lang="scss">
+.block-thumb-enter-active{
+  opacity: 0;
+  transform: translate(0) !important;
+}
+
+</style>

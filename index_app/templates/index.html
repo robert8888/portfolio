@@ -1,7 +1,7 @@
 {% extends "base_page.html" %}
 {% load render_bundle from webpack_loader %}
 {% load static %}
-{% block style %}
+{% block head %}
 {{ block.super }}
 <link href="{% static 'front/css/index.css' %}" rel="stylesheet" type="text/css"/>
 {% render_bundle 'main' 'css' %}
@@ -9,14 +9,14 @@
 
 
 {% block content %}
-    {% include "partial/header.html" %}
-    {% include "partial/section-intro.html" %}
-    {% include "partial/section-welcome.html" %}
-    {% include "partial/section-stack.html" %}
-    {% include "partial/section-projects.html" %}
-    {% include "partial/section-about.html" %}
-    {% include "partial/section-contact.html" %}
-    {% include "partial/footer.html" %}
+    {% include "partial-index/header.html" %}
+    {% include "partial-index/section-intro.html" %}
+    {% include "partial-index/section-welcome.html" %}
+    {% include "partial-index/section-stack.html" %}
+    {% include "partial-index/section-projects.html" %}
+    {% include "partial-index/section-about.html" %}
+    {% include "partial-index/section-contact.html" %}
+    {% include "partial-index/footer.html" %}
 {% endblock %}
 
 {% block scripts %}

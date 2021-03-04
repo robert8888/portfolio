@@ -1,0 +1,124 @@
+//@use "@common/grid" as *;
+
+@media screen and (max-height: map-get($grid-breakpoints-vertical, "sm")) {
+  .card-project{
+    $self: &;
+    min-height: 400px;
+    &--collapsed{
+      #{$self}__text{
+        -webkit-line-clamp: 2;
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: map-get($grid-breakpoints, 'md')) {
+  .card-project{
+    $self: &;
+    &--extended{
+      @keyframes opacity2 {
+        from{ opacity: 0; }
+        to{ opacity: 1; }
+      }
+      animation: opacity2 1s forwards;
+
+
+      min-width: 500px;
+      min-height: 520px;
+      main{
+        min-height: 470px;
+      }
+      #{$self}__content{
+        flex-direction: row;
+        & > * {
+          flex-basis: 50%;
+        }
+      }
+
+      #{$self}__container{
+        display: flex;
+        flex-direction: column;
+      }
+
+      #{$self}__gallery{
+        max-width: 100%;
+      }
+
+      #{$self}__subtitle{
+        margin: .5em 0;
+      }
+
+      #{$self}__additional{
+        margin: .5em .5em .5em 1em;
+      }
+
+      .gallery__item,
+      .gallery__item > img{
+        height: 300px;
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "xl")){
+  .card-project{
+    $self: &;
+    &--extended{
+      min-width: 900px;
+      min-height: 520px;
+      main{
+        min-height: 470px;
+      }
+
+      #{$self}__content{
+        flex-direction: column;
+        & > * {
+          flex-basis: 100%;
+        }
+      }
+
+      #{$self}__container{
+        flex-direction: row;
+      }
+
+      #{$self}__gallery{
+        max-width: 70%;
+      }
+
+      #{$self}__subtitle{
+        margin: .5em 0;
+      }
+
+      #{$self}__additional{
+        margin: 0;
+      }
+
+      .gallery__item,
+      .gallery__item > img{
+        height: 420px;
+      }
+    }
+  }
+}
+
+
+@media (min-width: map-get($grid-breakpoints, "xxl")){
+  .card-project{
+    $self: &;
+    &--extended{
+      min-width: 1000px;
+      min-height: 520px;
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "xxxl")){
+  .card-project{
+    $self: &;
+    &--extended{
+      min-width: 1150px;
+      min-height: 520px;
+    }
+  }
+}

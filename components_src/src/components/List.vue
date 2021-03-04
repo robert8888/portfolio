@@ -18,7 +18,7 @@ export default defineComponent({
     children(){
       const defaultSlot = this.$slots.default();
       return defaultSlot[0].children.map((node, index) => {
-        node.props = {... node.props, index: index + 1};
+        node.props = {... node.props, index: index };
         return node;
       })
     },
@@ -27,7 +27,10 @@ export default defineComponent({
   render(){
     return h(
         this.is,
-        {class: this.class},
+        {
+          class: this.class,
+          ...this.$attrs
+        },
         this.children
     )
   }

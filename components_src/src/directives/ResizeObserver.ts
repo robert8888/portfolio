@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid'
 const observers = new Map<string, ResizeObserver>();
 
 const resizeObserveDirective = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mounted(el: HTMLElement, binding: any) {
         const id = nanoid();
         binding.instance._resizeObserverId = id;
@@ -23,6 +24,7 @@ const resizeObserveDirective = {
 
         observers.set(id, observer);
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     beforeUnmount(el: HTMLElement, binding: any) {
         if(binding.instance._resizeObserverId && observers.has(binding.instance._resizeObserverId)){
             const observer = observers.get(binding.instance._resizeObserverId);

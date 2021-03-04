@@ -2,11 +2,11 @@
   <li :class="className">
     <a :href="href"
        @click="linkClick"
-       class="navigation__item__link">
-      <span v-if="href" class="navigation__item__counter">
-        {{'0' + index}}
+       class="navigation__list-item__link">
+      <span v-if="href" class="navigation__list-item__counter">
+        {{'0' + internalIndex}}
       </span>
-      <span class="navigation__item__content">
+      <span class="navigation__list-item__content">
         <slot/>
       </span>
     </a>
@@ -32,19 +32,23 @@ export default defineComponent({
     }
   },
 
+
   setup(props){
     const registerObservable = inject("registerObservable") as (index: number, selector: string) => void;
     const currentIntersected = inject("intersected") as number;
-    registerObservable(props.index, props.href || "")
-    return {currentIntersected}
+    registerObservable(props.index + 1, props.href || "")
+    return {
+      currentIntersected,
+      internalIndex: props.index + 1
+    }
   },
 
   computed: {
     className(): string{
-      return `navigation__item` + (this.isCurrent ? ' navigation__item--current' : '')
+      return `navigation__item navigation__list-item` + (this.isCurrent ? ' navigation__list-item--current' : '')
     },
     isCurrent(): boolean{
-       return this.index === this.currentIntersected
+       return this.internalIndex === this.currentIntersected
     }
   },
 
@@ -62,7 +66,6 @@ export default defineComponent({
           return;
         target.scrollIntoView({behavior: "smooth"})
       }
-
     }
   }
 })

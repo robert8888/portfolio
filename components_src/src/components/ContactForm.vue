@@ -16,7 +16,7 @@
 import {defineComponent, computed} from "vue";
 import Spinner from "./Spinner.vue";
 import shallowArrayEqual from "@/utils/shallowArrayCompare";
-import getCaptchaToken from "@/utils/getCaptchaToken";
+import getCaptchaToken from "@/utils/get-captcha-token";
 
 export type ErrorList = Array<{
   message: string;
@@ -78,7 +78,8 @@ export default defineComponent({
 
       const token = await getCaptchaToken();
 
-      const elements = (e as any).target.elements as any;
+      //@ts-ignore
+      const elements = e.target.elements;
 
       const data = [...this.fieldsMap].reduce((data, [id, element]) => ({
             ...data,
@@ -100,7 +101,7 @@ export default defineComponent({
         body: JSON.stringify(data)
       })
       .then(response => response.json())
-      .catch(error => {
+      .catch(() => {
         this.message = "Sorry. The form could not be sent for reasons beyond your control"
         this.isSuccessMessage = false;
       }).finally(() => {
@@ -139,7 +140,7 @@ export default defineComponent({
 
     clearValidation(){
       this.message = ""
-      this.fieldsMap.forEach((element, id) => {
+      this.fieldsMap.forEach((element) => {
         const label = element?.closest('label')
         label?.removeAttribute('data-validation-msg');
       })

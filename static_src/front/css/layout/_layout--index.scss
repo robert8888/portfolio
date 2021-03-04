@@ -1,0 +1,125 @@
+
+section{
+  min-height: calc(var(--vh) * 100 - 100px);
+  display: flex;
+  margin: 75px 0;
+  &:first-of-type{
+    margin-top: 75px;
+  }
+  &:last-of-type{
+    margin-bottom: 25px;
+  }
+}
+
+
+section,
+body > footer,
+body > header
+{ padding: 15px}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+}
+
+@include media("sm"){
+  section,
+  section > footer {
+    .l-container {
+      padding: 0 15px;
+    }
+  }
+}
+
+@include media("md"){
+  section,
+  body > footer{
+    padding: 20px;
+    margin: unset;
+  }
+  section,
+  body > footer {
+    .l-container {
+      padding: 0 25px;
+    }
+  }
+}
+
+@include media("lg"){
+  section,
+  body > footer{
+    .l-container{
+      max-width: 1030px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  section:last-of-type{
+    margin-bottom: unset;
+  }
+}
+
+@include media("xl"){
+  section,
+  body > header,
+  body > footer{
+    padding-left: 170px;
+    .l-container{
+      margin-right: auto;
+      margin-left: auto;
+      max-width: 1050px;
+      padding: unset;
+    }
+  }
+  section{
+    &:first-of-type{
+      margin-top: 100px;
+    }
+  }
+}
+
+@include media("xxl"){
+  section,
+  body > header,
+  body > footer{
+    padding-left: 200px;
+    padding-right: 100px;
+    .l-container{
+      max-width: 1200px;
+    }
+  }
+}
+
+@include media("xxxl"){
+  section,
+  body > header,
+  body > footer{
+    padding-left: 220px;
+    padding-right: 120px;
+    .l-container{
+      max-width: 1300px;
+    }
+  }
+}
+
+//check and remove if you can
+@media screen and (max-height: map-get($grid-breakpoints-vertical, 'md')) {
+  section{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+
+.indented{
+  @include media("md"){
+    padding-left: $paragraph-indent + 15px;
+    & > :matches(h1, h2, h3, h4):first-of-type{
+      margin-left: -$paragraph-indent;
+    }
+  }
+  @include media("xl"){
+    padding-left: $paragraph-indent + 25px;
+  }
+}
+

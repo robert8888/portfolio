@@ -16,3 +16,6 @@ export {default as SliderItem} from "./SliderItem.vue";
 export {default as ContactForm} from "./ContactForm.vue";
 export {default as ContactFormLabel} from "./ContactFormLabel.vue";
 export {default as ContactNumber} from "./ContactNumber.vue";
+
+export {default as SelectComponent} from "./Select.vue";
+export {default as SelectItem} from "./SelectItem.vue";

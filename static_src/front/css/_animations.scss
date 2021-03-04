@@ -1,3 +1,12 @@
+@mixin no-motion(){
+  @media screen and (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 1;
+    transform: translate(0,0) scale(1);
+    @content;
+  }
+}
+
 .fade-in-enter-active, .fade-in-leave-active {
   transition: opacity .5s ease;
 }
@@ -21,12 +30,35 @@
 }
 
 @mixin scale-vertical-keyframes($origin: "top"){
-  transform-origin: $origin;
+  transform-origin: #{$origin};
   transform: scaleY(0);
   @keyframes scale-vertical {
     from {transform: scaleY(0)}
     to {transform: scaleY(1)}
   }
+}
+
+@mixin scale-horizontal-keyframes($origin: "left"){
+  transform-origin: #{$origin};
+  transform: scaleX(0);
+  @keyframes scale-horizontal {
+    from {transform: scaleX(0)}
+    to {transform: scaleX(1)}
+  }
+}
+
+@mixin scale-animation($delay, $duration, $type: "horizontal", $origin){
+  @if $type == "horizontal" {
+    @include scale-horizontal-keyframes($origin);
+    animation-name: scale-horizontal;
+  } @else {
+    @include scale-vertical-keyframes($origin);
+    animation-name: scale-vertical;
+  }
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-fill-mode: forwards;
+  @include no-motion();
 }
 
 @mixin background--color-keyframes($from, $to){
@@ -38,6 +70,21 @@
       background-color: $to;
     }
   }
+}
+
+
+@mixin animation($animation-name, $delay, $duration, $fill-mode: forwards){
+  animation: $animation-name;
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-fill-mode: $fill-mode;
+  @include no-motion;
+}
+
+@mixin show-in-animation($delay, $duration){
+  opacity: 0;
+  @include opacity-keyframes();
+  @include animation(opacity, $delay, $duration);
 }
 
 
@@ -58,6 +105,7 @@
   animation-delay: $delay;
   animation-duration: $duration;
   animation-fill-mode: forwards;
+  @include no-motion();
 }
 
 @mixin fade-bottom-down-animation($delay, $duration){

@@ -1,13 +1,16 @@
-@import "@common/colors-front";
 @import "@common/mixins/mixins-front";
 @import "@common/assets";
 @import "@common/grid";
 
-@import "layout";
+@import "variables/variables-index";
+@import "colors/colors--index";
+@import "fonts";
 @import "general";
+@import "layout/layout--index";
 @import "animations";
 @import "header";
-@import "sections";
+@import "content/index/sections";
 @import "footer";
+
 
 

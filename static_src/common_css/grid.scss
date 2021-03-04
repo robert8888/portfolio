@@ -18,6 +18,7 @@ $grid-breakpoints-vertical: (
 
 .l-container{
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -78,13 +79,13 @@ $grid-breakpoints-vertical: (
 
 //media queries
 
-@mixin media($size, $type: min) {
+@mixin media($size, $type: min,  $shift: 0) {
   @if map_has_key($grid-breakpoints, $size) {
     $width: map_get($grid-breakpoints, $size);
     @if $type == max {
       $width: $width - 1px;
     }
-    @media only screen and (#{$type}-width: $width) {
+    @media only screen and (#{$type}-width: $width + $shift) {
       @content;
     }
   }

@@ -1,0 +1,38 @@
+<div class="l-xs-12 l-col-xs-4">
+    <div class="dropdown__wrapper dropdown__wrapper--filter">
+        <vue-component>
+            <select-component label="Filter" mode="multi" query="type">
+                <select-item value="lib" :default="true">Lib</select-item>
+                <select-item value="web">Web</select-item>
+                <select-item value="app">App</select-item>
+            </select-component>
+        </vue-component>
+
+    </div>
+</div>
+<div class="l-xs-12 l-col-xs-4">
+    <div class="dropdown__wrapper dropdown__wrapper--filter">
+        <vue-component>
+            <select-component label="Sort" query="order">
+                <select-item value="date_asc" :default="true">
+                    Date <span class="dropdown__text--right">Asc</span>
+                </select-item>
+                <select-item value="date_des">
+                    Date <span class="dropdown__text--right">Des</span>
+                </select-item>
+                <select-item value="type_a-z">
+                    Type <span class="dropdown__text--right">Z-A</span>
+                </select-item>
+                <select-item value="type_z-a">
+                    Type <span class="dropdown__text--right">Z-A</span>
+                </select-item>
+                <select-item value="name_a-z">
+                    Name <span class="dropdown__text--right">A-Z</span>
+                </select-item>
+                <select-item value="name_z-a">
+                    Name <span class="dropdown__text--right">Z-A</span>
+                </select-item>
+            </select-component>
+        </vue-component>
+    </div>
+</div>

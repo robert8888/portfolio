@@ -41,14 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webp_converter',
+
     'storages',
     'webpack_loader',
     'solo.apps.SoloAppConfig',
-    'projects.apps.ProjectsConfig',
-    'index_app.apps.IndexAppConfig',
     'django.contrib.admin',
     'ckeditor',
     'ckeditor_uploader',
+
+    'projects.apps.ProjectsConfig',
+    'index_app.apps.IndexAppConfig',
+    'projects_app.apps.ProjectsAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +72,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            #os.path.join(BASE_DIR, 'projects/templates/front'),
             os.path.join(BASE_DIR, 'portfolio/templates')
         ],
         'APP_DIRS': True,

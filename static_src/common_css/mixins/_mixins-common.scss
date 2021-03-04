@@ -57,11 +57,10 @@
 }
 
 
-@mixin pseudo($type: 'after', $position: 'absolute', $stretch: true){
-  @if $position == 'absolute' {
+@mixin pseudo($type: 'after', $position: absolute, $stretch: true){
+  @if $position == absolute {
     position: relative;
     &:#{$type}{
-      position: absolute;
       @if $stretch == true {
         top: 0;
         left: 0;
@@ -71,6 +70,7 @@
     }
   }
   &:#{$type}{
+    position: $position;
     content: "";
     display: block;
     @content
