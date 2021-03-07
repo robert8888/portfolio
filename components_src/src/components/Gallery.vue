@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import {computed, defineComponent, inject} from 'vue';
-import toRange from "@/utils/toRange";
+import toRange from "@/utils/to-range";
 import {useStore, MUTATIONS, GETTERS} from "@/store";
 
 export default defineComponent({

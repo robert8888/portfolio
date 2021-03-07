@@ -1,0 +1,23 @@
+.card-project--demo{
+  border: 1px solid var(--color-pallet-primary-alpha-2);
+  min-width: 250px;
+  max-width: 300px;
+  min-height: 500px;
+  //noinspection CssInvalidPropertyValue
+  width: stretch;
+  background: #FFFFFF02;
+  @include opacity-keyframes();
+  @include pseudo(){
+    opacity: 0;
+    background: #FFFFFF08;
+    animation: opacity;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+  @for $i from 1 through 4 {
+    &:nth-of-type(#{$i})::after{
+      animation-delay: calc(0s + #{$i} * .1s);
+    }
+  }
+}

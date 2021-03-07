@@ -23,7 +23,7 @@
 <script lang="ts">
 import {defineComponent, computed, nextTick} from "vue";
 import List from "./List.vue";
-import getWindowScrollHeight from "@/utils/windowScrollHeight";
+import getWindowScrollHeight from "@/utils/window-scroll-height";
 import {debounce} from "ts-debounce";
 
 interface MenuAsideData{

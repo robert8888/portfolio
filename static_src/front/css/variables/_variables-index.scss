@@ -1,1 +1,9 @@
-$paragraph-indent: 45px;
+@import "common_variables";
+
+$stackingIndex:(
+    card-project-btn: 10,
+    header: 11,
+    overlay: 100,
+    init-anim-overlay: 101,
+);
+

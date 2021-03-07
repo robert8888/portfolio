@@ -1,14 +1,16 @@
 <template>
   <div :class="['card-project', {'card-project--extended': isExpanded, 'card-project--collapsed': !isExpanded}]">
     <header>
-      <h4 class="card-project__title">{{title}}</h4>
-      <button
-          v-if="extended"
-          class="card-project__btn card-project__btn--expand"
-          @click="toggle"
-          v-on:tochstart="toggle"
-          aria-label="Expand card"
-      />
+      <slot name="header">
+        <h4 class="card-project__title">{{title}}</h4>
+        <button
+            v-if="extensible"
+            class="card-project__btn card-project__btn--expand"
+            @click="toggle"
+            v-on:tochstart="toggle"
+            aria-label="Expand card"
+        />
+      </slot>
     </header>
     <main class="card-project__container">
       <div class="card-project__gallery">
@@ -40,13 +42,20 @@ export default defineComponent({
   props: {
     title: String,
     href: String,
-    extended: {
+    extensible: {
       type: Boolean,
       default: false,
     },
     id: {
       type: String,
       request: true,
+    },
+    type: {
+      type: String,
+    },
+    onClickLink: {
+      type: Boolean,
+      default: false,
     }
   },
 

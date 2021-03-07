@@ -25,7 +25,7 @@
 import {defineComponent, computed, nextTick} from "vue";
 import {extractTransformX} from "@/utils/regexs";
 import NodeCloner from "./NodeCloner";
-import toRange from "@/utils/toRange";
+import toRange from "@/utils/to-range";
 
 
 export default defineComponent({

@@ -3,11 +3,15 @@ const BundleTracker = require("webpack-bundle-tracker");
 const pages = {
     main: {
         entry: 'src/main.ts',
-        chunks: ['chunk-vendors'],
+        chunks: ['chunk-vendors', 'chunk-common'],
     },
     projects: {
         entry: 'src/projects.ts',
-        chunks: ['chunk-vendors']
+        chunks: ['chunk-vendors' , 'chunk-common']
+    },
+    project: {
+        entry: 'src/project.ts',
+        chunks: ['chunk-vendors', 'chunk-common']
     }
 }
 
@@ -33,6 +37,14 @@ module.exports = {
                         chunks: "all",
                         priority: 1
                     },
+                    common: {
+                        name: 'chunk-common',
+                        priority: -20,
+                        chunks: 'initial',
+                        minChunks: 2,
+                        reuseExistingChunk: true,
+                        enforce: true
+                    }
                 },
             });
 

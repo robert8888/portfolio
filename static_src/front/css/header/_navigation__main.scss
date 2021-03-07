@@ -17,7 +17,7 @@
       height: 100%;
       width: 100%;
       background: var(--color-background-primary);
-      z-index: 101;
+      @include stacking('overlay');
       &--collapsed{
         display: none;
       }
@@ -70,7 +70,9 @@
         margin: 0;
       }
       #{$self}__item{
-        margin-left: 60px;
+        &:not(:first-of-type){
+          margin-left: 60px;
+        }
         margin-top: unset;
         &__link{
           font-weight: normal;
@@ -83,7 +85,6 @@
         left: unset;
         height: unset;
         width: unset;
-        z-index: 101;
       }
     }
   }

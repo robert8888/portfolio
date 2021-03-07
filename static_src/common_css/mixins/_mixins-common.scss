@@ -76,3 +76,13 @@
     @content
   }
 }
+
+@mixin transition-center(){
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin stacking($name){
+  z-index: map-get($stackingIndex, $name);
+}

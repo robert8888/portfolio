@@ -1,8 +1,3 @@
-//$maximize-svg: url("/static/img/maximize.svg");
-//$burger-svg: url("/static/img/burger.svg");
-//$cross-svg: url("/static/img/cross.svg");
-//$arrow-svg: url("/static/img/arrow.svg");
-
 
 $maximize-svg: url("@/assets/img/maximize.svg");
 $burger-svg: url("@/assets/img/burger.svg");
@@ -12,3 +7,4 @@ $arrow-up-svg: url("@/assets/img/arrow-up.svg");
 $arrow-down-svg: url("@/assets/img/arrow-down.svg");
 $copy-svg: url("@/assets/img/copy-content.svg");
 $call-svg: url("@/assets/img/phone-call.svg");
+$call-svg-magnifier: url('@/assets/img/magnifier.svg')

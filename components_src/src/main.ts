@@ -1,59 +1,41 @@
-//import { createApp, App } from 'vue';
-
-
-
-// interface Profiles {
-//   [key: string]: {
-//     pluginInstance: any;
-//     options: {[key: string]: string | number | boolean};
-//   }[];
-// }
-//
-// const profiles = {} as Profiles
 
 import storePlugin from "./store"
 
 import ResizeObserver from "@/directives/ResizeObserver";
 
-import * as components from "./components";
+import MenuMain from "@/components/MenuMain.vue";
+import MenuMainItem from "@/components/MenuMainItem.vue";
+import MenuAside from "@/components/MenuAside.vue";
+import MenuAsideItem from "@/components/MenuAsideItem.vue";
+import Overlay from "@/components/Overlay.vue";
+import Slider from "@/components/Slider.vue"
+import SliderItem from "@/components/SliderItem.vue";
+import ProjectCard from "@/components/Card.vue"
+import Gallery from "@/components/Gallery.vue";
+import GalleryItem from "@/components/GalleryItem.vue";
+import ContactForm from "@/components/ContactForm.vue";
+import ContactFormLabel from "@/components/ContactFormLabel.vue";
+import ContactNumber from "@/components/ContactNumber.vue";
 
 import defineVueComponent from "@/define-vue-component";
 
 defineVueComponent(
-    components, [
+    {
+        MenuMain,
+        MenuMainItem,
+        MenuAside,
+        MenuAsideItem,
+        Overlay,
+        Slider,
+        SliderItem,
+        ProjectCard,
+        Gallery,
+        GalleryItem,
+        ContactForm,
+        ContactFormLabel,
+        ContactNumber,
+    }, [
         storePlugin,
         ResizeObserver,
     ]
 )
-
-//
-// customElements.define('vue-component', class extends HTMLElement{
-//   private app: App | undefined;
-//
-//   createComponent(){
-//     this.app = createApp({ components })
-//     this.app.use(storePlugin);
-//     this.app.use(ResizeObserver);
-//     this.applyProfile(this.app);
-//     this.setAttribute("data-server-rendered", "true");
-//     this.app.mount(this, true);
-//   }
-//
-//   applyProfile(app: App){
-//     const profileName = this.getAttribute("profile") as string;
-//     const profile = profiles[profileName];
-//     if(!profile) return;
-//     profile.forEach(plugin => {
-//       app.use(plugin.pluginInstance, plugin.options)
-//     })
-//   }
-//
-//   connectedCallback(){
-//     this.createComponent();
-//   }
-//
-//   disconnectedCallback(){
-//     if(!this.app) return;
-//     this.app.unmount(this)
-//   }
-// })

@@ -3,6 +3,7 @@
     animation: none;
     opacity: 1;
     transform: translate(0,0) scale(1);
+    transition-duration: 0.000s;
     @content;
   }
 }

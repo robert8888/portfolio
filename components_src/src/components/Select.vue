@@ -29,8 +29,9 @@
 import {defineComponent, computed} from "vue";
 import nanoid from "@/utils/nano-id-html";
 import {Item} from "./SelectItem.vue";
-import toRange from "@/utils/toRange";
+import toRange from "@/utils/to-range";
 import List from "./List.vue";
+import arrayTake from "@/utils/array-take";
 
 interface ComponentData {
   id: string;
@@ -45,7 +46,6 @@ export default defineComponent({
 
   props: {
     label: String,
-    query: String,
     mode: {
       type: String,
       default: "single",
@@ -53,7 +53,12 @@ export default defineComponent({
         return ['single', 'multi'].includes(value)
       }
     },
+    selected: {
+      type: Array,
+    }
   },
+
+  emits: ['onChange'],
 
   data(): ComponentData{
     return {
@@ -64,6 +69,7 @@ export default defineComponent({
       isExpanded: false,
     }
   },
+
 
   provide(){
     return {
@@ -88,6 +94,11 @@ export default defineComponent({
          const nextItems = [...this.items];
          nextItems[index] = item;
          this.items = nextItems;
+
+         if(this.selected && this.selected.includes(item.value)){
+           this.currentSelectedIndexes.push(index);
+           this.currentActiveIndex = index;
+         }
       }
     }
   },
@@ -139,6 +150,13 @@ export default defineComponent({
     setSelectedIndex(index: number){
       this.setCurrentActiveIndex(index);
       this.currentSelectedIndexes = [this.currentActiveIndex];
+    },
+
+    setSelectedIndexes(indexes: number[]){
+      const valid = (index: number) => index >= 0 && index < this.items.length - 1;
+      if(indexes.some(index => valid(index)))
+        return;
+      this.currentSelectedIndexes = indexes;
     },
 
     toggleSelectedIndexes(index: number){
@@ -194,6 +212,21 @@ export default defineComponent({
       }
     },
   },
+
+  watch:{
+    currentSelectedIndexes: {
+      deep: true,
+      handler: function (){
+        if(!this.items.length)
+          return;
+        const items = arrayTake<Item>(this.items, this.currentSelectedIndexes)
+        this.$emit('onChange', {
+          ids: this.currentSelectedIndexes,
+          values: items.map(item => item.value)
+        })
+      }
+    }
+  }
 })
 </script>
 <style lang="scss">
@@ -215,7 +248,5 @@ export default defineComponent({
       display: block;
     }
   }
-
-
 }
 </style>

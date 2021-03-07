@@ -1,5 +1,20 @@
 {% extends 'base_page.html' %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'front/css/project.css' %}" />
+{% render_bundle 'project' 'css' %}
+{% endblock %}
 
 {% block content %}
-hellow
+{% include 'partial-projects/header.html' %}
+{% include "partial-index/footer.html" %}
+{% endblock %}
+
+{% block scripts %}
+{% render_bundle 'chunk-vendors' %}
+{% render_bundle 'chunk-common' %}
+{% render_bundle 'project' 'js' %}
 {% endblock %}

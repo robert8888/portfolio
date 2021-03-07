@@ -32,7 +32,7 @@ export default defineComponent({
       index: {
         type: Number,
         required: true,
-      }
+      },
   },
 
   data(){

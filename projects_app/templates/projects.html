@@ -5,13 +5,18 @@
 {% block head %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'front/css/projects.css' %}" />
+{% render_bundle 'projects' 'css' %}
 {% endblock %}
 
 {% block content %}
 {% include 'partial-projects/header.html' %}
+{% include 'partial-projects/filters.html' %}
+{% include 'partial-projects/projects.html' %}
+{% include "partial-index/footer.html" %}
 {% endblock %}
 
 {% block scripts %}
 {% render_bundle 'chunk-vendors' %}
+{% render_bundle 'chunk-common' %}
 {% render_bundle 'projects' 'js' %}
 {% endblock %}

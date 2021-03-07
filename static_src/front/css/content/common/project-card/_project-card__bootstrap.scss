@@ -1,5 +1,4 @@
-//@use "@common/mixins/mixins-front" as *;
-//@use "@common/assets" as *;
+@use 'sass:selector';
 
 .card-project{
   border: 1px solid var(--color-pallet-primary-alpha-2);
@@ -8,7 +7,23 @@
   min-height: 500px;
   height: max-content;
   position: relative;
-  z-index: 100;
+
+  @mixin header-font(){
+    font-family: "Source Sans Pro", "Roboto", sans-serif;
+    font-weight: 700;
+    margin: 0 15px 0 15px;
+    font-size: 1.375rem;
+    color: inherit;
+  }
+
+  @mixin header-link(){
+    &-link{
+      @at-root #{selector.unify(&, a)}{
+        @include header-font();
+        @include stacking('card-porject-link');
+      }
+    }
+  }
 
   @keyframes opacity {
     from{ opacity: 0; }
@@ -52,7 +67,8 @@
     );
     padding: 0;
     margin: 0 10px 0 0;
-    z-index: 10000;
+    //z-index: 10000;
+    @include stacking('card-project-btn');
   }
 
   footer{
@@ -67,25 +83,33 @@
   }
 
   &__title{
-    font-family: "Source Sans Pro", "Roboto", sans-serif;
-    font-weight: 700;
-    margin: 0 0 0 15px;
+    @include header-font();
+    @include header-link();
   }
 
   &__subtitle{
     padding:0;
-    margin: 0;
     letter-spacing: 0.05em;
+    margin: 0 0 0.5em;
   }
 
   &__text{
     font-size: 0.875rem;
     line-height: 1.4em;
+    margin-bottom: .5em;
   }
 
   &__link{
     position: relative;
     right: 0;
+  }
+
+  &__type{
+    color: var(--color-text-primary);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    margin-right: 15px;
+    @include header-link();
   }
 
   &__content{
@@ -122,7 +146,7 @@
     flex-wrap: wrap;
     &__item{
       display: block;
-      margin: 5px;
+      margin: 5px 5px 5px 0;
       padding: 4px 6px;
       border-radius: 2px;
       background: var(--color-pallet-primary-alpha);

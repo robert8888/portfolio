@@ -16,8 +16,15 @@ export default defineComponent({
 
   computed:{
     children(){
-      const defaultSlot = this.$slots.default();
-      return defaultSlot[0].children.map((node, index) => {
+      const isFragment = type => type.toString() === "Symbol(Fragment)";
+      const defaultSlot = this.$slots.default?.();
+
+      let node = defaultSlot[0];
+      while(isFragment(node.type) && isFragment(node.children[0].type)){
+        node = node.children[0];
+      }
+
+      return node.children.map((node, index) => {
         node.props = {... node.props, index: index };
         return node;
       })

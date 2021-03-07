@@ -15,7 +15,7 @@
 <script lang="ts">
 import {defineComponent, computed} from "vue";
 import Spinner from "./Spinner.vue";
-import shallowArrayEqual from "@/utils/shallowArrayCompare";
+import shallowArrayEqual from "@/utils/shallow-array-compare";
 import getCaptchaToken from "@/utils/get-captcha-token";
 
 export type ErrorList = Array<{

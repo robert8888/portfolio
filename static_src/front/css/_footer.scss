@@ -3,7 +3,7 @@
   padding-bottom: 0;
  // margin-top: 5vh;
   &__container{
-
+    padding: 10px 0;
   }
 
   &__container{
@@ -12,14 +12,8 @@
     justify-content: flex-end;
     p{
       opacity: 0.7;
+      font-size: 1rem;
     }
   }
 }
 
-@media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
-  .footer{
-    &__container{
-      margin-left: 50px;
-    }
-  }
-}
