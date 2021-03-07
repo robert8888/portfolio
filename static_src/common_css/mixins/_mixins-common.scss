@@ -77,6 +77,12 @@
   }
 }
 
+@mixin pseudo-content($type: 'after'){
+  &:#{$type}{
+    @content
+  }
+}
+
 @mixin transition-center(){
   left: 50%;
   top: 50%;

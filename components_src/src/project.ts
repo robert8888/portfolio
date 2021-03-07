@@ -7,6 +7,7 @@ import GalleryItem from "@/components/GalleryItem.vue"
 
 
 import defineVueComponent from "@/define-vue-component";
+import ResizeObserver from "@/directives/ResizeObserver";
 
 defineVueComponent(
     {
@@ -16,5 +17,6 @@ defineVueComponent(
         GalleryItem
     }, [
         storePlugin,
+        ResizeObserver,
     ]
 )

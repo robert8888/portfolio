@@ -10,7 +10,7 @@ import MenuAsideItem from "@/components/MenuAsideItem.vue";
 import Overlay from "@/components/Overlay.vue";
 import Slider from "@/components/Slider.vue"
 import SliderItem from "@/components/SliderItem.vue";
-import ProjectCard from "@/components/Card.vue"
+import CardProject from "@/components/Card.vue"
 import Gallery from "@/components/Gallery.vue";
 import GalleryItem from "@/components/GalleryItem.vue";
 import ContactForm from "@/components/ContactForm.vue";
@@ -28,7 +28,7 @@ defineVueComponent(
         Overlay,
         Slider,
         SliderItem,
-        ProjectCard,
+        CardProject,
         Gallery,
         GalleryItem,
         ContactForm,

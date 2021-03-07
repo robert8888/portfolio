@@ -39,10 +39,18 @@ export default defineComponent({
   },
 
   setup(){
-     const id = inject("id");
+     const id = inject("id", null) as string | null;
      const store = useStore();
-     const updateIndex = (index: number) => store.commit(MUTATIONS.SET_GALLERY_INDEX, {id, index})
-     const syncIndex = computed(() => store.getters[GETTERS.GET_GALLERY_INDEX](id));
+     const updateIndex = (index: number) => {
+       if(id === null)
+         return;
+       store.commit(MUTATIONS.SET_GALLERY_INDEX, {id, index})
+     }
+     const syncIndex = computed(() => {
+       if(id === null)
+         return 0;
+       store.getters[GETTERS.GET_GALLERY_INDEX](id)
+     });
      return {id, updateIndex, syncIndex};
   },
 

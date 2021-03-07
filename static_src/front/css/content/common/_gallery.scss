@@ -27,6 +27,11 @@
     }
   }
 
+  &:hover{
+    #{$self}__controls{
+      display: flex;
+    }
+  }
   &__controls{
     pointer-events: none;
     display: none;

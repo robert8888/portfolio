@@ -41,11 +41,21 @@ a, a:link, a:active, a:visited{
   font-family: "Roboto", sans-serif;
 }
 
+a, a:link, a:active, a:visited{
+  &.link-button{
+    background: var(--color-pallet-primary);
+    color: var(--color-text-primary);
+    padding: .25em .5em;
+  }
+}
+
 p.text{
   font-family: "Source Sans Pro","Roboto",sans-serif;
-  color: var(--color-pallet-primary);
   line-height: 1.4em;
   max-width: 80ch;
+  &--color{
+    color: var(--color-pallet-primary);
+  }
   &--small{
     font-size: 0.75em;
   }
