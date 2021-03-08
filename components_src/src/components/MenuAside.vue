@@ -25,12 +25,15 @@ import {defineComponent, computed, nextTick} from "vue";
 import List from "./List.vue";
 import getWindowScrollHeight from "@/utils/window-scroll-height";
 import {debounce} from "ts-debounce";
+import {getUrlAnchor, setUrlAnchor} from "@/utils/url-anchor";
 
 interface MenuAsideData{
   currentIntersectedIndex: number | undefined;
   intersectionObserver: IntersectionObserver | undefined;
   resizeObserver: ResizeObserver | undefined;
-  watched: WeakMap<Element, number>;
+  targetsToIndex: WeakMap<Element, number>;
+  indexToSelector: Map<number, string>;
+  selectorToIndex: Map<string, number>;
   length: number;
   thumbTopPosition: number;
 }
@@ -50,7 +53,9 @@ export default defineComponent({
       currentIntersectedIndex: -1,
       intersectionObserver: undefined,
       resizeObserver: undefined,
-      watched: new WeakMap<Element, number>(),
+      targetsToIndex: new WeakMap<Element, number>(),
+      indexToSelector: new Map<number, string>(),
+      selectorToIndex: new Map<string, number>(),
       length: 0,
       thumbTopPosition: 0
     }
@@ -66,7 +71,8 @@ export default defineComponent({
 
   mounted(): void {
     this.length = this.listRef().children.length;
-    this.resizeObserver?.observe(document.body)
+    this.resizeObserver?.observe(document.body);
+    this.scrollToStartPosition();
   },
 
   unmounted() {
@@ -96,13 +102,14 @@ export default defineComponent({
         const target = document.querySelector(selector);
         if(!target || !this.intersectionObserver)
           return;
-        this.watched.set(target, index);
+        this.targetsToIndex.set(target, index);
+        this.indexToSelector.set(index, selector);
+        this.selectorToIndex.set(selector, index);
         this.intersectionObserver.observe(target)
       },
       intersected: computed(() => this.currentIntersectedIndex)
     }
   },
-
 
 
   methods:{
@@ -114,7 +121,7 @@ export default defineComponent({
     intersect(entries: IntersectionObserverEntry[]): void{
       const intersecting = entries.find(entry => entry.isIntersecting);
       if(!intersecting) return
-      this.currentIntersectedIndex = this.watched.get(intersecting.target);
+      this.currentIntersectedIndex = this.targetsToIndex.get(intersecting.target);
       nextTick(() => this.updateThumbPosition());
     },
 
@@ -134,10 +141,30 @@ export default defineComponent({
         top: position,
         behavior: "smooth"
       })
+    },
+
+    scrollToStartPosition(){
+      const anchor = getUrlAnchor();
+      const valid = this.selectorToIndex.has(anchor) && this.selectorToIndex.get(anchor) as number > 0;
+
+      if(!valid)
+        return;
+
+      const target = document.querySelector(anchor);
+
+      if(!target)
+        return;
+
+      document.body.setAttribute("data-init-anchor-scroll", "true");
+      target.scrollIntoView();
     }
-
-
   },
+
+  watch: {
+    currentIntersectedIndex(){
+      setUrlAnchor(this.indexToSelector.get(this.currentIntersectedIndex || 0) || "")
+    }
+  }
 })
 </script>
 <style lang="scss">

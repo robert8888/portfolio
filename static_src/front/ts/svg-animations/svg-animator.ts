@@ -1,8 +1,7 @@
-
-
 import animationsConfigs from './svg-animation-keyframes.json';
 import {AnimationKeyframes} from "./svg-animation-keyframes-type";
-import {getNoMotionObserver} from "./no-motion-observer";
+import {getNoMotionObserverValue} from "./no-motion-observer";
+import getAttributeObserveValue from "./attribute-observe-value";
 
 
 (function (){
@@ -12,7 +11,12 @@ import {getNoMotionObserver} from "./no-motion-observer";
                     animateSvg(target as HTMLElement);
                 })
         })
-        const noAnimation = getNoMotionObserver();
+
+        const noAnimationValue = getNoMotionObserverValue();
+        const dataInitScroll = getAttributeObserveValue(document.body, 'data-init-anchor-scroll');
+
+        const noAnimation = () => noAnimationValue.current || dataInitScroll.value === "true";
+
 
         function animateSvg(target: HTMLElement ){
             const animations = animationsConfigs as any as AnimationKeyframes;
@@ -39,7 +43,7 @@ import {getNoMotionObserver} from "./no-motion-observer";
                     continue;
                 }
 
-                if(noAnimation.current){
+                if(noAnimation()){
                     element?.setAttribute(rule.attribute, [...rule.values].pop() || "");
                     runningAnimations.push(Promise.resolve(true));
                     continue;
@@ -88,7 +92,7 @@ import {getNoMotionObserver} from "./no-motion-observer";
                 const initPosition = logoContainer.getBoundingClientRect();
                 logoWrapper.classList.remove('logo__wrapper--init');
 
-                if(noAnimation.current){
+                if(noAnimation()){
                     setBodyScroll(false);
                     return;
                 }

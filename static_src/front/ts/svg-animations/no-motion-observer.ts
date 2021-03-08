@@ -2,7 +2,7 @@ interface ReferencedValue {
     current: any;
 }
 
-export function getNoMotionObserver(): ReferencedValue{
+export function getNoMotionObserverValue(): ReferencedValue{
     const value = {} as ReferencedValue;
 
     const matchMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
