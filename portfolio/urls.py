@@ -19,10 +19,10 @@ from django.urls import include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-from projects_app import views as projectsViews
+from app_projects import views as projectsViews
 
 urlpatterns = [
-    path('', include('index_app.urls')),
+    path('', include('app_index.urls')),
     path('projects/', projectsViews.projects),
     path('project', projectsViews.project),
 

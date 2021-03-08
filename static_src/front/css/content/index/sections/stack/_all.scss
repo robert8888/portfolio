@@ -13,8 +13,15 @@
   &__col{
     justify-content: flex-start;
   }
+
+  &__category{
+    margin-right: 15px;
+  }
+
   &__category-title{
     max-width: 80%;
+    margin-top: 2em;
+    margin-bottom: 1em;
   }
 
   &__list{
@@ -44,7 +51,7 @@
       height: stretch;
       display: flex;
       flex-direction: column;
-      padding: 0 100px;
+      padding: 0 25px;
     }
     &__row:first-of-type{
       margin-top: auto;

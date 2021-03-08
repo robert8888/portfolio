@@ -250,7 +250,7 @@ label.floating{
   }
 }
 
-@media screen and (min-width: map-get($grid-breakpoints, "sm")){
+@include media('sm'){
   $indent: $paragraph-indent;
   label.floating{
     textarea, input{

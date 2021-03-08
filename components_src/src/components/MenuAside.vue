@@ -145,7 +145,7 @@ export default defineComponent({
 
     scrollToStartPosition(){
       const anchor = getUrlAnchor();
-      const valid = this.selectorToIndex.has(anchor) && this.selectorToIndex.get(anchor) as number > 0;
+      const valid = this.selectorToIndex.has(anchor) && this.selectorToIndex.get(anchor) as number > 1;
 
       if(!valid)
         return;

@@ -49,9 +49,9 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
 
-    'projects.apps.ProjectsConfig',
-    'index_app.apps.IndexAppConfig',
-    'projects_app.apps.ProjectsAppConfig',
+#     'projects.apps.ProjectsConfig',
+    'app_index.apps.IndexAppConfig',
+    'app_projects.apps.ProjectsAppConfig',
 ]
 
 MIDDLEWARE = [
