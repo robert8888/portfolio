@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'ckeditor',
     'ckeditor_uploader',
+    'nested_admin',
+    'polymorphic',
 
 #     'projects.apps.ProjectsConfig',
     'app_index.apps.IndexAppConfig',
