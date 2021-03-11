@@ -1,13 +1,17 @@
 from django.contrib import admin
+from django.contrib.contenttypes.admin import GenericStackedInline
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from polymorphic.admin import PolymorphicInlineAdminForm
+from parler.admin import TranslatableStackedInline, TranslatableModelForm, TranslatableInlineModelAdmin, TranslatableAdmin
+
 from app_index.models import (
     View,
     Section,
-    Variable,
-    VariableText,
-    VariableTextLong,
-    VariableTextRich
+    Property,
+    PropertyText,
+    PropertyTextLong,
+    PropertyTextRich
 )
 from nested_admin import (
     NestedModelAdmin,
@@ -15,32 +19,37 @@ from nested_admin import (
     NestedPolymorphicInlineSupportMixin,
     NestedStackedPolymorphicInline
 )
+PolymorphicInlineAdminForm
 
-class VariableInline(NestedStackedPolymorphicInline):
-    class VariableTextInline(NestedStackedPolymorphicInline.Child):
-        model = VariableText
 
-    class VariableTextLongInline(NestedStackedPolymorphicInline.Child):
-            model = VariableTextLong
+class PropertyInline(NestedStackedPolymorphicInline):
 
-    class VariableTextRichInline(NestedStackedPolymorphicInline.Child):
-            class VariableTextRichFrom(forms.ModelForm):
+    class PropertyTextInline(TranslatableStackedInline, NestedStackedPolymorphicInline.Child ):
+        base_form = TranslatableModelForm
+        model = PropertyText
+
+    class PropertyTextLongInline(NestedStackedPolymorphicInline.Child):
+        model = PropertyTextLong
+
+    class PropertyTextRichInline(NestedStackedPolymorphicInline.Child):
+            class PropertyTextRichFrom(forms.ModelForm):
                 value =  forms.CharField(
                     widget=CKEditorUploadingWidget(attrs={'cols': 80, 'rows': 30})
                 )
                 class Meta:
-                    model = VariableTextRich
+                    model = PropertyTextRich
                     fields = "__all__"
-            model = VariableTextRich
-            form = VariableTextRichFrom
+            model = PropertyTextRich
+            form = PropertyTextRichFrom
 
-    model = Variable
+    model = Property
 
     child_inlines = (
-        VariableTextInline,
-        VariableTextLongInline,
-        VariableTextRichInline,
+        PropertyTextInline,
+        PropertyTextLongInline,
+        PropertyTextRichInline,
     )
+
 
 class ViewInline(NestedStackedInline):
     extra = 0
@@ -50,7 +59,7 @@ class SectionInline(NestedStackedInline):
     extra = 0
     model = Section
     sortable_field_name = "position"
-    inlines = [ViewInline, VariableInline]
+    inlines = [ViewInline, PropertyInline]
 
 class PageAdmin(NestedPolymorphicInlineSupportMixin, NestedModelAdmin):
     list_display = ('name', 'address', 'template')

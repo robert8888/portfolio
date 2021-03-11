@@ -5,3 +5,9 @@
 {{ block.super }}
 <script id="custom-input-number" src="{% static 'admin/js/form_input_number.js' %}"></script>
 {% endblock %}
+
+
+{% block object-tools %}{{ block.super }}
+im form cust change form templaet {% if not language_tabs %}no languge tabs{% endif %}
+{% if language_tabs %}{% include "admin/parler/language_tabs.html" %}{% endif %}
+{% endblock %}

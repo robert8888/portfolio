@@ -14,6 +14,9 @@ django-compressor-toolkit==0.6.0
 django-heroku==0.3.1
 django-js-asset==1.2.2
 django-libsass==0.8
+django-nested-admin==3.3.3
+django-parler==2.2
+django-polymorphic==3.0.0
 django-resized==0.3.11
 django-solo==1.1.5
 django-storages==1.11.1
@@ -31,6 +34,7 @@ psycopg2==2.8.6
 psycopg2-binary==2.8.6
 python-dateutil==2.8.1
 python-dotenv==0.15.0
+python-monkey-business==1.0.0
 pytz==2020.5
 rcssmin==1.0.6
 requests==2.25.1
