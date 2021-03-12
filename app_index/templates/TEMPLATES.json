@@ -1,0 +1,16 @@
+{
+  "section": [
+    {"name": "Footer", "path": "includes/footer.html"},
+    {"name": "Header", "path": "includes/header.html"},
+    {"name": "Menu Aside", "path": "includes/menu-aside.html"},
+    {"name": "Menu main", "path": "includes/menu-main.html"},
+    {"name": "Section Welcome", "path": "includes/section-welcome.html"},
+    {"name": "Section Stack", "path": "includes/section-stack.html"},
+    {"name": "Section Project", "path": "includes/section-projects.html"},
+    {"name": "Section About", "path": "includes/section-about.html"},
+    {"name": "Section Contact", "path": "includes/section-contact.html"}
+  ],
+  "page": [
+    {"name": "Index", "path": "index_page.html"}
+  ]
+}

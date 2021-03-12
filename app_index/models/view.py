@@ -1,10 +1,5 @@
 from django.db import models
-
-VIEWS = [
-    ('projects', 'Projects'),
-    ('stack', 'Stack'),
-    ('contact', 'Contact'),
-]
+from app_index.utils.getChoices import getViewChoices
 
 class View(models.Model):
     section = models.ForeignKey(
@@ -14,7 +9,7 @@ class View(models.Model):
 
     name = models.CharField(
         max_length = 255,
-        choices = VIEWS,
+        choices = getViewChoices(),
         default = '',
         null = True,
     )

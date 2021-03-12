@@ -1,5 +1,21 @@
 from django.db import models
 
+class PageSections(models.Model):
+    page = models.ForeignKey(
+        'Page',
+        on_delete = models.CASCADE
+    )
+
+    section = models.ForeignKey(
+        'Section',
+        on_delete = models.CASCADE
+    )
+
+    order = models.PositiveIntegerField(
+        verbose_name = 'Order',
+        default = 0,
+    )
+
 class Page(models.Model):
 
     name = models.CharField(
@@ -23,13 +39,13 @@ class Page(models.Model):
         verbose_name = 'Page template name'
     )
 
-#     section = models.ManyToManyField(
-#         'Section',
-#         verbose_name = 'Page sections',
-#         blank = True
-#     )
+    section = models.ManyToManyField(
+        'Section',
+        verbose_name = 'Page sections',
+        through = 'PageSections'
+    )
 
-    menus = models.ManyToManyField(
+    menu = models.ManyToManyField(
         'Menu',
         verbose_name = 'Page menus',
         blank = True
@@ -42,3 +58,4 @@ class Page(models.Model):
 
     class Meta:
         verbose_name = 'Page'
+

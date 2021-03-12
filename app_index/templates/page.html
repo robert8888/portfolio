@@ -1,0 +1,9 @@
+{% extends "base_page.html" %}
+{% load cms_tag %}
+{% block content %}
+{% for section in sections %}
+    {% include section.template %}
+{% endfor %}
+{% endblock %}
+
+

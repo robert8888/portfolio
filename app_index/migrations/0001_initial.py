@@ -120,6 +120,7 @@ class Migration(migrations.Migration):
                 ('url', models.CharField(default='', max_length=255, verbose_name='Url')),
                 ('menu', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_index.menu')),
             ],
+            bases = (parler.models.TranslatableModelMixin, models.Model)
         ),
         migrations.CreateModel(
             name='PropertyTextTranslation',

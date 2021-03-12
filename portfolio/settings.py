@@ -255,6 +255,7 @@ CKEDITOR_CONFIGS = {
             'dialogui',
             'elementspath',
         ]),
-        'templates_files': ['/static/ckeditor/content_templates/templates.js'],
+        'allowedContent': True,
+        'templates_files': ['/static/ckeditor/content_templates/editor_templates.js'],
     }
 }

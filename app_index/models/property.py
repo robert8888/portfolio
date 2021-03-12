@@ -51,12 +51,16 @@ class PropertyText(Property, TranslatableModel):
         verbose_name = "Property Text"
 
 
-class PropertyTextLong(Property):
+class PropertyTextLong(Property, TranslatableModel):
     TYPE = 'text_long'
 
-    value = models.TextField(
-        verbose_name = 'Text value',
-        default = ''
+    default_manager = PropertyManager()
+
+    translations = TranslatedFields(
+        value = models.TextField(
+            verbose_name = 'Text value',
+            default = ''
+        )
     )
 
     class Meta:
@@ -64,12 +68,16 @@ class PropertyTextLong(Property):
 
 
 
-class PropertyTextRich(Property):
+class PropertyTextRich(Property, TranslatableModel):
     TYPE = 'text_rich'
 
-    value = models.TextField(
-        verbose_name = 'Text value',
-        default = ''
+    default_manager = PropertyManager()
+
+    translations = TranslatedFields(
+        value = models.TextField(
+            verbose_name = 'Text value',
+            default = ''
+        )
     )
 
     class Meta:
