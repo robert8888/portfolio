@@ -1,0 +1,33 @@
+@use "@sass/abstracts/mixins" as *;
+@use "@sass/abstracts/assets" as *;
+
+.overlay{
+  &__btn{
+    &--open{}
+    &--close{
+      @include svgMask(
+          $cross-svg,
+          var(--color-pallet-primary),
+          var(--color-pallet-secondary),
+          42px,
+          40px
+      );
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      @include stacking('overlay');
+      @include media("sm") {
+        top: 25px;
+        right: 25px;
+      }
+      @include media("xl") {
+        top: 40px;
+        right: 40px;
+      }
+    }
+  }
+  &__content{
+    background: var(--color-background-primary);
+    padding: 50px 0;
+  }
+}

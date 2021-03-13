@@ -1,0 +1,30 @@
+$paragraph-indent: 45px;
+
+$grid-breakpoints: (
+    xs: 0,
+    xsm: 400px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1280px,
+    xxl: 1400px,
+    xxxl: 1600px,
+);
+
+$grid-breakpoints-vertical: (
+    xs: 0,
+    sm: 640px,
+    md: 969px,
+    lg: 1200px
+);
+
+
+$stackingIndex:(
+    card-project-btn: 10,
+    card-porject-link: 11,
+    filters: 12,
+    dropdown: 15,
+    header: 20,
+    overlay: 100,
+    init-anim-overlay: 101,
+);

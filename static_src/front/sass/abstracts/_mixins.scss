@@ -1,0 +1,144 @@
+@use "@sass/abstracts/variables" as *;
+
+@mixin scroll(
+  $track-color,
+  $thumb-color,
+  $thumb-hover-color,
+  $width: 15px
+){
+  cursor: pointer;
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track-piece,
+  &::-webkit-scrollbar-corner{
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
+}
+
+
+@mixin scrollTight(
+  $track-color,
+  $thumb-color,
+  $thumb-hover-color,
+  $width: 15px
+){
+  //for firefox
+  scrollbar-color: $thumb-color $track-color;
+  //for rest
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track-piece,
+  &::-webkit-scrollbar-corner{
+    background-image: linear-gradient(to left, $track-color 1px, transparent 2px);
+    background-size: 2px 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
+}
+
+
+@mixin pseudo($type: 'after', $position: absolute, $stretch: true){
+  @if $position == absolute {
+    position: relative;
+    &:#{$type}{
+      @if $stretch == true {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+  &:#{$type}{
+    position: $position;
+    content: "";
+    display: block;
+    @content
+  }
+}
+
+@mixin pseudo-content($type: 'after'){
+  &:#{$type}{
+    @content
+  }
+}
+
+@mixin transition-center(){
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin stacking($name){
+  z-index: map-get($stackingIndex, $name);
+}
+
+@mixin svgMask($url, $color, $color-h, $w, $h){
+  width: $w;
+  height: $h;
+  mask-image: $url;
+  background-color: $color;
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  &:hover,
+  &:focus{
+    background-color: $color-h;
+  }
+}
+
+
+//media queries
+
+@mixin media($size, $type: min,  $shift: 0) {
+  @if map_has_key($grid-breakpoints, $size) {
+    $width: map_get($grid-breakpoints, $size);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width + $shift) {
+      @content;
+    }
+  }
+}
+
+
+
+@mixin media-vertical($size, $type: max,  $shift: 0) {
+  @if map_has_key($grid-breakpoints-vertical, $size) {
+    $height: map_get($grid-breakpoints-vertical, $size);
+    @if $type == max {
+      $height: $height - 1px;
+    }
+    @media only screen and (#{$type}-height: $height + $shift) {
+      @content;
+    }
+  }
+}
+
+@mixin media-hover(){
+  @media screen and (hover: hover) {
+    @content
+  }
+}

@@ -4,6 +4,7 @@ def getMenus(page):
         return {
             'name': menu.name,
             'template': menu.template,
+            'style': menu.style,
             'items': [{
                 'url': item.url,
                 'text': item.text.get(language_code = item.get_current_language()).value

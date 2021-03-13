@@ -1,0 +1,102 @@
+@use 'sass:selector';
+
+.projects-filters{
+  @include stacking('filters');
+  background: var(--color-background-primary);
+  box-shadow: 0 8px 16px var(--color-background-primary);
+
+  &__container{
+    display: grid;
+    grid-gap: 50px;
+    grid-template-areas:
+  'filter' 'order' 'search';
+    grid-auto-columns: 1fr;
+    @include media('md'){
+      grid-template-areas:
+    'filter order'
+    'search search';
+    }
+
+    @include media('lg'){
+      grid-template-areas:
+    'filter order search';
+    }
+    @include media('xxl'){
+      grid-template-areas:
+    'filter order search search';
+    }
+
+    @include media('lg'){
+      border-bottom: 1px solid var(--color-pallet-primary)
+    }
+  }
+
+  &__item{
+    &:nth-child(1){
+      grid-area: filter;
+    }
+    &:nth-child(2){
+      grid-area: order;
+    }
+    &:nth-child(3){
+      grid-area: search;
+    }
+  }
+
+  margin-top: 75px;
+  padding-top: 50px;
+  padding-bottom: 15px;
+  @include media('lg'){
+    position: sticky;
+    top: 50px;
+  }
+  @include media('xl'){
+    margin-top: 0;
+    top: 25px
+  }
+}
+
+
+.projects{
+  &__search{
+    $self: &;
+    display: flex;
+    &:hover,
+    &:focus-within{
+      #{$self}-button{
+        border-bottom-color: var(--color-pallet-secondary);
+      }
+    }
+    &-input{
+      line-height: 1.5rem;
+      width: 100%;
+      border-top: 1px solid transparent;
+      @at-root #{selector.unify(&, input)} {
+        &:hover,
+        &:focus,
+        &:hover:focus{
+          border-top: 1px solid transparent;
+        }
+      }
+    }
+    &-button{
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      width: 75px;
+      @include pseudo(){
+        @include svgMask(
+          $call-svg-magnifier,
+          var(--color-text-primary),
+          inherit,
+          20px,
+          20px
+        );
+        @include transition-center();
+      }
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+}

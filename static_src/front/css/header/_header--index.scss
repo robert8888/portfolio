@@ -1,12 +1,6 @@
 
 body > header{
   @include stacking('header');
-  position: fixed;
-  top: 0;
-  height: 75px;
-  width: 100%;
-  background: var(--color-background-primary);
-
   @include pseudo($position: fixed){
     @include scale-animation(1.5s, 1s, "horizontal", left);
     left: 0;
@@ -15,6 +9,14 @@ body > header{
     height: 1px;
     border-bottom: 1px solid var(--color-separator);
   }
+
+  position: fixed;
+  top: 0;
+  height: 75px;
+  width: 100%;
+  background: var(--color-background-primary);
+
+
   .l-row{
     justify-content: space-between;
     align-items: center;

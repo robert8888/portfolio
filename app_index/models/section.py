@@ -1,5 +1,6 @@
 from django.db import models
 from app_index.utils.getChoices import getTemplatesChoices
+from app_index.utils.getTemplateStyle import getTemplateStyle
 from .view import View
 from .property import Property
 
@@ -19,9 +20,10 @@ class Section(models.Model):
         choices = getTemplatesChoices('section')
     )
 
-    position = models.PositiveIntegerField(
-        verbose_name = 'Position',
-        default = 0,
+    style = models.CharField(
+        max_length = 255,
+        default = '',
+        null = True,
     )
 
     def views(self):
@@ -30,16 +32,14 @@ class Section(models.Model):
     def properties(self):
         return Property.objects.filter(section = self.id)
 
-
     def __str__(self):
         return self.name
 
-#     def variables(self):
-#         return ' - '.join(variable.name for variable in self.variable.all())
-#
-#     variables.short_description = 'Variables'
+    def save(self):
+        self.style = getTemplateStyle('section', self.template)
+        super(Section, self).save()
 
     class Meta:
         verbose_name = 'Section'
-        ordering = ['position', 'name']
+        ordering = ['name']
 

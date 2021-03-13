@@ -59,3 +59,4 @@ class ViewInline(NestedStackedInline):
 
 class SectionAdmin(nested_admin.NestedPolymorphicModelAdmin):
     inlines = [ViewInline, PropertyInline]
+    exclude = ['style']

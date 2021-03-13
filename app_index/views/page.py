@@ -24,7 +24,7 @@ class PageView(View):
             context['sections'] = getPageSections(page)
             context['menus'] = getMenus(page)
 
-            return  render(request, page.template + '.html', context = context)
+            return  render(request, page.template, context = context)
         except Page.DoesNotExist:
             return  render(request, '404.html', context = {})
 

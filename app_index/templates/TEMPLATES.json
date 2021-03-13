@@ -1,16 +1,42 @@
 {
-  "section": [
-    {"name": "Footer", "path": "includes/footer.html"},
-    {"name": "Header", "path": "includes/header.html"},
-    {"name": "Menu Aside", "path": "includes/menu-aside.html"},
-    {"name": "Menu main", "path": "includes/menu-main.html"},
-    {"name": "Section Welcome", "path": "includes/section-welcome.html"},
-    {"name": "Section Stack", "path": "includes/section-stack.html"},
-    {"name": "Section Project", "path": "includes/section-projects.html"},
-    {"name": "Section About", "path": "includes/section-about.html"},
-    {"name": "Section Contact", "path": "includes/section-contact.html"}
-  ],
-  "page": [
-    {"name": "Index", "path": "index_page.html"}
-  ]
+  "section": [{
+    "name": "Section Footer",
+    "path": "sections/section-footer.html",
+    "style": "front/css/sections/footer.css"
+  }, {
+    "name": "Section Header",
+    "path": "sections/section-header.html",
+    "style": "front/css/sections/header.css"
+  }, {
+    "name": "Section Welcome",
+    "path": "sections/section-welcome.html",
+    "style": "front/css/sections/welcome.css"
+  }, {
+    "name": "Section Stack",
+    "path": "sections/section-stack.html",
+    "style": "front/css/sections/stack.css"
+  }, {
+    "name": "Section Project",
+    "path": "sections/section-projects.html",
+    "style": "front/css/sections/projects-slider.css"
+  }, {
+    "name": "Section About",
+    "path": "sections/section-about.html",
+    "style": "front/css/sections/about.css"
+  }, {
+    "name": "Section Contact",
+    "path": "sections/section-contact.html",
+    "style": "front/css/sections/contact.css"
+  }],
+  "page": [{
+    "name": "Index",
+    "path": "page_index.html"
+  }],
+  "menu": [{
+    "name": "Main",
+    "path": "menus/menu-main.html"
+  }, {
+    "name": "Aside",
+    "path": "menus/menu-aside.html"
+  }]
 }

@@ -1,0 +1,75 @@
+@use "@sass/abstracts/mixins" as *;
+
+.projects {
+  &__container{
+    display: flex;
+    flex-direction: column;
+  }
+  &__row{
+    padding-left: 0;
+    padding-right: 0;
+    &:first-of-type{
+      margin-top: 5vh;
+    }
+    &:last-of-type{
+      margin: 7.5vh 0;
+    }
+    & > * {
+      padding: 0;
+    }
+  }
+}
+
+@include media-hover(){
+  .projects .slider{
+    padding: 0 50px;
+    &__controls{
+      display: flex;
+    }
+  }
+
+  @include media("lg"){
+    .projects .slider{
+      margin-left: -25px;
+      margin-right: -25px;
+    }
+  }
+}
+
+@include media("lg") {
+  .projects{
+    &__row{
+      &:first-of-type{
+        margin-top: auto;
+      }
+      &:last-of-type{
+        margin-bottom: auto;
+        margin-top: auto;
+      }
+    }
+  }
+}
+
+@include media('xl') {
+  .projects{
+    .slider{
+      min-width: 1020px;
+    }
+  }
+}
+
+@include media('xxl') {
+  .projects{
+    .slider{
+      min-width: 1080px;
+    }
+  }
+}
+
+@include media('xxxl') {
+  .projects{
+    .slider{
+      min-width: 1200px;
+    }
+  }
+}

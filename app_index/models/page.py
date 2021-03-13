@@ -1,4 +1,5 @@
 from django.db import models
+from app_index.utils.getChoices import getTemplatesChoices
 
 class PageSections(models.Model):
     page = models.ForeignKey(
@@ -36,7 +37,8 @@ class Page(models.Model):
     template = models.CharField(
         max_length = 255,
         default = '',
-        verbose_name = 'Page template name'
+        verbose_name = 'Page template name',
+        choices = getTemplatesChoices('page')
     )
 
     section = models.ManyToManyField(

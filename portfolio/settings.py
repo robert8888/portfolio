@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'storages',
     'webpack_loader',
     'solo.apps.SoloAppConfig',
+    'compressor',
     'django.contrib.admin',
     'ckeditor',
     'ckeditor_uploader',
@@ -197,7 +198,16 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 ]
+
+COMPRESS_ENABLED = True
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+
 
 ALLOWED_HOSTS = ['rkaminski.herokuapp.com', "127.0.0.1"]
 
@@ -209,6 +219,7 @@ DEFAULT_FILE_STORAGE = 'portfolio.storage.MediaStorage'
 
 
 CKEDITOR_UPLOAD_PATH = "upload"
+
 
 CKEDITOR_CONFIGS = {
     'default': {

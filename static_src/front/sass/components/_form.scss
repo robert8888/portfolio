@@ -1,0 +1,153 @@
+@use "@sass/abstracts/variables" as *;
+@use "@sass/abstracts/mixins" as *;
+
+input, textarea{
+  font-size: 1rem;
+  background: transparent;
+  color: var(--color-text-primary);
+  border: none;
+  border-bottom: 1px solid var(--color-pallet-primary);
+  padding: 6px 12px;
+  outline: none;
+  &:hover,
+  &:focus,
+  &:hover:focus{
+    outline: none;
+    border-color: var(--color-pallet-secondary);
+  }
+
+  &:after{
+    content: attr(aria-label);
+    display: block;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus{
+    border-bottom: 1px solid var(--color-pallet-secondary);
+    -webkit-text-fill-color: var(--color-text-primary);
+    font-size: 1em;
+    transition: background-color 5000000s ease-in-out 0s;
+  }
+  &:-webkit-autofill:hover{
+    border-bottom: 1px solid var(--color-pallet-secondary);
+  }
+}
+
+textarea{
+  border-bottom: none;
+  border-left: 1px solid var(--color-pallet-primary);
+  resize: none;
+}
+
+
+label.floating{
+  box-sizing: border-box;
+  display: table;
+  position: relative;
+  margin: 25px 0;
+  height: 2em;
+  //noinspection CssInvalidPropertyValue
+  width: stretch;
+  input, textarea{
+    position: relative;
+    padding-left: 1.5em;
+    top: .7em;
+    left: 0;
+    width: calc(100% - 1.0em)
+  }
+
+  textarea {
+    top: 2.3em;
+    @include scrollTight(
+                    var(--color-pallet-primary),
+                    var(--color-text-primary),
+                    var(--color-text-primary),
+                    10px
+    );
+    &:hover, &:focus{
+      @include scrollTight(
+                      var(--color-pallet-secondary),
+                      var(--color-text-primary),
+                      var(--color-text-primary),
+                      10px
+      );
+    }
+  }
+
+  input + span,
+  textarea + span{
+    left: 1.5em;
+  }
+
+  span{
+    position: absolute;
+    &:first-letter{
+      text-transform: uppercase;
+    }
+    left: 4em;
+    top: 1em;
+    font-size: 1em;
+    letter-spacing: .5px;
+  }
+
+  textarea + span{
+    top: 2.7em;
+  }
+
+  input:not(:placeholder-shown) + span,
+  textarea:not(:placeholder-shown) + span{
+    color: var(--color-pallet-primary);
+    font-size: 0.875rem;
+    top: -1em;
+    left: 0;
+    right: unset;
+  }
+
+  input:not(:placeholder-shown):hover + span,
+  input:not(:placeholder-shown):focus + span,
+  input:-webkit-autofill + span,
+  textarea:not(:placeholder-shown):hover + span,
+  textarea:not(:placeholder-shown):focus + span {
+    color: var(--color-pallet-secondary)
+  }
+
+  p{
+    color: var(--color-pallet-warning);
+    min-height: 1.2em;
+    margin-left: 1em;
+    font-size: 0.875em;
+    &:first-letter{
+      text-transform: uppercase;
+    }
+  }
+
+  textarea ~ p {
+    margin-top: 3em;
+  }
+}
+
+@include media('sm'){
+  $indent: $paragraph-indent;
+  label.floating{
+    textarea, input{
+      left: $indent;
+      width: calc(100% - #{$indent});
+    }
+
+    input + span,
+    textarea + span{
+      left: calc(#{$indent} + 1.5em);
+    }
+
+    input:not(:placeholder-shown) + span,
+    textarea:not(:placeholder-shown) + span{
+      left: unset;
+      right: calc(100% - #{$indent});
+      top: 0;
+    }
+    p{
+      margin: 1.5em 0 0 #{$indent};
+    }
+  }
+}

@@ -1,9 +1,23 @@
 {% extends "base_page.html" %}
-{% load cms_tag %}
+{% load compress static %}
+
+{% block head %}
+    {{ block.super }}
+    {% compress css %}
+        {% include 'partial/style.html' with style_url='front/css/pages/common.css' %}
+    {% endcompress %}
+    {% compress css %}
+        {% block pagestyle %}{% endblock %}
+        {% for section in sections %}
+            {% include 'partial/style.html' with style_url=section.style %}
+        {% endfor %}
+    {% endcompress %}
+{% endblock %}
+
 {% block content %}
-{% for section in sections %}
-    {% include section.template %}
-{% endfor %}
+    {% for section in sections %}
+        {% include section.template %}
+    {% endfor %}
 {% endblock %}
 
 

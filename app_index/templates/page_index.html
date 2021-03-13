@@ -1,0 +1,18 @@
+{% extends "page.html" %}
+{% load render_bundle from webpack_loader %}
+{% load compress static  %}
+
+{% block pagestyle %}
+    <link href="{% static 'front/css/pages/index.css' %}" rel="stylesheet" type="text/css"/>
+    {% render_bundle 'main' 'css' %}
+{% endblock %}
+
+
+{% block scripts %}
+    {% render_bundle 'chunk-vendors' %}
+    {% render_bundle 'chunk-common' %}
+    {% render_bundle 'main' 'js' %}
+    {% compress js %}
+    <script src="{% static 'front/js/index.js' %}"></script>
+    {% endcompress %}
+{% endblock %}

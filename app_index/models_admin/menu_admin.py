@@ -9,3 +9,4 @@ class MenuItemInline(TranslatableStackedInline):
 
 class MenuAdmin(admin.ModelAdmin):
     inlines = (MenuItemInline,)
+    exclude = ['style']

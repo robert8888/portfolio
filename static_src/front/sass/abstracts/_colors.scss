@@ -1,0 +1,29 @@
+$color-background-primary: #101317;
+$color-text-primary: #B2B3B3;
+$color-separator: #B2B3B3;
+$color-warning: #fa3b4d;
+
+$color-pallet-primary: #614C7C;
+$color-pallet-secondary: #d2d2d2;
+
+:root{
+  --color-background-primary: #{$color-background-primary};
+
+  --color-text-primary:#{$color-text-primary};
+  --color-text-primary-alpha-5:#{rgba($color-text-primary, .5)};
+  --color-text-primary-alpha-1:#{rgba($color-text-primary, .1)};
+
+  --color-pallet-primary: #{$color-pallet-primary};
+  --color-pallet-primary-alpha: #{rgba($color-pallet-primary, .5)};
+  --color-pallet-primary-alpha-2: #{rgba($color-pallet-primary, .2)};
+  --color-pallet-primary-alpha-05: #{rgba($color-pallet-primary, .05)};
+
+
+  --color-pallet-secondary: #{$color-pallet-secondary};
+  --color-pallet-secondary-alpha-05: #{rgba($color-pallet-secondary, .05)};
+  //--color-pallet-secondary-dark: #{$color-pallet-secondary-dark};
+
+
+  --color-pallet-warning: #{$color-warning};
+  --color-separator: #{$color-separator};
+}

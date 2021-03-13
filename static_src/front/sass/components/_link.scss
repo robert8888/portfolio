@@ -1,0 +1,23 @@
+a, a:link, a:visited{
+  color: var(--color-pallet-primary);
+  text-decoration: none;
+  font-family: "Source Sans Pro", "Roboto", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover{
+    color: var(--color-pallet-secondary);
+  }
+  &.link--secondary{
+    color: var(--color-pallet-primary);
+    &:hover{
+      color: var(--color-text-primary);
+    }
+  }
+  &:focus,
+  &:active,
+  &:focus:active{
+    outline-color: var(--color-pallet-secondary);
+    outline-style: solid;
+    outline-offset: 0.3em;
+  }
+}

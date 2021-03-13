@@ -1,0 +1,14 @@
+@use "@sass/abstracts/variables" as *;
+@use "@sass/abstracts/mixins" as *;
+
+.indented{
+  @include media("md"){
+    padding-left: $paragraph-indent + 15px;
+    & > :matches(h1, h2, h3, h4):first-of-type{
+      margin-left: -$paragraph-indent;
+    }
+  }
+  @include media("xl"){
+    padding-left: $paragraph-indent + 25px;
+  }
+}

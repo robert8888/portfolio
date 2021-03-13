@@ -7,6 +7,7 @@ def getTemplatesChoices(name):
         choices.append((template['path'], template['name']))
     return choices
 
+
 def getViewChoices():
     views = readConfigJson(['views', 'VIEWS.json'])["section"]
     choices = []

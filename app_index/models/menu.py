@@ -1,13 +1,9 @@
 from django.db import models
 from .menu_item import MenuItem
+from app_index.utils.getChoices import getTemplatesChoices
+from app_index.utils.getTemplateStyle import getTemplateStyle
+
 class Menu(models.Model):
-
-#     page = models.ForeignKey(
-#         'Page',
-#         default = None,
-#         on_delete = models.CASCADE
-#     )
-
     name = models.CharField(
         max_length = 255,
         default = '',
@@ -18,7 +14,14 @@ class Menu(models.Model):
     template = models.CharField(
         max_length = 255,
         default = '',
-        verbose_name = 'Menu template'
+        verbose_name = 'Menu template',
+        choices = getTemplatesChoices('menu')
+    )
+
+    style = models.CharField(
+        max_length = 255,
+        default = '',
+        null = True,
     )
 
     description = models.TextField(
@@ -32,3 +35,7 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self):
+        self.style = getTemplateStyle('menu', self.template)
+        super(Menu, self).save()

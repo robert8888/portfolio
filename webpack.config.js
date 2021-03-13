@@ -1,6 +1,6 @@
 const path = require("path");
 const RemovePlugin = require('remove-files-webpack-plugin');
-
+const FontSassEntries = require('./static_src/front/sass/webpack.entries.config');
 const tsEntries = [
     //admin
     "admin/ts/form_input_number.ts",
@@ -28,6 +28,10 @@ const sassEntries = [
     'front/css/index.scss',
     'front/css/projects.scss',
     'front/css/project.scss',
+
+    ...FontSassEntries,
+    // 'front/sass/pages/common.scss',
+    // 'front/sass/pages/index.scss',
 ]
 
 module.exports = [
@@ -69,7 +73,10 @@ module.exports = [
     entry: transformEntries(sassEntries),
     output:{
         path: path.resolve(__dirname, 'static_compiled'),
-        assetModuleFilename: pathData => pathData.filename.replace('static_src', '').replace('.scss', '.css'),
+        assetModuleFilename: pathData =>
+            pathData.filename.replace('static_src', '')
+                .replace('.scss', '.css')
+                .replace("sass", "css"),
         filename: "[name]-to-remove.js"
     },
     plugins:[
@@ -87,7 +94,8 @@ module.exports = [
         alias: {
             "@": path.resolve(__dirname),
             "@common": path.resolve(__dirname, "static_src", "common_css"),
-            "@front": path.resolve(__dirname, "static_src", "front", "css")
+            "@front": path.resolve(__dirname, "static_src", "front", "css"),
+            "@sass": path.resolve(__dirname, "static_src", "front", "sass"),
         }
     },
     module: {

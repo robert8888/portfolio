@@ -1,0 +1,60 @@
+@use "@sass/abstracts/variables" as *;
+
+.l-container{
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.l-row{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+  & > * {
+    box-sizing: border-box;
+  }
+}
+
+.l-col{
+  width: 100%;
+}
+
+@each $break-point, $width in $grid-breakpoints{
+  @for $size from 1 through 12 {
+    @media screen and (min-width: $width) {
+      .l-col-#{$break-point}-#{$size} {
+        width: 100% *  ($size / 12);
+      };
+    }
+  }
+}
+// under first
+@for $size from 1 through 12 {
+  @media screen and (max-width: map-get($grid-breakpoints, "xs")) {
+    .l-col-xs-#{$size} {
+      width: 100% *  ($size / 12);
+    }
+  }
+}
+
+
+// row gutters
+@each $break-point, $width in $grid-breakpoints {
+  @for $counter from 1 through 50 {
+    @media screen and (min-width: $width) {
+      .l-row-g-#{$break-point}-#{$counter * 5} {
+        margin-top: $counter * 5px;
+      }
+    };
+  }
+}
+
+// under first
+@for $counter from 1 through 50 {
+  @media screen and (max-width: map-get($grid-breakpoints, "xs")) {
+    .l-row-g-xs-#{$counter * 5} {
+      margin-top: $counter * 5px;
+    }
+  }
+}

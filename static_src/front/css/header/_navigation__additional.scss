@@ -1,0 +1,23 @@
+.navigation{
+  $self: &;
+  &--additional{
+    #{$self}__list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #{$self}__item{
+      height: 50px;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #{$self}__link{
+      display: block;
+      font-family: "Source Sans Pro", "Roboto", sans-serif;
+      font-size: 2rem;
+      color: var(--color-text-primary);
+    }
+  }
+}
