@@ -6,7 +6,6 @@ from app_index.models import Page, PageSections, Path, View as ViewModel
 from portfolio.utils.getAppsViewsList import getAppsViewsList
 from sqlescapy import sqlescape
 from django.http import HttpResponse
-from app_index.views.test import *
 import importlib
 import re
 
@@ -32,7 +31,7 @@ class PageView(View):
             page = paths[0].page
             params = self.getGroups(paths[0].pattern, path)
 
-            page = Page.objects.get(id=1)
+#             page = Page.objects.get(id=1)
             sections = self.getPageSections(page)
             views = self.importViews(sections)
             views_data = self.processViews(request, views, params)

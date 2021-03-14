@@ -7,9 +7,18 @@ def readConfigJson(paths):
     apps_path = [app.path for app in apps.get_app_configs() if app.verbose_name.startswith('App')]
     template_files_paths = list(map(lambda path: os.path.join(path, *paths), apps_path))
     template_files_paths = [file_path for file_path in template_files_paths if os.path.exists(file_path)]
-    templates = {}
+    data = {}
     for path in template_files_paths:
         with open(path) as json_file:
-            data = json.load(json_file)
-            templates = {**templates, **data}
-    return templates
+            part = json.load(json_file)
+            data = merge(data, part)
+    return data
+
+def merge(base, head):
+    print(base, head)
+    for key in head:
+        if base.get(key):
+            base[key] = [*base[key], *head[key]]
+        else:
+            base[key] = head[key]
+    return base

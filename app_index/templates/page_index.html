@@ -3,7 +3,7 @@
 {% load compress static  %}
 
 {% block pagestyle %}
-    <link href="{% static 'front/css/pages/index.css' %}" rel="stylesheet" type="text/css"/>
+    {% include 'partial/style.html' with style_url='front/css/pages/index.css' %}
     {% render_bundle 'main' 'css' %}
 {% endblock %}
 
@@ -13,6 +13,6 @@
     {% render_bundle 'chunk-common' %}
     {% render_bundle 'main' 'js' %}
     {% compress js %}
-    <script src="{% static 'front/js/index.js' %}"></script>
+        {% include 'partial/script.html' with script_url='front/js/index.js' %}
     {% endcompress %}
 {% endblock %}
