@@ -1,21 +1,8 @@
 from django.db import models
 from app_index.utils.getChoices import getTemplatesChoices
+from django_better_admin_arrayfield.models.fields import ArrayField
+import re
 
-class PageSections(models.Model):
-    page = models.ForeignKey(
-        'Page',
-        on_delete = models.CASCADE
-    )
-
-    section = models.ForeignKey(
-        'Section',
-        on_delete = models.CASCADE
-    )
-
-    order = models.PositiveIntegerField(
-        verbose_name = 'Order',
-        default = 0,
-    )
 
 class Page(models.Model):
 
@@ -24,13 +11,6 @@ class Page(models.Model):
         default = '',
         verbose_name = 'Page name',
         blank = False,
-        unique = True
-    )
-
-    address = models.CharField(
-        max_length = 255,
-        default = '',
-        verbose_name = 'Pager url address',
         unique = True
     )
 
@@ -57,6 +37,9 @@ class Page(models.Model):
         return ', '.join(section.name for sections in self.sections.all())
 
     sections.short_description = 'Sections'
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Page'

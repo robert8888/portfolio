@@ -22,6 +22,7 @@ class MenuItem(TranslatableModel):
             default = ''
         )
     )
+
     @property
     def text_translated(self):
         lang = self.get_current_language()

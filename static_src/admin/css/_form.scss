@@ -61,21 +61,33 @@ form{
                 .selector-chosen h2,
                 .selector-available h2
                 {
-                    background: var(--color-pallet-8);
+                    background: var(  --color-bg-secondary);
                     border: none;
                     color: $color-text
                 }
                 .selector-chosen h2, 
                 .selector-available h2{
-                    background: var(--color-pallet-9);
+                    background: var(--color-pallet-1);
                     border-bottom: 1px solid var(--color-separator-2);
                 }
                 select{
                     @include scroll(
-                        var(--color-separator-2),
+                        transparent,
                         var(--color-pallet-4),
                         $color-pallet-1
                     )
+                }
+                .selector-filter{
+                    background: transparent;
+                    border-left: 1px solid var(--color-pallet-1);
+                    border-right: 1px solid var(--color-pallet-1);
+                }
+                select{
+                    background: transparent;
+                    option {
+                        font-size: 1rem;
+                        margin: .5em 0;
+                    }
                 }
             }
         }
@@ -84,7 +96,7 @@ form{
     .inline-group{
         overflow: initial;
         h2 {
-            background: var(--color-pallet-9);
+            background: var(--color-pallet-1);
         }
         fieldset.module table{
             th{
@@ -112,7 +124,6 @@ form{
         }
 
         &[data-inline-type="stacked"]{
-
             div.add-row {
                 background-color: var(--color-bg-primary);
                 border:none;
@@ -134,7 +145,7 @@ form{
                     }
 
                     .form-row{
-                        border-color: #fff2;
+                        border-color: transparent;
                         max-width: 100%;
                         @media(max-width: 772px) {
                             & > div {
@@ -144,13 +155,17 @@ form{
                     }
                 }
                 h3 {
-                    background: var(--color-pallet-8);
+                    background: transparent;
                     color: var(--color-text);
-                    border-color: var(--color-bg-secondary);
+                    border-top: none;
+                    border-color: var(--color-pallet-1);
                     span.delete{
                         margin-left: auto;
                         flex: unset;
                     }
+                }
+                &:not(:nth-last-of-type(2)){
+                    border-bottom: 1px solid var(--color-separator);
                 }
             }
         }
@@ -232,5 +247,29 @@ form{
                 content: "\25BC";
             }
         }
+    }
+}
+
+.page__path{
+    display: flex;
+    border-bottom: 1px solid var(--color-separator);
+    border-top: 1px solid var(--color-separator);
+    .ui-sortable {
+        flex: 1;
+    }
+    .djn-add-item.add-item.add-row{
+        border-left: 1px solid var(--color-separator);
+    }
+
+    .field-pattern{
+        display: flex;
+        align-items: center;
+    }
+}
+
+.field-menu{
+    border-top: 1px solid var(--color-separator);
+    label[for='id_menu'] {
+        width: 100%;
     }
 }

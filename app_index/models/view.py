@@ -5,9 +5,10 @@ class View(models.Model):
     section = models.ForeignKey(
         'Section',
         on_delete = models.CASCADE,
+        related_name = 'section'
     )
 
-    name = models.CharField(
+    module_name = models.CharField(
         max_length = 255,
         choices = getViewChoices(),
         default = '',

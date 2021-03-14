@@ -4,9 +4,11 @@ from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from polymorphic.admin import PolymorphicInlineAdminForm
 from parler.admin import TranslatableStackedInline, TranslatableModelForm, TranslatableInlineModelAdmin, TranslatableAdmin
+from fieldsets_with_inlines import FieldsetsInlineMixin
 
 from app_index.models import (
     Page,
+    Path,
     View,
     Section,
     Property,
@@ -23,46 +25,27 @@ from nested_admin import (
 
 
 
-# class PropertyInline(NestedStackedPolymorphicInline):
-#
-#     class PropertyTextInline(TranslatableStackedInline, NestedStackedPolymorphicInline.Child ):
-#         base_form = TranslatableModelForm
-#         model = PropertyText
-#
-#     class PropertyTextLongInline(NestedStackedPolymorphicInline.Child):
-#         model = PropertyTextLong
-#
-#     class PropertyTextRichInline(NestedStackedPolymorphicInline.Child):
-#             class PropertyTextRichFrom(forms.ModelForm):
-#                 value =  forms.CharField(
-#                     widget=CKEditorUploadingWidget(attrs={'cols': 80, 'rows': 30})
-#                 )
-#                 class Meta:
-#                     model = PropertyTextRich
-#                     fields = "__all__"
-#             model = PropertyTextRich
-#             form = PropertyTextRichFrom
-#
-#     model = Property
-#
-#     child_inlines = (
-#         PropertyTextInline,
-#         PropertyTextLongInline,
-#         PropertyTextRichInline,
-#     )
-#
-#
-# class ViewInline(NestedStackedInline):
-#     extra = 0
-#     model = View
+class PathsInline(NestedStackedInline):
+    extra = 0
+    model = Path
+    exclude = ['pattern']
+    classes = ['page__path',]
 
 class SectionInline(NestedStackedInline):
+# class SectionInline(admin.StackedInline):
     extra = 0
     model = Page.section.through
     sortable_field_name = "order"
 #     inlines = [ViewInline, PropertyInline]
 
-class PageAdmin(NestedModelAdmin):
-    list_display = ('name', 'address', 'template')
-    inlines = [SectionInline]
+class PageAdmin(FieldsetsInlineMixin, NestedModelAdmin):
+#     list_display = ('name', 'template')
+#     inlines = [SectionInline, PathsInline]
     filter_horizontal = ['menu']
+    fieldsets_with_inlines = [
+         (None, { 'fields': ['name', 'template']}),
+         PathsInline,
+         (None, { 'fields': ['menu']}),
+         SectionInline,
+
+    ]

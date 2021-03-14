@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'storages',
     'webpack_loader',
     'solo.apps.SoloAppConfig',
+    'fieldsets_with_inlines',
     'compressor',
     'django.contrib.admin',
     'ckeditor',
