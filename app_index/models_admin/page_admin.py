@@ -23,8 +23,6 @@ from nested_admin import (
     NestedStackedPolymorphicInline
 )
 
-
-
 class PathsInline(NestedStackedInline):
     extra = 0
     model = Path
@@ -32,15 +30,11 @@ class PathsInline(NestedStackedInline):
     classes = ['page__path',]
 
 class SectionInline(NestedStackedInline):
-# class SectionInline(admin.StackedInline):
     extra = 0
     model = Page.section.through
     sortable_field_name = "order"
-#     inlines = [ViewInline, PropertyInline]
 
 class PageAdmin(FieldsetsInlineMixin, NestedModelAdmin):
-#     list_display = ('name', 'template')
-#     inlines = [SectionInline, PathsInline]
     filter_horizontal = ['menu']
     fieldsets_with_inlines = [
          (None, { 'fields': ['name', 'template']}),

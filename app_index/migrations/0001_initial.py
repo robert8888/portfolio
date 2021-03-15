@@ -117,7 +117,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.CharField(default='', max_length=255, verbose_name='Text')),
-                ('url', models.CharField(default='', max_length=255, verbose_name='Url')),
                 ('menu', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_index.menu')),
             ],
             bases = (parler.models.TranslatableModelMixin, models.Model)

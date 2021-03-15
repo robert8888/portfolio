@@ -1,6 +1,7 @@
-@import "./../common/project-card/project-card__bootstrap";
-@import "./../common/gallery";
-@import "./../common/project-card/project-card--demo";
+@use "@sass/components/project-card/project-card__bootstrap";
+@use "@sass/components/project-card/project-card--demo";
+@use "@sass/abstracts/animations" as *;
+@use "@sass/abstracts/mixins" as *;
 
 .projects{
   margin: 75px 0 150px 0;

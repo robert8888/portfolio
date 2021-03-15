@@ -1,5 +1,5 @@
+@use '@sass/abstracts/mixins' as * ;
 @use "sass:selector";
-@import "../common/gallery";
 
 .project{
   --container-padding: 10px;

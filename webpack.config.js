@@ -25,9 +25,9 @@ const sassEntries = [
 
     'ckeditor/galleriffic/css/galleriffic-2.scss',
     //front
-    'front/css/index.scss',
-    'front/css/projects.scss',
-    'front/css/project.scss',
+    // 'front/css/index.scss',
+    // 'front/css/projects.scss',
+    // 'front/css/project.scss',
 
     ...FontSassEntries,
     // 'front/sass/pages/common.scss',

@@ -1,8 +1,23 @@
 {
-  "section": [],
+  "section": [{
+    "name": "Section Projects Filters",
+    "path": "sections/section_projects_filters.html",
+    "style": "front/css/sections/projects-filters.css"
+  }, {
+    "name": "Section Projects",
+    "path": "sections/section_projects.html",
+    "style": "front/css/sections/projects.css"
+  }, {
+    "name": "Section Project",
+    "path": "sections/section_project.html",
+    "style": "front/css/sections/project.css"
+  }],
   "page": [{
     "name": "Projects",
     "path": "page_projects.html"
+  }, {
+    "name": "Project",
+    "path": "page_project.html"
   }],
   "menu": []
 }

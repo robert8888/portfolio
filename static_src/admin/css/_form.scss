@@ -273,3 +273,29 @@ form{
         width: 100%;
     }
 }
+
+div.parler-language-tabs{
+    border-bottom: 2px solid var(--color-pallet-1);
+    span.current{
+        background: var(--color-pallet-4);
+        border-color: var(--color-pallet-1);
+    }
+    span.available{
+        border-color: var(--color-separator);
+    }
+}
+
+form .inline-group[data-inline-type=stacked] fieldset.module.section__view{
+    display: block;
+    button {
+        @include button();
+        background: var(--color-bg-secondary);
+        border-bottom: 1px solid var(--color-pallet-1);
+        border-radius: 0;
+        &:hover,
+        &:focus,
+        &:hover:focus{
+            outline: none;
+        }
+    }
+}

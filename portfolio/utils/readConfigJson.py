@@ -15,7 +15,6 @@ def readConfigJson(paths):
     return data
 
 def merge(base, head):
-    print(base, head)
     for key in head:
         if base.get(key):
             base[key] = [*base[key], *head[key]]

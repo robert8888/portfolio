@@ -1,3 +1,6 @@
+@use "@sass/abstracts/mixins" as *;
+@use "@sass/abstracts/assets" as *;
+
 .dropdown{
   $self: &;
   display: flex;
@@ -27,11 +30,11 @@
       transform: translateY(-50%);
       background: var(--color-text-primary);
       @include svgMask(
-                      $arrow-down-svg,
-                      var(--color-text-primary),
-                      var(--color-pallet-secondary),
-                      1em,
-                      1em,
+          $arrow-down-svg,
+          var(--color-text-primary),
+          var(--color-pallet-secondary),
+          1em,
+          1em,
       )
     }
     &[aria-expanded]{

@@ -1,0 +1,14 @@
+{% extends "page.html" %}
+{% load render_bundle from webpack_loader %}
+{% load compress static  %}
+
+{% block pagestyle %}
+    {% include 'partial/style.html' with style_url='front/css/pages/project.css' %}
+    {% render_bundle 'project' 'css' %}
+{% endblock %}
+
+{% block scripts %}
+    {% render_bundle 'chunk-vendors' %}
+    {% render_bundle 'chunk-common' %}
+    {% render_bundle 'project' 'js' %}
+{% endblock %}

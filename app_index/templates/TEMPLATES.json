@@ -16,7 +16,7 @@
     "path": "sections/section-stack.html",
     "style": "front/css/sections/stack.css"
   }, {
-    "name": "Section Project",
+    "name": "Section Project Slider",
     "path": "sections/section-projects.html",
     "style": "front/css/sections/projects-slider.css"
   }, {
@@ -38,5 +38,8 @@
   }, {
     "name": "Aside",
     "path": "menus/menu-aside.html"
+  },{
+    "name": "Addtional",
+    "path": "menus/menu-additional.html"
   }]
 }

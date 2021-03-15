@@ -9,16 +9,15 @@ class MenuItem(TranslatableModel):
         on_delete = models.CASCADE
     )
 
-    url = models.CharField(
-        max_length = 255,
-        verbose_name = 'Url',
-        default = ''
-    )
-
-    text = TranslatedFields(
-        value = models.CharField(
+    translations = TranslatedFields(
+        text = models.CharField(
             max_length = 255,
             verbose_name = 'Menu item text',
+            default = ''
+        ),
+        url = models.CharField(
+            max_length = 255,
+            verbose_name = 'Url',
             default = ''
         )
     )
@@ -26,4 +25,4 @@ class MenuItem(TranslatableModel):
     @property
     def text_translated(self):
         lang = self.get_current_language()
-        return self.text.filter(language_code = lang).values('value')[0]['value']
+        return self.translations.filter(language_code = lang).values('text')[0]['text']

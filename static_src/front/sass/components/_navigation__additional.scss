@@ -1,5 +1,8 @@
 .navigation{
   $self: &;
+  &__wrapper--additional{
+    position: absolute;
+  }
   &--additional{
     #{$self}__list{
       list-style: none;

@@ -14,3 +14,8 @@ class View(models.Model):
         default = '',
         null = True,
     )
+
+    config = models.JSONField(
+        verbose_name = "View json configuration",
+        default = dict
+    )

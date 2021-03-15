@@ -15,8 +15,8 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('projects/', projectsViews.projects),
-    path('project', projectsViews.project),
+#     path('projects/', projectsViews.projects),
+#     path('project', projectsViews.project),
     path('admin/', admin.site.urls),
     path('', include('app_index.urls')),
     prefix_default_language=False

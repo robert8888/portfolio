@@ -1,4 +1,8 @@
+@use '@sass/abstracts/mixins' as * ;
+@use '@sass/abstracts/animations' as * ;
+@use '@sass/abstracts/assets' as * ;
 @use 'sass:selector';
+@use "@sass/components/dropdown";
 
 .projects-filters{
   @include stacking('filters');

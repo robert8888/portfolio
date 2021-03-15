@@ -1,6 +1,10 @@
 from django.contrib import admin
 from app_index.models import Menu, MenuItem
-from parler.admin import TranslatableStackedInline, TranslatableModelForm, TranslatableInlineModelAdmin, TranslatableAdmin
+from parler.admin import (
+    TranslatableStackedInline,
+    TranslatableModelForm,
+    TranslatableAdmin
+)
 
 class MenuItemInline(TranslatableStackedInline):
     extra = 0

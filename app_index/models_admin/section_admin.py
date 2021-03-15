@@ -4,6 +4,7 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from polymorphic.admin import PolymorphicInlineSupportMixin, StackedPolymorphicInline
 from app_index.models import Property, PropertyText, PropertyTextLong, PropertyTextRich
 from parler.admin import TranslatableStackedInline, TranslatableModelForm, TranslatableInlineModelAdmin, TranslatableAdmin
+from prettyjson import PrettyJSONWidget
 import nested_admin
 
 from app_index.models import (
@@ -53,9 +54,24 @@ class PropertyInline(NestedStackedPolymorphicInline):
     )
 
 
+class ViewInlineForm(forms.ModelForm):
+    class Meta:
+        model = View
+        fields = '__all__'
+        widgets = {
+            'config': PrettyJSONWidget(attrs={'initial': 'parsed', 'class': 'test'})
+        }
+
 class ViewInline(NestedStackedInline):
     extra = 0
     model = View
+    form = ViewInlineForm
+    fieldsets = (
+        (None, {
+            'fields': ('module_name', 'config'),
+            'classes': ('section__view',)
+        }),
+    )
 
 class SectionAdmin(nested_admin.NestedPolymorphicModelAdmin):
     inlines = [ViewInline, PropertyInline]

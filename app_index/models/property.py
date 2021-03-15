@@ -5,6 +5,7 @@ from parler.managers import TranslatableManager
 from parler.managers import TranslatableManager, TranslatableQuerySet
 from polymorphic.query import PolymorphicQuerySet
 from parler.managers import TranslatableManager
+from django.utils.text import slugify
 
 class PropertyQuerySet(TranslatableQuerySet, PolymorphicQuerySet):
     pass
@@ -26,8 +27,15 @@ class Property(PolymorphicModel):
         default = ''
     )
 
+    def __str__(self):
+        return self.name
+
     def type(self):
         return self.TYPE
+
+    def save(self):
+        self.name = slugify(self.name)
+        super(Property, self).save()
 
     class Meta:
         verbose_name = "Property"

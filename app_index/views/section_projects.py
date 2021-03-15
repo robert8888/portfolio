@@ -1,7 +1,7 @@
 
-def process(request, data, *args):
-    print('process success')
+def process(request, config, context, *args):
+    print('process success', config, context)
     return {
-        **data,
+        **context,
         'projects_data': True
     }

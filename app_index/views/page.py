@@ -56,17 +56,20 @@ class PageView(View):
 
     def importViews(self, sections):
         views = ViewModel.objects.filter(section__id__in = sections['section_ids'])
-        return [self.importModule(view.module_name) for view in views]
+        return [ {
+            "module": self.importModule(view.module_name),
+            "config": view.config
+        } for view in views]
 
     def importModule(self, module_name):
         module_name = re.sub('\.py', '', module_name)
         return importlib.import_module(module_name)
 
     def processViews(self, request, views, params):
-        data = {}
+        context_data = {}
         for view in views:
-            data = view.process(request, data, params)
-        return data
+            context_data = view['module'].process(request, view['config'], context_data, params)
+        return context_data
 
     def getPageSections(self, page):
         sections = [
@@ -98,8 +101,8 @@ class PageView(View):
                 'template': menu.template,
                 'style': menu.style,
                 'items': [{
-                    'url': item.url,
-                    'text': item.text.get(language_code = item.get_current_language()).value
+                    'url': item.translations.get(language_code = item.get_current_language()).url,
+                    'text': item.translations.get(language_code = item.get_current_language()).text
                 } for item in menu.items()]
             }
         menus = list(map(transformMenu, page.menu.all()))
