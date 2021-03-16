@@ -299,3 +299,30 @@ form .inline-group[data-inline-type=stacked] fieldset.module.section__view{
         }
     }
 }
+
+.django-ckeditor-widget{
+    //noinspection CssInvalidPropertyValue
+    width: stretch;
+}
+
+textarea.cke_source{
+    font-size: 1rem;
+}
+div.CodeMirror-vscrollbar{
+    @include scroll(
+        transparent,
+        var(--color-pallet-4),
+        $color-pallet-1
+    )
+}
+.CodeMirror-sizer{
+    background: var(--color-bg-primary);
+    div.CodeMirror-activeline-background{
+        background: var(--color-bg-secondary);
+    }
+}
+div.CodeMirror-gutters{
+   .CodeMirror-gutter{
+       background: var(--color-bg-secondary);
+   }
+}

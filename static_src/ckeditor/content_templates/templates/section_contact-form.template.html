@@ -1,0 +1,38 @@
+<h3 class="contact__title">Just let me know</h3>
+<vue-component>
+    <contact-form
+            aria-label="Send contact message"
+            submit-button-label="Send message"
+            validation-message-success="The message has reached me, I will contact back to you."
+            validation-message-fail="Not all form fields have been filled in correctly">
+        <contact-form-label for="emailField" label="Email" class="floating">
+            <input class="form__input form__input--email"
+                   id="emailField"
+                   name="emailField"
+                   type="text"
+                   placeholder=" "
+                   autocomplete="email"
+                   aria-label="email"
+                   required>
+        </contact-form-label>
+        <contact-form-label for="subjectField" label="subject" class="floating">
+            <input class="form__input form__input--subject"
+                   id="subjectField"
+                   name="subjectField"
+                   type="text"
+                   placeholder=" "
+                   aria-label="subject"
+                   required>
+            </label>
+        </contact-form-label>
+        <contact-form-label for="messageField" label="message" class="floating">
+            <textarea class="form__text form__text--message"
+                      placeholder=" "
+                      id="messageField"
+                      name="messageField"
+                      aria-label="message"
+                      rows="10"
+                      required></textarea>
+        </contact-form-label>
+    </contact-form>
+</vue-component>

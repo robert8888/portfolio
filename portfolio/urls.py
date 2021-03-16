@@ -5,6 +5,7 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 from app_projects import views as projectsViews
+from .s3proxy import s3proxy
 
 from django.conf.urls.i18n import i18n_patterns
 
@@ -15,8 +16,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-#     path('projects/', projectsViews.projects),
-#     path('project', projectsViews.project),
+    path('s3image', s3proxy),
     path('admin/', admin.site.urls),
     path('', include('app_index.urls')),
     prefix_default_language=False

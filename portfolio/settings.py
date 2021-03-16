@@ -19,6 +19,8 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+ALLOWED_HOSTS = ['rkaminski.herokuapp.com', "127.0.0.1"]
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -174,18 +176,10 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = 'eu-central-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
-VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'components_src')
 
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'vue/',  # must end with slash
-        'STATS_FILE': os.path.join(VUE_FRONTEND_DIR, 'webpack-stats.json'),
-        'POLL_INTERVAL': 0.1,
-        'TIMEOUT': None,
-        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
-    }
-}
+MEDIA_ROOT = AWS_URL + '/media/'
+MEDIA_URL = AWS_URL + '/media/'
+DEFAULT_FILE_STORAGE = 'portfolio.storage.MediaStorage'
 
 
 STATIC_URL = '/static/'
@@ -211,17 +205,24 @@ COMPRESS_CSS_FILTERS = [
 ]
 
 
-ALLOWED_HOSTS = ['rkaminski.herokuapp.com', "127.0.0.1"]
-
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
-MEDIA_ROOT = AWS_URL + '/media/'
-MEDIA_URL = AWS_URL + '/media/'
-DEFAULT_FILE_STORAGE = 'portfolio.storage.MediaStorage'
 
+
+VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'components_src')
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'vue/',  # must end with slash
+        'STATS_FILE': os.path.join(VUE_FRONTEND_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
+    }
+}
 
 CKEDITOR_UPLOAD_PATH = "upload"
-
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -250,11 +251,12 @@ CKEDITOR_CONFIGS = {
             'top': 'id-top-ckeditor-toolbar',
             'bottom': 'id-bottom-ckeditor-toolbar'
         },
-        'contentsCss': '/static/admin/css/ckeditor-content.css',
+        'contentsCss': '/static/front/css/ckeditor-content.css',
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
             'div',
+            'image2',
             'autolink',
             'autoembed',
             'embedsemantic',
@@ -267,8 +269,16 @@ CKEDITOR_CONFIGS = {
             'dialog',
             'dialogui',
             'elementspath',
+            'codemirror'
         ]),
+        'codemirror': {
+            'theme': 'lucario',
+            'matchBrackets': True,
+            'autoFormatOnStart': False,
+            'mode': 'htmlmixed',
+            'showTrailingSpace': False,
+        },
         'allowedContent': True,
-        'templates_files': ['/static/ckeditor/content_templates/editor_templates.js'],
+        'templates_files': ['/static/ckeditor/content_templates/editor-templates.js'],
     }
 }

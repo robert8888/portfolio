@@ -6,6 +6,7 @@ from parler.managers import TranslatableManager, TranslatableQuerySet
 from polymorphic.query import PolymorphicQuerySet
 from parler.managers import TranslatableManager
 from django.utils.text import slugify
+from portfolio.s3proxy import replaceImgUrl
 
 class PropertyQuerySet(TranslatableQuerySet, PolymorphicQuerySet):
     pass
@@ -87,6 +88,10 @@ class PropertyTextRich(Property, TranslatableModel):
             default = ''
         )
     )
+
+    def save(self):
+        self.value = replaceImgUrl(self.value)
+        super(PropertyTextRich, self).save()
 
     class Meta:
         verbose_name = "Property Text Rich"

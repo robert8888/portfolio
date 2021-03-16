@@ -1,5 +1,4 @@
 
-
 (function() {
     const update = (input: HTMLInputElement, sign: string,  event: Event) => {
         event.preventDefault();

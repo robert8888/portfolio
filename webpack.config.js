@@ -1,11 +1,11 @@
 const path = require("path");
 const RemovePlugin = require('remove-files-webpack-plugin');
-const FontSassEntries = require('./static_src/front/sass/webpack.entries.config');
+const frontSassEntries = require('./static_src/front/sass/webpack.entries.config');
 const tsEntries = [
     //admin
-    "admin/ts/form_input_number.ts",
+    "admin/ts/admin-form-script.ts",
     //'admin/ts/sidebar.ts',
-    'ckeditor/content_templates/editor_templates.ts',
+    'ckeditor/content_templates/editor-templates.ts',
     //front
     'front/ts/index.ts',
     'front/ts/window-height.ts'
@@ -29,7 +29,7 @@ const sassEntries = [
     // 'front/css/projects.scss',
     // 'front/css/project.scss',
 
-    ...FontSassEntries,
+    ...frontSassEntries,
     // 'front/sass/pages/common.scss',
     // 'front/sass/pages/index.scss',
 ]

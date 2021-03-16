@@ -3,41 +3,42 @@
     <div class="l-container">
         <div class="l-row contact__container">
             <div class="l-col-xs-12 l-col-lg-6">
-                <h3 class="contact__title">Just let me know</h3>
-                <vue-component>
-                    <contact-form aria-label="Send contact message">
-                        {% csrf_token %}
-                        <contact-form-label for="emailField" label="Email" class="floating">
-                            <input class="form__input form__input--email"
-                                   id="emailField"
-                                   name="emailField"
-                                   type="text"
-                                   placeholder=" "
-                                   autocomplete="email"
-                                   aria-label="email"
-                                   required>
-                        </contact-form-label>
-                        <contact-form-label for="subjectField" label="subject" class="floating">
-                            <input class="form__input form__input--subject"
-                                   id="subjectField"
-                                   name="subjectField"
-                                   type="text"
-                                   placeholder=" "
-                                   aria-label="subject"
-                                   required>
-                            </label>
-                        </contact-form-label>
-                        <contact-form-label for="messageField" label="message" class="floating">
-                            <textarea class="form__text form__text--message"
-                                      placeholder=" "
-                                      id="messageField"
-                                      name="messageField"
-                                      aria-label="message"
-                                      rows="10"
-                                      required></textarea>
-                        </contact-form-label>
-                    </contact-form>
-                </vue-component>
+                {{ section.props.contact_form|safe}}
+<!--                <h3 class="contact__title">Just let me know</h3>-->
+<!--                <vue-component>-->
+<!--                    <contact-form aria-label="Send contact message">-->
+<!--                        {% csrf_token %}-->
+<!--                        <contact-form-label for="emailField" label="Email" class="floating">-->
+<!--                            <input class="form__input form__input&#45;&#45;email"-->
+<!--                                   id="emailField"-->
+<!--                                   name="emailField"-->
+<!--                                   type="text"-->
+<!--                                   placeholder=" "-->
+<!--                                   autocomplete="email"-->
+<!--                                   aria-label="email"-->
+<!--                                   required>-->
+<!--                        </contact-form-label>-->
+<!--                        <contact-form-label for="subjectField" label="subject" class="floating">-->
+<!--                            <input class="form__input form__input&#45;&#45;subject"-->
+<!--                                   id="subjectField"-->
+<!--                                   name="subjectField"-->
+<!--                                   type="text"-->
+<!--                                   placeholder=" "-->
+<!--                                   aria-label="subject"-->
+<!--                                   required>-->
+<!--                            </label>-->
+<!--                        </contact-form-label>-->
+<!--                        <contact-form-label for="messageField" label="message" class="floating">-->
+<!--                            <textarea class="form__text form__text&#45;&#45;message"-->
+<!--                                      placeholder=" "-->
+<!--                                      id="messageField"-->
+<!--                                      name="messageField"-->
+<!--                                      aria-label="message"-->
+<!--                                      rows="10"-->
+<!--                                      required></textarea>-->
+<!--                        </contact-form-label>-->
+<!--                    </contact-form>-->
+<!--                </vue-component>-->
             </div>
             <div class="l-col-xs-12 l-col-lg-6 contact__info__container">
                 <h3 class="contact__info__title">How about <span class="dont-break">cooperation ?</span></h3>

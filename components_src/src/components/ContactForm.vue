@@ -7,7 +7,7 @@
       <div class="form__summary__group">
         <spinner v-if="isSending" label="sending"/>
         <p class="form__message" :data-succes="isSuccessMessage">{{message}}</p>
-        <button class="form__btn form__btn--send">Send message</button>
+        <button class="form__btn form__btn--send">{{submitButtonLabel}}</button>
       </div>
     </div>
   </form>
@@ -43,6 +43,18 @@ export default defineComponent({
   props:{
     ariaLabel: {
       type: String,
+    },
+    validationMessageFail: {
+      type: String,
+      default: ""
+    },
+    validationMessageSuccess:{
+      type: String,
+      default: ""
+    },
+    submitButtonLabel:{
+      type: String,
+      default: "Send message"
     }
   },
 
@@ -77,25 +89,27 @@ export default defineComponent({
       this.clearValidation();
 
       const token = await getCaptchaToken();
-
-      //@ts-ignore
-      const elements = e.target.elements;
+      const csrfToken = window.csrfToken  as string;
+      // //@ts-ignore
+      // const elements = e.target.elements;
 
       const data = [...this.fieldsMap].reduce((data, [id, element]) => ({
             ...data,
             [id]: (element as HTMLFormField).value
-          }), { gRrecaptchaRresponse: token })
+          }),
+          {
+          gRrecaptchaRresponse: token,
+          csrfMiddlewareToken: csrfToken
+        })
 
       const origin = location.origin
-
-      const csrfMiddlewareToken = elements.csrfmiddlewaretoken.value;
 
       const response = await fetch(origin + "/api/contact-form", {
         method: 'POST',
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          "X-CSRFToken": csrfMiddlewareToken
+          "X-CSRFToken": csrfToken
         },
         referrerPolicy: 'origin',
         body: JSON.stringify(data)
@@ -151,7 +165,7 @@ export default defineComponent({
       this.isSuccessMessage = false;
 
       errors.length
-        ? this.message = "Not all form fields have been filled in correctly"
+        ? this.message = this.validationMessageFail //"Not all form fields have been filled in correctly"
         : this.message = ""
 
       errors.forEach(({message, field}) => {
@@ -162,7 +176,7 @@ export default defineComponent({
     },
 
     setSuccessMessage(){
-      this.message = "The message has reached me, I will contact back to you.";
+      this.message = this.validationMessageSuccess;//"The message has reached me, I will contact back to you.";
       this.isSuccessMessage = true;
       this.fieldsMap.forEach(element => {
         (element as HTMLFormField).value = ""

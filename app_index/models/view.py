@@ -17,5 +17,6 @@ class View(models.Model):
 
     config = models.JSONField(
         verbose_name = "View json configuration",
-        default = dict
+        default = dict,
+        blank = True
     )

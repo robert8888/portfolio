@@ -14,4 +14,6 @@ module.exports = [
     'front/sass/sections/projects-slider.scss',
     'front/sass/sections/stack.scss',
     'front/sass/sections/welcome.scss',
+
+    'front/sass/ckeditor-content.scss',
 ]
