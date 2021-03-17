@@ -1,7 +1,7 @@
-import ImageAndTitleHtml from "./templates/image_and_title.template.html";
 import SectionWelcome from "./templates/section_welcome.template.html";
 import SectionAbout from "./templates/section_about.template.html";
 import SectionContactForm from "./templates/section_contact-form.template.html";
+import SectionContactDescription from "./templates/section_contact-description.template.html";
 
 console.log("im loaded")
 CKEDITOR.addTemplates("default",
@@ -23,8 +23,14 @@ CKEDITOR.addTemplates("default",
             {
                 title:"Index contact section",
                 image:"template1.gif",
-                description:"Contact section Form",
+                description:"Contact section form",
                 html: SectionContactForm,
+            },
+            {
+                title:"Index contact section",
+                image:"template1.gif",
+                description:"Contact section description",
+                html: SectionContactDescription,
             },
         ]
     }

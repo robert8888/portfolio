@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'solo.apps.SoloAppConfig',
     'fieldsets_with_inlines',
     'prettyjson',
+    'imagefield',
     'compressor',
     'django.contrib.admin',
     'ckeditor',
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
 #     'projects.apps.ProjectsConfig',
     'app_index.apps.IndexAppConfig',
     'app_projects.apps.ProjectsAppConfig',
+    'app_owner.apps.AppOwnerConfig'
 ]
 
 MIDDLEWARE = [
@@ -163,6 +165,10 @@ PARLER_LANGUAGES = {
         'hide_untranslated': False,   # the default; let .active_translations() return fallbacks too.
     }
 }
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'portfolio/locale'),
+]
+
 # prefix_default_language = False
 # Static files (CSS, JavaScript, Images)
 

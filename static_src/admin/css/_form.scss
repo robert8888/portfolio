@@ -20,6 +20,8 @@ form{
     fieldset.module{
         color: var(--color-text);
         background: transparent;
+        //display: flex;
+        //flex-wrap: wrap;
 
         label{
             color: var(--color-text);
@@ -140,6 +142,9 @@ form{
                 fieldset.module{
                     display: flex;
                     flex-wrap: wrap;
+                    &.form__contact-image__fieldset{
+                        display: block;
+                    }
                     & > * {
                         flex: 1 0 auto;
                     }
@@ -197,7 +202,10 @@ form{
             display: inline-block;
         }
     }
+
 }
+
+
 
 
 .input-number{
@@ -325,4 +333,16 @@ div.CodeMirror-gutters{
    .CodeMirror-gutter{
        background: var(--color-bg-secondary);
    }
+}
+
+form fieldset.form__contact-image__fieldset{
+    display: block;
+}
+
+div.polymorphic-type-menu{
+    background: var(--color-bg-secondary);
+    padding: 0.25rem;
+    li {
+        margin: .25rem 0;
+    }
 }

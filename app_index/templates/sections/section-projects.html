@@ -1,5 +1,5 @@
-{% load webp_converter %}
-<section class="projects" id="projects">
+{% load webp_converter i18n %}
+<section class="projects" id="{% translate 'projects' %}">
     <div class="l-container projects__container">
         <div class="l-row projects__row">
             <div class="l-col-xs-12">
@@ -146,7 +146,7 @@
         </div>
         <div class="l-row projects__row">
             <div class="l-col-xs-12 flex-center">
-                <button class="btn btn--all">See all</button>
+                <button class="btn btn--all">{% translate 'See all' %}</button>
             </div>
         </div>
     </div>
