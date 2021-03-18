@@ -1,6 +1,6 @@
 from django.db import models
 from .menu_item import MenuItem
-from app_index.utils.getChoices import getTemplatesChoices
+from app_index.utils.getTemplateChoices import getTemplatesChoices
 from app_index.utils.getTemplateStyle import getTemplateStyle
 
 class Menu(models.Model):

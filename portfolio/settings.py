@@ -146,6 +146,7 @@ USE_L10N = True
 USE_TZ = True
 
 PARLER_DEFAULT_LANGUAGE_CODE = 'en'
+PREFIX_DEFAULT_LANGUAGE = False
 
 LANGUAGES = (
     ('en','English'),

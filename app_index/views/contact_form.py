@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from app_index.utils.validateGoogleCaptcha import validateCaptcha
+from portfolio.utils.validateGoogleCaptcha import validateCaptcha
 from django.utils.translation import gettext
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -9,7 +9,6 @@ import re
 import os
 
 def contactForm(req):
-    print("contact form")
     body_unicode = req.body.decode('utf-8')
     json_data = json.loads(req.body)
 
@@ -82,11 +81,11 @@ def send(data, req):
         'message':  data['messageField']
     }
 
-    html_version = os.path.join(BASE_DIR, 'portfolio/templates/email_contact_form_html.html')
-    plain_version = os.path.join(BASE_DIR, 'portfolio/templates/email_contact_form_plain.html')
+    html_version = os.path.join(BASE_DIR, 'app_index/templates/email_contact_form_html.html')
+    plain_version = os.path.join(BASE_DIR, 'app_index/templates/email_contact_form_plain.html')
     html_message = render_to_string(html_version, context = context)
     plain_message = render_to_string(plain_version, context = context)
 
     message = EmailMultiAlternatives(subject, plain_message, sender_email, [target_email])
-    message.attach_alternative(html_message, "text/html") # attach html version
+    message.attach_alternative(html_message, "text/html")
     message.send()

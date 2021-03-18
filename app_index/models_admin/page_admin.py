@@ -6,6 +6,11 @@ from polymorphic.admin import PolymorphicInlineAdminForm
 from parler.admin import TranslatableStackedInline, TranslatableModelForm, TranslatableInlineModelAdmin, TranslatableAdmin
 from fieldsets_with_inlines import FieldsetsInlineMixin
 
+from parler.admin import (
+    TranslatableStackedInline,
+    TranslatableModelForm,
+)
+
 from app_index.models import (
     Page,
     Path,
@@ -23,9 +28,10 @@ from nested_admin import (
     NestedStackedPolymorphicInline
 )
 
-class PathsInline(NestedStackedInline):
+class PathsInline(NestedStackedInline, TranslatableStackedInline):
     extra = 0
     model = Path
+    base_form = TranslatableModelForm
     exclude = ['pattern']
     classes = ['page__path',]
 

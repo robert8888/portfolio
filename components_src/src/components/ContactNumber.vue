@@ -39,6 +39,10 @@ export default defineComponent({
     },
     loadingLabel:{
       type: String,
+    },
+    errorMessage:{
+      type: String,
+      default: "Ops. What a shame :("
     }
   },
 
@@ -47,7 +51,6 @@ export default defineComponent({
       modalOpen: false,
       number: "",
       isLoading: false,
-      errorMessage: "Ops. What a shame :(",
       isSuccess: true,
       confirmMessage: "",
     }
@@ -61,7 +64,10 @@ export default defineComponent({
         const captchaToken =  await getCaptchaToken();
         const csrfToken = window.csrfToken  as string;
 
-        const response = await fetch(origin + "/api/contact-phone", {
+        const origin = location.origin
+        const path = location.pathname
+
+        const response = await fetch(`${origin}${path}api/contact-phone`, {
           method: 'POST',
           mode: 'cors',
           headers: {

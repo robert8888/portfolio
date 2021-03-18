@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-
+import parler
 
 class Migration(migrations.Migration):
 
@@ -22,5 +22,6 @@ class Migration(migrations.Migration):
                 ('pattern', models.CharField(max_length=255, verbose_name='Regex path pattern - groups as parameters')),
                 ('page', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_index.page')),
             ],
+            bases=(parler.models.TranslatableModelMixin, models.Model,),
         ),
     ]

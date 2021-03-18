@@ -1,5 +1,5 @@
 from django.db import models
-from app_index.utils.getChoices import getTemplatesChoices
+from app_index.utils.getTemplateChoices import getTemplatesChoices
 from django_better_admin_arrayfield.models.fields import ArrayField
 import re
 

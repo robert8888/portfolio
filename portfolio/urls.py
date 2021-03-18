@@ -22,8 +22,9 @@ if 'rosetta' in settings.INSTALLED_APPS:
 urlpatterns += i18n_patterns(
     path('s3image', s3proxy),
     path('admin/', admin.site.urls),
+    path('', include('app_owner.urls')),
     path('', include('app_index.urls')),
-    prefix_default_language=False
+    prefix_default_language= settings.PREFIX_DEFAULT_LANGUAGE
 )
 
 

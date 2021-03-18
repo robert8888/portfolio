@@ -1,16 +1,18 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.middleware.csrf import get_token
 from django.shortcuts import render
 from app_index.models import Page, PageSections, Path, View as ViewModel, Property
 from django.utils.translation import get_language
 from portfolio.utils.getAppsViewsList import getAppsViewsList
+from django.conf import settings
 from sqlescapy import sqlescape
 from django.http import HttpResponse
-import importlib
-import re
 from datetime import datetime
 from django.db import connection
+import pydash as py_
+import importlib
+import re
 
 class PageView(View):
     greeting = "Good Day"
@@ -26,11 +28,18 @@ class PageView(View):
             if re.match('.*\.\w{,5}$', path): #file
                 return HttpResponse(status=404)
 
-            page_id, pattern = self.processPath(sqlescape(path))
-            page_name, page_template = self.getPageRaw(page_id)
+            route = self.processPath(sqlescape(path), request)
 
-            if not page_id:
+            if route.get('redirect'):
+                return HttpResponseRedirect(route.get('redirect'))
+
+            if route.get('not_found'):
                 raise LookupError('not found')
+
+            page_id = route.get('page_id')
+            pattern = route.get('pattern')
+
+            page_name, page_template = self.getPageRaw(page_id)
 
             params = self.getGroups(pattern, path)
             sections = self.getPageSectionsRaw(page_id)
@@ -72,20 +81,56 @@ class PageView(View):
             context_data = view['module'].process(request, view['config'], context_data, params)
         return context_data
 
-    def processPath(self, path):
+    def processPath(self, path, request):
+#         query = f"""
+#         SELECT
+#         "app_index_path"."page_id",
+#          "app_index_path"."pattern"
+#          FROM "app_index_path"
+#          WHERE ( '{path}' ~* pattern) LIMIT 1
+#         """
+#         other_languages = [lang[0] for lang in settings.LANGUAGES if not lang[0] == get_language()]
+        default_language = settings.PARLER_DEFAULT_LANGUAGE_CODE
+        prefix_default = settings.PREFIX_DEFAULT_LANGUAGE
+
+        current_language = get_language()
         query = f"""
         SELECT
-        "app_index_path"."page_id",
-         "app_index_path"."pattern"
-         FROM "app_index_path"
-         WHERE ( '{path}' ~* pattern) LIMIT 1
+        app_index_path.page_id,
+        app_index_path_translation.pattern,
+        app_index_path_translation.language_code
+        FROM app_index_path
+        LEFT JOIN app_index_path_translation ON app_index_path.id = app_index_path_translation.master_id
+        WHERE ( '{path}' ~ app_index_path_translation.pattern)
         """
-
         with connection.cursor() as cursor:
             cursor.execute(query)
-            row = cursor.fetchone()
+            rows = cursor.fetchall()
 
-        return row if row else []
+        path_row = py_.find(rows, lambda row: row[2] == current_language)
+
+        if not path_row and len(rows):
+            *_, lang_code = rows[0]
+            protocol = request.scheme + '://'
+            redirect = ''
+            if lang_code == default_language and not prefix_default:
+                redirect = request.get_host() + '/' + path
+            else:
+                redirect = request.get_host() + '/' + lang_code + '/' + path
+            print(redirect)
+            return {
+                'redirect': protocol + redirect
+            }
+
+        if not path_row:
+            return {
+                'not_found': True
+            }
+
+        return {
+            'page_id': path_row[0],
+            'pattern': path_row[1]
+        }
 
 
     def getPageRaw(self, page_id):
