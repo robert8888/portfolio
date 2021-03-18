@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'nested_admin',
     'polymorphic',
+    'rosetta',
     'parler',
 
 #     'projects.apps.ProjectsConfig',
@@ -153,6 +154,9 @@ LANGUAGES = (
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
+    os.path.join(BASE_DIR, 'app_index/locale/'),
+    os.path.join(BASE_DIR, 'app_owner/locale/'),
+    os.path.join(BASE_DIR, 'app_projects/locale/'),
 )
 
 PARLER_LANGUAGES = {
@@ -182,9 +186,9 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = 'eu-central-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
-
-MEDIA_ROOT = AWS_URL + '/media/'
-MEDIA_URL = AWS_URL + '/media/'
+MEDIA_ROOT_PATH = "media/"
+MEDIA_ROOT = AWS_URL + MEDIA_ROOT_PATH
+MEDIA_URL = AWS_URL + MEDIA_ROOT_PATH
 DEFAULT_FILE_STORAGE = 'portfolio.storage.MediaStorage'
 
 
@@ -210,6 +214,14 @@ COMPRESS_CSS_FILTERS = [
     'compressor.filters.cssmin.CSSMinFilter'
 ]
 
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'

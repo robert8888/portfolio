@@ -1,5 +1,5 @@
-{% load webp_converter %}
-<section class="about" id="about">
+{% load webp_converter i18n %}
+<section class="about" id="{% translate 'about' %}">
     <div class="l-container">
         <div class="l-row">
             {{ section.props.about_content|safe }}

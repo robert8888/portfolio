@@ -1,10 +1,15 @@
 from django.http import JsonResponse
 from app_index.utils.validateGoogleCaptcha import validateCaptcha
+from django.utils.translation import gettext
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.conf import settings
 import json
 import re
-
+import os
 
 def contactForm(req):
+    print("contact form")
     body_unicode = req.body.decode('utf-8')
     json_data = json.loads(req.body)
 
@@ -20,18 +25,16 @@ def contactForm(req):
         'errors': []
     }
 
-    print(validate)
-
     if(validate['success'] == False) :
         validate['errors'].append({
-            'message': "Google Recaptcha authorization fail"
+            'message': gettext_lazy("Google Recaptcha authorization fail")
         })
         return JsonResponse(validate)
 
     validate = Validation(data)
 
     if validate["success"] == True:
-        update(data)
+        send(data, req)
 
     return JsonResponse(validate)
 
@@ -44,18 +47,17 @@ def Validation(data):
     rules = [{
         "field" : "emailField",
         "pattern" : "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)",
-        "message": "Email address not valid",
+        "message": gettext("Email address not valid"),
     }, {
         "field" : "subjectField",
         "pattern" : ".{6,}$",
-        "message": "Subject value too short, min 6 chars",
+        "message": gettext("Subject value too short, min 6 chars"),
     }, {
         "field" : "messageField",
         "pattern" : ".{20,}$",
-        "message": "Message value too short, min 20 chars",
+        "message": gettext("Message value too short, min 20 chars"),
     }]
 
-    print(data)
     for rule in rules:
         if not re.search(rule['pattern'], data[rule['field']]):
             validate['errors'].append({
@@ -68,5 +70,23 @@ def Validation(data):
 
     return validate
 
-def update(data):
-    pass
+def send(data, req):
+    BASE_DIR = settings.BASE_DIR
+    sender_email = os.getenv('EMAIL_HOST_USER')
+    target_email = os.getenv('CONTACT_FORM_EMAIL')
+
+    subject =data['subjectField']
+    context = {
+        'path': req.get_host(),
+        'from':  data['emailField'],
+        'message':  data['messageField']
+    }
+
+    html_version = os.path.join(BASE_DIR, 'portfolio/templates/email_contact_form_html.html')
+    plain_version = os.path.join(BASE_DIR, 'portfolio/templates/email_contact_form_plain.html')
+    html_message = render_to_string(html_version, context = context)
+    plain_message = render_to_string(plain_version, context = context)
+
+    message = EmailMultiAlternatives(subject, plain_message, sender_email, [target_email])
+    message.attach_alternative(html_message, "text/html") # attach html version
+    message.send()

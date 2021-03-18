@@ -1,7 +1,7 @@
 {% load i18n %}
 <vue-component>
     <contact-number class="contact__portals__link contact__portals__link--phone contact-number" aria-role="link" loading-label="loading">
-        {% include 'partial/icon-img.html' with url=img.image.source.url left=img.left top=img.top width=img.width  height=img.height %}
+        {% include 'partial/icon-img.html' %}
         <template #controls>
             <button class="contact-number__btn contact-number__btn--copy"
                     data-action="copy"

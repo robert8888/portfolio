@@ -15,6 +15,17 @@ def s3proxy(req):
     if not path:
         return HttpResponse(status=404)
 
+    response = generatePresignedUrl(path)
+
+    return HttpResponseRedirect(response)
+
+def replaceImgUrl(html):
+    img_path = "(?:"+AWS_URL+")(.*\.(?:png|jpg|jpeg|gif))"
+    pattern = "(<img.*?src=\")"+img_path+".*\""
+    transformed_html = re.sub(pattern, "\\1/s3image?p=\\2\"", html)
+    return transformed_html
+
+def generatePresignedUrl(path):
     s3_client = boto3.client('s3',
         aws_access_key_id= AWS_ACCESS_KEY_ID,
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
@@ -29,10 +40,4 @@ def s3proxy(req):
         }, ExpiresIn=172800
     )
 
-    return HttpResponseRedirect(response)
-
-def replaceImgUrl(html):
-    img_path = "(?:"+AWS_URL+")(.*\.(?:png|jpg|jpeg|gif))"
-    pattern = "(<img.*?src=\")"+img_path+".*\""
-    transformed_html = re.sub(pattern, "\\1/s3image?p=\\2\"", html)
-    return transformed_html
+    return response

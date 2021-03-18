@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-18 15:10+0100\n"
+"PO-Revision-Date: 2021-03-18 15:05+0000\n"
+"Last-Translator: b'  <robert.kami88@gmail.com>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.5\n"
+
+#: .\templates\partial\contact-number-component.html:8
+msgid "Number was copied to clipboard"
+msgstr "Numer został skopiowany"
+
+#: .\templates\partial\contact-number-component.html:9
+msgid "copy"
+msgstr "kopiuj"
+
+#: .\templates\partial\contact-number-component.html:11
+msgid "call"
+msgstr "zadzwoń"
+
+#: .\templates\sections\section-about.html:2
+msgid "about"
+msgstr "o-mnie"
+
+#: .\templates\sections\section-contact.html:2
+msgid "contact"
+msgstr "kontakt"
+
+#: .\templates\sections\section-contact.html:26
+msgid "Download Reasume"
+msgstr "Pobierz aplikacje"
+
+#: .\templates\sections\section-footer.html:9
+msgid "All Rights Reserved"
+msgstr "Wszelkie prawa zastrzeżone"
+
+#: .\templates\sections\section-projects.html:2
+msgid "projects"
+msgstr "projekty"
+
+#: .\templates\sections\section-projects.html:149
+msgid "See all"
+msgstr "Zobacz wszystkie"
+
+#: .\templates\sections\section-stack.html:2
+msgid "technology"
+msgstr "technologie"
+
+#: .\templates\sections\section-welcome.html:2
+msgid "welcome"
+msgstr "witaj"
+
+#: .\views\contact_form.py:30
+msgid "Google Recaptcha authorization fail"
+msgstr "Autoryzacja google captcha nie powiodła się "
+
+#: .\views\contact_form.py:50
+msgid "Email address not valid"
+msgstr "Adres email nieprawidłowy "
+
+#: .\views\contact_form.py:54
+msgid "Subject value too short, min 6 chars"
+msgstr "Temat jest zbyt krótki, minimum 6 znaków"
+
+#: .\views\contact_form.py:58
+msgid "Message value too short, min 20 chars"
+msgstr "Długość wiadomości zbyt krótka, minimum 20 znaków"

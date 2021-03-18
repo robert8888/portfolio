@@ -52,6 +52,10 @@ export default defineComponent({
       type: String,
       default: ""
     },
+    errorMessage:{
+      type: String,
+      default: ""
+    },
     submitButtonLabel:{
       type: String,
       default: "Send message"
@@ -90,8 +94,6 @@ export default defineComponent({
 
       const token = await getCaptchaToken();
       const csrfToken = window.csrfToken  as string;
-      // //@ts-ignore
-      // const elements = e.target.elements;
 
       const data = [...this.fieldsMap].reduce((data, [id, element]) => ({
             ...data,
@@ -103,8 +105,9 @@ export default defineComponent({
         })
 
       const origin = location.origin
+      const path = location.pathname
 
-      const response = await fetch(origin + "/api/contact-form", {
+      const response = await fetch(`${origin}${path}api/contact-form`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -116,7 +119,7 @@ export default defineComponent({
       })
       .then(response => response.json())
       .catch(() => {
-        this.message = "Sorry. The form could not be sent for reasons beyond your control"
+        this.message = this.errorMessage;
         this.isSuccessMessage = false;
       }).finally(() => {
         this.isSending = false;
