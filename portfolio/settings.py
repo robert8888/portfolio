@@ -13,7 +13,7 @@ import os
 import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
-
+import django_heroku
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -310,3 +310,6 @@ ADMIN_REORDER = (
       'app_projects',
       'app_owner',
 )
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
