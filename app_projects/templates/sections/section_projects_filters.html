@@ -6,9 +6,9 @@
                     <div class="projects__filter dropdown__wrapper dropdown__wrapper--filter">
                         <vue-component>
                             <projects-filter label="Filter" param="type">
-                                <select-item value="page"> Page </select-item>
-                                <select-item value="app"> App </select-item>
-                                <select-item value="lib"> Lib </select-item>
+                                {% for type in project_types %}
+                                <select-item value="{{type.value}}"> {{type.display}} </select-item>
+                                {% endfor %}
                             </projects-filter>
                         </vue-component>
                     </div>
@@ -17,24 +17,11 @@
                     <div class="projects__filter dropdown__wrapper dropdown__wrapper--order">
                         <vue-component>
                             <projects-order label="Order" param="order">
-                                <select-item value="date_asc">
-                                    Date <span class="dropdown__text--right">Asc</span>
-                                </select-item>
-                                <select-item value="date_des">
-                                    Date <span class="dropdown__text--right">Dsc</span>
-                                </select-item>
-                                <select-item value="type_a-z">
-                                    Type <span class="dropdown__text--right">A-Z</span>
-                                </select-item>
-                                <select-item value="type_z-a">
-                                    Type <span class="dropdown__text--right">Z-A</span>
-                                </select-item>
-                                <select-item value="name_a-z">
-                                    Name <span class="dropdown__text--right">A-Z</span>
-                                </select-item>
-                                <select-item value="name_z-a">
-                                    Name <span class="dropdown__text--right">Z-A</span>
-                                </select-item>
+                                {% for type in project_ordering %}
+                                    <select-item value="{{type.value}}">
+                                        {{type.text}} <span class="dropdown__text--right">{{type.text_type}}</span>
+                                    </select-item>
+                                {% endfor %}
                             </projects-order>
                         </vue-component>
                     </div>

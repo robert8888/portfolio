@@ -3,16 +3,20 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy
 
 class ProjectType(models.Model):
-    name = models.CharField(
+    display = models.CharField(
+        max_length = 255,
+    )
+
+    value = models.CharField(
         max_length = 255,
         unique = True
     )
 
     def __str__(self):
-        return self.name.upper()
+        return self.display.upper()
 
     def save(self):
-        self.name = slugify(self.name)
+        self.value = slugify(self.display)
         super(ProjectType, self).save()
 
     class Meta:

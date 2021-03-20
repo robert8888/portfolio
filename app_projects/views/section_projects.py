@@ -3,8 +3,40 @@ from django.db import connection
 from datetime import datetime
 from app_projects.models import ProjectGalleryImage
 
+ordering = [{
+    "column": "app_projects_project.name",
+    "value": "data_asc",
+    "text": "Date",
+    "textType": "Z-A"
+},{
+    "column": "app_projects_project.name",
+    "value": "date_dsc",
+    "text": "Date",
+    "textType": "Z-A"
+},{
+    "column": "app_projects_project.name",
+    "value": "name_asc",
+    "text": "Name",
+    "textType": "A-Z"
+},{
+    "column": "app_projects_project.name",
+    "value": "name_dsc",
+    "text": "Name",
+    "textType": "Z-A"
+},{
+    "column": "app_projects_project.name",
+    "value": "type_asc",
+    "text": "Type",
+    "textType": "A-Z"
+},{
+    "column": "app_projects_project.name",
+    "value": "type_dsc",
+    "text": "Type",
+    "textType": "Z-A"
+}]
+
+
 def process(request, config, context, *args):
-    print('process success', config, context)
     lang = get_language()
     def getProjects():
         query = f"""
@@ -15,7 +47,7 @@ def process(request, config, context, *args):
         app_projects_project_translation.title,
         app_projects_project_translation.subtitle,
         app_projects_project_translation.description_short,
-        app_projects_project_type.name,
+        app_projects_project_type.display,
         app_projects_project.gallery_id
         from app_projects_project
         LEFT JOIN app_projects_project_translation ON app_projects_project_translation.master_id = app_projects_project.id
@@ -71,7 +103,6 @@ def process(request, config, context, *args):
         images = ProjectGalleryImage.objects.filter(gallery__in = galleries_ids)
         galleries = {}
         for image in images:
-#             print(image.image.full)
             gallery = galleries.get(image.gallery_id, [])
             gallery.append(image)
             galleries[image.gallery_id] = gallery
