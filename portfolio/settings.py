@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 import django_heroku
 load_dotenv()
 
+django_heroku.settings(locals())
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -312,4 +313,3 @@ ADMIN_REORDER = (
 )
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
