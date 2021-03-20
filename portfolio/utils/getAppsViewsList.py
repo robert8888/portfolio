@@ -7,7 +7,7 @@ def getAppsViewsList(pattern = '.*'):
     app_dirs = [
         {'path': os.path.join(app.path, 'views'), 'name': app.name}
         for app in apps.get_app_configs()
-            if app.verbose_name.startswith('App')
+            if app.name.startswith('app')
     ]
     views_list = []
     for app in app_dirs:

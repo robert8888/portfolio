@@ -140,8 +140,8 @@ form{
                 border:none;
                 overflow: initial;
                 fieldset.module{
-                    display: flex;
-                    flex-wrap: wrap;
+                    //display: flex;
+                    //flex-wrap: wrap;
                     &.form__contact-image__fieldset{
                         display: block;
                     }
@@ -308,33 +308,6 @@ form .inline-group[data-inline-type=stacked] fieldset.module.section__view{
     }
 }
 
-.django-ckeditor-widget{
-    //noinspection CssInvalidPropertyValue
-    width: stretch;
-}
-
-textarea.cke_source{
-    font-size: 1rem;
-}
-div.CodeMirror-vscrollbar{
-    @include scroll(
-        transparent,
-        var(--color-pallet-4),
-        $color-pallet-1
-    )
-}
-.CodeMirror-sizer{
-    background: var(--color-bg-primary);
-    div.CodeMirror-activeline-background{
-        background: var(--color-bg-secondary);
-    }
-}
-div.CodeMirror-gutters{
-   .CodeMirror-gutter{
-       background: var(--color-bg-secondary);
-   }
-}
-
 form fieldset.form__contact-image__fieldset{
     display: block;
 }
@@ -344,5 +317,69 @@ div.polymorphic-type-menu{
     padding: 0.25rem;
     li {
         margin: .25rem 0;
+    }
+}
+
+input[type=button].add-array-item{
+    @include button();
+    &:hover,
+    &:focus,
+    &:hover:focus{
+        outline: none;
+    }
+}
+
+input[type=color]{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-left: 1px;
+    &:focus, &:active, &:focus:active{
+        outline: none;
+    }
+    &:focus {
+        border-left: 1px solid var(--color-pallet-1);
+    }
+}
+
+.input{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    &, &:hover, &:focus, &:hover:focus{
+        outline: none
+    }
+    &:checked + &__overlay:after{
+        display: block;
+    }
+    &__wrapper{
+        width: 1rem;
+        height: 1rem;
+        display: inline-flex;
+        position: relative;
+        vertical-align: middle;
+        margin-right: 0.75em;
+        & + label.vCheckboxLabel{
+            padding: 0;
+            vertical-align: middle;
+            line-height: 1rem;
+        }
+    }
+    &__overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border: 1px solid var(--color-pallet-1);
+        &:after{
+            content: "";
+            display: none;
+            position: absolute;
+            @each $cord in (top, left, right, bottom){
+                #{$cord}: 2px;
+            }
+            background: var(--color-pallet-2);
+        }
     }
 }

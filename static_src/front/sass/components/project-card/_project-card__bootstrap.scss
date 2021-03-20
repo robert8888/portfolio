@@ -24,6 +24,7 @@
       @at-root #{selector.unify(&, a)}{
         @include header-font();
         @include stacking('card-porject-link');
+        white-space: nowrap;
       }
     }
   }
@@ -88,6 +89,10 @@
   &__title{
     @include header-font();
     @include header-link();
+    &-link{
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   &__subtitle{

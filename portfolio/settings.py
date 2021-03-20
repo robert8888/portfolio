@@ -48,9 +48,11 @@ INSTALLED_APPS = [
     'webpack_loader',
     'solo.apps.SoloAppConfig',
     'fieldsets_with_inlines',
+    'django_better_admin_arrayfield',
     'prettyjson',
     'imagefield',
     'compressor',
+    'admin_reorder',
     'django.contrib.admin',
     'ckeditor',
     'ckeditor_uploader',
@@ -59,7 +61,6 @@ INSTALLED_APPS = [
     'rosetta',
     'parler',
 
-#     'projects.apps.ProjectsConfig',
     'app_index.apps.IndexAppConfig',
     'app_projects.apps.ProjectsAppConfig',
     'app_owner.apps.AppOwnerConfig'
@@ -74,6 +75,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    'admin_reorder.middleware.ModelAdminReorder',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -301,3 +303,10 @@ CKEDITOR_CONFIGS = {
         'templates_files': ['/static/ckeditor/content_templates/editor-templates.js'],
     }
 }
+
+
+ADMIN_REORDER = (
+      'app_index',
+      'app_projects',
+      'app_owner',
+)

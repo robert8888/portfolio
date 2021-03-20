@@ -73,7 +73,7 @@ class contactNumberAdmin(NestedPolymorphicInlineSupportMixin, NestedModelAdminMi
     base_model = ContactNumber
     inlines = [ContactImageInline]
 
-
+@admin.register(Contact)
 class contactAdmin(PolymorphicParentModelAdmin):
     polymorphic_list = True
     list_display = ['name', 'order', 'is_number_text']

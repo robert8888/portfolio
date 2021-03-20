@@ -19,13 +19,6 @@ class ContactImage(PolymorphicModel):
     def is_sprite(self):
         return self.IS_SPRITE
 
-#     def dimensions(self):
-#         return {
-#             'width': self.width if self.width else self.image.width,
-#             'height': self.height if self.height else self.image.height,
-#             'top': self.top if self.top else 0,
-#             'left': self.top if self.top else 0,
-#         }
 
     def __str__(self):
         return self.image.name

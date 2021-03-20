@@ -1,0 +1,9 @@
+<ul class="card-project__technology-list">
+    {% for item in list %}
+    <li class="card-project__technology-list__item" style="--color:{{ item.color }}">
+        <a class="card-project__technology__link js" href="{{item.link}}">
+            {{item.name}}
+        </a>
+    </li>
+    {% endfor %}
+</ul>

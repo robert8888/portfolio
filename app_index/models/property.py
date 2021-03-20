@@ -40,6 +40,7 @@ class Property(PolymorphicModel):
 
     class Meta:
         verbose_name = "Property"
+        verbose_name_plural = "Properties"
 
 
 class PropertyText(Property, TranslatableModel):

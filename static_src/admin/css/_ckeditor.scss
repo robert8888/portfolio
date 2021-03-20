@@ -6,6 +6,10 @@
   .cke_top, .cke_bottom{
     background: var(--color-bg-primary);
   }
+  .cke_contents{
+    border-left: 1px solid var(--color-pallet-1);
+    border-right: 1px solid var(--color-pallet-1);
+  }
 }
 
 .cke_dialog{
@@ -118,6 +122,34 @@
   p#{&}_message{
     color: var(--color-text);
     background: var(--color-pallet-9);
+  }
+}
+
+
+.django-ckeditor-widget{
+  //noinspection CssInvalidPropertyValue
+  width: stretch;
+}
+
+textarea.cke_source{
+  font-size: 1rem;
+}
+div.CodeMirror-vscrollbar{
+  @include scroll(
+    transparent,
+    var(--color-pallet-4),
+    $color-pallet-1
+  )
+}
+.CodeMirror-sizer{
+  background: var(--color-bg-primary);
+  div.CodeMirror-activeline-background{
+    background: var(--color-bg-secondary);
+  }
+}
+div.CodeMirror-gutters{
+  .CodeMirror-gutter{
+    background: var(--color-bg-secondary);
   }
 }
 
