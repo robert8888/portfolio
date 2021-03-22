@@ -1,16 +1,22 @@
+import {getProjects} from "@/api/backend_api";
 
 interface Project {
-    id: string;
+    name: string;
     type: string;
+    typeValue: string;
     title: string;
     subtitle: string;
     description: string;
     technologies: {
+        color: string;
         name: string;
-        text: string;
+        link: string;
+        isHighlighted: boolean;
     }[];
-    gallery: {
+    images: {
         url: string;
+        height: number;
+        width: number;
     }[];
 }
 
@@ -21,9 +27,7 @@ interface Status{
 }
 
 export interface ProjectsState {
-    filter: {
-        [key: string]: number[] | string[] | string;
-    };
+    filter: Map<string, string[]>;
     order: {
         value: string;
         param: string;
@@ -67,7 +71,7 @@ export const GETTERS = {
 
 export default {
     state: () => ({
-        filter: {},
+        filter: new Map<string, string[]>(),
         order: {
             value: "",
             param: "",
@@ -88,8 +92,10 @@ export default {
     } as ProjectsState),
 
     mutations: {
-        [MUTATIONS.SET_FILTER_VALUE]: (state: ProjectsState, payload: {type: string; value: number[] | string[] | string}) => {
-            state.filter[payload.type] = payload.value;
+        [MUTATIONS.SET_FILTER_VALUE]: (state: ProjectsState, payload: {type: string; value: string | string[] }) => {
+            if(typeof payload.value === 'string')
+                    payload.value = [payload.value]
+            state.filter.set(payload.type, payload.value)
         },
         [MUTATIONS.SET_ORDER]: (state: ProjectsState, {value, param}: {value: string; param: string}) => {
             state.order.value = value;
@@ -120,7 +126,7 @@ export default {
 
     getters: {
         [GETTERS.GET_FILTER_VALUE]: (state: ProjectsState) => (type: string) => {
-            return state.filter[type];
+            return state.filter.get(type);
         },
         [GETTERS.GET_ORDER]: (state: ProjectsState) => {
             return state.order;
@@ -134,8 +140,39 @@ export default {
     },
 
     actions: {
-        [ACTIONS.FETCH_PROJECTS]({ commit }: {commit: Function}){
-            // no empty
+        async [ACTIONS.FETCH_PROJECTS](
+            { commit, state }: {commit: Function; state: ProjectsState},
+        ){
+            commit(MUTATIONS.SET_STATUS_LOADING, true)
+            const data = {} as Record<string, any>
+            state.filter.forEach((value, key) => {
+                data[key] = value.join(",")
+            })
+            data[state.order.param] = state.order.value
+            try{
+                const response = await getProjects(data)
+                console.log('fetching projects', response.data)
+                if(response.success){
+                    commit(MUTATIONS.SET_PROJECTS, response.data as Project[])
+                } else
+                    commit(MUTATIONS.SET_STATUS_RESULTS, {
+                        success: false,
+                        error: [
+                            'Search projects api error'
+                        ],
+                        loading: false,
+                    })
+            } catch {
+                commit(MUTATIONS.SET_STATUS_RESULTS, {
+                    success: false,
+                    error: [
+                        'Api connection error'
+                    ],
+                    loading: false,
+                })
+            } finally {
+                commit(MUTATIONS.SET_STATUS_LOADING, false)
+            }
         },
         [ACTIONS.UPDATE_FILTER]({ commit }: {commit: Function}, payload: {type: string; value: string[] | number[] | string}){
             commit(MUTATIONS.SET_FILTER_VALUE, payload);

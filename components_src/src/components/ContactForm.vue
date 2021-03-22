@@ -16,7 +16,7 @@
 import {defineComponent, computed} from "vue";
 import Spinner from "./Spinner.vue";
 import shallowArrayEqual from "@/utils/shallow-array-compare";
-import getCaptchaToken from "@/utils/get-captcha-token";
+import {sendForm} from "@/api/backend_api";
 
 export type ErrorList = Array<{
   message: string;
@@ -92,42 +92,22 @@ export default defineComponent({
       this.isSending = true;
       this.clearValidation();
 
-      const token = await getCaptchaToken();
-      const csrfToken = window.csrfToken  as string;
-
       const data = [...this.fieldsMap].reduce((data, [id, element]) => ({
             ...data,
             [id]: (element as HTMLFormField).value
-          }),
-          {
-          gRrecaptchaRresponse: token,
-          csrfMiddlewareToken: csrfToken
-        })
+          }), {})
 
-      const origin = location.origin
-      const path = location.pathname
-
-      const response = await fetch(`${origin}${path}api/contact-form`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          "X-CSRFToken": csrfToken
-        },
-        referrerPolicy: 'origin',
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .catch(() => {
+      try{
+        const response = await sendForm(data);
+        response.success
+            ? this.setSuccessMessage()
+            : this.setValidationMessages(response.errors as ErrorList)
+      } catch {
         this.message = this.errorMessage;
         this.isSuccessMessage = false;
-      }).finally(() => {
+      } finally {
         this.isSending = false;
-      })
-
-      response.success
-          ? this.setSuccessMessage()
-          : this.setValidationMessages(response.errors as ErrorList)
+      }
     },
 
     clientValidation(element: HTMLFormField){

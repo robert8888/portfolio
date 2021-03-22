@@ -2,13 +2,13 @@
 
 <card-project title="{{project.title}}" id="{{project.id}}" type="{{project.type}}">
     <template #header>
-        <a class="card-project__title-link" href="/project/test">{{project.title}}</a>
-        <a class="card-project__type-link" href="/projects?type=app"> {{project.type.upper}} </a>
+        <a class="card-project__title-link" href="/project/test">{{project.title|safe}}</a>
+        <a class="card-project__type-link" href="/projects?type={{project.typeValue}}"> {{project.type.upper}} </a>
     </template>
     <template #gallery>
         {% include 'partial/gallery.html' with images=project.images %}
     </template>
-    <h4 class="card-project__subtitle">{{project.subtitle}}</h4>
-    {{project.description_short|safe}}
+    <h4 class="card-project__subtitle">{{project.subtitle|safe}}</h4>
+    {{project.description|safe}}
     {% include 'partial/technology-list.html' with list=project.technologies %}
 </card-project>

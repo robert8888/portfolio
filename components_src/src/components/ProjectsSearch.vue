@@ -13,6 +13,9 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import {ACTIONS, useStore} from "@/store";
+import getUrlParam from "@/utils/get-url-param";
+import setUrlParam from "@/utils/set-url-param";
+
 export default defineComponent({
   props: {
     label: {
@@ -22,7 +25,7 @@ export default defineComponent({
     param: {
       type: String,
       default: "search",
-      require: 'search'
+      require: true
     }
   },
 
@@ -32,17 +35,26 @@ export default defineComponent({
     }
   },
 
+  mounted(){
+    if(this.search){
+      this.value = this.search
+    }
+  },
+
   setup(props){
      const store = useStore();
+      const search = decodeURI(getUrlParam(props.param)[0] || '');
+
      const update = (value: string) => {
        store.dispatch(ACTIONS.UPDATE_FILTER, {type: props.param, value})
      }
-     return { update }
+     return { update, search }
   },
 
   methods: {
     updateValue: function (){
       this.update(this.value)
+      setUrlParam(this.param, this.value ? this.value : [])
     }
   }
 })

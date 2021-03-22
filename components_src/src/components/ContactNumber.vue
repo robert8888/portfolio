@@ -21,8 +21,8 @@
 <script lang="ts">
 import {defineComponent, nextTick} from "vue";
 import Modal from "./Modal.vue";
-import getCaptchaToken from "@/utils/get-captcha-token";
 import Spinner from "@/components/Spinner.vue";
+import {getNumber} from "@/api/backend_api";
 
 declare global {
   interface Window {
@@ -58,33 +58,10 @@ export default defineComponent({
 
   methods:{
     async getNumber(){
-      this.isLoading = true;
-
       try{
-        const captchaToken =  await getCaptchaToken();
-        const csrfToken = window.csrfToken  as string;
-
-        const origin = location.origin
-        const path = location.pathname
-
-        const response = await fetch(`${origin}${path}api/contact-phone`, {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-            "X-CSRFToken": csrfToken
-          },
-          referrerPolicy: 'origin',
-          body: JSON.stringify({
-            captchaToken,
-          })
-        })
-
-
-        const data = await response.json();
-
+        this.isLoading = true;
+        const data = await getNumber()
         this.number = this.formatPhoneNumber(data.number);
-
       } catch(error){
         this.isSuccess = false;
       } finally{

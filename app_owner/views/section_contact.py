@@ -4,29 +4,6 @@ from portfolio.utils.memoize import memoize
 from portfolio.s3proxy import generatePresignedUrl
 from django.conf import settings
 
-# def process(request, config, context, *args):
-#     contacts = Contact.objects.select_related('contactimage').all()
-#     contact_images_ids = [contact.contactimage.id for contact in contacts]
-#
-#     contact_images = {}
-#     for contact_image in ContactImage.objects.filter(id__in = contact_images_ids):
-#         contact_images[contact_image.contact.id] = contact_image
-#
-#     contacts_data = []
-#     for contact in Contact.objects.select_related('contactimage').all():
-#         contact = {
-#             'name' : contact.name,
-#             **({'url': contact.url } if not contact.is_number() else {}),
-#             **({'number': contact.number } if contact.is_number() else {}),
-#             'contact_image': contact_images[contact.id],
-#             'is_number': contact.is_number()
-#         }
-#         contacts_data.append(contact)
-#
-#     context['contacts'] = contacts_data
-#     print("----", context['contacts'][0].get('contact_image').image.source.url)
-#     return context
-
 # because djnago ORM is slow - direct database lookup speed up loading context data
 def process(request, config, context, *args):
     query = f"""
@@ -68,3 +45,28 @@ def process(request, config, context, *args):
             **({'img_left': row[9] } if not row[9] == None else {}),
         } for row in rows ]
     return context
+
+
+
+# def process(request, config, context, *args):
+#     contacts = Contact.objects.select_related('contactimage').all()
+#     contact_images_ids = [contact.contactimage.id for contact in contacts]
+#
+#     contact_images = {}
+#     for contact_image in ContactImage.objects.filter(id__in = contact_images_ids):
+#         contact_images[contact_image.contact.id] = contact_image
+#
+#     contacts_data = []
+#     for contact in Contact.objects.select_related('contactimage').all():
+#         contact = {
+#             'name' : contact.name,
+#             **({'url': contact.url } if not contact.is_number() else {}),
+#             **({'number': contact.number } if contact.is_number() else {}),
+#             'contact_image': contact_images[contact.id],
+#             'is_number': contact.is_number()
+#         }
+#         contacts_data.append(contact)
+#
+#     context['contacts'] = contacts_data
+#     print("----", context['contacts'][0].get('contact_image').image.source.url)
+#     return context

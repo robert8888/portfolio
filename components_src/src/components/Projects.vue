@@ -1,9 +1,35 @@
 <template>
   <div class="projects">
-    <div class="projects__container">
+    <div v-if="showInitialRenderedContent" :class="['projects__container', {'projects__container--loading': status.loading}]">
       <slot/>
     </div>
-    <div class="projects__loading-container" ref="loading" :style="[loading ? {display: 'block'} : {display: 'none'}]">
+    <template v-else>
+      <div :class="['projects__container', {'projects__container--loading': status.loading}]">
+        <card-project v-for="project in projects" :key="project.title" :id="project.slug">
+          <template #header>
+            <a class="card-project__title-link" :href="'/project/' + project.slug" v-html="project.title"></a>
+            <a class="card-project__type-link" :href="'/projects?type=' + project.typeValue"> {{project.type}}</a>
+          </template>
+          <template #gallery>
+            <gallery>
+              <gallery-item v-for="image in project.images" :key="image.url.slice(-10)" :src="image.url"></gallery-item>
+            </gallery>
+          </template>
+          <h4 class="card-project__subtitle" v-html="project.subtitle"></h4>
+          <p class="card-project__text" v-html="project.description"></p>
+          <ul class="card-project__tech-list">
+            <li v-for="tech in project.technologies" :key="tech.name"
+                :class="['card-project__tech-list-item', {'card-project__tech-list-item--highlighted': tech.isHighlighted}] "
+                :style="{'-color': tech.color}">
+              <a class="card-project__tech-list-link js" :href="tech.link">
+                {{tech.name}}
+              </a>
+            </li>
+          </ul>
+        </card-project>
+      </div>
+    </template>
+    <div class="projects__loading-container" ref="loading" :style="[status.fetching ? {display: 'grid'} : {display: 'none'}]">
       <div class="card-project--demo"/>
       <div class="card-project--demo"/>
       <div class="card-project--demo"/>
@@ -12,15 +38,56 @@
   </div>
 </template>
 <script lang="ts">
-import {defineComponent} from "vue";
+import {computed, defineComponent, watch, reactive, ref} from "vue";
 import Spinner from "@/components/Spinner.vue";
+import {ACTIONS, useStore} from "@/store";
+import CardProject from "@/components/Card.vue";
+import Gallery from "@/components/Gallery.vue";
+import GalleryItem from "@/components/GalleryItem.vue";
 
 export default defineComponent({
-  components: {Spinner},
+  components: {Spinner, CardProject, Gallery, GalleryItem},
 
   data(){
     return {
-      loading: false
+      showInitialRenderedContent: true,
+
+    }
+  },
+
+  setup(){
+    const store = useStore();
+    const filters = computed(() => store.state.projects.filter)
+    const order = computed(() => store.state.projects.order)
+    const status = computed(() => store.state.projects.status)
+    const projects  = computed(() => store.state.projects.projects)
+    console.log('proejcts', projects)
+    const setupTime = performance.now()
+    watch([filters,  order], ([filters, order]) =>{
+      // prevent re-fetching initial loaded projects
+      // after updating filters based on search query
+      if(performance.now() - setupTime < 300)
+          return
+      store.dispatch(ACTIONS.FETCH_PROJECTS)
+    }, {deep: true})
+    return {
+      status,
+      projects,
+    }
+  },
+
+  //
+  watch:{
+    status:{
+      deep: true,
+      handler(){
+        console.log("net url", this.status, performance.now())
+      }
+    },
+    projects(){
+      console.log('this.projects', this.projects, this.showInitialRenderedContent)
+      if(this.showInitialRenderedContent)
+        this.showInitialRenderedContent = false;
     }
   }
 })

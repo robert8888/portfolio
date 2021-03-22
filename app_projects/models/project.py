@@ -2,6 +2,9 @@ from django.db import models
 from django.utils.translation import gettext_lazy
 from parler.models import TranslatableModel, TranslatedFields
 from django.utils.text import slugify
+from django.contrib.postgres.search import SearchVectorField
+from django.contrib.postgres.search import SearchVector
+from django.db.models import Value
 
 class Project(TranslatableModel):
     translations = TranslatedFields(
@@ -30,7 +33,9 @@ class Project(TranslatableModel):
 
         description_full = models.TextField(
             verbose_name = gettext_lazy('Description long')
-        )
+        ),
+
+        search_vector = SearchVectorField(null=True)
     )
 
     type = models.ForeignKey(
@@ -73,8 +78,15 @@ class Project(TranslatableModel):
 
     def save(self):
         self.slug = slugify(self.title)
+        technologies = ' '.join([technology.name for technology in self.technology.all()])
+        self.search_vector = SearchVector(
+            SearchVector('name', weight="C")
+            + SearchVector('title', weight="A")
+            + SearchVector('subtitle', weight="A")
+            + SearchVector('description_short', weight="B")
+            + SearchVector(Value(technologies, models.TextField()), weight="C")
+        )
         return super(Project, self).save()
-
 
     class Meta:
         verbose_name = gettext_lazy('Project')

@@ -8,12 +8,13 @@
   </select-component>
 </template>
 <script lang="ts">
-import {defineComponent} from "vue";
+import {computed, defineComponent} from "vue";
 import {useStore, ACTIONS} from "@/store";
 import SelectItem from "@/components/SelectItem.vue";
 import SelectComponent from "@/components/Select.vue"
 import getUrlParam from "@/utils/get-url-param";
 import setUrlParam from "@/utils/set-url-param";
+import shallowArrayEqual from "@/utils/shallow-array-compare";
 
 export default defineComponent({
   components: {SelectComponent, SelectItem},
@@ -38,7 +39,7 @@ export default defineComponent({
       store.dispatch(ACTIONS.UPDATE_FILTER, {type: props.param, value})
     }
 
-    return { selected, update }
+    return { selected, update}
   },
 
   methods: {
@@ -46,6 +47,7 @@ export default defineComponent({
       this.update(values);
       setUrlParam(this.param, values);
     }
-  }
+  },
+
 })
 </script>

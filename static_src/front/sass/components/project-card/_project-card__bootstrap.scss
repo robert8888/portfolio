@@ -53,6 +53,11 @@
     }
   }
 
+  b {
+    padding: 0 2px;
+    background: var(--color-pallet-primary-dark);
+  }
+
   header{
     display: flex;
     justify-content: space-between;
@@ -151,26 +156,60 @@
     }
   }
 
+  // to remove after editing hoem page template
+  //&__technology{
+  //  &-list {
+  //    list-style: none;
+  //    display: flex;
+  //    flex-wrap: wrap;
+  //    height: 75px;
+  //    overflow: hidden;
+  //
+  //    &__item {
+  //      display: block;
+  //      height: 27.5px;
+  //      margin: 5px 5px 5px 0;
+  //      padding: 4px 6px;
+  //      border-radius: 2px;
+  //      background: var(--color-pallet-primary-alpha);
+  //
+  //      & a {
+  //        color: var(--color-text-primary);
+  //        font-size: 0.875rem;
+  //        font-weight: 600;
+  //      }
+  //    }
+  //  }
+  //}
 
-  &__technology-list{
+
+  &__tech-list {
+    @debug &;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     height: 75px;
     overflow: hidden;
-    &__item{
-      display: block;
-      height: 27.5px;
-      margin: 5px 5px 5px 0;
-      padding: 4px 6px;
-      border-radius: 2px;
-      background: var(--color-pallet-primary-alpha);
-      &  a{
-        color: var(--color-text-primary);
-        font-size: 0.875rem;
-        font-weight: 600;
-      }
+  }
+  &__tech-list-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32.5px;
+    margin: 5px 5px 5px 0;
+    padding: 4px 6px;
+    border-radius: 2px;
+    border: 2px solid var(--color-pallet-primary-alpha);
+    &--highlighted{
+      background: var(--color-pallet-primary);
     }
+    a {
+      color: var(--color-text-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+  }
+  &__tech-list-link a {
   }
 
 

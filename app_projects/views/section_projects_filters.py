@@ -1,6 +1,6 @@
 from app_projects.models import ProjectType
 from datetime import datetime
-from .section_projects import ordering
+from .projects import ordering
 
 def process(request, config, context, *args):
     context = {

@@ -9,6 +9,10 @@
   @include media('xxl'){
     margin: 125px 0 200px 0;
   }
+  &__container--loading{
+    filter: blur(1px);
+    opacity: .7;
+  }
 
   &__container,
   &__loading-container{
@@ -20,7 +24,6 @@
     @include media("md"){
       grid-template-columns: repeat(2, 1fr);
     }
-
     @include media("lg"){
       grid-template-columns: repeat(3, 1fr);
       &> * {

@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from .views import api_projects
+from .views.api_projects import process as processProjectsRequest
 
 urlpatterns = [
-    path('projects', views.projects, name='projects'),
-    path('project', views.project, name='projects'),
+    path('api/projects', processProjectsRequest , name='projects'),
 ]

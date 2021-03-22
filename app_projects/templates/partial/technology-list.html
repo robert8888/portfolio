@@ -1,28 +1,8 @@
-<ul class="card-project__technology-list">
+<ul class="card-project__tech-list">
     {% for item in list %}
-    <li class="card-project__technology-list__item" style="--color:{{ item.color }}">
-        <a class="card-project__technology__link js" href="{{item.link}}">
-            {{item.name}}
-        </a>
-    </li>
-    {% endfor %}
-    {% for item in list %}
-    <li class="card-project__technology-list__item" style="--color:{{ item.color }}">
-        <a class="card-project__technology__link js" href="{{item.link}}">
-            {{item.name}}
-        </a>
-    </li>
-    {% endfor %}
-    {% for item in list %}
-    <li class="card-project__technology-list__item" style="--color:{{ item.color }}">
-        <a class="card-project__technology__link js" href="{{item.link}}">
-            {{item.name}}
-        </a>
-    </li>
-    {% endfor %}
-    {% for item in list %}
-    <li class="card-project__technology-list__item" style="--color:{{ item.color }}">
-        <a class="card-project__technology__link js" href="{{item.link}}">
+    <li class="card-project__tech-list-item {% if item.isHighlighted %} card-project__tech-list-item--highlighted {% endif %}"
+        style="--color:{{ item.color }}">
+        <a class="card-project__tech-list-link js" href="{{item.link}}">
             {{item.name}}
         </a>
     </li>

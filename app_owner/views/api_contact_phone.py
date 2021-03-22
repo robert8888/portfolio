@@ -4,7 +4,7 @@ from app_owner.models import Contact, ContactNumber
 import json
 
 
-def contactPhone(req):
+def process(req):
     contact_number = Contact.objects.instance_of(ContactNumber)
     number = contact_number[0].number if len(contact_number) else None
     if number is None:
