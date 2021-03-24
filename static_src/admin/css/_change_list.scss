@@ -14,6 +14,10 @@
             &:focus{
                 border-color: var(--color-pallet-9-light);
             }
+            option{
+                background: var(--color-bg-secondary);
+                color: var(--color-text-primary)
+            }
         }
     }
     

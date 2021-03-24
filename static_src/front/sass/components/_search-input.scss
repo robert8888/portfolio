@@ -1,0 +1,72 @@
+@use 'sass:selector';
+@use '@sass/abstracts/mixins' as * ;
+@use '@sass/abstracts/animations' as * ;
+@use '@sass/abstracts/assets' as * ;
+
+.projects__search{
+  $self: &;
+  display: flex;
+  position: relative;
+  &:hover,
+  &:focus-within{
+    #{$self}-button{
+      border-bottom-color: var(--color-pallet-secondary);
+    }
+  }
+  &-input{
+    line-height: 1.5rem;
+    width: 100%;
+    border-top: 1px solid transparent;
+    @at-root #{selector.unify(&, input)} {
+        &:hover,
+        &:focus,
+        &:hover:focus{
+          border-top: 1px solid transparent;
+      }
+    }
+  }
+  &-button{
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    width: 75px;
+    @include pseudo(){
+        @include svgMask(
+        $call-svg-magnifier,
+        var(--color-text-primary),
+            inherit,
+            20px,
+            20px
+        );
+      @include transition-center();
+    }
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  &__list{
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    padding: 0 12px;
+    backgrond: var(--color-background-primary);
+    border-left: 2px solid var(--color-pallet-primary);
+    display: none;
+    &--visible{
+      display: block;
+    }
+  }
+  &__item{
+    margin: 12px 0;
+    opacity: .8;
+    &--selected{
+      opacity: 1;
+      text-decoration: underline;
+      text-decoration-width: 2px;
+    }
+    b{
+      color: var(--color-pallet-primary)
+    }
+  }
+}

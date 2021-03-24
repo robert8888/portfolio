@@ -16,7 +16,7 @@
             </gallery>
           </template>
           <h4 class="card-project__subtitle" v-html="project.subtitle"></h4>
-          <p class="card-project__text" v-html="project.description"></p>
+          <div class="card-project__text" v-html="project.description"></div>
           <ul class="card-project__tech-list">
             <li v-for="tech in project.technologies" :key="tech.name"
                 :class="['card-project__tech-list-item', {'card-project__tech-list-item--highlighted': tech.isHighlighted}] "

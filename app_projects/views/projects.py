@@ -2,6 +2,7 @@ from django.utils.translation import get_language
 from django.db import connection
 from django.utils.translation import gettext_lazy
 from app_projects.models import ProjectGalleryImage
+from sqlescapy import sqlescape
 import pydash as py_
 import re
 
@@ -52,11 +53,12 @@ def get(request, params, doSerialization = False):
     def order():
         if not order_param: return ''
         order_conf = py_.find(ordering, {'value': order_param})
+        if not order_conf: return ''
         return f"ORDER BY {order_conf.get('column')} {order_conf.get('type')}"
 
     def filter():
         if not type_param: return ''
-        type_values = type_param.split(',')
+        type_values = sqlescape(type_param.split(','))
         return ' AND (' + ' OR '.join([f"app_projects_project_type.value='{value}'" for value in type_values]) + ')'
 
     def getProjects():
@@ -100,8 +102,8 @@ def get(request, params, doSerialization = False):
             return {}
 
     def searchProjects(input):
-        search_phrase = re.sub('([^\w\s]|((?<=[\s])\d+))', '', input)
-        words = [word.strip() for word in search_phrase.split(' ')]
+        search_phrase = re.sub('([^\w\s]|((?<=[\s])\d+))', '', sqlescape(input))
+        words = [word.strip() for word in search_phrase.split(' ') if not word == ""]
         ts_query_phrase = ' <-> '.join(words)
         ts_query_words = ' | '.join(words)
         query = f"""
@@ -111,7 +113,7 @@ def get(request, params, doSerialization = False):
         project.slug,
         ts_headline(project.title, to_tsquery('{ts_query_phrase} | {ts_query_words}')) as title,
         ts_headline(project.subtitle, to_tsquery('{ts_query_phrase} | {ts_query_words}')) as subtitle,
-        ts_headline(project.description, to_tsquery('{ts_query_phrase} | {ts_query_words}')) as descriptions,
+        ts_headline(project.description, to_tsquery('{ts_query_phrase} | {ts_query_words}'), 'MinWords=200 MaxWords=500') as descriptions,
         project.type,
         project.type_value,
         project.gallery,
@@ -127,11 +129,11 @@ def get(request, params, doSerialization = False):
         app_projects_project_type.value AS type_value,
         app_projects_project.gallery_id AS gallery,
         STRING_AGG(app_projects_technology.name, ',') AS technologies,
-        ts_rank(
+        ts_rank_cd(
           app_projects_project_translation.search_vector,
           to_tsquery('{ts_query_words}')
-        ) + 10 *
-        ts_rank(
+        ) + 2 *
+        ts_rank_cd(
           app_projects_project_translation.search_vector,
           to_tsquery('{ts_query_phrase}')
         ) AS "rank"
@@ -208,14 +210,19 @@ def get(request, params, doSerialization = False):
             for row in rows:
                 id = row[0]
                 highlightedTechnology = getHighlightedTechnologyList(projects.get(id))
-                current = projects_technologies.get(id, [])
-                current.append({
+                isHighlighted = row[1] in highlightedTechnology
+                tech_list = projects_technologies.get(id, [])
+                current = {
                     'name': row[1],
                     'link': row[2],
                     'color': row[3],
-                    'isHighlighted': row[1] in highlightedTechnology
-                })
-                projects_technologies[row[0]] = current
+                    'isHighlighted': isHighlighted
+                }
+                if isHighlighted:
+                    tech_list = [current, *tech_list]
+                else:
+                    tech_list = [*tech_list, current]
+                projects_technologies[row[0]] = tech_list
             return projects_technologies
         except:
             return {}

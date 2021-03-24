@@ -4,7 +4,9 @@ from parler.models import TranslatableModel, TranslatedFields
 from django.utils.text import slugify
 from django.contrib.postgres.search import SearchVectorField
 from django.contrib.postgres.search import SearchVector
+from django_better_admin_arrayfield.models.fields import ArrayField
 from django.db.models import Value
+from .project_search_autocomplete import ProjectSearchAutocomplete
 
 class Project(TranslatableModel):
     translations = TranslatedFields(
@@ -35,7 +37,14 @@ class Project(TranslatableModel):
             verbose_name = gettext_lazy('Description long')
         ),
 
-        search_vector = SearchVectorField(null=True)
+        search_vector = SearchVectorField(null=True),
+
+        autocomplete_hint = ArrayField(
+            models.CharField(max_length = 50, verbose_name = gettext_lazy('hint')),
+            verbose_name = gettext_lazy('Autocomplete hint'),
+            null = True,
+            blank = True
+        )
     )
 
     type = models.ForeignKey(
@@ -87,6 +96,10 @@ class Project(TranslatableModel):
             + SearchVector(Value(technologies, models.TextField()), weight="C")
         )
         return super(Project, self).save()
+
+    def delete(self, *args, **kwargs):
+        ProjectSearchAutocomplete.objects.filter(source_id = self.id, type='project').delete()
+        super(Technology, self).delete(*args, **kwargs)
 
     class Meta:
         verbose_name = gettext_lazy('Project')

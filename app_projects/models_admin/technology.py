@@ -2,6 +2,11 @@ from django.contrib import admin
 from django import forms
 from django.forms.widgets import TextInput
 from parler.admin import TranslatableModelForm, TranslatableAdmin
+from .actions import (
+    addTechnologyAutocomplete,
+    deleteTechnologyAutocomplete,
+    updateTechnologyAutocomplete
+)
 
 from app_projects.models import (
     Image,
@@ -68,3 +73,11 @@ class TechnologyAdminForm(forms.ModelForm):
 class TechnologyAdmin(NestedPolymorphicModelAdmin):
     form = TechnologyAdminForm
     inlines = [TechnologyImageInline]
+    actions = [addTechnologyAutocomplete, deleteTechnologyAutocomplete, updateTechnologyAutocomplete]
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+    pass
+

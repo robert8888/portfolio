@@ -23,6 +23,15 @@
   }
 }
 
+@mixin opacity-out-keyframes(){
+  @keyframes opacity-out{
+    from {opacity: 1}
+    to {opacity: 0}
+  }
+}
+
+
+
 @mixin sliding-up-keyframes(){
   @keyframes sliding-up {
     from{ transform: translateY(0);}
@@ -86,6 +95,12 @@
   opacity: 0;
   @include opacity-keyframes();
   @include animation(opacity, $delay, $duration);
+}
+
+@mixin show-out-animation($delay, $duration){
+  opacity: 1;
+  @include opacity-out-keyframes();
+  @include animation(opacity-out, $delay, $duration);
 }
 
 

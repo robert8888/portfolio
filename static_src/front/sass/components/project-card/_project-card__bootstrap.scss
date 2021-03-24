@@ -141,6 +141,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
+    min-height: 8em;
   }
 
   &__col:last-of-type{

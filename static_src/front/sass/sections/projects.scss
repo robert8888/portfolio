@@ -12,6 +12,9 @@
   &__container--loading{
     filter: blur(1px);
     opacity: .7;
+    div.card-project{
+      @include show-out-animation(0s, .6s);
+    }
   }
 
   &__container,
@@ -79,12 +82,15 @@
 
   .card-project{
     max-width: min(100%, 300px);
+    height: 585px;
 
     transition: transform .2s;
-    will-change: transform;
+    will-change: transform, opacity;
     &:hover{
       transform: scale(1.05);
     }
+
+    @include show-in-animation(0s, .4s);
 
     @include no-motion(){
       &:hover{

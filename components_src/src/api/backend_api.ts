@@ -16,9 +16,19 @@ const request = async (path: string, data:  Record<string, any>) => {
         referrerPolicy: 'origin',
         body: JSON.stringify(data)
     })
-    return response.json()
+    return await response.json() as Promise<Result>
 }
 
+interface Result {
+    success: boolean;
+    error: string[];
+    data: Record<string, any>;
+}
+
+const getLanguageFromPath = () =>{
+    let langPath = location.pathname.split("/")[1]
+    return langPath.length === 2 ? langPath + '/' : '';
+}
 
 export const sendForm = async (data:  Record<string, any>): Promise<any> => {
     const path = API_CONFIGURATION.POST_CONTACT_FORM_URL
@@ -38,11 +48,20 @@ export const getNumber = async (): Promise<any> => {
     return request(location.pathname + path, data)
 }
 
-export const getProjects = async(data: Record<string, any>): Promise<Record<string, any>> => {
+export const getProjects = async(data: Record<string, any>): Promise<Result> => {
     const apiPath = API_CONFIGURATION.GET_PROJECTS_URL
 
-    let langPath = location.pathname.split("/")[1]
-    langPath = langPath.length === 2 ? langPath + '/' : '';
+    const langPath = getLanguageFromPath()
+
+    const path = `/${langPath}${apiPath}`;
+
+    return request(path, data)
+}
+
+export const getAutocomplete = async(data: {input: string}): Promise<Result> => {
+    const apiPath = API_CONFIGURATION.GET_AUTOCOMPLETE
+
+    const langPath = getLanguageFromPath()
 
     const path = `/${langPath}${apiPath}`;
 

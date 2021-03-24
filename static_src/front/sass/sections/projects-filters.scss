@@ -1,8 +1,9 @@
+@use 'sass:selector';
 @use '@sass/abstracts/mixins' as * ;
 @use '@sass/abstracts/animations' as * ;
 @use '@sass/abstracts/assets' as * ;
-@use 'sass:selector';
 @use "@sass/components/dropdown";
+@use "@sass/components/search-input";
 
 .projects-filters{
   @include stacking('filters');
@@ -61,46 +62,3 @@
 }
 
 
-.projects{
-  &__search{
-    $self: &;
-    display: flex;
-    &:hover,
-    &:focus-within{
-      #{$self}-button{
-        border-bottom-color: var(--color-pallet-secondary);
-      }
-    }
-    &-input{
-      line-height: 1.5rem;
-      width: 100%;
-      border-top: 1px solid transparent;
-      @at-root #{selector.unify(&, input)} {
-        &:hover,
-        &:focus,
-        &:hover:focus{
-          border-top: 1px solid transparent;
-        }
-      }
-    }
-    &-button{
-      border-radius: 0;
-      border-left: none;
-      border-right: none;
-      width: 75px;
-      @include pseudo(){
-        @include svgMask(
-          $call-svg-magnifier,
-          var(--color-text-primary),
-          inherit,
-          20px,
-          20px
-        );
-        @include transition-center();
-      }
-      &:hover{
-        cursor: pointer;
-      }
-    }
-  }
-}

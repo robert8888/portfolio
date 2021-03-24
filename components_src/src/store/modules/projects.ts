@@ -1,4 +1,4 @@
-import {getProjects} from "@/api/backend_api";
+import {getAutocomplete, getProjects} from "@/api/backend_api";
 
 interface Project {
     name: string;
@@ -41,6 +41,7 @@ export interface ProjectsState {
     };
     projects: Project[];
     status: Status;
+    autocomplete: string[];
 }
 
 export const MUTATIONS = {
@@ -54,12 +55,15 @@ export const MUTATIONS = {
     SET_PROJECTS: 'set-projects',
     SET_STATUS_LOADING: 'set-status-loading',
     SET_STATUS_RESULTS: 'set-status-results',
+
+    SET_AUTOCOMPLETE_HINTS: 'set-autocomplete-hints',
 }
 
 export const ACTIONS = {
     UPDATE_FILTER: 'update_projects_filtering',
     UPDATE_ORDER: 'update_projects_order',
     FETCH_PROJECTS: 'fetching_projects',
+    UPDATE_AUTOCOMPLETE: 'update_autocomplete_hint-list'
 }
 
 export const GETTERS = {
@@ -67,6 +71,7 @@ export const GETTERS = {
     GET_ORDER: 'get_current_order_value',
     GET_PROJECTS: 'get_current_projects',
     GET_STATUS: 'get_current_status',
+    GET_AUTOCOMPLETE: 'get_autocomplete_list',
 }
 
 export default {
@@ -88,7 +93,8 @@ export default {
             loading: false,
             success: true,
             errors: [],
-        }
+        },
+        autocomplete: new Array<string>()
     } as ProjectsState),
 
     mutations: {
@@ -122,6 +128,9 @@ export default {
         [MUTATIONS.SET_STATUS_RESULTS]: (state: ProjectsState, payload: Status) => {
             state.status = payload;
         },
+        [MUTATIONS.SET_AUTOCOMPLETE_HINTS]: (state: ProjectsState, payload: string[]) => {
+            state.autocomplete = payload
+        }
     },
 
     getters: {
@@ -137,6 +146,9 @@ export default {
         [GETTERS.GET_STATUS]: (state: ProjectsState) => {
             return state.status;
         },
+        [GETTERS.GET_AUTOCOMPLETE]: (state: ProjectsState) => {
+            return state.autocomplete
+        }
     },
 
     actions: {
@@ -151,7 +163,6 @@ export default {
             data[state.order.param] = state.order.value
             try{
                 const response = await getProjects(data)
-                console.log('fetching projects', response.data)
                 if(response.success){
                     commit(MUTATIONS.SET_PROJECTS, response.data as Project[])
                 } else
@@ -180,5 +191,13 @@ export default {
         [ACTIONS.UPDATE_ORDER]({ commit }: {commit: Function}, payload: {index: number}){
             commit(MUTATIONS.SET_ORDER, payload)
         },
+        async [ACTIONS.UPDATE_AUTOCOMPLETE]({ commit }: {commit: Function}, payload: string){
+            const response = await getAutocomplete({input: payload})
+            if(response.success){
+                commit(MUTATIONS.SET_AUTOCOMPLETE_HINTS, response.data as string[])
+            } else {
+                commit(MUTATIONS.SET_AUTOCOMPLETE_HINTS, new Array<string>())
+            }
+        }
     },
 }
