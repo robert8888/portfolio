@@ -2,9 +2,7 @@ from django.db import models
 from django.contrib.postgres.search import SearchVectorField
 
 class ProjectSearchAutocomplete(models.Model):
-    term = models.CharField(
-        max_length = 255,
-    )
+    term = models.TextField()
 
     language_code = models.CharField(
         max_length = 16

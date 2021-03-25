@@ -9,6 +9,8 @@
         {% include 'partial/gallery.html' with images=project.images %}
     </template>
     <h4 class="card-project__subtitle">{{project.subtitle|safe}}</h4>
-    {{project.description|safe}}
+    <div class="card-project__text">
+        {{project.description|safe}}
+    </div>
     {% include 'partial/technology-list.html' with list=project.technologies %}
 </card-project>

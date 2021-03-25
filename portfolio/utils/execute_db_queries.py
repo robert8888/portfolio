@@ -12,7 +12,8 @@ def execute_queries(queries = []):
                     'success': True,
                     'affected': affected
                 })
-            except:
+            except BaseException as error:
+#                 print(error)
                 result_each.append({
                     'success': False,
                 })

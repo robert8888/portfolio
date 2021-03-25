@@ -50,8 +50,9 @@
     top: 100%;
     width: 100%;
     padding: 0 12px;
-    backgrond: var(--color-background-primary);
+    background: var(--color-background-primary);
     border-left: 2px solid var(--color-pallet-primary);
+    box-shadow: 0 8px 8px var(--color-background-primary);
     display: none;
     &--visible{
       display: block;
@@ -60,10 +61,12 @@
   &__item{
     margin: 12px 0;
     opacity: .8;
+    cursor: pointer;
     &--selected{
       opacity: 1;
       text-decoration: underline;
       text-decoration-width: 2px;
+      text-underline-offset: .1em;
     }
     b{
       color: var(--color-pallet-primary)

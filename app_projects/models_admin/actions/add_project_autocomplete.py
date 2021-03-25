@@ -32,6 +32,13 @@ def buildQueryInsert(ids):
           WHERE app_projects_project_translation.master_id IN ({ids})
           UNION
           SELECT
+          regexp_replace(app_projects_project_translation.description_short , E'<[^>]+>', '', 'gi') as "term",
+          app_projects_project_translation.language_code as "language_code",
+          app_projects_project_translation.master_id as "project_id"
+          FROM app_projects_project_translation
+          WHERE app_projects_project_translation.master_id IN ({ids})
+          UNION
+          SELECT
           unnest(app_projects_project_translation.autocomplete_hint) as "term",
           app_projects_project_translation.language_code as "language_code",
           app_projects_project_translation.master_id as "project_id"

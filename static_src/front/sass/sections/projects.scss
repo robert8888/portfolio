@@ -82,7 +82,7 @@
 
   .card-project{
     max-width: min(100%, 300px);
-    height: 585px;
+    min-height: 585px;
 
     transition: transform .2s;
     will-change: transform, opacity;

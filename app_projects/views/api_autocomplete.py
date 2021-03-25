@@ -10,16 +10,16 @@ def buildQuery(input):
     input = sqlescape(input)
     print('input', input)
     word_list = [word.strip() for word in input.split(' ') if not word == '']
-    last_word = word_list[-1]
-    phrase = " <-> ".join(word_list[:-1])
+    last_word = word_list[-1] if len(word_list) else input
+    phrase = " <-> ".join(word_list[:-1] if len(word_list) else [])
     if phrase:
         phrase += " <-> "
-    ts_query = phrase + last_word + ':*'
-
+    ts_query = phrase + last_word + ':*' + ' | ' + last_word + ':*'
+    print(ts_query)
     lang = get_language()
     return f"""
     SELECT
-    ts_headline(match.term, to_tsquery('{ts_query}'), 'MaxFragments = 50') as term,
+    ts_headline(match.term, to_tsquery('{ts_query}'), 'MinWords = 5, MaxWords = 10') as term,
     match.rank
     FROM (
       SELECT
@@ -36,7 +36,9 @@ def buildQuery(input):
     """
 
 def parseData(rows):
-    return [row[0] for row in rows]
+    autocompleteList = [row[0] for row in rows]
+    noDuplicate = list(set(autocompleteList))
+    return noDuplicate
 
 def process(request):
     body_unicode = request.body.decode('utf-8')

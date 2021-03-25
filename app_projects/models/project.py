@@ -7,6 +7,7 @@ from django.contrib.postgres.search import SearchVector
 from django_better_admin_arrayfield.models.fields import ArrayField
 from django.db.models import Value
 from .project_search_autocomplete import ProjectSearchAutocomplete
+from django.db.models import F, Func
 
 class Project(TranslatableModel):
     translations = TranslatedFields(
@@ -86,12 +87,14 @@ class Project(TranslatableModel):
         return self.name
 
     def save(self):
+        print(SearchVector('autocomplete_hint', config=Func(F('autocomplete_hint'), function='unnest')))
         self.slug = slugify(self.title)
         technologies = ' '.join([technology.name for technology in self.technology.all()])
         self.search_vector = SearchVector(
             SearchVector('name', weight="C")
             + SearchVector('title', weight="A")
             + SearchVector('subtitle', weight="A")
+            + SearchVector('autocomplete_hint', weight="A")
             + SearchVector('description_short', weight="B")
             + SearchVector(Value(technologies, models.TextField()), weight="C")
         )
