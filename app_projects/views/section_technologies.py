@@ -91,7 +91,6 @@ def process(request, config, context, *args):
 
         context['technologies_main'] = group_by_type(main)
         context['technologies_all'] = group_by_type(all)
-        print(group_by_type(all))
     except BaseException as error:
         print(error)
     finally:

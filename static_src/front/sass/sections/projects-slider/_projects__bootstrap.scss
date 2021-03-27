@@ -1,6 +1,9 @@
 
 .projects{
   .slider{
+    min-height: 620px;
+    display: flex;
+    justify-content: center;
     &__controls{
       display: none;
       &__btn{

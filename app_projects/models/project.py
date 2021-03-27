@@ -84,6 +84,11 @@ class Project(TranslatableModel):
         null = True
     )
 
+    show_on_index = models.BooleanField(
+        verbose_name = gettext_lazy('Show on main page'),
+        default = False
+    )
+
     def links(self):
         return ProjectLink.objects.filter(project_id = self.id)
 

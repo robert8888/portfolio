@@ -31,7 +31,8 @@ class ProjectAdmin(DynamicArrayMixin, TranslatableAdmin):
     inlines = [ProjectLinksInline]
     fieldsets = (
         (None, {
-            'fields': ['name', 'title', 'subtitle', 'type', 'release_date', 'update_date', 'gallery', 'autocomplete_hint']
+            'fields': ['name', 'title', 'subtitle', 'type', 'release_date',
+             'update_date', 'gallery', 'autocomplete_hint', 'show_on_index']
         }),
         (None, {
             'fields': ['technology', 'related']

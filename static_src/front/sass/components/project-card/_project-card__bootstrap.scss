@@ -44,6 +44,7 @@
     height: 100%;
     box-shadow: 0 0 4px var(--color-pallet-primary);
     opacity: 0;
+    pointer-events: none;
   }
   &:hover {
     border-color: var(--color-pallet-primary-alpha);
@@ -94,9 +95,11 @@
   &__title{
     @include header-font();
     @include header-link();
-    &-link{
+    &, &-link{
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 75%;
     }
   }
 
@@ -160,39 +163,12 @@
     }
   }
 
-  // to remove after editing hoem page template
-  //&__technology{
-  //  &-list {
-  //    list-style: none;
-  //    display: flex;
-  //    flex-wrap: wrap;
-  //    height: 75px;
-  //    overflow: hidden;
-  //
-  //    &__item {
-  //      display: block;
-  //      height: 27.5px;
-  //      margin: 5px 5px 5px 0;
-  //      padding: 4px 6px;
-  //      border-radius: 2px;
-  //      background: var(--color-pallet-primary-alpha);
-  //
-  //      & a {
-  //        color: var(--color-text-primary);
-  //        font-size: 0.875rem;
-  //        font-weight: 600;
-  //      }
-  //    }
-  //  }
-  //}
-
-
   &__tech-list {
     @debug &;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    height: 75px;
+    height: 85px;
     overflow: hidden;
   }
   &__tech-list-item{
@@ -207,10 +183,21 @@
     &--highlighted{
       background: var(--color-pallet-primary);
     }
+    &:hover{
+      border-color: var(--color);
+      box-shadow: 0 0 4px var(--color);
+      a {
+        color: white;
+      }
+    }
+    //@include pseudo(){
+    //  height: .1rem;
+    //};
     a {
       color: var(--color-text-primary);
       font-size: 0.875rem;
       font-weight: 600;
+      mix-blend-mode: difference;
     }
   }
   &__tech-list-link a {

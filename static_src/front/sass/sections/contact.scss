@@ -64,13 +64,16 @@
   &__info{
     &__container{
       @extend .indented;
-      margin-top: 5vh;
+      margin-top: 10vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
     &__text{
       color: var(--color-pallet-primary);
+    }
+    &__title{
+      margin-bottom: 1em;
     }
   }
 

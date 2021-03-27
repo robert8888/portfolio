@@ -27,13 +27,29 @@ body > header {
     position: sticky;
     top: 0;
   }
-
-
   .l-row{
     justify-content: space-between;
     align-items: center;
     & > * {
       padding: 0;
+    }
+  }
+}
+@include media('sm', $type: max){
+  body[data-scroll-direction="up"]{
+    &>header{
+      transform: translateY(-100%);
+    }
+  }
+  body[data-scroll-direction="down"]{
+    &>header{
+      transform: translateY(0);
+    }
+  }
+  body[data-scroll-direction]{
+    &>header{
+      transition: transform .3s;
+      @include no-motion();
     }
   }
 }

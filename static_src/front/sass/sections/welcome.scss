@@ -33,6 +33,7 @@ $intro-animation-delay: 1.6s;
     margin-bottom: 1.5em;
     &--big{
       @include fade-left-animation(1.7s, .5s);
+      margin-top: 1rem;
     }
     &--small {
       @include fade-bottom-down-animation(2.3s, 1s);
