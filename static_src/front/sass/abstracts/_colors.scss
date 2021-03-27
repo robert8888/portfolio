@@ -31,4 +31,5 @@ $color-pallet-secondary: #d2d2d2;
 
   --color-pallet-warning: #{$color-warning};
   --color-separator: #{$color-separator};
+  --color-separator-alpha-03: #{rgba($color-separator, .3)};
 }

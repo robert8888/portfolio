@@ -60,7 +60,7 @@
 
 
 @mixin pseudo($type: 'after', $position: absolute, $stretch: true){
-  @if $position == absolute {
+  @if $position == absolute or $position == fixed{
     position: relative;
     &:#{$type}{
       @if $stretch == true {

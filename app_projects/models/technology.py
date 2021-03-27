@@ -54,6 +54,11 @@ class TechnologyType(TranslatableModel):
         )
     )
 
+    weight = models.IntegerField(
+        default = 0,
+        verbose_name = gettext_lazy('Weight')
+    )
+
     def __str__(self):
         return self.name
 
@@ -67,7 +72,7 @@ class TechnologyImage(PolymorphicModel):
         on_delete=models.CASCADE,
     )
 
-    contact = models.OneToOneField(
+    technology = models.OneToOneField(
         'Technology',
         on_delete=models.CASCADE,
     )

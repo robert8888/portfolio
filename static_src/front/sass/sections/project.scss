@@ -193,5 +193,16 @@
         color: var(--color-text-primary)
       }
     }
+    &--separator{
+      list-style: none;
+      height: .5em;
+      &:not(:last-of-type){
+        @include pseudo(){
+          top: 50%;
+          background: var(--color-separator-alpha-03);
+          height: 1px;
+        }
+      }
+    }
   }
 }

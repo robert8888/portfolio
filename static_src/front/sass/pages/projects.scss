@@ -1,3 +1,7 @@
 @use "@sass/abstracts/colors";
 @use "@sass/layout/container";
 @use "@sass/components/navigation__additional";
+
+@use "@sass/abstracts/animations" as *;
+
+@include page-fade-in();

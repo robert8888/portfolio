@@ -31,7 +31,7 @@ class ProjectGalleryImage(models.Model):
         upload_to = 'project_gallery/',
         formats = {
             'thumb': ['default', ('thumbnail', (250, 180))],
-            'full': ['default', ('crop', (1240, 700))]
+            'full': ['default',]
         }
     )
 

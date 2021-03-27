@@ -9,17 +9,6 @@ class Path(TranslatableModel):
         on_delete = models.CASCADE
     )
 
-#     url = models.CharField(
-#         max_length = 255,
-#         verbose_name = 'Regex url pattern - groups as parameters',
-#         null = True,
-#         blank = True,
-#     )
-#
-#     pattern = models.CharField(
-#         max_length = 255,
-#         verbose_name = 'Regex path pattern - groups as parameters'
-#     )
     translations = TranslatedFields(
         url = models.CharField(
             max_length = 255,

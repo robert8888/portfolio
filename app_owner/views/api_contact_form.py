@@ -8,7 +8,7 @@ import json
 import re
 import os
 
-def contactForm(req):
+def process(req):
     body_unicode = req.body.decode('utf-8')
     json_data = json.loads(req.body)
 

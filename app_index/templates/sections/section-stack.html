@@ -1,80 +1,32 @@
 {% load static i18n %}
 <section class="technology" id="{% translate 'technology' %}">
     <div class="l-container ">
+        {% for type, technologies in technologies_main.items %}
         <div class="l-row technology--chosen">
-            <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
-                <a class="technology__link technology__link--js">
-                    <img style="--x: 0; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-                </a>
-                <a class="technology__link technology__link--ts">
-                    <img style="--x: -135px; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-            </div>
-            <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
-                <a class="technology__link technology__link--css">
-                    <img style="--x: 0; --y: -100px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-                <a class="technology__link technology__link--html">
-                    <img style="--x: -135px; --y: -100px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-            </div>
-            <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
-                <a class="technology__link technology__link--sass">
-                    <img style="--x: 0; --y: -200px; --w: 140px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-                <a class="technology__link technology__link--php">
-                    <img style="--x: -135px; --y: -200px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-            </div>
-            <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
-                <a class="technology__link technology__link--python">
-                    <img style="--x: -75px; --y: -290px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-                <a class="technology__link technology__link--python">
-                    <img style="--x: -75px; --y: -290px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-            </div>
+            {% for t in technologies %}
+                {% if forloop.first %}
+                    <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
+                {% endif %}
+                {% if forloop.counter0|divisibleby:2 and not forloop.first %}
+                    </div>
+                    <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
+                {% endif %}
+                    <a class="technology__link technology__link--{{t.name.lower|slugify}}">
+                        {% include 'partial/icon-img.html' with url=t.image_url top=t.top left=t.left width=t.width height=t.height is_sprite=t.is_image_sprite %}
+                    </a>
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
-        <div class="l-row technology--chosen">
-            <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
-                <a class="technology__link technology__link--react">
-                    <img style="--x: 0; --y: -395px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-                <a class="technology__link technology__link--native">
-                    <img style="--x: -135px; --y: -390px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-            </div>
-            <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
-                <a class="technology__link technology__link--vue">
-                    <img style="--x: 0; --y: -500px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-                <a class="technology__link technology__link--node">
-                    <img style="--x: -135px; --y: -500px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-            </div>
-            <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
-                <a class="technology__link technology__link--express">
-                    <img style="--x: 0; --y: -610px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-                <a class="technology__link technology__link--django">
-                    <img style="--x: -135px; --y: -610px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-            </div>
-            <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
-                <a class="technology__link technology__link--laravel">
-                    <img style="--x: 0; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-                <a class="technology__link technology__link--laravel">
-                    <img style="--x: 0; --y: 10px; --w: 120px; --h: 120px; --url: url( {% static 'img/technology_logos.png' %} )" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                </a>
-            </div>
-        </div>
+        {% endfor %}
         <div class="l-row">
             <div class="l-col-xs-12 flex-center">
                 <vue-component>
                     <overlay button-open-text="See all" class="technology-all">
                         <div class="l-container technology-all__container">
+                            {% for type_name, technologies in technologies_all.items %}
+                            {% endfor %}
                             <div class="l-row technology-all__row">
                                 <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-4 l-col-xl-2 technology-all__col">
                                     <div class="technology-all__category">

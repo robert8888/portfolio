@@ -20,7 +20,7 @@ class ProjectLink(models.Model):
         choices = type_of_links
     )
 
-    links = ArrayField(
+    url = ArrayField(
         models.CharField(
             max_length = 255,
             verbose_name = gettext_lazy('Link')

@@ -29,6 +29,7 @@ from nested_admin import (
 class TechnologyTypeAdmin(TranslatableAdmin):
     def has_module_permission(self, request): return False
     base_form = TranslatableModelForm
+    fields = ['name', 'weight']
 
 @admin.register(Image)
 class Image(admin.ModelAdmin):

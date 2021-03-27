@@ -24,7 +24,7 @@ class PageView(View):
         }
 
         try:
-            print("page start", datetime.now())
+            start = datetime.now()
             if re.match('.*\.\w{,5}$', path): #file
                 return HttpResponse(status=404)
 
@@ -36,6 +36,7 @@ class PageView(View):
             if route.get('not_found'):
                 raise LookupError('not found')
 
+            print('route', route)
             page_id = route.get('page_id')
             pattern = route.get('pattern')
 
@@ -43,15 +44,24 @@ class PageView(View):
 
             params = self.getGroups(pattern, path)
             sections = self.getPageSectionsRaw(page_id)
+
             views = self.importViews(sections)
-            views_data = self.processViews(request, views, params)
+            views_context = {
+                'page_id': page_id
+            }
+            views_data = self.processViews(request, views, views_context,  params)
+
             context = {
                 **context,
                 **views_data,
                 'sections': sections['view_data'],
                 'menus': self.getMenusRaw(page_id)
             }
-            print("page end", datetime.now())
+
+            if context.get('redirect'):
+                return context.get('redirect')
+
+            print("---page render", datetime.now() - start)
             return  render(request, page_template, context = context)
 
         except (Page.DoesNotExist, IndexError, LookupError):
@@ -75,21 +85,13 @@ class PageView(View):
         module_name = re.sub('\.py', '', module_name)
         return importlib.import_module(module_name)
 
-    def processViews(self, request, views, params):
-        context_data = {}
+    def processViews(self, request, views, context, params):
+        context_data = {**context}
         for view in views:
             context_data = view['module'].process(request, view['config'], context_data, params)
         return context_data
 
     def processPath(self, path, request):
-#         query = f"""
-#         SELECT
-#         "app_index_path"."page_id",
-#          "app_index_path"."pattern"
-#          FROM "app_index_path"
-#          WHERE ( '{path}' ~* pattern) LIMIT 1
-#         """
-#         other_languages = [lang[0] for lang in settings.LANGUAGES if not lang[0] == get_language()]
         default_language = settings.PARLER_DEFAULT_LANGUAGE_CODE
         prefix_default = settings.PREFIX_DEFAULT_LANGUAGE
 
@@ -117,9 +119,11 @@ class PageView(View):
                 redirect = request.get_host() + '/' + path
             else:
                 redirect = request.get_host() + '/' + lang_code + '/' + path
-            print(redirect)
+
+            query = '?' + request.META.get('QUERY_STRING') if request.META.get('QUERY_STRING') else ''
+
             return {
-                'redirect': protocol + redirect
+                'redirect': protocol + redirect + query
             }
 
         if not path_row:

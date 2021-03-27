@@ -2,6 +2,7 @@ from django.utils.translation import get_language
 from django.db import connection
 from django.utils.translation import gettext_lazy
 from app_projects.models import ProjectGalleryImage
+from app_index.utils.revers_path import revers_page_path
 from sqlescapy import sqlescape
 import pydash as py_
 import re
@@ -58,7 +59,7 @@ def get(request, params, doSerialization = False):
 
     def filter():
         if not type_param: return ''
-        type_values = sqlescape(type_param.split(','))
+        type_values = sqlescape(type_param).split(',')
         return ' AND (' + ' OR '.join([f"app_projects_project_type.value='{value}'" for value in type_values]) + ')'
 
     def getProjects():
@@ -84,7 +85,14 @@ def get(request, params, doSerialization = False):
             with connection.cursor() as cursor:
                 cursor.execute(query)
                 rows = cursor.fetchall()
+
             projects = {}
+
+            try:
+                project_page_path = revers_page_path(page_name = 'Project').split('/')[0]
+            except:
+                pass
+
             for row in rows:
                 projects[row[0]] = {
                     'id': row[0],
@@ -95,7 +103,8 @@ def get(request, params, doSerialization = False):
                     'description': row[5],
                     'type': row[6],
                     'typeValue': row[7],
-                    'gallery': row[8]
+                    'gallery': row[8],
+                    'path': project_page_path + '/' + row[2]
                 }
             return projects
         except:

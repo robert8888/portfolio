@@ -5,10 +5,10 @@
     </div>
     <template v-else>
       <div :class="['projects__container', {'projects__container--loading': status.loading}]">
-        <card-project v-for="project in projects" :key="project.title" :id="project.slug">
+        <card-project v-for="project in projects" :key="project.title" :id="project.slug" :href="'/project/' + project.slug">
           <template #header>
-            <a class="card-project__title-link" :href="'/project/' + project.slug" v-html="project.title"></a>
-            <a class="card-project__type-link" :href="'/projects?type=' + project.typeValue"> {{project.type}}</a>
+            <a class="card-project__title-link" :href="project.path" v-html="project.title"></a>
+            <a class="card-project__type-link" :href="currentPath + '?type=' + project.typeValue"> {{project.type}}</a>
           </template>
           <template #gallery>
             <gallery>
@@ -51,7 +51,7 @@ export default defineComponent({
   data(){
     return {
       showInitialRenderedContent: true,
-
+      currentPath: location.pathname
     }
   },
 

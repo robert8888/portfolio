@@ -1,3 +1,5 @@
+@use "@sass/abstracts/mixins" as *;
+
 .fade-in-enter-active, .fade-in-leave-active {
   transition: opacity .5s ease;
 }
@@ -133,5 +135,21 @@
 @mixin fade-left-animation($delay, $duration){
   @include fade-in-animation($delay, $duration, $type:'left'){
     transform: translate(-50px, 0);
+  }
+}
+
+@mixin page-fade-in($delay: .4s, $duration: .6s){
+  body{
+    @include pseudo($position: fixed){
+      @include stacking('overlay');
+      @include opacity-out-keyframes();
+      opacity: 1;
+      background: var(--color-background-primary);
+      animation: opacity-out;
+      animation-delay: $delay;
+      animation-duration: $duration;
+      animation-fill-mode: forwards;
+      pointer-events: none;
+    }
   }
 }

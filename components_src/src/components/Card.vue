@@ -25,7 +25,7 @@
             <slot name="additional"/>
           </div>
           <footer>
-            <a class="card-project__link card-project__link--more" :href="href" tabindex="0">vist page</a>
+            <a class="card-project__link card-project__link--more" :href="href" tabindex="0">{{moreText}}</a>
           </footer>
         </div>
       </div>
@@ -42,6 +42,7 @@ export default defineComponent({
   props: {
     title: String,
     href: String,
+    moreText: String,
     extensible: {
       type: Boolean,
       default: false,

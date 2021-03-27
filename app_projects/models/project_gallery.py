@@ -1,13 +1,16 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
-
 from django.contrib.postgres.fields import ArrayField
+from .project_gallery_image import ProjectGalleryImage
 
 class ProjectGallery(models.Model):
     name = models.CharField(
         max_length = 255,
         verbose_name = gettext_lazy('Identification name')
     )
+
+    def images(self):
+        return ProjectGalleryImage.objects.filter(gallery_id = self.id)
 
     def __str__(self):
         return self.name
