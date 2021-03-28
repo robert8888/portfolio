@@ -29,13 +29,17 @@ django-solo==1.1.5
 django-storages==1.11.1
 django-webp-converter==0.3.0
 django-webpack-loader==0.6.0
+emoji==1.2.0
+exrex==0.10.5
 filelock==3.0.12
+ftfy==5.9
 gunicorn==20.0.4
 httpagentparser==1.9.1
 idna==2.10
 jmespath==0.10.0
 jsonschema==3.2.0
 libsass==0.20.1
+memoization==0.3.2
 pbr==5.5.1
 Pillow==8.1.0
 polib==1.1.0
@@ -45,6 +49,7 @@ pydash==4.9.3
 pyrsistent==0.17.3
 python-dateutil==2.8.1
 python-dotenv==0.15.0
+python-magic==0.4.22
 python-monkey-business==1.0.0
 pytz==2020.5
 rcssmin==1.0.6
@@ -61,4 +66,5 @@ virtualenv==20.4.0
 virtualenv-clone==0.5.4
 virtualenvwrapper==4.8.4
 virtualenvwrapper-win==1.2.6
+wcwidth==0.2.5
 whitenoise==5.2.0

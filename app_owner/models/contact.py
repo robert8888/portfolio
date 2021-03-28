@@ -15,6 +15,12 @@ class Contact(PolymorphicModel):
         default = 0
     )
 
+#     show_on_index = models.BooleanField(
+#         verbose_name = gettext_lazy("Show on main page"),
+#         default = True,
+#     )
+
+
     def is_number_text(self):
         return gettext_lazy("YES") if self.IS_NUMBER else gettext_lazy(" - ")
 
@@ -51,3 +57,14 @@ class ContactNumber(Contact):
 
     class Meta:
         verbose_name = gettext_lazy("Contact number")
+
+# class ContactAddress(Contact):
+#     IS_NUMBER = False
+#
+#     address = models.TextField(
+#         verbose_name = gettext_lazy('Address'),
+#         default = ''
+#     )
+#
+#     class Meta:
+#         verbose_name = gettext_lazy('Contact address')
