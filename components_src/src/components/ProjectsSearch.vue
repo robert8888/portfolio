@@ -16,13 +16,13 @@
            :placeholder="label"
            v-model="value"
            @input="onInput"
+           @focus="onFocus"
            @keydown.enter="onEnter"
-           @keydown.down.up="changeSelection"
+           @keydown.down.up="changeHintSelection"
            @keydown.space="onSpace"
            @cut="onClipboard"
-           @paste="onClipboard"
-    >
-    <button class="projects__search-button" @click="updateValue"/>
+           @paste="onClipboard">
+    <button class="projects__search-button" @click="onButtonClick"/>
     <ul :class="['projects__search__list', {'projects__search__list--visible': autocompleteVisible}]"
         :id="'autocomplete-results-'+id"
         role="listbox"
@@ -48,6 +48,7 @@ import getUrlParam from "@/utils/get-url-param";
 import {debounce} from "ts-debounce";
 import toRange from "@/utils/to-range";
 import nanoid from "@/utils/nano-id-html";
+import setUrlParam from "@/utils/set-url-param";
 
 interface ComponentState{
   id: string;
@@ -91,6 +92,11 @@ export default defineComponent({
       this.value = this.initValue;
       this.acceptedValue = this.initValue;
     }
+    window.addEventListener('click', this.onWindowClick)
+  },
+
+  unmounted() {
+    window.removeEventListener('click', this.onWindowClick);
   },
 
   setup(props){
@@ -121,16 +127,20 @@ export default defineComponent({
 
   methods: {
     onInput: function(e: KeyboardEvent){
-      const autoCompleteValue = this.autocompleteValue;
-      if(autoCompleteValue)
-        this.updateAutoComplete(this.autocompleteValue);
+        this.updateAutocomplete();
+    },
+
+    onFocus(){
+      this.updateAutocomplete();
+    },
+
+    onButtonClick(){
+      this.startSearching();
     },
 
     onEnter(){
       if(this.selectedHintIndex < 0){
-        this.fireSearch(this.value)
-        this.setCurrentAsAccepted();
-        this.searchHistory.push(this.value);
+        this.startSearching();
       } else {
         this.closeAutocomplete();
       }
@@ -149,7 +159,20 @@ export default defineComponent({
       setTimeout(() => this.setCurrentAsAccepted(), 16)
     },
 
-    changeSelection(e: KeyboardEvent){
+    startSearching(){
+      this.fireSearch(this.value)
+      this.setCurrentAsAccepted();
+      this.searchHistory.push(this.value);
+      setUrlParam(this.param, this.value)
+    },
+
+    updateAutocomplete(){
+      const autoCompleteValue = this.autocompleteValue;
+      if(autoCompleteValue)
+        this.updateAutoComplete(this.autocompleteValue);
+    },
+
+    changeHintSelection(e: KeyboardEvent){
       e.preventDefault();
       const delta = (e.key === "ArrowDown") ? 1 : -1;
       if(!this.autocompleteVisible){
@@ -192,6 +215,13 @@ export default defineComponent({
     setCurrentAsAccepted(){
       this.acceptedValue = this.value
     },
+
+    onWindowClick(e: Event){
+      const target = e.target as HTMLElement;
+      if(!target.closest('.projects__search'))
+        this.autocompleteVisible = false;
+    },
+
     // hint mouse events ----------------
 
     getElementIndex(el: HTMLElement){

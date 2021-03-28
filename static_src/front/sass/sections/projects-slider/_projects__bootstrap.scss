@@ -1,11 +1,12 @@
 
 .projects{
   .slider{
-    min-height: 620px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    min-height: 700px;
     &__controls{
       display: none;
+      opacity: 0;
       &__btn{
         height: 250px;
         width: 50px;

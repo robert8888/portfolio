@@ -1,6 +1,7 @@
 <template>
   <li class="slider__item"
       v-size="updateSize"
+      :data-index="index"
       :style="{margin: '5px ' + itemMargin + 'px' }">
     <slot/>
   </li>
@@ -11,7 +12,10 @@ import {defineComponent, inject} from 'vue';
 
 export default defineComponent({
   props:{
-
+    index: {
+      type: Number,
+      default: 0
+    }
   },
 
   data(){
@@ -22,13 +26,20 @@ export default defineComponent({
 
   setup(){
     const itemMargin = inject('itemMargin') as number;
-    return {itemMargin}
+    const sizeChange = inject('itemSizeChange') as (rect: DOMRect) => void;
+    return {itemMargin, sizeChange}
   },
 
   methods:{
     updateSize(rect: DOMRect){
       this.size = rect;
     },
+  },
+
+  watch: {
+    size(){
+      this.sizeChange(this.size)
+    }
   },
 
 })

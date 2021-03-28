@@ -59,13 +59,25 @@
   }
 }
 
+@mixin scale-both-keyframes($origin: "center"){
+  transform-origin: #{$origin};
+  transform: scale(0);
+  @keyframes scale-both {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }
+}
+
 @mixin scale-animation($delay, $duration, $type: "horizontal", $origin){
   @if $type == "horizontal" {
     @include scale-horizontal-keyframes($origin);
     animation-name: scale-horizontal;
-  } @else {
+  } @else if $type == "vertical"{
     @include scale-vertical-keyframes($origin);
     animation-name: scale-vertical;
+  } @else {
+    @include scale-both-keyframes($origin);
+    animation-name: scale-both;
   }
   animation-duration: $duration;
   animation-delay: $delay;
@@ -106,7 +118,7 @@
 }
 
 
-@mixin fade-in-animation($delay, $duration, $type){
+@mixin fade-animation($delay, $duration, $type){
   @keyframes fade-in-#{$type} {
     from{
       opacity: 0;
@@ -127,15 +139,31 @@
 }
 
 @mixin fade-bottom-down-animation($delay, $duration){
-  @include fade-in-animation($delay, $duration, $type:'bottom-down'){
+  @include fade-animation($delay, $duration, $type:'bottom-down'){
     transform: translate(50px, 50px);
   }
 }
 
 @mixin fade-left-animation($delay, $duration){
-  @include fade-in-animation($delay, $duration, $type:'left'){
+  @include fade-animation($delay, $duration, $type:'left'){
     transform: translate(-50px, 0);
   }
+}
+
+@mixin fade-right-animation($delay, $duration){
+  @include fade-animation($delay, $duration, $type:'right'){
+    transform: translate(50px, 0);
+  }
+}
+
+@mixin fade-up-animation($delay, $duration, $distance: 50px){
+  @include fade-animation($delay, $duration, $type:'up'){
+    transform: translate(0, $distance);
+  }
+}
+
+@mixin scale-in-animation($delay, $duration){
+  @include scale-animation($delay, $duration, $type:'both', $origin: center)
 }
 
 @mixin page-fade-in($delay: .4s, $duration: .6s){

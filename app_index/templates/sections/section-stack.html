@@ -11,8 +11,9 @@
                     </div>
                     <div class="l-col l-col-xs-12 l-col-sm-6 l-col-lg-3">
                 {% endif %}
-                    <a class="technology__link technology__link--{{t.name.lower|slugify}}">
+                    <a class="technology__link technology__link--{{t.name.lower|slugify}} technology__link--{% widthratio forloop.counter 1 forloop.parentloop.counter %}">
                         {% include 'partial/icon-img.html' with url=t.image_url top=t.top left=t.left width=t.width height=t.height is_sprite=t.is_image_sprite %}
+                        <span class="technology__link-text" style="--color:{{t.color}}">{{t.name}}</span>
                     </a>
                 {% if forloop.last %}
                     </div>
@@ -23,7 +24,7 @@
         <div class="l-row">
             <div class="l-col-xs-12 flex-center">
                 <vue-component>
-                    <overlay button-open-text="See all" class="technology-all">
+                    <overlay button-open-text="{% translate 'See all' %}" class="technology-all">
                         <div class="l-container technology-all__container">
                             <div class="l-row technology-all__row">
                             {% for type_name, technologies in technologies_all.items %}

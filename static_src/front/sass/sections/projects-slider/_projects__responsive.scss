@@ -1,4 +1,5 @@
 @use "@sass/abstracts/mixins" as *;
+@use "@sass/abstracts/animations" as *;
 
 .projects {
   &__container{
@@ -46,6 +47,25 @@
         margin-bottom: auto;
         margin-top: auto;
       }
+    }
+    .slider__item{
+      opacity: 0;
+    }
+  }
+  .projects[data-was-intersected]{
+    .slider__item{
+      @include fade-up-animation(0, 2s);
+      @for $i from 0 through 30{
+        &[data-index='#{$i}']{
+          animation-delay: calc(#{$i} * .3s);
+        }
+      }
+    }
+    .btn.btn--all{
+      @include fade-up-animation(1s, 2s);
+    }
+    .slider__controls{
+      @include show-in-animation(1.5s, 2s);
     }
   }
 }

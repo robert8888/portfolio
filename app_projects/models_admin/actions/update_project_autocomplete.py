@@ -12,7 +12,7 @@ def updateProjectAutocomplete(modeladmin, request, queryset):
     query_insert = buildQueryInsert(ids)
 
     msg = {
-        'success': ugettext('Updated terms in autocomplete dictionary. Rebuild %d term and added %d terms'),
+        'success': ugettext('Updated terms in autocomplete dictionary. Rebuild %(0) term and added %(1) terms'),
         'fail': gettext('Updating autocomplete dictionary fail')
     }
 

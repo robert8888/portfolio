@@ -4,7 +4,7 @@
       :class="['dropdown__item', {'dropdown__item--active': currentActiveId === id}]"
       role="option"
       @click="clickHandle"
-      :aria-selected="isCurrentSelected" >
+      :aria-selected="isCurrentSelected">
     <slot/>
   </li>
 </template>

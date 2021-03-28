@@ -1,6 +1,8 @@
 @use "@sass/abstracts/placeholders";
+@use "@sass/abstracts/animations" as *;
 
 .about{
+  $self: &;
   .l-row{
     height: 100%;
   }
@@ -14,21 +16,39 @@
 
   &__photo{
     max-width: 100%;
+    opacity: 0;
   }
 
   &__content{
     @extend .indented;
     &__title{
       margin-bottom: 1rem;
+      opacity: 0;
     }
     &__container{
       flex-direction: column;
       align-items: flex-start;
     }
     &__text{
+      opacity: 0;
       font-family: "Source Sans Pro", "Roboto", sans-serif;
       color: var(--color-pallet-primary);
       line-height: 1.4em;
+      &:first-of-type{
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  &[data-was-intersected]{
+    #{$self}__photo{
+      @include fade-left-animation(0s, 2s);
+    }
+    #{$self}__content__title{
+      @include fade-right-animation(0, 2s);
+    }
+    #{$self}__content__text{
+      @include fade-up-animation(0, 2s);
     }
   }
 }

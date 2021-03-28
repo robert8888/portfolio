@@ -182,22 +182,19 @@
     border: 2px solid var(--color-pallet-primary-alpha);
     &--highlighted{
       background: var(--color-pallet-primary);
+      color: var(--color-text-primary-light);
     }
     &:hover{
       border-color: var(--color);
       box-shadow: 0 0 4px var(--color);
       a {
-        color: white;
+        color: var(--color-text-primary-light);
       }
     }
-    //@include pseudo(){
-    //  height: .1rem;
-    //};
     a {
       color: var(--color-text-primary);
       font-size: 0.875rem;
       font-weight: 600;
-      mix-blend-mode: difference;
     }
   }
   &__tech-list-link a {

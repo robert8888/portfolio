@@ -20,6 +20,9 @@ div.calendarbox.module{
             tr:first-of-type{
                 border-bottom: 1px solid var(--color-separator-2);
             }
+            td.selected, td.selected > *{
+                background: var(--color-pallet-1);
+            }
         }
     }
     

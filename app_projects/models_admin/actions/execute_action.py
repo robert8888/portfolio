@@ -4,8 +4,11 @@ from django.utils.translation import gettext
 
 def executeAction(modeladmin, request, queries, msg):
     results = execute_queries(queries)
-    queries_affects =  tuple([result.get("affected") for result in results.get("resultEach")])
-    print(results)
+
+    queries_affects
+    for result, index in results.get("resultEach"):
+        queries_affects[index] = result.get("affected", 0)
+
     if results.get("successAll"):
         modeladmin.message_user(request,
         msg.get("success") % queries_affects,
@@ -14,10 +17,3 @@ def executeAction(modeladmin, request, queries, msg):
          modeladmin.message_user(request,
          msg.get("fail"),
          messages.ERROR)
-
-#         gettext(f"""
-#             Rebuilt autocomplete dictionary. Removed {results.get("resultEach")[0].get("affected", "-")}
-#             term and added {results.get("resultEach")[1].get("affected", "-")} terms
-#         """),
-
-#          gettext('Rebuild autocomplete dictionary fail'),

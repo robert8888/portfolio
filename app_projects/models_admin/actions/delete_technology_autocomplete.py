@@ -15,7 +15,7 @@ def deleteTechnologyAutocomplete(modeladmin, request, queryset):
     query_delete = buildQueryDelete(ids)
 
     msg = {
-        'success': ugettext('Delete %d terms from autocomplete dictionary'),
+        'success': ugettext('Delete %(0) terms from autocomplete dictionary'),
         'fail': gettext('Removing terms from dictionary fail')
     }
 

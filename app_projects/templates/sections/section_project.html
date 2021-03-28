@@ -15,11 +15,7 @@
                         <div class="l-row">
                             <main class="l-col-xs-12 l-col-lg-8 project__main">
                                 <vue-component>
-                                    <gallery>
-                                        {% for item in project.gallery.images %}
-                                            <gallery-item src="{{ item.image.full }}"></gallery-item>
-                                        {% endfor %}
-                                    </gallery>
+                                    {% include 'partial/gallery.html' with images=project.gallery.images %}
                                 </vue-component>
                                 <h3 class="project__subtitle">{{project.subtitle}}</h3>
                                 <div class="project__description">{{project.description_full|safe}}</div>
@@ -32,7 +28,7 @@
                                             <dt class="list__term">{{link.get_type_display}}</dt>
                                             {% for url in link.url %}
                                             <dd class="list__description">
-                                                <a class="list__link" href="https://stackoverflow.com/questions/">
+                                                <a class="list__link" href="https://stackoverflow.com/questions/" target="_blank">
                                                     {{url}}
                                                 </a>
                                             </dd>

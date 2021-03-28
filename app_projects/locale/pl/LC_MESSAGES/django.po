@@ -1,0 +1,282 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-28 20:57+0200\n"
+"PO-Revision-Date: 2021-03-28 21:08+0000\n"
+"Last-Translator: b'  <robert.kami88@gmail.com>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.5\n"
+
+#: .\apps.py:6 .\models\project.py:117
+msgid "Projects"
+msgstr "Projekty"
+
+#: .\models\project.py:17
+msgid "Project name"
+msgstr "Nazwa projektu"
+
+#: .\models\project.py:26
+msgid "Project title"
+msgstr "Tytuł projektu"
+
+#: .\models\project.py:31
+msgid "Project subtitle"
+msgstr "Podtytuł projektu"
+
+#: .\models\project.py:35
+msgid "Description short"
+msgstr "Krótki opis"
+
+#: .\models\project.py:39
+msgid "Description long"
+msgstr "Długi opis"
+
+#: .\models\project.py:45
+msgid "hint"
+msgstr "wskazówka"
+
+#: .\models\project.py:46
+msgid "Autocomplete hint"
+msgstr "Wskazówka auto podpowiedzi "
+
+#: .\models\project.py:60 .\models\technology.py:47
+msgid "Technologies"
+msgstr "Technologie"
+
+#: .\models\project.py:65
+msgid "Related"
+msgstr "Powiązane"
+
+#: .\models\project.py:71
+msgid "Gallery"
+msgstr "Gallerie"
+
+#: .\models\project.py:77 .\views\projects.py:15 .\views\projects.py:21
+msgid "Release date"
+msgstr "Data realizacji"
+
+#: .\models\project.py:83
+msgid "Last update date"
+msgstr "Data akutualizacji"
+
+#: .\models\project.py:88 .\models\technology.py:30
+msgid "Show on main page"
+msgstr "Pokaż na stronie głownej"
+
+#: .\models\project.py:116
+msgid "Project"
+msgstr "Projekt"
+
+#: .\models\project_gallery.py:9
+msgid "Identification name"
+msgstr "Identyfikator"
+
+#: .\models\project_gallery.py:19
+msgid "Project gallery"
+msgstr "Galeria projektu"
+
+#: .\models\project_gallery.py:20
+msgid "Projects gallery"
+msgstr "Galerie projektów"
+
+#: .\models\project_gallery_image.py:27 .\models\technology.py:129
+msgid "Image"
+msgstr "Obraz"
+
+#: .\models\project_gallery_image.py:39
+msgid "Image width"
+msgstr "Szerokość obrazka"
+
+#: .\models\project_gallery_image.py:43
+msgid "Image height"
+msgstr "Wysokość obrazka"
+
+#: .\models\project_gallery_image.py:59
+msgid "Gallery Image"
+msgstr "Obrazek galerii"
+
+#: .\models\project_gallery_image.py:60
+msgid "Gallery Images"
+msgstr "Obrazki gallerii"
+
+#: .\models\project_links.py:7
+msgid "Host"
+msgstr "Host"
+
+#: .\models\project_links.py:8
+msgid "Repository"
+msgstr "Repoztytorium"
+
+#: .\models\project_links.py:9
+msgid "Demo"
+msgstr "Demo"
+
+#: .\models\project_links.py:10
+msgid "Documentation"
+msgstr "Dokumentacja"
+
+#: .\models\project_links.py:26
+msgid "Link"
+msgstr "Link"
+
+#: .\models\project_links.py:31
+msgid "Project link"
+msgstr "Link projektu"
+
+#: .\models\project_links.py:32
+msgid "Project links"
+msgstr "Linki projektu"
+
+#: .\models\project_type.py:23
+msgid "Project type"
+msgstr "Typ projektu"
+
+#: .\models\project_type.py:24
+msgid "Project types"
+msgstr "Typy projektów"
+
+#: .\models\technology.py:15
+msgid "Technology name"
+msgstr "Nazwa technologii"
+
+#: .\models\technology.py:20
+msgid "Technology link"
+msgstr "Nazwy technologii"
+
+#: .\models\technology.py:25
+msgid "Color"
+msgstr "Kolor"
+
+#: .\models\technology.py:35
+msgid "Show on main page in all section"
+msgstr "Pokaż na stronie głównej w sekcji wszystkie"
+
+#: .\models\technology.py:46
+msgid "Technology"
+msgstr "Technologie"
+
+#: .\models\technology.py:53 .\views\projects.py:27 .\views\projects.py:33
+msgid "Name"
+msgstr "Nazwa"
+
+#: .\models\technology.py:59
+msgid "Weight"
+msgstr "Waga"
+
+#: .\models\technology.py:66
+msgid "Technology type"
+msgstr "Typ technologii"
+
+#: .\models\technology.py:67
+msgid "Technology types"
+msgstr "Typy technologii"
+
+#: .\models\technology.py:82
+msgid "Technology image"
+msgstr "Obrazki technologii"
+
+#: .\models\technology.py:86
+msgid "Top"
+msgstr "Góra"
+
+#: .\models\technology.py:92
+msgid "Left"
+msgstr "Lewa"
+
+#: .\models\technology.py:98
+msgid "Width"
+msgstr "Szerokośc"
+
+#: .\models\technology.py:104
+msgid "Height"
+msgstr "Wysokośc"
+
+#: .\models\technology.py:112
+msgid "Image identification name"
+msgstr "Nazwa indetyfikacyjna"
+
+#: .\models_admin\actions\add_project_autocomplete.py:58
+msgid "Add to autocomplete dictionary. Removed %(0) term and added %(1) terms"
+msgstr ""
+"Dodano do słownika podpowiedzi. Usunięto %(0) wskazówek i dodano %(1) "
+"wskazówek. "
+
+#: .\models_admin\actions\add_project_autocomplete.py:59
+#: .\models_admin\actions\add_technology_autocomplete.py:35
+#: .\models_admin\actions\update_technology_autocompletes.py:15
+msgid "Adding to autocomplete dictionary fail"
+msgstr "Dodawanie do słownika wskazówek nie powiodło się"
+
+#: .\models_admin\actions\add_project_autocomplete.py:69
+#: .\models_admin\actions\add_technology_autocomplete.py:40
+msgid "Add to autocomplete"
+msgstr "Dodaj do słownika wskazówek"
+
+#: .\models_admin\actions\add_technology_autocomplete.py:34
+#: .\models_admin\actions\update_technology_autocompletes.py:14
+msgid "Add to autocomplete dictionary. Removed %d term and added %(0) terms"
+msgstr ""
+
+#: .\models_admin\actions\delete_project_autocomplete.py:19
+#, python-format
+msgid "Delete %d terms from autocomplete dictionary"
+msgstr ""
+
+#: .\models_admin\actions\delete_project_autocomplete.py:20
+#: .\models_admin\actions\delete_technology_autocomplete.py:19
+msgid "Removing terms from dictionary fail"
+msgstr "Usuwanie z słownika podpowiedzi wyszukiwarki"
+
+#: .\models_admin\actions\delete_project_autocomplete.py:30
+#: .\models_admin\actions\delete_technology_autocomplete.py:29
+msgid "Delete from autocomplete"
+msgstr "Usuń z słownika podpowiedzi wyszukiwarki "
+
+#: .\models_admin\actions\delete_technology_autocomplete.py:18
+msgid "Delete %(0) terms from autocomplete dictionary"
+msgstr "Usunięto %(0) wskazówek z słownika podpowiedzi"
+
+#: .\models_admin\actions\update_project_autocomplete.py:15
+msgid ""
+"Updated terms in autocomplete dictionary. Rebuild %(0) term and added %(1) "
+"terms"
+msgstr ""
+"Aktualizowanie słownika powiedzie udane. Przebudowano słownik. Usunięto %(0)"
+" wskazówek i dodatno %(1)"
+
+#: .\models_admin\actions\update_project_autocomplete.py:16
+msgid "Updating autocomplete dictionary fail"
+msgstr "Aktualizacja słownika podpowiedzi nie powiodła się "
+
+#: .\models_admin\actions\update_project_autocomplete.py:26
+#: .\models_admin\actions\update_technology_autocompletes.py:20
+msgid "Update autocomplete"
+msgstr "Aktualizuj słownik podpowiedzi"
+
+#: .\templates\partial\project-card.html:3
+msgid "get more"
+msgstr "więcej"
+
+#: .\templates\sections\section_project.html:40
+msgid "Related Projects"
+msgstr "Projekty powiązane"
+
+#: .\templates\sections\section_project.html:50
+msgid "Stack"
+msgstr "Technologie"
+
+#: .\views\projects.py:39 .\views\projects.py:45
+msgid "Type"
+msgstr "Typ"

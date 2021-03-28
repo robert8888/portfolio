@@ -41,9 +41,22 @@ export default defineComponent({
   computed:{
     items(){
       const defaultSlot = this.$slots.default();
-      let clones = [...defaultSlot[0].children];
+      let index = -defaultSlot[0].children.length;
+
+      let clones = [...defaultSlot[0].children].map(node => {
+        node.props = {...node.props, 'index': index++}
+        return node;
+      });
+
       for (let i = 0; i < this.scale - 1; i++) {
-        const copy = defaultSlot[0].children.map(node => Object.assign({}, node))
+        const copy = defaultSlot[0].children.map(node => {
+          const clone = Object.assign({}, node);
+          clone.props = {
+            ...clone.props,
+            'index': index++
+          }
+          return clone;
+        })
         clones = clones.concat(copy);
       }
       defaultSlot[0].children = clones;

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-18 14:59+0100\n"
-"PO-Revision-Date: 2021-03-18 15:01+0000\n"
+"POT-Creation-Date: 2021-03-28 20:17+0200\n"
+"PO-Revision-Date: 2021-03-28 20:20+0000\n"
 "Last-Translator: b'  <robert.kami88@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,9 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
+#: .\apps.py:6
+msgid "Owner"
+msgstr "Właściciel"
+
 #: .\models\contact.py:10
 msgid "Contact name"
-msgstr "Identyfikator kontatku"
+msgstr "Identyfikator kontaktu"
 
 #: .\models\contact.py:14
 msgid "Weight"
@@ -55,34 +59,50 @@ msgstr "Kontakt portal"
 msgid "Contact number"
 msgstr "Kontakt number"
 
-#: .\models\contact_img.py:34
+#: .\models\contact_img.py:27
 msgid "Contact image"
 msgstr "Kontakt obraz"
 
-#: .\models\contact_img.py:39 .\models\contact_img.py:95
+#: .\models\contact_img.py:32 .\models\contact_img.py:88
 msgid "Image"
 msgstr "Obraz"
 
-#: .\models\contact_img.py:46
+#: .\models\contact_img.py:39
 msgid "Top"
 msgstr "Góra"
 
-#: .\models\contact_img.py:52
+#: .\models\contact_img.py:45
 msgid "Left"
 msgstr "Lewa"
 
-#: .\models\contact_img.py:58
+#: .\models\contact_img.py:51
 msgid "Width"
 msgstr "Szerokość"
 
-#: .\models\contact_img.py:64
+#: .\models\contact_img.py:57
 msgid "Height"
 msgstr "Wysokośc"
 
-#: .\models\contact_img.py:71
+#: .\models\contact_img.py:64
 msgid "Sprite image"
 msgstr "Obrazek sprite"
 
-#: .\models\contact_img.py:78
+#: .\models\contact_img.py:71
 msgid "Image identification name"
 msgstr "Identyfikator obrazu"
+
+#: .\views\api_contact_form.py:29
+msgid "Google Recaptcha authorization fail"
+msgstr "Autoryzacja Google Recaptcha"
+
+#: .\views\api_contact_form.py:49
+msgid "Email address not valid"
+msgstr "Adres email nieprawidłowy"
+
+#: .\views\api_contact_form.py:53
+msgid "Subject value too short, min 6 chars"
+msgstr "Długość tematu za krótka. minimum 6 znaków"
+
+#: .\views\api_contact_form.py:57
+msgid "Message value too short, min 20 chars"
+msgstr "Długość wiadomości za krótka. minimum 20 znaków"

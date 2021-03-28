@@ -1,6 +1,6 @@
 <template>
   <li class="gallery__item">
-    <img :src="src" alt="" :width="containerSize.w"  loading="lazy"/>
+    <img :src="src" alt="" :width="containerSize.w"  loading="lazy" />
   </li>
 </template>
 
@@ -13,24 +13,30 @@ interface Size{
 }
 
 export default defineComponent({
+
   setup(){
     const containerSize = inject('containerSize') as Size;
     return {containerSize:  containerSize};
   },
+
   props:{
-    src: String,
-  },
-  data: function(){
-    return {
+    thumbSrc: {
+      type: String,
+      required: true,
+    },
+    fullSrc: {
+      type: String,
     }
   },
 
-  watch:{
-    containerSize(){
-      //@ts-ignore
-      //console.log(this.containerSize)
+  computed:{
+    src(): string{
+      return this.containerSize.w > 300
+          ? this.fullSrc || this.thumbSrc
+          : this.thumbSrc;
     }
-  }
+  },
+
 })
 
 </script>

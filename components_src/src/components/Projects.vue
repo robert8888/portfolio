@@ -5,14 +5,18 @@
     </div>
     <template v-else>
       <div :class="['projects__container', {'projects__container--loading': status.loading}]">
-        <card-project v-for="project in projects" :key="project.title" :id="project.slug" :href="'/project/' + project.slug">
+        <card-project v-for="project in projects"
+                      :key="project.title"
+                      :id="project.slug"
+                      :href="'/project/' + project.slug"
+                      :more-text="project.moreText">
           <template #header>
             <a class="card-project__title-link" :href="project.path" v-html="project.title"></a>
             <a class="card-project__type-link" :href="currentPath + '?type=' + project.typeValue"> {{project.type}}</a>
           </template>
           <template #gallery>
             <gallery>
-              <gallery-item v-for="image in project.images" :key="image.url.slice(-10)" :src="image.url"></gallery-item>
+              <gallery-item v-for="image in project.images" :key="image.url.slice(-10)" :thumb-src="image.url"></gallery-item>
             </gallery>
           </template>
           <h4 class="card-project__subtitle" v-html="project.subtitle"></h4>
@@ -20,7 +24,7 @@
           <ul class="card-project__tech-list">
             <li v-for="tech in project.technologies" :key="tech.name"
                 :class="['card-project__tech-list-item', {'card-project__tech-list-item--highlighted': tech.isHighlighted}] "
-                :style="{'-color': tech.color}">
+                :style="{'--color': tech.color}">
               <a class="card-project__tech-list-link js" :href="tech.link">
                 {{tech.name}}
               </a>

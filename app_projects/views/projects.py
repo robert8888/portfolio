@@ -58,7 +58,8 @@ def buildGetProjectsQuery(lang, filter, order, project_page_path):
     app_projects_project_type.display as "type",
     app_projects_project_type.value as "typeValue",
     app_projects_project.gallery_id as "gallery",
-    concat('{project_page_path}', app_projects_project_translation.slug) as "path"
+    concat('{project_page_path}/', app_projects_project_translation.slug) as "path",
+    '{gettext_lazy('get more')}' as "moreText"
     from app_projects_project
     LEFT JOIN app_projects_project_translation ON app_projects_project_translation.master_id = app_projects_project.id
     LEFT JOIN app_projects_project_type  ON app_projects_project_type.id = app_projects_project.type_id
@@ -67,7 +68,7 @@ def buildGetProjectsQuery(lang, filter, order, project_page_path):
     {order}
     """
 
-def buildSearchProductsQuery(lang, input, filter):
+def buildSearchProductsQuery(lang, input, filter, project_page_path):
     search_phrase = re.sub('([^\w\s]|((?<=[\s])\d+))', '', sqlescape(input))
     words = [word.strip() for word in search_phrase.split(' ') if not word == ""]
     ts_query_phrase = ' <-> '.join(words)
@@ -83,7 +84,9 @@ def buildSearchProductsQuery(lang, input, filter):
     project.type as "type",
     project.type_value as "typeValue",
     project.gallery as "gallery",
-    ts_headline(project.technologies, to_tsquery('{ts_query_phrase} | {ts_query_words}')) as "technologies"
+    ts_headline(project.technologies, to_tsquery('{ts_query_phrase} | {ts_query_words}')) as "technologies",
+    project.path as "path",
+    '{gettext_lazy('get more')}' as "moreText"
     FROM (SELECT
     app_projects_project.id AS "id",
     app_projects_project_translation.name AS "name",
@@ -95,6 +98,7 @@ def buildSearchProductsQuery(lang, input, filter):
     app_projects_project_type.value AS "type_value",
     app_projects_project.gallery_id AS "gallery",
     STRING_AGG(app_projects_technology.name, ',') AS "technologies",
+    concat('{project_page_path}/', app_projects_project_translation.slug) as "path",
     ts_rank_cd(
       app_projects_project_translation.search_vector,
       to_tsquery('{ts_query_words}')
@@ -181,7 +185,7 @@ def get(request, params, doSerialization = False):
         try:
             project_page_path = revers_page_path(page_name = 'Project').split('/')[0]
             if input:
-                query = buildSearchProductsQuery(lang, input, filter())
+                query = buildSearchProductsQuery(lang, input, filter(), project_page_path)
             else:
                 query = buildGetProjectsQuery(lang, filter(), order(), project_page_path)
             query_results = execute_queries([query])
@@ -201,6 +205,7 @@ def get(request, params, doSerialization = False):
         projects_ids_list = list(projects.keys())
         query = build_get_projects_technologies_query(projects_ids_list)
         query_results = execute_queries([query])
+        if not query_results['successAll']: return {}
         technology_list = query_results['resultEach'][0]['data']
         technologies = group_by(technology_list, 'project_id', force_list = True)
         for project_id, technology_list in technologies.items():
@@ -225,16 +230,19 @@ def get(request, params, doSerialization = False):
             galleries[image.gallery_id] = gallery
         return galleries
 
-    projects = getProjects(search_param)
+    try:
+        projects = getProjects(search_param)
 
-    projects_technologies = getProjectsTechnologies(projects)
-    projects_galleries = getProjectsGalleries(projects)
+        projects_technologies = getProjectsTechnologies(projects)
+        projects_galleries = getProjectsGalleries(projects)
 
-    def projectsCombine(project):
-        project['technologies'] = projects_technologies.get(project.get('id'))
-        project['images'] = projects_galleries.get(project.get('gallery'))
-        del project['id']
-        del project['gallery']
-        return project
+        def projectsCombine(project):
+            project['technologies'] = projects_technologies.get(project.get('id'))
+            project['images'] = projects_galleries.get(project.get('gallery'))
+            del project['id']
+            del project['gallery']
+            return project
 
-    return list(map(projectsCombine, projects.values()))
+        return list(map(projectsCombine, projects.values()))
+    except:
+        return []

@@ -2,9 +2,11 @@
 @use "@sass/abstracts/placeholders";
 @use "@sass/abstracts/animations" as *;
 @use "@sass/abstracts/assets" as *;
-
 @use "@sass/components/modal";
+
+
 .contact{
+  $self: &;
   min-height: calc(80 * var(--vh));
   .l-container > .l-row > * {
     min-height: 50vh;
@@ -17,6 +19,7 @@
 
   &__title{
     margin-bottom: 40px;
+    opacity: 0;
   }
 
   .form{
@@ -35,6 +38,7 @@
     &__btn--send{
       margin-left: auto;
       margin-top: 20px;
+      opacity: 0;
     }
 
     &__message{
@@ -44,6 +48,9 @@
       &[data-succes=false]{
         color: var(--color-pallet-warning);
       }
+    }
+    &__label{
+      opacity: 0
     }
   }
 
@@ -71,9 +78,14 @@
     }
     &__text{
       color: var(--color-pallet-primary);
+      opacity: 0;
+      &:first-of-type{
+        margin-top: 2rem;
+      }
     }
     &__title{
-      margin-bottom: 1em;
+      margin-bottom: 1rem;
+      opacity: 0;
     }
   }
 
@@ -82,6 +94,7 @@
       max-width: 250px;
       width: 420px;
       margin: 25px auto;
+      opacity: 0;
     }
     &__wrapper{
       display: flex;
@@ -117,6 +130,7 @@
     &__btn{
       display: block;
       margin-left: auto;
+      opacity: 0;
     }
   }
 
@@ -199,6 +213,7 @@
     }
   }
 
+  //--- animations portal logos
   @include media("xxl", min, 50px){
     &__portals{
       &__wrapper{
@@ -215,7 +230,9 @@
           }
         }
       }
+  // ------------------------
       &__container{
+        opacity: 1;
         position: fixed;
         height: 100%;
         top: 0;
@@ -240,129 +257,39 @@
       }
     }
   }
+
+  // animations------------------
+
+
+  &[data-was-intersected]{
+    #{$self}__title{
+      @include fade-left-animation(0s, .6s);
+    }
+    .form__label{
+      @include show-in-animation(0s, .6s);
+      @for $i from 0 through 10{
+        &:nth-of-type(#{$i}){
+          animation-delay: calc(#{$i} * .3s);
+        }
+      }
+    }
+    .form__btn--send,
+    #{$self}__resume__btn {
+      @include fade-up-animation(1s, .5s);
+    }
+    #{$self}__info__title{
+      @include fade-right-animation(0, 1s);
+    }
+    #{$self}__info__text{
+      @include fade-up-animation(.75s, 1s);
+    }
+    @include media("xxl", max, 50px){
+      #{$self}__portals__container{
+        @include fade-right-animation(1s, 1s);
+      }
+    }
+  }
 }
-
-//
-//@media screen and (max-width: map-get($grid-breakpoints, 'sm')) {
-//  .contact{
-//    &__portals{
-//      &__container{
-//        width: 450px;
-//        max-width: 250px;
-//        margin: 25px auto;
-//      }
-//    }
-//    &__resume{
-//      &__btn{
-//        margin-left: auto;
-//        margin-right: auto;
-//      }
-//    }
-//
-//    .form{
-//      &__summary{
-//        padding-left: unset;
-//      }
-//      &__message{
-//        margin-top: 0;
-//        margin-left: 1em;
-//      }
-//      &__btn{
-//        margin-right: auto;
-//      }
-//    }
-//
-//    .spinner{
-//      width: 100%;
-//      &__label{
-//        margin-right: auto;
-//      }
-//      &__ring{
-//        margin-left: auto;
-//      }
-//    }
-//  }
-//}
-
-
-//@media screen and (min-width: map-get($grid-breakpoints, 'sm')) {
-//  .contact{
-//    .form__summary__group{
-//      flex-wrap: nowrap;
-//    }
-//    &__portals{
-//      &__container{
-//        max-width: unset;
-//        margin-left: 0;
-//      }
-//    }
-//  }
-//}
-
-//@media screen and (min-width: map-get($grid-breakpoints, 'md')) {
-//  .contact{
-//    &__portals{
-//      &__container{
-//        max-width: unset;
-//        margin-left: 0;
-//      }
-//    }
-//    &__resume{
-//      &__btn{
-//        margin-top: 25px;
-//      }
-//    }
-//  }
-//}
-
-//@media screen and (min-width: map-get($grid-breakpoints, 'lg')) {
-//  .contact{
-//    &__info{
-//      &__container{
-//        margin-top: 0;
-//      }
-//      &__text{
-//        &:first-of-type{
-//          margin-top: 30px;
-//        }
-//      }
-//    }
-//  }
-//}
-
-
-//@media screen and (min-width: map-get($grid-breakpoints, 'xxl') + 50px) {
-//  .contact__portals{
-//    &__wrapper{
-//      flex-direction: column;
-//      height: 450px;
-//    }
-//    &__container{
-//      position: fixed;
-//      height: 100%;
-//      top: 0;
-//      right: calc((100vw - 160px - 25px - 1200px) / 2 / 2 - 15px) ;
-//      width: 50px;
-//      flex-direction: column;
-//      display: flex;
-//      align-items: center;
-//      & > :first-child{
-//        margin-top: auto;
-//      }
-//      & > :last-child{
-//        margin-bottom: auto;
-//      }
-//    }
-//  }
-//}
-
-//@media screen and (min-width: map-get($grid-breakpoints, 'xxxl')) {
-//  .contact__portals{
-//    &__container{
-//      right: calc((100vw - 220px - 25px - 1300px) / 2 / 2 - 15px) ;
-//    }
-//  }
-//}
 
 
 

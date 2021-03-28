@@ -15,6 +15,7 @@ $color-pallet-secondary: #d2d2d2;
   --color-text-primary:#{$color-text-primary};
   --color-text-primary-alpha-5:#{rgba($color-text-primary, .5)};
   --color-text-primary-alpha-1:#{rgba($color-text-primary, .1)};
+  --color-text-primary-light:#{lighten($color-text-primary, 50%)};
 
   --color-text-secondary:#{$color-text-secondary};
 

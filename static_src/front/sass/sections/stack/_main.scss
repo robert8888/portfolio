@@ -1,4 +1,5 @@
 @use "@sass/abstracts/mixins" as *;
+@use "@sass/abstracts/animations" as *;
 
 .technology{
   $self: &;
@@ -35,26 +36,64 @@
   }
 
   &__link{
+    $self: &;
     position: relative;
     display: grid;
-    grid-template-areas: 'img';
+    grid-template-areas: 'content';
     width: 50%;
     place-items: center;
     min-width: 130px;
+    opacity: 0;
     & > img{
-      grid-area: img;
+      grid-area: content;
       width: var(--w);
       height: var(--h);
       background-image: var(--url);
       background-position: var(--x) var(--y);
       background-repeat: no-repeat;
       filter: grayscale(1);
-      transition: filter .1s;
+      transition: filter .1s, transform 1s;
+      backface-visibility: hidden;
       &:hover{
         filter: grayscale(0);
       }
+      @include no-motion();
+    }
+    &-text{
+      grid-area: content;
+      transform: rotateY(-180deg);
+      backface-visibility: hidden;
+      transition: transform 1s;
+      color: var(--color);
+      font-size: 1.5rem;
+      white-space: nowrap;
+      @include no-motion();
+    }
+    &:hover{
+      & > img {
+        transform: rotateY(-180deg);
+        transition: filter .1s, transform 1s 1s;
+        @include no-motion()
+      }
+      #{$self}-text{
+        transform: rotateY(0);
+        transition: transform 1s 1s;
+        @include no-motion();
+      }
+    }
+  }
+  &[data-was-intersected] {
+    #{$self}{
+      @include show-in-animation(0s, 2s);
+      @for $i from 1 through 30 {
+        &--#{$i}{
+          animation-delay: calc(#{$i} * 0.05s);
+        }
+      }
+    }
+    .overlay__btn--open{
+      @include fade-up-animation(1s, 1s);
     }
   }
 }
-
 

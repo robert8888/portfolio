@@ -1,3 +1,5 @@
+@use '@sass/components/button' as *;
+
 a, a:link, a:visited{
   color: var(--color-pallet-primary);
   text-decoration: none;
@@ -19,5 +21,12 @@ a, a:link, a:visited{
     outline-color: var(--color-pallet-secondary);
     outline-style: solid;
     outline-offset: 0.3em;
+  }
+  &.link-btn{
+    @extend .btn;
+    &:hover{
+      color: var(--color-text-primary)
+    }
+
   }
 }

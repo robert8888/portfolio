@@ -7,7 +7,6 @@
             is="ul"
             :times="times"
             :initial-items="setNumberOfInitialItems"
-            :swap-items="setItemSwapHandler"
             @click="catchExpandIndex"
             class="slider__list"
             ref="list">
@@ -67,16 +66,18 @@ export default defineComponent({
   provide(){
     return{
       itemMargin: computed(() => this.itemMargin),
-      itemSizeChange: () => {
-        console.log("imtem size change")
-      }
+      itemSizeChange: () => {/*no empty*/}
     }
   },
 
   mounted() {
     this.numberOfItems = this.list.children.length;
     window.addEventListener("touchstart", this.initTouchStart);
-    this.list.addEventListener("transitionend", () => this.balance.call(this));
+    this.list.addEventListener("transitionend",(e) => {
+      if(e.target !== this.list)
+        return;
+      this.balance.call(this)
+    });
   },
 
   unmounted() {
@@ -156,7 +157,9 @@ export default defineComponent({
     },
 
     setIndex(index){
-      this.index = toRange(index, -this.numberOfHiddenItems, 0);
+      const min = -this.numberOfHiddenItems;
+      const max = 0;
+      this.index = toRange(index, min, max);
     },
 
     getCurrentPosition(){
@@ -178,11 +181,11 @@ export default defineComponent({
     },
 
     setPosition(position, animated = true){
-      position = toRange(position,
-          this.times === 1
-              ? - this.itemSize / 3
-              : -this.numberOfHiddenItems * this.itemSize - this.itemSize / 3,
-          this.itemSize / 3);
+      const min = this.times === 1
+          ? - this.itemSize / 3
+          : -this.numberOfHiddenItems * this.itemSize - this.itemSize / 3;
+      const max = this.itemSize / 3
+      position = toRange(position, min, max);
       this.updateStyle(position, animated)
       this.position = position;
     },

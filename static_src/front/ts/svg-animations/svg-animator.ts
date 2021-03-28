@@ -23,7 +23,7 @@ import getAttributeObserveValue from "./attribute-observe-value";
             const animationName = (target.getAttribute("data-svg-animation") || "" )
             const noscroll = (target.getAttribute("data-svg-animation-noscroll") || "") === "true"
 
-            if(noscroll)
+            if(noscroll && !noAnimation())
                 setBodyScroll(true);
 
             if(!animationName)

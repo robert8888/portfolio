@@ -32,6 +32,7 @@ interface MenuAsideData{
   intersectionObserver: IntersectionObserver | undefined;
   resizeObserver: ResizeObserver | undefined;
   targetsToIndex: WeakMap<Element, number>;
+  indexToTargets: Map<number, Element>;
   indexToSelector: Map<number, string>;
   selectorToIndex: Map<string, number>;
   length: number;
@@ -54,6 +55,7 @@ export default defineComponent({
       intersectionObserver: undefined,
       resizeObserver: undefined,
       targetsToIndex: new WeakMap<Element, number>(),
+      indexToTargets: new Map<number, Element>(),
       indexToSelector: new Map<number, string>(),
       selectorToIndex: new Map<string, number>(),
       length: 0,
@@ -103,6 +105,7 @@ export default defineComponent({
         if(!target || !this.intersectionObserver)
           return;
         this.targetsToIndex.set(target, index);
+        this.indexToTargets.set(index, target);
         this.indexToSelector.set(index, selector);
         this.selectorToIndex.set(selector, index);
         this.intersectionObserver.observe(target)
@@ -146,23 +149,29 @@ export default defineComponent({
     scrollToStartPosition(){
       const anchor = getUrlAnchor();
       const valid = this.selectorToIndex.has(anchor) && this.selectorToIndex.get(anchor) as number > 1;
-
       if(!valid)
         return;
 
       const target = document.querySelector(anchor);
-
       if(!target)
         return;
 
+      // to prevent animations on page load
       document.body.setAttribute("data-init-anchor-scroll", "true");
-      target.scrollIntoView();
+
+      setTimeout(() => {
+        target.scrollIntoView(true);
+      },300)
+
     }
   },
 
   watch: {
-    currentIntersectedIndex(){
+    currentIntersectedIndex(newIndex: number, prevIndex: number){
       setUrlAnchor(this.indexToSelector.get(this.currentIntersectedIndex || 0) || "")
+      this.indexToTargets.get(newIndex)?.setAttribute('data-intersecting', "true")
+      this.indexToTargets.get(prevIndex)?.removeAttribute('data-intersecting')
+      this.indexToTargets.get(newIndex)?.setAttribute('data-was-intersected', "true")
     }
   }
 })
