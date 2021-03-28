@@ -5,6 +5,7 @@ from app_owner.models import (
     Contact,
     ContactPortal,
     ContactNumber,
+    ContactAddress,
     ContactImage,
     ContactImageStandalone,
     ContactImageSprite,
@@ -73,9 +74,16 @@ class contactNumberAdmin(NestedPolymorphicInlineSupportMixin, NestedModelAdminMi
     base_model = ContactNumber
     inlines = [ContactImageInline]
 
+@admin.register(ContactAddress)
+class contactAddressAdmin(NestedPolymorphicInlineSupportMixin, NestedModelAdminMixin, PolymorphicChildModelAdmin):
+    def has_module_permission(self, request): return False
+    base_model = ContactAddress
+    inlines = [ContactImageInline]
+
+
 @admin.register(Contact)
 class contactAdmin(PolymorphicParentModelAdmin):
     polymorphic_list = True
     list_display = ['name', 'order', 'is_number_text']
     base_model = Contact
-    child_models = (ContactPortal, ContactNumber)
+    child_models = (ContactPortal, ContactNumber, ContactAddress)

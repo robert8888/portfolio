@@ -10,7 +10,7 @@
                 <div class="contact__portals__container">
                     <div class="contact__portals__wrapper">
                         {% for contact in contacts %}
-                            {% with url=contact.img_url left=contact.img_left top=contact.img_top width=contact.img_width  height=contact.img_height is_sprite=contact.img_is_sprite %}
+                            {% with url=contact.img_url left=contact.img_left top=contact.img_top width=contact.img_width  height=contact.img_height is_sprite=contact.img_sprite %}
                                 {% if not contact.is_number %}
                                     <a class="contact__portals__link contact__portals__link--{{ contact.name|slugify }}" href="{{contact.url}}" target="_blank">
                                         {% include 'partial/icon-img.html' %}
