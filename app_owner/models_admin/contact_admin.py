@@ -84,6 +84,6 @@ class contactAddressAdmin(NestedPolymorphicInlineSupportMixin, NestedModelAdminM
 @admin.register(Contact)
 class contactAdmin(PolymorphicParentModelAdmin):
     polymorphic_list = True
-    list_display = ['name', 'order', 'is_number_text']
+    list_display = ['name', 'type', 'order']
     base_model = Contact
     child_models = (ContactPortal, ContactNumber, ContactAddress)

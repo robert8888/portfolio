@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy
 from polymorphic.models import PolymorphicModel
 
 class Contact(PolymorphicModel):
-    IS_NUMBER = False
+    IS_NUMBER = ''
 
     name = models.CharField(
         max_length = 255,
@@ -21,14 +21,14 @@ class Contact(PolymorphicModel):
     )
 
 
-    def is_number_text(self):
-        return gettext_lazy("YES") if self.IS_NUMBER else gettext_lazy(" - ")
+    def type(self):
+        return self.TYPE
 
-    is_number_text.short_description =gettext_lazy("Is number ?")
+    type.short_description =gettext_lazy("Contact type")
 
 
     def is_number(self):
-        return self.IS_NUMBER
+        return self.TYPE
 
     def __str__(self):
         return self.name
@@ -39,6 +39,8 @@ class Contact(PolymorphicModel):
 
 
 class ContactPortal(Contact):
+    TYPE = gettext_lazy('Portal')
+
     url = models.CharField(
         max_length = 1000,
         verbose_name = gettext_lazy("Contact url")
@@ -48,7 +50,7 @@ class ContactPortal(Contact):
         verbose_name = gettext_lazy("Contact portal")
 
 class ContactNumber(Contact):
-    IS_NUMBER = True
+    TYPE = gettext_lazy('Number')
 
     number = models.CharField(
         max_length = 30,
@@ -59,7 +61,7 @@ class ContactNumber(Contact):
         verbose_name = gettext_lazy("Contact number")
 
 class ContactAddress(Contact):
-    IS_NUMBER = False
+    TYPE = gettext_lazy('Address')
 
     address = models.TextField(
         verbose_name = gettext_lazy('Address'),

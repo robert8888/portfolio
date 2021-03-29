@@ -82,14 +82,7 @@ export default defineComponent({
 
   //
   watch:{
-    status:{
-      deep: true,
-      handler(){
-        console.log("net url", this.status, performance.now())
-      }
-    },
     projects(){
-      console.log('this.projects', this.projects, this.showInitialRenderedContent)
       if(this.showInitialRenderedContent)
         this.showInitialRenderedContent = false;
     }

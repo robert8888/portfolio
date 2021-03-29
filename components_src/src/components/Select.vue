@@ -91,6 +91,7 @@ export default defineComponent({
       ),
 
       registerItem: (index: number, item: Item) => {
+         console.log(index, item)
          const nextItems = [...this.items];
          nextItems[index] = item;
          this.items = nextItems;
@@ -109,6 +110,7 @@ export default defineComponent({
      },
 
      activeDescendantId: function (): string | null {
+       console.log(this.currentActiveIndex, this.items)
        return this.currentActiveIndex !== -1
            ? this.items[this.currentActiveIndex].id
            : null;
