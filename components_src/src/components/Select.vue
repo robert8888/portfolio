@@ -91,7 +91,6 @@ export default defineComponent({
       ),
 
       registerItem: (index: number, item: Item) => {
-         console.log(index, item)
          const nextItems = [...this.items];
          nextItems[index] = item;
          this.items = nextItems;
@@ -110,15 +109,14 @@ export default defineComponent({
      },
 
      activeDescendantId: function (): string | null {
-       console.log(this.currentActiveIndex, this.items)
-       return this.currentActiveIndex !== -1
-           ? this.items[this.currentActiveIndex].id
-           : null;
+       if(!this.currentActiveIndex || this.currentActiveIndex === -1 || isNaN(this.currentActiveIndex))
+         return null;
+       return this.items[this.currentActiveIndex]?.id
      },
      buttonContent: function (): string{
-       return this.currentSelectedIndexes.length
-         ? this.currentSelectedItems.map((item: Item) => item.text).join(" - ")
-         : " - "
+       if(!this.currentSelectedIndexes || !this.currentSelectedIndexes.length)
+          return " - "
+       return this.currentSelectedItems.map((item: Item) => item.text).join(" - ")
      }
   },
 

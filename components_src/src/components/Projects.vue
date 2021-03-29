@@ -65,11 +65,9 @@ export default defineComponent({
     const order = computed(() => store.state.projects.order)
     const status = computed(() => store.state.projects.status)
     const projects  = computed(() => store.state.projects.projects)
-    console.log('proejcts', projects)
+
     const setupTime = performance.now()
     watch([filters,  order], ([filters, order]) =>{
-      // prevent re-fetching initial loaded projects
-      // after updating filters based on search query
       if(performance.now() - setupTime < 300)
           return
       store.dispatch(ACTIONS.FETCH_PROJECTS)

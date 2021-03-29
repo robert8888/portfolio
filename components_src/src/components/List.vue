@@ -16,16 +16,18 @@ export default defineComponent({
 
   computed:{
     children(){
-      const isFragment = type => type.toString() === "Symbol(Fragment)";
+      const isFragment = type =>
+          type.toString() === "Symbol(Fragment)" || type.toString() === "Symbol()" ;
       const defaultSlot = this.$slots.default?.();
 
       let node = defaultSlot[0];
+
       while(isFragment(node.type) && isFragment(node.children[0].type)){
         node = node.children[0];
       }
 
       return node.children.map((node, index) => {
-        node.props = {... node.props, index: index };
+        node.props = {...node.props, index: index };
         return node;
       })
     },
