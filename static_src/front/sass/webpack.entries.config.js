@@ -16,4 +16,6 @@ module.exports = [
     'front/sass/sections/welcome.scss',
 
     'front/sass/ckeditor-content.scss',
+
+    'front/sass/pdf/cv_dark.scss',
 ]

@@ -8,7 +8,8 @@ import tempfile
 def process(req, id):
     # Rendered
     html_string = render_to_string('pdf/cv_dark.html', {'test': 'value'})
-    html = HTML(string=html_string)
+    print(html_string)
+    html = HTML(string=html_string, base_url=req.build_absolute_uri('/'))
     pdf_file = html.write_pdf()
 
     response = HttpResponse(pdf_file, content_type='application/pdf;')

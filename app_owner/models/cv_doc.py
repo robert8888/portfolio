@@ -11,6 +11,12 @@ class CVDocument(models.Model):
         verbose_name = gettext_lazy('Identification name')
     )
 
+    photo = models.ForeignKey(
+        'CVDocumentPhoto',
+        on_delete = models.RESTRICT,
+        verbose_name = gettext_lazy('Photo')
+    )
+
     contact = models.ForeignKey(
         'CVDocumentContact',
         on_delete = models.RESTRICT,
