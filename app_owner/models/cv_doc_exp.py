@@ -3,20 +3,25 @@ from parler.models import TranslatableModel,TranslatedFields
 from django.utils.translation import gettext_lazy
 from django_better_admin_arrayfield.models.fields import ArrayField
 
-class CvDocumentExperience(models.Model):
-    document = models.ForeignKey(
-        'Document',
-        on_delete = models.CASCADE,
+class CVDocumentExperience(models.Model):
+
+    id_name = models.CharField(
+        verbose_name = gettext_lazy("Identification name"),
+        max_length = 100
     )
 
-    class Meta:
-        verbose_name = gettext_lazy('Cv document experience')
-        verbose_name_plural = gettext_lazy('Cv documents experiences')
+    def __str__(self):
+        return self.id_name
 
-class Job(TranslatableModel):
+    class Meta:
+        verbose_name = gettext_lazy('CV document experience')
+        verbose_name_plural = gettext_lazy('CV documents experiences')
+        db_table = 'app_owner_cv_doc_exp'
+
+class CVDocumentExperienceJob(TranslatableModel):
 
     experience = models.ForeignKey(
-        'CvDocumentExperience',
+        'CVDocumentExperience',
         on_delete = models.CASCADE,
     )
 
@@ -25,24 +30,29 @@ class Job(TranslatableModel):
         verbose_name = gettext_lazy('Company')
     )
 
-    from = models.DateField(
+    from_date = models.DateField(
         auto_now = False,
         verbose_name = gettext_lazy('From')
     )
 
-    to = models.DateField(
+    to_date = models.DateField(
         auto_now = False,
         verbose_name = gettext_lazy('To')
     )
 
     translation = TranslatedFields(
-        description = models.ArrayField(
+        description = ArrayField(
             models.TextField(
-                verbose_name = gettext_lazy('Description')
-            )
+                verbose_name = gettext_lazy('Description'),
+            ),
         )
     )
+
+    def __str__(self):
+        return self.company
 
     class Meta:
         verbose_name = gettext_lazy('Job')
         verbose_name_plural = gettext_lazy('Jobs')
+        db_table = 'app_owner_cv_doc_exp_job'
+

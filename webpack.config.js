@@ -8,7 +8,7 @@ const tsEntries = [
     'ckeditor/content_templates/editor-templates.ts',
     //front
     'front/ts/index.ts',
-    'front/ts/window-height.ts'
+    'front/ts/common.ts'
 ]
 
 const sassEntries = [

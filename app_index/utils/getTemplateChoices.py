@@ -2,7 +2,7 @@ from portfolio.utils.readConfigJson import readConfigJson
 
 
 def getTemplatesChoices(name):
-    templates = readConfigJson(['templates', 'TEMPLATES.json']).get(name)
+    templates = readConfigJson(['templates', 'TEMPLATES.json']).get(name, None)
     if not templates: return []
     choices = []
     for template in templates:

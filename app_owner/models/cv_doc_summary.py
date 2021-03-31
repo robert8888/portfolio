@@ -2,14 +2,9 @@ from django.db import models
 from parler.models import TranslatableModel,TranslatedFields
 from django.utils.translation import gettext_lazy
 
-class CvDocumentSummary(TranslatableModel):
+class CVDocumentSummary(TranslatableModel):
 
-    document = models.ForeignKey(
-        'Document',
-        on_delete = models.CASCADE,
-    )
-
-    name = CharField(
+    id_name = models.CharField(
         verbose_name = gettext_lazy('Identification name'),
         max_length = 255
     )
@@ -18,7 +13,8 @@ class CvDocumentSummary(TranslatableModel):
         summary_title = models.CharField(
             max_length = 255,
             verbose_name = gettext_lazy('Summary section tittle')
-        )
+        ),
+
         summary_content = models.TextField(
             verbose_name = gettext_lazy('Summary content')
         )
@@ -28,4 +24,5 @@ class CvDocumentSummary(TranslatableModel):
         return self.name
 
     class Meta:
-        verbose_name = gettext_lazy('Cv document Summary')
+        verbose_name = gettext_lazy('CV document Summary')
+        db_table = 'app_owner_cv_doc_sum'

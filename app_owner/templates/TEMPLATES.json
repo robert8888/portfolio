@@ -1,0 +1,7 @@
+{
+  "pdf": [{
+    "name": "Dark",
+    "path": "pdf/cv-dark.html",
+    "style": "front/css/sections/welcome.css"
+  }]
+}

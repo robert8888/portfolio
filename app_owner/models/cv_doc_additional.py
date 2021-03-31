@@ -1,12 +1,13 @@
 from django.db import models
 from parler.models import TranslatableModel,TranslatedFields
 from django.utils.translation import gettext_lazy
+from django_better_admin_arrayfield.models.fields import ArrayField
 
-class CvDocumentAdditional(TranslatableModel):
+class CVDocumentAdditional(TranslatableModel):
 
-    document = models.ForeignKey(
-        'Document',
-        on_delete = models.CASCADE,
+    id_name = models.CharField(
+        verbose_name = gettext_lazy("Identification name"),
+        max_length = 100
     )
 
     Type = (
@@ -16,14 +17,15 @@ class CvDocumentAdditional(TranslatableModel):
 
     type = models.CharField(
         max_length = 50,
-        verbose_name = gettext_lazy('Type')
+        verbose_name = gettext_lazy('Type'),
+        choices = Type,
     )
 
     translation = TranslatedFields(
         title = models.CharField(
             max_length = 255,
             verbose_name = gettext_lazy('Title')
-        )
+        ),
         items = ArrayField(
             models.CharField(
                 max_length = 255,
@@ -33,5 +35,6 @@ class CvDocumentAdditional(TranslatableModel):
     )
 
     class Meta:
-        verbose_name = gettext_lazy('Cv document additional info')
-        verbose_name_plural = gettext_lazy('Cv document additional infos')
+        verbose_name = gettext_lazy('CV document additional info')
+        verbose_name_plural = gettext_lazy('CV document additional infos')
+        db_table = 'app_owner_cv_doc_add'

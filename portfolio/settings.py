@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_better_admin_arrayfield',
     'prettyjson',
     'imagefield',
+    'sortedm2m',
     'compressor',
     'admin_reorder',
     'django.contrib.admin',

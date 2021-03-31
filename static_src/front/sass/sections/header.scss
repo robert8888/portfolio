@@ -43,7 +43,7 @@ body > header {
   }
   body[data-scroll-direction="down"]{
     &>header{
-      transform: translateY(0);
+      transform: unset;
     }
   }
   body[data-scroll-direction]{

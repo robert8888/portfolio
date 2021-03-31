@@ -4,30 +4,32 @@ from django.utils.translation import gettext_lazy
 from django_better_admin_arrayfield.models.fields import ArrayField
 
 
-class CvDocumentEducation(models.Model):
-    document = models.ForeignKey(
-        'Document',
-        on_delete = models.CASCADE,
+class CVDocumentEducation(models.Model):
+
+    id_name = models.CharField(
+        verbose_name = gettext_lazy("Identification name"),
+        max_length = 100
     )
 
     class Meta:
-        verbose_name = gettext_lazy('Cv document education')
-        verbose_name_plural = gettext_lazy('Cv documents educations')
+        verbose_name = gettext_lazy('CV document education')
+        verbose_name_plural = gettext_lazy('CV documents educations')
+        db_table = 'app_owner_cv_doc_edu'
 
 
-class School(TranslatableModel):
+class CVDocumentEducationSchool(TranslatableModel):
 
     education = models.ForeignKey(
-        'CvDocumentEducation',
+        'CVDocumentEducation',
         on_delete = models.CASCADE,
     )
 
-    from = models.DateField(
+    from_date = models.DateField(
         auto_now = False,
         verbose_name = gettext_lazy('From')
     )
 
-    to = models.DateField(
+    to_date = models.DateField(
         auto_now = False,
         verbose_name = gettext_lazy('To')
     )
@@ -38,10 +40,10 @@ class School(TranslatableModel):
             verbose_name = gettext_lazy('School name')
         ),
 
-        field = models.TextField(
+        field = models.CharField(
             max_length = 255,
             verbose_name = gettext_lazy('Field of study')
-        )
+        ),
 
         description = models.TextField(
             verbose_name = gettext_lazy('Description')
@@ -51,3 +53,4 @@ class School(TranslatableModel):
     class Meta:
         verbose_name = gettext_lazy('School')
         verbose_name_plural = gettext_lazy('Schools')
+        db_table = 'app_owner_cv_doc_edu_school'

@@ -13,6 +13,13 @@
         {% endfor %}
     {% endcompress %}
 {% endblock %}
+{% block headscripts %}
+    {{ block.super }}
+    {% compress js %}
+        {% include 'partial/script.html' with script_url='front/js/common.js' %}
+    {% endcompress %}
+{% endblock %}
+
 
 {% block content %}
     {% for section in sections %}

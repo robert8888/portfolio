@@ -383,3 +383,38 @@ input[type=color]{
         }
     }
 }
+
+form select {
+    min-width: 200px;
+    @include scroll(
+        transparent,
+        var(--color-pallet-4),
+        $color-pallet-1
+    )
+}
+
+ul.ui-sortable,
+ul.sortedm2m-items{
+    @include scroll(
+        transparent,
+        var(--color-pallet-4),
+        $color-pallet-1
+    );
+    border-left: 1px solid var(--color-pallet-4);
+    resize: vertical;
+}
+div.sortedm2m-container p.selector-filter {
+    margin-bottom: 2rem;
+    display: flex;
+    img{
+        box-sizing: border-box;
+        width: 25px;
+        height: 25px;
+        padding-left: 30px;
+        background-image: url('./../../img/magnifier.svg');
+        background-repeat: no-repeat;
+        background-size: 21px 21px;
+        background-position: center left;
+        @include blackSvgToColor();
+    }
+}
