@@ -10,6 +10,11 @@ class CVDocumentSummary(TranslatableModel):
     )
 
     translations = TranslatedFields(
+        position_title = models.CharField(
+            max_length = 255,
+            verbose_name = gettext_lazy('Position title')
+        ),
+
         summary_title = models.CharField(
             max_length = 255,
             verbose_name = gettext_lazy('Summary section tittle')

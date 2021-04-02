@@ -1,0 +1,273 @@
+@use "@sass/abstracts/mixins" as *;
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Merriweather+Sans:wght@300;500;700;800&family=Raleway:wght@200;400;800&display=swap" rel="stylesheet');
+
+$font-archivo: 'Archivo Black', sans-serif;
+$font-merriweather: 'Merriweather Sans', sans-serif;
+$font-raleway: 'Raleway', sans-serif;
+
+$calendar-white-svg: url("@/assets/img/pdf/calendar-white.svg");
+$envelope-white-svg: url("@/assets/img/pdf/envelope-white.svg");
+$marker-white-svg: url("@/assets/img/pdf/marker-white.svg");
+$marker-grey-svg: url("@/assets/img/pdf/marker-grey.svg");
+$phone-white-svg: url("@/assets/img/pdf/phone-white.svg");
+$user-white-svg: url("@/assets/img/pdf/user.svg");
+$briefcase-grey-svg: url("@/assets/img/pdf/briefcase-grey.svg");
+
+$color-text-dark-1: #5e5e5e;
+$color-text-dark-2: #383838;
+$color-text-light: white;
+
+@mixin icon($url){
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: .5em;
+    background-image: $url;
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: top;
+    line-height: 1em;
+}
+
+
+@page {
+  size: A4;
+  margin: 0;
+}
+html{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: rgb(53,53,53);
+  background: linear-gradient(90deg, rgba(53,53,53,1) 13%, rgba(32,32,32,1) 90%);
+  -webkit-print-color-adjust: exact;
+}
+body {
+  background: white;
+  margin: 0;
+  padding: 0;
+  page-break-inside: avoid;
+  overflow: hidden;
+}
+
+p, li {
+  color: #6c6c6c
+}
+
+h3{
+  color: $color-text-dark-2;
+  margin: .5em 0;
+  text-transform: uppercase;
+}
+h4 {
+  margin: .25rem 0;
+}
+h6{
+  font-size: .7rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: $font-merriweather;
+  * > {
+    margin-right: 1rem;
+  }
+}
+
+p{
+  margin: .5em 0 0 0 ;
+}
+ul, ol{
+  padding: 1em;
+  margin: 0;
+  margin-top: -.5em;
+}
+
+
+
+header{
+  background: rgb(53,53,53);
+  background: linear-gradient(90deg, rgba(53,53,53,1) 13%, rgba(32,32,32,1) 90%);
+  & > * {
+    color: white;
+    text-transform: uppercase;
+  }
+  h1{
+    font-family: $font-raleway;
+    font-weight: 700;
+    font-size: 2.4rem;
+    margin-bottom: 0;
+  }
+  h4 {
+    font-family: $font-raleway;
+    font-weight: 300;
+    margin: 0;
+    margin-bottom: .25rem;
+  }
+  .personal{
+    &__list{
+      list-style: none;
+      margin: 2rem 0;
+      padding: 0;
+      color: white;
+      font-family: $font-merriweather;
+      font-size: .7rem;
+      li{
+        display: inline-block;
+        margin: 0 1em 1em 0;
+      }
+    }
+    span{
+      color: white;
+    }
+    $icons:(
+      'birthday': $calendar-white-svg,
+      'address': $marker-white-svg,
+      'number': $phone-white-svg,
+      'email': $envelope-white-svg,
+    );
+    @each $part, $icon in $icons{
+      &__#{$part} i {
+        @include icon($icon);
+      }
+    }
+  }
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6cm;
+  padding: 0 1.25cm;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+
+main {
+  .container{
+    column-count: 2;
+    padding: 0 1.25cm;
+  }
+}
+
+.section{
+  &__title{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: .8rem;
+    text-align: left;
+    text-transform: uppercase;
+    color: $color-text-dark-2;
+    margin-bottom: 1rem;
+    margin-top: 0;
+    break-after: avoid-column;
+  }
+  &__text{
+    color: $color-text-dark-1;
+  }
+  margin-bottom: 1rem;
+}
+
+.summary{
+  p{
+    margin: 1.5rem;
+    font-size: .8rem;
+  }
+  ol{
+    padding: 1rem;
+    margin: 0;
+  }
+}
+
+.experience{
+  &__list{
+    padding: 0;
+    list-style: none;
+  }
+  .job{
+    &__detail {
+      break-inside: avoid;
+    }
+    &__period{
+      i {
+        @include icon($briefcase-grey-svg);
+      }
+    }
+    &__address{
+      margin-left: 1rem;
+      i {
+        @include icon($marker-grey-svg);
+        width: .8em;
+      }
+    }
+    &__position{
+      color: $color-text-dark-2;
+    }
+    &__company{
+      margin: 0;
+    }
+  }
+}
+
+
+.education{
+  &__list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.skills{
+  &__group{
+    margin-bottom: .5rem;
+  }
+  .language{
+    &__name {
+      &:after{
+        content: "  -  ";
+        display: inline;
+      }
+    }
+  }
+
+  .technologies{
+    ul, ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    li {
+      padding: 0.2em;
+      margin: .2em;
+      background: $color-text-dark-2;
+      color: $color-text-light;
+      display: inline-block;
+    }
+  }
+}
+.additional{
+  &__group{
+    break-inside: avoid-column;
+    background: red;
+    break-after: avoid-page;
+  }
+  h3{
+    break-after: avoid-column;
+    margin-bottom: 0;
+  }
+  ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+  li {
+    padding: 0.2em;
+    margin: .2em;
+    border: 1px solid $color-text-dark-2;
+    color: $color-text-dark-2;
+  }
+}

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_better_admin_arrayfield',
     'prettyjson',
     'imagefield',
+    'puppeteer_pdf',
     'sortedm2m',
     'compressor',
     'admin_reorder',
@@ -321,3 +322,5 @@ django_heroku.settings(
     databases = False,
     test_runner = False
 )
+
+PUPPETEER_PDF_CMD = 'npx puppeteer-pdf'

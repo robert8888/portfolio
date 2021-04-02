@@ -11,16 +11,24 @@ class CVDocument(models.Model):
         verbose_name = gettext_lazy('Identification name')
     )
 
-    photo = models.ForeignKey(
-        'CVDocumentPhoto',
-        on_delete = models.RESTRICT,
-        verbose_name = gettext_lazy('Photo')
+    document_title = models.CharField(
+        max_length = 255,
+        verbose_name = gettext_lazy('Document title'),
+        blank = True,
+        help_text = gettext_lazy('If not present default: Name + Surname')
     )
 
-    contact = models.ForeignKey(
-        'CVDocumentContact',
+    download_name = models.CharField(
+        max_length = 255,
+        verbose_name = gettext_lazy('Document download filename'),
+        blank = True,
+        help_text = gettext_lazy('If not present default: Name + Surname')
+    )
+
+    personal = models.ForeignKey(
+        'CVDocumentPersonal',
         on_delete = models.RESTRICT,
-        verbose_name = gettext_lazy('Contact data')
+        verbose_name = gettext_lazy('Personal data')
     )
 
     summary = models.ForeignKey(
