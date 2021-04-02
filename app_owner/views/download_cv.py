@@ -39,8 +39,8 @@ def process(req, id):
             'output': output_file
         }
     )
-
-    os.remove(output_file)
+    if os.path.exists(output_file):
+        os.remove(output_file)
     response = HttpResponse(pdf, content_type='application/pdf;')
     response['Content-Disposition'] = 'filename=cv-2.pdf'
 
