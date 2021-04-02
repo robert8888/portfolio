@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from django.conf import settings
 from weasyprint import HTML
 import tempfile
 import os
@@ -20,6 +21,8 @@ def process(req, id):
 #
 #     return response
 
+    output_file = os.path.join(settings.BASE_DIR, 'static', 'cv_temp.pdf')
+
     pdf = render_pdf_from_template(
         input_template='pdf/cv_simple.html',
         header_template='',
@@ -33,10 +36,12 @@ def process(req, id):
             'marginRight': '0',
             'marginBottom': '0',
             'preferCSSPageSize': True,
-            'output': './static/cv_temp.pdf'
+            'output': output_file
         }
     )
-    os.remove('./static/cv_temp.pdf')
+
+    os.remove(output_file)
     response = HttpResponse(pdf, content_type='application/pdf;')
     response['Content-Disposition'] = 'filename=cv-2.pdf'
+
     return response
