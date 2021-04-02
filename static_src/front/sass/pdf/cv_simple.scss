@@ -12,6 +12,7 @@ $marker-grey-svg: url("@/assets/img/pdf/marker-grey.svg");
 $phone-white-svg: url("@/assets/img/pdf/phone-white.svg");
 $user-white-svg: url("@/assets/img/pdf/user.svg");
 $briefcase-grey-svg: url("@/assets/img/pdf/briefcase-grey.svg");
+$book-gray-svg: url("@/assets/img/pdf/book-gray.svg");
 
 $color-text-dark-1: #5e5e5e;
 $color-text-dark-2: #383838;
@@ -20,28 +21,30 @@ $color-text-light: white;
 @mixin icon($url){
     display: inline-block;
     width: 1em;
-    height: 1em;
+    height: .9em;
     margin-right: .5em;
     background-image: $url;
     background-size: contain;
     background-repeat: no-repeat;
-    vertical-align: top;
-    line-height: 1em;
+    vertical-align: middle;
+    line-height: .9em;
 }
 
 
 @page {
   size: A4;
-  margin: 0;
+  margin: 0 0 1.25cm 0;
 }
 html{
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  background: rgb(53,53,53);
-  background: linear-gradient(90deg, rgba(53,53,53,1) 13%, rgba(32,32,32,1) 90%);
   -webkit-print-color-adjust: exact;
+  * {
+    font-family: $font-raleway;
+  }
+  font-size: 16px;
 }
 body {
   background: white;
@@ -74,17 +77,27 @@ h6{
 }
 
 p{
-  margin: .5em 0 0 0 ;
+  margin: .5em 0;
 }
 ul, ol{
-  padding: 1em;
+  padding: 0 1em;
   margin: 0;
-  margin-top: -.5em;
+  li {
+    margin: 0 0 .5em 0;
+  }
 }
 
 
 
 header{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5cm;
+  padding: 0 1.25cm;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
   background: rgb(53,53,53);
   background: linear-gradient(90deg, rgba(53,53,53,1) 13%, rgba(32,32,32,1) 90%);
   & > * {
@@ -93,8 +106,8 @@ header{
   }
   h1{
     font-family: $font-raleway;
-    font-weight: 700;
-    font-size: 2.4rem;
+    font-weight: 600;
+    font-size: 2.3rem;
     margin-bottom: 0;
   }
   h4 {
@@ -131,20 +144,14 @@ header{
       }
     }
   }
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6cm;
-  padding: 0 1.25cm;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
+
 }
 
 
 main {
   .container{
     column-count: 2;
+    column-gap: 2.5rem;
     padding: 0 1.25cm;
   }
 }
@@ -152,11 +159,11 @@ main {
 .section{
   &__title{
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: .8rem;
+    font-weight: 600;
+    font-size: 1rem;
     text-align: left;
     text-transform: uppercase;
-    color: $color-text-dark-2;
+    color: $color-text-dark-1;
     margin-bottom: 1rem;
     margin-top: 0;
     break-after: avoid-column;
@@ -164,7 +171,7 @@ main {
   &__text{
     color: $color-text-dark-1;
   }
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .summary{
@@ -182,6 +189,9 @@ main {
   &__list{
     padding: 0;
     list-style: none;
+    &-item{
+      margin-bottom: 1rem;
+    }
   }
   .job{
     &__detail {
@@ -215,6 +225,11 @@ main {
     margin: 0;
     padding: 0;
   }
+  .school__period{
+    i {
+      @include icon($book-gray-svg);
+    }
+  }
 }
 
 .skills{
@@ -222,11 +237,10 @@ main {
     margin-bottom: .5rem;
   }
   .language{
-    &__name {
-      &:after{
-        content: "  -  ";
-        display: inline;
-      }
+    font-weight: 600;
+    &__name:after{
+      content: "  -  ";
+      display: inline;
     }
   }
 
@@ -240,7 +254,7 @@ main {
     }
     li {
       padding: 0.2em;
-      margin: .2em;
+      margin: .3em .6em .3em 0;
       background: $color-text-dark-2;
       color: $color-text-light;
       display: inline-block;
@@ -250,7 +264,6 @@ main {
 .additional{
   &__group{
     break-inside: avoid-column;
-    background: red;
     break-after: avoid-page;
   }
   h3{
@@ -260,13 +273,13 @@ main {
   ul, ol {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 1em 0 0 0;
     display: inline-flex;
     flex-wrap: wrap;
   }
   li {
     padding: 0.2em;
-    margin: .2em;
+    margin: .3em .6em .3em 0;
     border: 1px solid $color-text-dark-2;
     color: $color-text-dark-2;
   }

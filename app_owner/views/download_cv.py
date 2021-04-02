@@ -36,7 +36,8 @@ def process(req, id):
             'marginRight': '0',
             'marginBottom': '0',
             'preferCSSPageSize': True,
-            'output': output_file
+            'output': output_file,
+            'pageRanges': 1
         }
     )
     if os.path.exists(output_file):
