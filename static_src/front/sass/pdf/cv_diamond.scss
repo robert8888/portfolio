@@ -1,0 +1,326 @@
+@use "@sass/abstracts/mixins" as *;
+@use "@sass/pdf/common" as *;
+@import url("https://use.typekit.net/pdl5nzl.css");
+
+
+$font-roboto: 'Roboto', sans-serif;
+$font-sans-pro: 'Source Sans Pro', sans-serif;
+$font-calling: calling-code, sans-serif;
+
+
+
+
+//:root{
+//  --color-text-primary: #3d3d3d;
+//  --color-text-primary-focus: #222;
+//  --color-text-secondary: white;
+//}
+
+
+
+* {
+  font-family: $font-roboto;
+  box-sizing: border-box;
+
+
+}
+
+@mixin icon-s($url, $color: var(--color-text-primary)){
+  @include icon($url, $color);
+  margin-right: .25em;
+}
+html{
+
+}
+body{
+  height: 100%;
+  background: var(--color-background);
+  z-index: 0;
+  display: table;
+
+  @include pseudo($type: 'before'){
+    height: 6cm;
+    background: var(--color-primary);
+    z-index: 0;
+    clip-path: polygon(
+      37.5% 0,
+      100% 0,
+      100% 100%,
+      65% 90%
+    );
+  }
+  @include pseudo($type: 'after'){
+    height: 3cm;
+    top: unset;
+    bottom: 0;
+    background: var(--color-primary);
+    z-index: 0;
+    clip-path: polygon(
+      30% 100%,
+      40% 32%,
+      100% 0,
+      100% 100%
+    );
+  }
+}
+header{
+  position: relative;
+}
+.container{
+  padding: 1.25cm;
+  padding-bottom: .5cm;
+  padding-top: .6in;
+}
+
+h3{
+  margin: .3rem 0;
+  color: var(--color-text-primary-focus);
+}
+h4{
+  margin: .25rem 0;
+  color: var(--color-text-primary-focus);
+}
+
+p, ul, li, h5, h6{
+  margin: .25rem 0;
+  color: var(--color-text-primary);
+  font-size: .85rem;
+}
+h5, h6{
+  font-family: $font-calling;
+  font-size: .8rem;
+}
+
+.personal{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  &__full-name{
+    width: 100px;
+    overflow-wrap: anywhere;
+    font-family: $font-calling;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1px;
+    margin: 0 0 0 .25rem;
+    color: var(--color-text-primary-focus);
+  }
+  &__list{
+    text-align: right;
+    color: white;
+    list-style: none;
+    li {
+      margin: .35em 0;
+      font-size: .9rem;
+      color: var(--color-text-secondary);
+      font-family: $font-calling;
+    }
+  }
+  &__link{
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: .8rem;
+  }
+  $icons:(
+        'birthday': $calendar-white-svg,
+        'number': $phone-white-svg,
+        'email': $envelope-white-svg,
+  );
+  @each $part, $icon in $icons{
+    &__#{$part}::before{
+      content: "";
+      @include icon-s($icon, var(--color-text-secondary));
+      width: 1.2em;
+    }
+  }
+}
+
+.section{
+  padding-left: .5rem;
+  margin-bottom: 1.5rem;
+  &__title{
+    font-family: $font-sans-pro;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    font-weight: 600;
+    letter-spacing: 1px;
+    word-spacing: .3em;
+    margin-left: -1.75rem;
+    margin-bottom: 1rem;
+    break-before: auto;
+    -webkit-column-break-after: avoid
+  }
+  $icons: (
+    '.experience' : $briefcase-grey-svg,
+    '.achievements' : $trophy-gray-svg,
+    '.education' : $graduation-grey-svg,
+    '.strengths' : $star-grey-svg,
+    '.skills' : $flask-grey-svg
+  );
+  @each $part, $icon in $icons{
+    $self: &;
+    &#{$part}{
+      #{$self}__title::before{
+        content: "";
+        display: inline-block;
+        @include icon($icon...);
+      }
+    }
+  }
+  &>ul, & > ol {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+main {
+  page-break-inside: auto;
+  .container {
+   //-webkit-column-count: 2 !important;
+   column-count: 2 !important;
+   column-gap: 1.25cm;
+   column-fill: auto;
+   //width: 22cm;
+    overflow-y: hidden;
+    max-height: 22cm;
+    page-break-inside: auto;
+    & > * {
+      //margin-left: .5em;
+    }
+  }
+}
+.experience{
+  &__list{
+    &-item{
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+  }
+  .job{
+    &__period::before{
+        content: "";
+        @include icon-s($calendar-gray-svg...);
+    }
+    &__address{
+      margin-left: .5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      &::before{
+        content: "";
+        @include icon-s($marker-grey-svg...);
+      }
+    }
+    &__detail{
+      break-inside: avoid;
+    }
+  }
+}
+
+
+
+.achievements{
+  ul, ol {
+    list-style: circle;
+    margin-left: -.25rem;
+    li {
+      padding-left: .25rem;
+    }
+  }
+}
+
+.education{
+  &__list{
+    break-before: avoid;
+    ul, ol {
+      list-style: circle;
+      margin-left: -.25rem;
+      padding-left: 1.5rem;
+      li {
+        padding-left: .25rem;
+      }
+    }
+    &-item{
+      margin-bottom: 1rem;
+    }
+  }
+  .school{
+    break-inside: auto;
+  }
+  .school__period::before{
+    content: "";
+    @include icon-s($calendar-gray-svg...);
+  }
+  .school__detail{
+    break-inside: avoid;
+  }
+}
+
+.strengths{
+  ul, ol {
+    list-style: none;
+    padding: 0;
+    li {
+      display: inline-block;
+      &:before{
+        content: '#';
+        display: inline-block;
+        margin-right: .5em;
+        font-weight: 800;
+      }
+      margin-right: .5em;
+    }
+  }
+}
+
+.skills{
+  .languages{
+    .language:before{
+      content: "";
+      @include icon-s($globe-americas-gray-svg...);
+    }
+  }
+  .technologies{
+    ul, ol {
+      list-style: none;
+      padding: 0;
+      li {
+        display: inline-block;
+        padding: .2em .4em;
+        z-index: 1;
+        border: 1px solid var(--color-primary);
+        font-weight: 600;
+        font-size: 1rem;
+        min-width: 2rem;
+        text-align: center;
+        padding-bottom: .5em;
+        @include pseudo(){
+          top: unset;
+          height: .25em;
+          right: 1px;
+          background-image: linear-gradient(to right,var(--color-primary) var(--progress), #0003 0);
+        }
+        span{
+          margin: 0;
+          padding: 1px;
+          color: var(--color-text-primary)
+        }
+      }
+    }
+  }
+}
+
+footer{
+  position: fixed;
+  width: 100%;
+  bottom: -1.25cm;
+  height: 4cm;
+  z-index: 1;
+  .container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+}

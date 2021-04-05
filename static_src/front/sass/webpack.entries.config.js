@@ -18,4 +18,7 @@ module.exports = [
     'front/sass/ckeditor-content.scss',
 
     'front/sass/pdf/cv_simple.scss',
+    'front/sass/pdf/cv_diamond.scss',
+    'front/sass/pdf/cv_asymmetric.scss',
+    'front/sass/pdf/cv_boxes.scss',
 ]

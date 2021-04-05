@@ -1,57 +1,28 @@
 @use "@sass/abstracts/mixins" as *;
+@use "@sass/pdf/common" as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Merriweather+Sans:wght@300;500;700;800&family=Raleway:wght@200;400;800&display=swap" rel="stylesheet');
 
 $font-archivo: 'Archivo Black', sans-serif;
 $font-merriweather: 'Merriweather Sans', sans-serif;
 $font-raleway: 'Raleway', sans-serif;
 
-$calendar-white-svg: url("@/assets/img/pdf/calendar-white.svg");
-$envelope-white-svg: url("@/assets/img/pdf/envelope-white.svg");
-$marker-white-svg: url("@/assets/img/pdf/marker-white.svg");
-$marker-grey-svg: url("@/assets/img/pdf/marker-grey.svg");
-$phone-white-svg: url("@/assets/img/pdf/phone-white.svg");
-$user-white-svg: url("@/assets/img/pdf/user.svg");
-$briefcase-grey-svg: url("@/assets/img/pdf/briefcase-grey.svg");
-$book-gray-svg: url("@/assets/img/pdf/book-gray.svg");
-
-$color-text-dark-1: #5e5e5e;
-$color-text-dark-2: #383838;
-$color-text-light: white;
-
-@mixin icon($url){
-    display: inline-block;
-    width: 1em;
-    height: .9em;
-    margin-right: .5em;
-    background-image: $url;
-    background-size: contain;
-    background-repeat: no-repeat;
-    vertical-align: middle;
-    line-height: .9em;
+@mixin icon-s($url,$color){
+  @include icon($url, $color);
+  margin-right:.1cm;
 }
 
-
-@page {
-  size: A4;
-  margin: 0 0 1.25cm 0;
-}
 html{
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  -webkit-print-color-adjust: exact;
   * {
     font-family: $font-raleway;
+    letter-spacing: 0;
   }
   font-size: 16px;
 }
 body {
-  background: white;
-  margin: 0;
-  padding: 0;
-  page-break-inside: avoid;
+  background: var(--color-background);
   overflow: hidden;
+  padding-bottom: 5rem;
 }
 
 p, li {
@@ -59,7 +30,7 @@ p, li {
 }
 
 h3{
-  color: $color-text-dark-2;
+  color: var(--color-text-primary-focus);
   margin: .5em 0;
   text-transform: uppercase;
 }
@@ -71,6 +42,7 @@ h6{
   margin: 0;
   text-transform: uppercase;
   font-family: $font-merriweather;
+  color: var(--color-text-primary);
   * > {
     margin-right: 1rem;
   }
@@ -78,15 +50,17 @@ h6{
 
 p{
   margin: .5em 0;
+  color: var(--color-text-primary);
 }
 ul, ol{
   padding: 0 1em;
   margin: 0;
+  color: var(--color-text-primary);
   li {
     margin: 0 0 .5em 0;
+    color: var(--color-text-primary);
   }
 }
-
 
 
 header{
@@ -94,14 +68,14 @@ header{
   left: 0;
   width: 100%;
   height: 5cm;
-  padding: 0 1.25cm;
+  padding: .5cm .3in 0 1.25cm;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
-  background: rgb(53,53,53);
-  background: linear-gradient(90deg, rgba(53,53,53,1) 13%, rgba(32,32,32,1) 90%);
+  position: relative;
+  @include horizontal-gradient();
   & > * {
-    color: white;
+    color: var(--color-text-secondary);
     text-transform: uppercase;
   }
   h1{
@@ -132,15 +106,29 @@ header{
     span{
       color: white;
     }
+    &__link{
+      position: absolute;
+      top: .5cm;
+      right: 3cm;
+      color: white;
+      text-transform: lowercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    &__birthday:before{
+      content:"";
+      @include icon-s($calendar-white-svg, var(--color-text-secondary));
+      width: 1.3em;
+    }
     $icons:(
-      'birthday': $calendar-white-svg,
       'address': $marker-white-svg,
       'number': $phone-white-svg,
       'email': $envelope-white-svg,
     );
     @each $part, $icon in $icons{
-      &__#{$part} i {
-        @include icon($icon);
+      &__#{$part}::before {
+        content:"";
+        @include icon-s($icon,  var(--color-text-secondary));
       }
     }
   }
@@ -152,7 +140,12 @@ main {
   .container{
     column-count: 2;
     column-gap: 2.5rem;
-    padding: 0 1.25cm;
+    column-fill: auto;
+    padding: 0 .4in 0cm 1.25cm;
+    padding-bottom: 5rem;
+    margin-bottom: 4rem;
+    max-height: 25cm;
+    overflow: hidden;
   }
 }
 
@@ -163,13 +156,13 @@ main {
     font-size: 1rem;
     text-align: left;
     text-transform: uppercase;
-    color: $color-text-dark-1;
+    color: var(--color-text-primary-focus);
     margin-bottom: 1rem;
     margin-top: 0;
     break-after: avoid-column;
   }
   &__text{
-    color: $color-text-dark-1;
+    color: var(--color-text-primary);
   }
   margin-bottom: 1.5rem;
 }
@@ -179,9 +172,9 @@ main {
     margin: 1.5rem;
     font-size: .8rem;
   }
-  ol{
-    padding: 1rem;
-    margin: 0;
+  ol, ul{
+    padding-right: 1rem;
+    margin: .5em 0 0;
   }
 }
 
@@ -190,27 +183,27 @@ main {
     padding: 0;
     list-style: none;
     &-item{
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
   }
   .job{
     &__detail {
       break-inside: avoid;
     }
-    &__period{
-      i {
-        @include icon($briefcase-grey-svg);
-      }
+    &__period::before{
+      content:"";
+      @include icon-s($briefcase-grey-svg, var(--color-text-primary));
     }
     &__address{
       margin-left: 1rem;
-      i {
-        @include icon($marker-grey-svg);
+      &::before{
+        content:"";
+        @include icon-s($marker-grey-svg,  var(--color-text-primary));
         width: .8em;
       }
     }
     &__position{
-      color: $color-text-dark-2;
+      color: var(--color-text-primary-focus);
     }
     &__company{
       margin: 0;
@@ -225,16 +218,15 @@ main {
     margin: 0;
     padding: 0;
   }
-  .school__period{
-    i {
-      @include icon($book-gray-svg);
-    }
+  .school__period::before{
+    content:"";
+    @include icon-s($book-gray-svg,  var(--color-text-primary));
   }
 }
 
 .skills{
   &__group{
-    margin-bottom: .5rem;
+    margin-bottom: 1rem;
   }
   .language{
     font-weight: 600;
@@ -253,34 +245,29 @@ main {
       flex-wrap: wrap;
     }
     li {
-      padding: 0.2em;
+      padding: 0.2em 0.5em;
       margin: .3em .6em .3em 0;
-      background: $color-text-dark-2;
-      color: $color-text-light;
+      background: var(--color-secondary);
+      color: var(--color-text-secondary);
       display: inline-block;
     }
   }
 }
 .additional{
-  &__group{
-    break-inside: avoid-column;
-    break-after: avoid-page;
-  }
   h3{
-    break-after: avoid-column;
+    break-after: avoid;
     margin-bottom: 0;
   }
   ul, ol {
     list-style: none;
     padding: 0;
     margin: 1em 0 0 0;
-    display: inline-flex;
-    flex-wrap: wrap;
   }
   li {
-    padding: 0.2em;
+    padding: 0.2em 0.5em;
     margin: .3em .6em .3em 0;
-    border: 1px solid $color-text-dark-2;
-    color: $color-text-dark-2;
+    border: 1px solid var(--color-secondary);
+    color: var(--color-text-primary-focus);
+    display: inline-block;
   }
 }

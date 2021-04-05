@@ -1,0 +1,221 @@
+@use "@sass/abstracts/mixins" as *;
+@use "@sass/pdf/common" as *;
+@import url("https://use.typekit.net/jca5znn.css");
+
+body{
+  position: relative;
+}
+
+h5, h6, p, div, li, span{
+  font-size: .9rem;
+}
+
+h3, h6, h4{
+  margin: .4em 0;
+}
+
+p{
+  margin: .25rem 0;
+}
+
+h3 {
+  color: var(--color-text-primary-focus)
+}
+
+.background{
+  width: 100%;
+  height: 100%;
+  background: var(--color-background);
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &__sidebar{
+    display: block;
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 3.5cm;
+    @include vertical-gradient($from: 10%, $to: -5%);
+    @include pseudo(){
+      left: 50%;
+      top: 20%;
+      bottom: unset;
+      height: 50%;
+      width: .05cm;
+      background: var(--color-text-primary);
+      //transform: translate(-50%, -30%);
+    }
+  }
+  &__floppy{
+    position: fixed;
+    width: 6cm;
+    height: 6cm;
+    bottom: -.4cm;
+    left: -1.5cm;
+    background: var(--color-text-primary);
+    mask-image: $floppy-disk-svg;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+  &__crosses{
+    width: 4cm;
+    height: 3.75cm;
+    position: fixed;
+    right: -1cm;
+    top: 1.75cm;
+    background: var(--color-text-primary);
+    mask-image: $cross-svg;
+    mask-size: 35px 35px;
+    mask-repeat: space;
+  }
+  &__arrows{
+    position: fixed;
+    bottom: -.5cm;
+    right: -.5cm;
+    width: 4cm;
+    height: 2cm;
+    background: var(--color-text-primary);
+    mask-image: $arrow-right-svg, $arrow-right-svg;
+    mask-size: 2cm 2cm, 2cm 2cm;
+    mask-position: -0.1333cm 0, 2.79cm 0;
+    mask-repeat: repeat-x, repeat-x;
+  }
+}
+
+header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5cm;
+  width: 100%;
+  h3, h4{
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    font-family: bebas-neue-by-fontfabric, sans-serif;
+  }
+  h3{
+    font-size: 2.75cm;
+    margin: 0;
+    margin-top: -.19em;
+    margin-left: -.02em;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  h4{
+    font-size: 1.25cm;
+    letter-spacing: .01cm;
+    position: absolute;
+    margin: 0;
+    top: 3cm;
+    left: 1.75cm;
+  }
+}
+
+main{
+  box-sizing: border-box;
+  margin-top: 4.75cm;
+  padding: 0 1.5cm 2cm 5cm;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--color-text-primary);
+  font-family: ubuntu, sans-serif;
+}
+
+.section{
+  &__title{
+    color: var(--color-primary);
+    margin-bottom: .5rem;
+  }
+  margin-bottom: 1.25rem;
+  &__group{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 2rem;
+  }
+}
+
+.technologies{
+  ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li{
+      display: inline-block;
+      padding: .3em .4em .6em .3em;
+      margin: .2em .4em .2em 0;
+      min-width: 2.3cm;
+      text-align: center;
+      @include pseudo(){
+        top: unset;
+        height: .3em;
+        background-image: linear-gradient(to right,var(--color-primary) var(--progress), #0003 0);
+      }
+    }
+  }
+}
+
+.experience{
+  &__list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    &-item{
+      margin-bottom: .75rem;
+    }
+  }
+  h6{
+    font-weight: 400;
+  }
+  .job{
+    &__company{
+      margin-right: .5rem;
+      &:after{
+        content: " | ";
+        margin-left: .5rem;
+        display: inline-block;
+      }
+    }
+    &__desc{
+      ul, ol {
+        padding-left: 1rem;
+      }
+    }
+  }
+}
+
+.education{
+  ul, ol {
+    list-style: none;
+    padding: 0;
+    li {
+      margin-bottom: 1rem;
+    }
+  }
+  .school{
+    &__period{
+      font-weight: 300;
+    }
+  }
+}
+
+.contact{
+  ol, ul {
+    list-style: none;
+    padding: 0;
+    li {
+      margin: .5rem 0;
+      font-size: 1rem;
+    }
+  }
+  .personal__link{
+      color: var(--color-primary);
+  }
+}

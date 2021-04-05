@@ -1,7 +1,85 @@
+:root{
+  --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
+  --color-primary-light: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + 10%));
+  --color-secondary: hsl(var(--color-secondary-h), var(--color-secondary-s), var(--color-secondary-l));
+
+  --color-background: hsl(var(--color-background-h), var(--color-background-s), var(--color-background-l));
+  --color-text-primary: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
+  --color-text-primary-focus: hsl(var(--color-text-focus-h), var(--color-text-focus-s),  var(--color-text-focus-l));
+  --color-text-secondary: hsl(var(--color-text-secondary-h), var(--color-text-secondary-s), var(--color-text-secondary-l));
+}
+
+
+@mixin horizontal-gradient(){
+  background: rgb(53,53,53);
+  background: linear-gradient(90deg, var(--color-primary-light) 13%, var(--color-primary) 90%);
+}
+
+@mixin vertical-gradient($from: 10%, $to: 0){
+  background: rgb(53,53,53);
+  background: linear-gradient(
+      0deg,
+      hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + #{$from})) 13%,
+      hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + #{$to}))  90%
+  );
+}
+
+@mixin icon($url, $color: var(--color-text-primary)){
+  padding: 0;
+  display: inline-block;
+  width: 1.1em;
+  height: 1em;
+  transform: translate(-.1em, .2em);
+  margin: 1px .3cm 1px 0.01cm;
+  line-height: 1em;
+  background: $color;
+  mask-image: $url;
+  -webkit-mask-image: $url;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  box-sizing: border-box;
+}
+
+
 @page {
-  size: Letter;
-  margin: 0in 0in 0in 0in;
+  size: A4;
+  margin: 0 0 0 0;
 }
+
 html{
-  background: red;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-print-color-adjust: exact;
+  font-size: 16px;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+$calendar-white-svg: url("@/assets/img/pdf/calendar.svg");
+$calendar-gray-svg: url("@/assets/img/pdf/calendar-gray.svg");
+$envelope-white-svg: url("@/assets/img/pdf/envelope-white.svg");
+$marker-white-svg: url("@/assets/img/pdf/marker-white.svg");
+$marker-grey-svg: url("@/assets/img/pdf/marker-grey.svg");
+$phone-white-svg: url("@/assets/img/pdf/phone-white.svg");
+$user-white-svg: url("@/assets/img/pdf/user.svg");
+$briefcase-grey-svg: url("@/assets/img/pdf/briefcase-grey.svg");
+$book-gray-svg: url("@/assets/img/pdf/book-gray.svg");
+$trophy-gray-svg: url("@/assets/img/pdf/trophy-grey.svg");
+$graduation-grey-svg: url("@/assets/img/pdf/graduation-grey.svg");
+$star-grey-svg: url("@/assets/img/pdf/star-gray.svg");
+$flask-grey-svg: url("@/assets/img/pdf/flask-gray.svg");
+$language-grey-svg: url("@/assets/img/pdf/language-grey.svg");
+$globe-americas-gray-svg: url("@/assets/img/pdf/globe-americas-gray.svg");
+$calendar-white-svg: url("@/assets/img/pdf/calendar-white.svg");
+$envelope-white-svg: url("@/assets/img/pdf/envelope-white.svg");
+$floppy-disk-svg: url("@/assets/img/pdf/floppy-disk-2.svg");
+$cross-svg: url("@/assets/img/pdf/cross.svg");
+$arrow-right-svg: url("@/assets/img/pdf/right-arrow.svg");
+

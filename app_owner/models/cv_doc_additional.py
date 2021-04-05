@@ -12,6 +12,8 @@ class CVDocumentAdditional(TranslatableModel):
 
     Type = (
         ('hobby', gettext_lazy('Hobby')),
+        ('strength', gettext_lazy('Strengths')),
+        ('achievements', gettext_lazy('Achievements')),
         ('other', gettext_lazy('Other'))
     )
 

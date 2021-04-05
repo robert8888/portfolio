@@ -1,0 +1,147 @@
+{% extends 'pdf/base.html' %}
+{% load static compress %}
+{% block style %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static '/front/css/pdf/cv_boxes.css'%}"/>
+{% endcompress %}
+{% endblock %}
+{% block content %}
+<header>
+    <h3 class="personal__full-name">Robert Kamiński</h3>
+    <h4 class="job__profession">Frontend developer </h4>
+</header>
+<div class="container">
+    <div class="col">
+        <section class="section summary">
+            <h3 class="section__title">A BIT ABOUT ME</h3>
+            <div class="section__text">
+                <p>
+                    I am passionate about creating ideas and executing them. Two such
+                    instances in the past where I discovered this passion was:
+                    Standardising final checklist tests and drafting market approaches
+                    for SAP GANGES (an FMCG last mile business initiative by SAP),
+                    I ended up creating a standard document for the above, which
+                </p>
+            </div>
+        </section>
+        <section class="section strengths">
+            <h3 class="section__title">Strengths</h3>
+            <ul>
+                <li>Addaptive</li>
+                <li>Effecitly managint multple projects</li>
+                <li>Accuarcy</li>
+                <li>Addaptive</li>
+                <li>Effecitly managint multple projects</li>
+            </ul>
+        </section>
+        <section class="section contact">
+            <h3 class="section__title">Contact</h3>
+            <ul class="personal__list">
+                <li class="contact__list-item"><span class="personal__addres">Poznan cos tam gdzies tam 15-687</span></li>
+                <li class="contact__list-item"><span class="personal__number">000 000 000</span></li>
+                <li class="contact__list-item"><span class="personal__email">email@email.com</span></li>
+                <li class="contact__list-item"><span class="personal__link">www.rkam.dev</span></li>
+            </ul>
+        </section>
+    </div>
+    <div class="col">
+        <section class="section experience">
+            <h3 class="section__title">Work Experience</h3>
+            <ul class="experience__list">
+                <li class="experience__list-item">
+                    <div class="job__detail">
+                        <h3 class="job__position">SENIOR PHP DEVELOPER</h3>
+                        <h6>
+                            <span class="job__company">Korbanek sp. z o.</span>
+                            <span class="job__period"><time>2015-08</time> - <time>PRESENT</time></span>
+                        </h6>
+                    </div>
+                    <div class="job__desc">
+                        <ul>
+                            <li>
+                                Social Media ABAP Integration Library (SAIL) and the Ad-hoc Collaboration team
+                            </li>
+                            <li>
+                                develops a service to integrate SAP Business Suite objects on SAP Jam(SAP's social media collaboration solution). My tasks and responsibilities in this team were:
+                            </li>
+                            <li>
+                                develops a service to integrate SAP Business Suite objects on SAP Jam(SAP's social media collaboration solution). My tasks and responsibilities in this team were:
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="experience__list-item">
+                    <div class="job__detail">
+                        <h3 class="job__position">SENIOR PHP DEVELOPER</h3>
+                        <h6>
+                            <span class="job__company">Korbanek sp. z o.</span>
+                            <span class="job__period"><time>2015-08</time> - <time>PRESENT</time></span>
+                        </h6>
+                    </div>
+                    <div class="job__desc">
+                        <ul>
+                            <li>
+                                Social Media ABAP Integration Library (SAIL) and the Ad-hoc Collaboration team
+                            </li>
+                            <li>
+                                develops a service to integrate SAP Business Suite objects on SAP Jam(SAP's social media collaboration solution). My tasks and responsibilities in this team were:
+                            </li>
+                            <li>
+                                develops a service to integrate SAP Business Suite objects on SAP Jam(SAP's social media collaboration solution). My tasks and responsibilities in this team were:
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="section skills">
+            <h3 class="section__title">Skills</h3>
+            <div class="skills__group languages">
+                <p class="language">
+                    <span class="language__name">English</span>
+                    <span class="language_level">B2</span>
+                </p>
+            </div>
+            <div class="skills__group technologies">
+                <ul>
+                    <li style="--progress: 80%"><span>Javascript</span></li>
+                    <li style="--progress: 60%"><span>Typescript</span></li>
+                    <li style="--progress: 70%"><span>Html</span></li>
+                    <li style="--progress: 80%"><span>Css</span></li>
+                    <li style="--progress: 80%"><span>Sass</span></li>
+                    <li style="--progress: 60%"><span>Python</span></li>
+                    <li style="--progress: 60%"><span>SQL</span></li>
+                    <li style="--progress: 70%"><span>GraphQl</span></li>
+                    <li style="--progress: 90%"><span>React</span></li>
+                    <li style="--progress: 60%"><span>Vue</span></li>
+                    <li style="--progress: 60%"><span>Git</span></li>
+                </ul>
+            </div>
+        </section>
+        <section class="section education">
+            <h3 class="section__title">Education</h3>
+            <ul class="education__list">
+                <li class="education__list-item school">
+                    <div class="school__detail">
+                        <h6 class="school__period"><time>08/2012</time> - <time>07/2014</time></h6>
+                        <h3 class="school__name">Uniwerste Adama mickiewcza</h3>
+                        <h4 class="school__field">Inoformatyka na wydziele Informatki i Matematki</h4>
+                        <div class="school__description">
+                            <p>
+                                I was an active participant and leader in many case studies performed during the classes, trying to bring
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="education__list-item school">
+                    <div class="school__detail">
+                        <h6 class="school__period"><time>08/2012</time> - <time>07/2014</time></h6>
+                        <h3 class="school__name">Liceum Ogolno kształcące</h3>
+                        <h4 class="school__field">Profil matematyczno infomratyczny</h4>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>
+{% endblock %}

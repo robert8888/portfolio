@@ -2,7 +2,6 @@
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.conf import settings
-from weasyprint import HTML
 import tempfile
 import os
 
@@ -12,19 +11,10 @@ from puppeteer_pdf.views import PDFResponse
 
 
 def process(req, id):
-#     html_string = render_to_string('pdf/cv_simple.html', {'test': 'value'})
-#     html = HTML(string=html_string, base_url=req.build_absolute_uri('/'), encoding = "Latina-2")
-#     pdf_file = html.write_pdf()
-
-#     response = HttpResponse(pdf_file, content_type='application/pdf;')
-#     response['Content-Disposition'] = 'filename=cv-2.pdf'
-#
-#     return response
-
     output_file = os.path.join(settings.BASE_DIR, 'static', 'cv_temp.pdf')
 
     pdf = render_pdf_from_template(
-        input_template='pdf/cv_simple.html',
+        input_template='pdf/'+id+'.html',
         header_template='',
         footer_template='',
         context={},
@@ -35,6 +25,7 @@ def process(req, id):
             'marginLeft': '0',
             'marginRight': '0',
             'marginBottom': '0',
+            'printBackground': True,
             'preferCSSPageSize': True,
             'output': output_file,
             'pageRanges': 1
