@@ -86,9 +86,9 @@ import getAttributeObserveValue from "./attribute-observe-value";
             if(!logoWrapper || !logoContainer)
                 return;
 
-            logoContainer.setAttribute("data-init-anim-finished", "true");
-
             logoWrapper.addEventListener("svg-animation-end", (e) => {
+                logoContainer.setAttribute("data-init-anim-finished", "true");
+
                 const initPosition = logoContainer.getBoundingClientRect();
                 logoWrapper.classList.remove('logo__wrapper--init');
 

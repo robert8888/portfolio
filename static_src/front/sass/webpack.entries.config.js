@@ -21,4 +21,5 @@ module.exports = [
     'front/sass/pdf/cv_diamond.scss',
     'front/sass/pdf/cv_asymmetric.scss',
     'front/sass/pdf/cv_boxes.scss',
+    'front/sass/pdf/cv_clean.scss',
 ]
