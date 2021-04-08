@@ -2,7 +2,6 @@ from django.db import models
 from parler.models import TranslatableModel,TranslatedFields
 from django.utils.translation import gettext_lazy
 from sortedm2m.fields import SortedManyToManyField
-from app_index.utils.getTemplateChoices import getTemplatesChoices
 
 class CVDocument(models.Model):
 
@@ -58,7 +57,11 @@ class CVDocument(models.Model):
     additional = SortedManyToManyField(
         'CVDocumentAdditional',
         verbose_name = gettext_lazy('Additional'),
+        blank = True
     )
+
+    def __str__(self):
+        return self.id_name
 
     class Meta:
         verbose_name = gettext_lazy('CV Document')

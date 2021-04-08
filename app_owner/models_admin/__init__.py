@@ -8,3 +8,4 @@ from .cv_doc_photo_admin import *
 from .cv_doc_skills_admin import *
 from .cv_doc_sum_admin import *
 from .cv_doc_additional_admin import *
+from .cv_color_profile_admin import *

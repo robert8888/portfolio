@@ -1,0 +1,315 @@
+@use "@sass/abstracts/mixins" as *;
+@use "@sass/pdf/common" as *;
+@import url("https://use.typekit.net/xdb5nrs.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+}
+body, main {
+  background: var(--backdrop-color);
+  color: var(--color-text-primary)
+}
+ul, ol {
+  list-style: none;
+}
+
+p, li , div{
+  margin: 0.25em 0;
+  font-size: 1rem;
+}
+
+h3{
+  font-size: 1.35rem;
+}
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5cm;
+  @include vertical-gradient(-5%, 5%);
+  color: var(--color-text-secondary);
+  padding-right: 8cm;
+  font-family: oswald, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+aside{
+  position: fixed;
+  top: 0;
+  right: .75cm;
+  width: 7cm;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--color-secondary);
+  color: var(--color-text-primary-focus);
+  padding: 0 .5cm;
+  @include vertical-gradient(-15%, 5%, 'secondary');
+  .section__title{
+    text-transform: capitalize;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    margin-bottom: .75rem;
+    //letter-spacing: 1px;
+  }
+  .section{
+    margin-bottom: 2rem;
+  }
+
+}
+main{
+  margin-right: 7.5cm;
+  margin-top: 5cm;
+  padding-left: 1cm;
+  padding-top: 1.25cm;
+  height: calc(100% - 5cm);
+  .section{
+    padding: 0  1cm .75rem 0;
+    &__title{
+      background: var(--color-primary);
+      color: var(--color-text-secondary);
+      padding: .35em;
+      font-family: Roboto, sans-serif;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 1px;
+      font-size: 1rem;
+      margin-right: -1cm;
+      margin-bottom: .75rem;
+    }
+    $icons:(
+      'skills': $flask-grey-svg,
+      'experience': $briefcase-grey-svg,
+      'education': $graduation-grey-svg,
+    );
+    @each $selector, $icon in $icons{
+      &.#{$selector}{
+        .section__title{
+          @include icon-before($icon, var(--color-text-secondary));
+          &:before{
+            margin-left: .5em;
+          }
+        }
+      }
+    }
+  }
+}
+
+.section{
+  &.personal{
+    float: right;
+  }
+  &.photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5cm;
+    width: 100%;
+  }
+}
+
+.personal{
+  &__full-name{
+    font-size: 2.5rem;
+    line-height: 3rem;
+    margin-bottom: .5rem;
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  &__profession{
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+  &__photo{
+    background: var(--color-primary);
+    border-radius: 50%;
+    width: 3.5cm;
+    height: 3.5cm;
+    &-wrapper{
+      border-radius: 50%;
+      width: 3.5cm;
+      height: 3.5cm;
+      @include pseudo(){
+        top: -4px;
+        left: -4px;
+        bottom: unset;
+        right: unset;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        border-radius: 50%;
+        border: 2px solid var(--color-primary);
+      }
+    }
+  }
+}
+
+
+.summary{
+  div, p {
+    font-size: .8rem;
+  }
+}
+
+.contact{
+  .contact__list{
+    &-item{
+      margin: .5rem 0;
+      padding-bottom: .5rem;
+      &:not(:last-of-type){
+        border-bottom: 1px solid var(--color-text-primary-focus);
+      }
+      font-size: .8rem;
+      min-height: 2rem;
+      padding-left: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      $icons:(
+          'address': $marker-white-svg,
+          'number': $phone-white-svg,
+          'links': $globe-americas-gray-svg,
+      );
+      @each $selector, $icon in $icons{
+        &.#{$selector}{
+          @include icon-before($icon, var(--color-text-primary-focus));
+          &:before{
+            position: absolute;
+            left: 0;
+            height: 1.35rem;
+            width: 1.35rem;
+            margin-left: .4rem;
+            margin-bottom: .25rem;
+          }
+        }
+      }
+      &.address:before{
+        transform: translateY(-.01in);
+      }
+    }
+  }
+}
+
+.strengths{
+  div, p, li {
+    font-size: .8rem;
+  }
+  li{
+    margin: .75em 0;
+    @include icon-before($tick-mark-svg, var(--color-text-primary-focus))
+  }
+}
+
+.skills{
+  li, p, div {
+    font-size: .8rem;
+  }
+  .language{
+    margin-bottom: .75rem;
+    &__name{
+      &:after{
+        content: "-";
+        display: inline-block;
+        margin: 0 .75rem;
+      }
+    }
+  }
+  .technologies {
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-column-gap: 1cm;
+      margin-bottom: .75rem;
+      li {
+        &:after{
+          content: "";
+          display: block;
+          width: 100%;
+          height: 7px;
+          margin-top: 0.1em;
+          background: linear-gradient(to right, var(--color-text-primary) var(--progress), #0006 0%);
+        }
+      }
+    }
+  }
+}
+h3{
+  font-size: 1.1rem;
+  margin-bottom: .15em;
+}
+h6, h4{
+  font-size: .85rem;
+  opacity: .8;
+}
+.experience{
+  &__list-item:not(:last-of-type){
+    margin-bottom: .75rem;
+  }
+  .job{
+    &__detail{
+      position: relative;
+    }
+    &__period{
+      position: absolute;
+      right: 0;
+      top: .35rem;
+      opacity: .8;
+      font-size: .65rem;
+    }
+    &__desc{
+      margin-top: .5rem;
+      ol, ul, li, div, p{
+        font-size: .75rem;
+      }
+      ul, ol{
+        list-style: disc;
+        padding-left: 1rem;
+      }
+    }
+  }
+}
+
+.education{
+  &__list-item{
+    margin-bottom: 1rem;
+  }
+  .school{
+    &__detail{
+      position: relative;
+      padding-right: 5rem;
+    }
+    &__period{
+      position: absolute;
+      right: 0;
+      top: .2rem;
+      opacity: .8;
+      font-size: .65rem;
+    }
+    &__name{
+      opacity: .8;
+    }
+  }
+}
+
+.section.agreements{
+  font-size: .7rem;
+  margin-top: auto;
+  @include icon-before($info-svg, var(--color-text-primary-focus));
+  &:before{
+    margin-right: .1rem;
+  }
+}

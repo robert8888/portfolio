@@ -9,3 +9,4 @@ from .cv_doc_exp import *
 from .cv_doc_skills import *
 from .cv_doc_summary import *
 from .cv_doc_photo import *
+from .cv_color_profile import *

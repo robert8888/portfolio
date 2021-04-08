@@ -1,6 +1,6 @@
 from django.db import models
-from app_index.utils.getTemplateChoices import getTemplatesChoices
-from app_index.utils.getTemplateStyle import getTemplateStyle
+from app_index.utils.get_template_choices import getTemplatesChoices
+from app_index.utils.get_template_style import getTemplateStyle
 from .view import View
 from .property import Property
 

@@ -1,5 +1,5 @@
 from django.db import models
-from app_index.utils.getViewChoices import getViewChoices
+from app_index.utils.get_view_choices import getViewChoices
 
 class View(models.Model):
     section = models.ForeignKey(

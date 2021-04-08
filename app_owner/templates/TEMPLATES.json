@@ -1,6 +1,24 @@
 {
   "pdf": [{
+    "name": "Asymmetric",
+    "path": "pdf/cv_assymetric.html"
+  }, {
+    "name": "Boxes",
+    "path": "pdf/cv_boxes.html"
+  }, {
+    "name": "Clean",
+    "path": "pdf/cv_clean.html"
+  }, {
+    "name": "Diamond",
+    "path": "pdf/cv_diamond.html"
+  },{
+    "name": "Clean",
+    "path": "pdf/cv_inverted.html"
+  },{
+    "name": "Quatro",
+    "path": "pdf/cv_quatro.html"
+  }, {
     "name": "Simple",
-    "path": "pdf/cv-simple.html"
+    "path": "pdf/cv_simple.html"
   }]
 }

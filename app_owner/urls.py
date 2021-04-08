@@ -6,5 +6,5 @@ from .views.download_cv import process as processDownloadCvRequest
 urlpatterns = [
     path('api/contact-phone', processContactPhoneRequest),
     path('api/contact-form', processContactFormRequest),
-    path('download/cv/<id>', processDownloadCvRequest)
+    path('download/cv/<slug:slug>', processDownloadCvRequest, name='cv')
 ]

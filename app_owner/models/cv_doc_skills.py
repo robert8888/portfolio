@@ -20,7 +20,7 @@ class CVDocumentSkills(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.id_name
 
     class Meta:
         verbose_name = gettext_lazy('Document skills')

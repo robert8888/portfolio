@@ -1,0 +1,241 @@
+@use "@sass/abstracts/mixins" as *;
+@use "@sass/pdf/common" as *;
+@import url("https://use.typekit.net/pdl5nzl.css");
+@import url("https://use.typekit.net/kye5afo.css");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: calling-code, sans-serif;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+  height: 100%;
+}
+.grid{
+  display: grid;
+  grid-template-columns: .7fr 1fr;
+  grid-template-rows: .7fr 1fr;
+  margin-top: 5cm;
+  position: relative;
+  z-index: 0;
+  height: calc(100% - 5cm);
+}
+
+
+.section{
+  &.personal{
+    background: var(--color-secondary);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6.5cm;
+    clip-path: url(#clippath);
+    z-index: 1;
+  }
+  $sections: ( 'contact', 'skills', 'education', 'experience');
+  @for $row from 1 through 2{
+    @for $col from 1 through 2{
+      $section-name: nth($sections, (($row - 1) * 2) + ($col - 1) + 1);
+      &.#{$section-name}{
+        @if ($row % 2 == 1 and $col % 2 != 1) or ($row != 1 and $col % 2 == 1){
+          background: var(--color-background);
+          color: var(--color-text-primary);
+        } @else {
+          background: var(--color-primary);
+          color: var(--color-text-secondary);
+        }
+        grid-column: $col;
+        grid-row: $row;
+        padding: 1cm;
+        @if $row == 1 {
+          padding-top: 2.5cm;
+        }
+      }
+    }
+  }
+
+  &__title{
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: source-sans-pro, sans-serif;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+}
+.personal{
+  &__group{
+    position: absolute;
+    left: 1.5cm;
+    top: 1cm;
+    color: var(--color-text-secondary)
+  }
+
+  &__full-name{
+    font-size: 2.5rem;
+    overflow-wrap: anywhere;
+    width: 5px;
+    font-weight: 500;
+  }
+  &__profession{
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-top: .5rem;
+    letter-spacing: 1px;
+    padding: .2em .4em;
+    border-radius: .25em;
+    @include vertical-gradient(-20%, 10%)
+  }
+
+  &__photo{
+    width: 6cm;
+    height: 6cm;
+    position: fixed;
+    right: 2cm;
+    top: 1.5cm;
+    background: var(--color-background);
+    border-radius: 50%;
+    z-index: 5;
+    box-shadow: 0 0 2px black;
+  }
+  &__list{
+    list-style: none;
+    font-family: kanit, sans-serif;
+    font-size: 1rem;
+    li {
+      margin: 1em 0;
+    }
+  }
+
+  $icons: (
+    'number': $phone-white-svg,
+    'address': $marker-grey-svg,
+    'email': $envelope-white-svg,
+    'link.linkedin': $linkedin-svg,
+    'link.portfolio': $globe-americas-gray-svg,
+  );
+  @each $selector, $icon in $icons{
+    &__#{$selector}{
+      @include icon-before($icon, var(--color-text-secondary));
+      &:before{
+        margin-right: .4em;
+      }
+    }
+  }
+}
+
+.contact{
+  padding: 2cm 1.5cm;
+}
+
+.skills{
+  .languages{
+    .language:before{
+      content: "";
+    }
+  }
+  .technologies{
+    ul, ol {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: .5rem;
+      li {
+        &:not(:last-of-type){
+          flex: 1 0 auto;
+        }
+        display: inline-block;
+        padding: .2em .4em;
+        margin: .3em .4em .3em 0;
+        z-index: 1;
+        border: 1px solid var(--color-primary);
+        font-weight: 600;
+        font-size: 1rem;
+        min-width: 5rem;
+        text-align: center;
+        padding-bottom: .5em;
+        @include pseudo(){
+          top: unset;
+          height: .25em;
+          right: 1px;
+          background-image: linear-gradient(to right,var(--color-primary) var(--progress), #0003 0);
+        }
+        span{
+          margin: 0;
+          padding: 1px;
+          color: var(--color-text-primary)
+        }
+      }
+    }
+  }
+}
+
+.education,
+.experience{
+  &__list {
+    list-style: none;
+    * {
+      margin: 0.3em 0;
+    }
+    &-item {
+      margin-bottom: 1.25rem;
+      ul, ol {
+        padding-left: 1.25rem;
+      }
+    }
+    h3 {
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+      font-family: source-code-pro, monospace;
+    }
+    h4 {
+      font-size: 1.1rem;
+      line-height: 1.1rem;
+      margin: 0.3em 0;
+      font-family: source-code-pro, monospace;
+    }
+    h4, h6 {
+      opacity: .95;
+      font-family: source-code-pro, monospace;
+    }
+    h6 {
+      font-size: .8rem;
+      line-height: 1rem;
+      opacity: .95;
+      font-family: source-code-pro, monospace;
+    }
+    div, p, li {
+      font-size: .8rem;
+      opacity: .95;
+      font-family: source-serif-4-small-text, serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+  }
+}
+
+.education{
+  .school__description{
+    &, * {
+      font-size: .9rem;
+      margin: 0.3em 0;
+    }
+  }
+}
+
+.agreements{
+  position: fixed;
+  width: 7cm;
+  left: 1cm;
+  bottom: .25cm;
+  color: var(--color-text-primary);
+  font-size: .6rem;
+  @include icon-before($info-svg, var(--color-text-primary));
+  &::before{
+    margin-right: .05em;
+  }
+}

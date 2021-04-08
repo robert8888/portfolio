@@ -8,30 +8,35 @@ body {
   font-family: kanit, sans-serif;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 p, li, h5, h6{
   font-size: .85rem;
   line-height: 1rem;
   font-weight: 300;
   font-family: kanit, sans-serif;
-  margin: 0.5em 0;
+  margin: 0.4em 0;
 }
 h1, h2, h3, h4 {
   //font-family: myriad-pro, sans-serif;
-  margin: 0.5em 0;
-}
-
-li {
-  margin: .5em 0;
+  margin: 0.4em 0;
+  margin: 0;
 }
 
 h3.section__title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   word-spacing: -.2em;
   letter-spacing: 0.05em;
   font-weight: 500;
   margin: .5em 0;
   text-transform: uppercase;
+  font-family: kanit, sans-serif;
+  margin-bottom: 0;
 }
+
 h4 {
   font-size: 1.5rem;
 }
@@ -83,7 +88,6 @@ header{
       height: 20cm;
       h1, h2, h3 {
         color: var(--color-background);
-
       }
     }
     &:last-of-type{
@@ -108,7 +112,9 @@ header{
   ul, ol {
     list-style: none;
     padding: 0;
-
+  }
+  .personal__link{
+    color: var(--color-background)
   }
 }
 
@@ -137,6 +143,9 @@ header{
 }
 
 .experience{
+  & > ul > li {
+      padding-bottom: .5rem;
+  }
   .job__desc{
     ul, ol {
       padding-left: 1.25rem;
@@ -153,6 +162,18 @@ header{
   &__list{
     &-item{
       margin-bottom: 1.25rem;
+    }
+  }
+  .school{
+    &__field,
+    &__name{
+      font-size: 1.1rem;
+      line-height: 1.1em;
+      font-weight: 600;
+      margin: .2em 0;
+    }
+    &__name{
+      font-weight: 400;
     }
   }
 }

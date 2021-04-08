@@ -5,23 +5,26 @@
 
   --color-background: hsl(var(--color-background-h), var(--color-background-s), var(--color-background-l));
   --color-text-primary: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
+  --color-text-primary-alpha-5: hsla(var(--color-text-h), var(--color-text-s), var(--color-text-l), .5);
   --color-text-primary-focus: hsl(var(--color-text-focus-h), var(--color-text-focus-s),  var(--color-text-focus-l));
   --color-text-secondary: hsl(var(--color-text-secondary-h), var(--color-text-secondary-s), var(--color-text-secondary-l));
 }
 
 
-@mixin horizontal-gradient(){
-  background: rgb(53,53,53);
-  background: linear-gradient(90deg, var(--color-primary-light) 13%, var(--color-primary) 90%);
+@mixin background-gradient($angle, $from, $to, $color-slug){
+  background: linear-gradient(
+      $angle,
+      hsl(var(--color-#{$color-slug}-h), var(--color-#{$color-slug}-s), calc(var(--color-#{$color-slug}-l) + #{$from})) 13%,
+      hsl(var(--color-#{$color-slug}-h), var(--color-#{$color-slug}-s), calc(var(--color-#{$color-slug}-l) + #{$to}))  90%
+  );
 }
 
-@mixin vertical-gradient($from: 10%, $to: 0){
-  background: rgb(53,53,53);
-  background: linear-gradient(
-      0deg,
-      hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + #{$from})) 13%,
-      hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + #{$to}))  90%
-  );
+@mixin horizontal-gradient($from: 10%, $to: 0%, $color-slug: 'primary'){
+  @include background-gradient(90deg, $from, $to, $color-slug)
+}
+
+@mixin vertical-gradient($from: 10%, $to: 0%, $color-slug: 'primary'){
+  @include background-gradient(0deg, $from, $to, $color-slug)
 }
 
 @mixin icon($url, $color: var(--color-text-primary)){
@@ -40,6 +43,12 @@
   box-sizing: border-box;
 }
 
+@mixin icon-before($url, $color){
+  &:before{
+    content: "";
+    @include icon($url, $color)
+  }
+}
 
 @page {
   size: A4;
@@ -82,4 +91,7 @@ $envelope-white-svg: url("@/assets/img/pdf/envelope-white.svg");
 $floppy-disk-svg: url("@/assets/img/pdf/floppy-disk-2.svg");
 $cross-svg: url("@/assets/img/pdf/cross.svg");
 $arrow-right-svg: url("@/assets/img/pdf/right-arrow.svg");
+$linkedin-svg: url("@/assets/img/pdf/linkedin.svg");
+$info-svg: url("@/assets/img/pdf/info.svg");
+$tick-mark-svg: url("@/assets/img/pdf/tick-mark.svg");
 

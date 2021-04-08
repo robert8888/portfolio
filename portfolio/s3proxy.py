@@ -10,14 +10,17 @@ AWS_URL = os.getenv('AWS_URL')
 AWS_S3_REGION_NAME = 'eu-central-1'
 
 def s3proxy(req):
-    path = req.GET.get('p', None)
+    try:
+        path = req.GET.get('p', None)
 
-    if not path:
+        if not path:
+            return HttpResponse(status=404)
+
+        response = generatePresignedUrl(path)
+
+        return HttpResponseRedirect(response)
+    except:
         return HttpResponse(status=404)
-
-    response = generatePresignedUrl(path)
-
-    return HttpResponseRedirect(response)
 
 def replaceImgUrl(html):
     img_path = "(?:"+AWS_URL+")(.*\.(?:png|jpg|jpeg|gif))"
