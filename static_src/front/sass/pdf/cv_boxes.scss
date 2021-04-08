@@ -92,7 +92,10 @@ header{
     }
     &:last-of-type{
       height: 27.25cm;
-      color: var(--color-text-primary)
+      color: var(--color-text);
+      h1, h2, h3 {
+        color: var(--color-text-focus);
+      }
     }
     overflow: hidden;
     display: flex;
@@ -129,7 +132,7 @@ header{
       font-size: 1.1em;
       min-width: 2.5em;
       text-align: center;
-      border: solid 1px var(--color-text-primary);
+      border: solid 1px var(--color-text);
     }
   }
 }

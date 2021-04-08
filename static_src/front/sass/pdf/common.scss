@@ -1,13 +1,13 @@
 :root{
-  --color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
-  --color-primary-light: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + 10%));
-  --color-secondary: hsl(var(--color-secondary-h), var(--color-secondary-s), var(--color-secondary-l));
-
-  --color-background: hsl(var(--color-background-h), var(--color-background-s), var(--color-background-l));
-  --color-text-primary: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
-  --color-text-primary-alpha-5: hsla(var(--color-text-h), var(--color-text-s), var(--color-text-l), .5);
-  --color-text-primary-focus: hsl(var(--color-text-focus-h), var(--color-text-focus-s),  var(--color-text-focus-l));
-  --color-text-secondary: hsl(var(--color-text-secondary-h), var(--color-text-secondary-s), var(--color-text-secondary-l));
+  //--color-primary: hsl(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l));
+  //--color-primary-light: hsl(var(--color-primary-h), var(--color-primary-s), calc(var(--color-primary-l) + 10%));
+  //--color-secondary: hsl(var(--color-secondary-h), var(--color-secondary-s), var(--color-secondary-l));
+  //
+  //--color-background: hsl(var(--color-background-h), var(--color-background-s), var(--color-background-l));
+  //--color-text-primary: hsl(var(--color-text-primary-h), var(--color-text-primary-s), var(--color-text-primary-l));
+  //--color-text-primary-alpha-5: hsla(var(--color-text-primary-h), var(--color-text-primary-s), var(--color-text-primary-l), .5);
+  //--color-text-primary-focus: hsl(var(--color-text-primary-focus-h), var(--color-text-primary-focus-s),  var(--color-text-primary-focus-l));
+  //--color-text-secondary: hsl(var(--color-text-secondary-h), var(--color-text-secondary-s), var(--color-text-secondary-l));
 }
 
 

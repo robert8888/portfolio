@@ -25,7 +25,7 @@ $font-calling: calling-code, sans-serif;
 
 }
 
-@mixin icon-s($url, $color: var(--color-text-primary)){
+@mixin icon-s($url, $color: var(--color-text)){
   @include icon($url, $color);
   margin-right: .25em;
 }
@@ -74,16 +74,16 @@ header{
 
 h3{
   margin: .3rem 0;
-  color: var(--color-text-primary-focus);
+  color: var(--color-text-focus);
 }
 h4{
   margin: .25rem 0;
-  color: var(--color-text-primary-focus);
+  color: var(--color-text-focus);
 }
 
 p, ul, li, h5, h6{
   margin: .25rem 0;
-  color: var(--color-text-primary);
+  color: var(--color-text);
   font-size: .85rem;
 }
 h5, h6{
@@ -105,24 +105,17 @@ h5, h6{
     font-style: normal;
     letter-spacing: 1px;
     margin: 0 0 0 .25rem;
-    color: var(--color-text-primary-focus);
+    color: var(--color-text-focus);
   }
   &__list{
     text-align: right;
-    color: white;
     list-style: none;
     li {
       margin: .35em 0;
       font-size: .9rem;
-      color: var(--color-text-secondary);
+      color: var(--color-text-primary);
       font-family: $font-calling;
     }
-  }
-  &__link{
-    color: white;
-    text-decoration: none;
-    letter-spacing: 1px;
-    font-size: .8rem;
   }
   $icons:(
         'birthday': $calendar-white-svg,
@@ -132,7 +125,7 @@ h5, h6{
   @each $part, $icon in $icons{
     &__#{$part}::before{
       content: "";
-      @include icon-s($icon, var(--color-text-secondary));
+      @include icon-s($icon, var(--color-text-primary));
       width: 1.2em;
     }
   }
@@ -166,7 +159,7 @@ h5, h6{
       #{$self}__title::before{
         content: "";
         display: inline-block;
-        @include icon($icon...);
+        @include icon($icon, var(--color-text));
       }
     }
   }
@@ -179,17 +172,12 @@ h5, h6{
 main {
   page-break-inside: auto;
   .container {
-   //-webkit-column-count: 2 !important;
    column-count: 2 !important;
    column-gap: 1.25cm;
    column-fill: auto;
-   //width: 22cm;
     overflow-y: hidden;
     max-height: 22cm;
     page-break-inside: auto;
-    & > * {
-      //margin-left: .5em;
-    }
   }
 }
 .experience{
@@ -202,7 +190,7 @@ main {
   .job{
     &__period::before{
         content: "";
-        @include icon-s($calendar-gray-svg...);
+        @include icon-s($calendar-gray-svg);
     }
     &__address{
       margin-left: .5rem;
@@ -210,7 +198,7 @@ main {
       letter-spacing: 1px;
       &::before{
         content: "";
-        @include icon-s($marker-grey-svg...);
+        @include icon-s($marker-grey-svg);
       }
     }
     &__detail{
@@ -251,7 +239,7 @@ main {
   }
   .school__period::before{
     content: "";
-    @include icon-s($calendar-gray-svg...);
+    @include icon-s($calendar-gray-svg);
   }
   .school__detail{
     break-inside: avoid;
@@ -279,8 +267,9 @@ main {
   .languages{
     .language:before{
       content: "";
-      @include icon-s($globe-americas-gray-svg...);
+      @include icon-s($globe-americas-gray-svg);
     }
+    margin-bottom: .5rem;
   }
   .technologies{
     ul, ol {
@@ -305,7 +294,7 @@ main {
         span{
           margin: 0;
           padding: 1px;
-          color: var(--color-text-primary)
+          color: var(--color-text)
         }
       }
     }
@@ -315,12 +304,32 @@ main {
 footer{
   position: fixed;
   width: 100%;
-  bottom: -1.25cm;
+  bottom: -.75cm;
   height: 4cm;
   z-index: 1;
+  color: var(--color-text-primary);
   .container{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
   }
+  .personal__link{
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: .8rem;
+    color: inherit;
+  }
+  .section.agreements{
+    font-size: .5rem;
+    text-align: right;
+    padding-right: 1.25cm;
+    padding-top: .25cm;
+    height: 1cm;
+    color: inherit;
+    p {
+      font-size: inherit;
+      color:inherit;
+    }
+  }
 }
+

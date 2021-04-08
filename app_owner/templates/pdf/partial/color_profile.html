@@ -1,0 +1,32 @@
+<style>
+:root{
+    {% for color_name, color in cv.color_profile.colors.items %}
+        {% for part, value in color.hsl_dict.items %}
+            --color-{{color_name}}-{{part}}: {{value}};
+        {% endfor %}
+        --color-{{color_name}}: hsl(
+            var(--color-{{color_name}}-h),
+            var(--color-{{color_name}}-s),
+            var(--color-{{color_name}}-l)
+        );
+        --color-{{color_name}}-light: hsl(
+            var(--color-{{color_name}}-h),
+            var(--color-{{color_name}}-s),
+            calc(var(--color-{{color_name}}-l) + 10%)
+        );
+        --color-{{color_name}}-dark: hsl(
+            var(--color-{{color_name}}-h),
+            var(--color-{{color_name}}-s),
+            calc(var(--color-{{color_name}}-l) - 10%)
+        );
+        {% for i in '123456789'|make_list %}
+            --color-{{color_name}}-alpha-{{forloop.counter}}: hsla(
+                var(--color-{{color_name}}-h),
+                var(--color-{{color_name}}-s),
+                var(--color-{{color_name}}-l),
+                0.{{forloop.counter}}
+            );
+        {% endfor %}
+    {% endfor %}
+}
+</style>
