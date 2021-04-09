@@ -10,17 +10,17 @@ class CVColorProfile(models.Model):
     )
 
     background = ColorField(
-        verbose_name = gettext_lazy('Background color'),
+        verbose_name = gettext_lazy('Base background color'),
         default = '#FFFFFF'
     )
 
     text = ColorField(
-        verbose_name = gettext_lazy('Text color'),
+        verbose_name = gettext_lazy('Base text color'),
         default = '#FFFFFF'
     )
 
     text_focus = ColorField(
-        verbose_name = gettext_lazy('Text focus color')
+        verbose_name = gettext_lazy('Base text focus color')
     )
 
     primary = ColorField(
@@ -28,13 +28,14 @@ class CVColorProfile(models.Model):
         default = '#aa3339'
     )
 
-    text_primary_focus = ColorField(
-        verbose_name = gettext_lazy('Primary text color - focus'),
+    text_primary = ColorField(
+        verbose_name = gettext_lazy('Primary text color'),
         default = '#f7f1e1'
     )
 
-    text_secondary = ColorField(
-        verbose_name = gettext_lazy('Secondary text color'),
+
+    text_primary_focus = ColorField(
+        verbose_name = gettext_lazy('Primary text color - focus'),
         default = '#f7f1e1'
     )
 
@@ -43,8 +44,8 @@ class CVColorProfile(models.Model):
         default = '#f7f1e1'
     )
 
-    text_primary = ColorField(
-        verbose_name = gettext_lazy('Primary text color'),
+    text_secondary = ColorField(
+        verbose_name = gettext_lazy('Secondary text color'),
         default = '#f7f1e1'
     )
 

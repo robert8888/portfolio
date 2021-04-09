@@ -19,6 +19,12 @@ class CVDocumentPersonalContacts(models.Model):
 
 class CVDocumentPersonal(models.Model):
 
+    id_name = models.CharField(
+        max_length = 255,
+        verbose_name = gettext_lazy('Identification name')
+    )
+
+
     photo = models.ForeignKey(
         'CVDocumentPhoto',
         on_delete = models.RESTRICT,
@@ -48,7 +54,7 @@ class CVDocumentPersonal(models.Model):
     )
 
     def __str__(self):
-        return self.name + ' ' + self.surname
+        return self.id_name + ' - ' + self.name
 
 
     class Meta:

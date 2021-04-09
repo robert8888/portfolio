@@ -37,14 +37,19 @@ class CVDocumentExperienceJob(TranslatableModel):
 
     to_date = models.DateField(
         auto_now = False,
-        verbose_name = gettext_lazy('To')
+        verbose_name = gettext_lazy('To'),
+        null = True,
+        blank = True
     )
 
     translation = TranslatedFields(
-        description = ArrayField(
-            models.TextField(
-                verbose_name = gettext_lazy('Description'),
-            ),
+        position = models.CharField(
+            max_length = 255,
+            verbose_name = gettext_lazy('Job position')
+        ),
+
+        description = models.TextField(
+            verbose_name = gettext_lazy('Description')
         )
     )
 

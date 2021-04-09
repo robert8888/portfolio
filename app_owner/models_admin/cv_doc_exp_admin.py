@@ -4,6 +4,7 @@ from app_owner.models import CVDocumentEducation
 from parler.admin import TranslatableStackedInline, TranslatableModelForm
 from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 from django_better_admin_arrayfield.forms.widgets import DynamicArrayTextareaWidget
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from app_owner.models import (
     CVDocumentExperienceJob,
@@ -11,12 +12,12 @@ from app_owner.models import (
 )
 
 class CVDocumentExperienceJobFrom(TranslatableModelForm):
+    description =  forms.CharField(
+        widget=CKEditorUploadingWidget(attrs={'cols': 80, 'rows': 30})
+    )
     class Meta:
         model = CVDocumentExperienceJob
-        fields = '__all__'
-        widgets = {
-            'description': DynamicArrayTextareaWidget(attrs={'cols': 50, 'rows': 2})
-        }
+        fields = ['company', 'position','from_date', 'to_date', 'description']
 
 class CVDocumentExperienceJobInlineAdmin(TranslatableStackedInline, DynamicArrayMixin):
     extra = 0

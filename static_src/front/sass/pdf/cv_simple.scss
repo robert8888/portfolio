@@ -73,7 +73,7 @@ header{
   display: flex;
   align-items: center;
   position: relative;
-  @include horizontal-gradient();
+  @include horizontal-gradient(10%, -5%);
   & > * {
     color: var(--color-text-primary);
     text-transform: uppercase;
@@ -96,8 +96,8 @@ header{
       margin: 2rem 0;
       padding: 0;
       color: white;
-      font-family: $font-merriweather;
-      font-size: .7rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .8rem;
       li{
         display: inline-block;
         margin: 0 1em 1em 0;

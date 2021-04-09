@@ -3,6 +3,15 @@ from parler.models import TranslatableModel,TranslatedFields
 from django.utils.translation import gettext_lazy
 from sortedm2m.fields import SortedManyToManyField
 
+
+class CVDocument_additional(models.Model):
+    cv_document = models.ForeignKey('CVDocument',on_delete=models.CASCADE)
+    cv_document_additional = models.ForeignKey('CVDocumentAdditional',on_delete=models.CASCADE)
+    def __str__(self):
+        return ''
+    class Meta:
+        verbose_name = gettext_lazy('Additional information')
+
 class CVDocument(models.Model):
 
     id_name = models.CharField(
@@ -54,10 +63,11 @@ class CVDocument(models.Model):
         verbose_name = gettext_lazy('Skills')
     )
 
-    additional = SortedManyToManyField(
+    additional = models.ManyToManyField(
         'CVDocumentAdditional',
         verbose_name = gettext_lazy('Additional'),
-        blank = True
+        blank = True,
+        through = CVDocument_additional
     )
 
     def __str__(self):
@@ -67,4 +77,5 @@ class CVDocument(models.Model):
         verbose_name = gettext_lazy('CV Document')
         verbose_name_plural = gettext_lazy('CV Documents')
         db_table = 'app_owner_cv_doc'
+
 

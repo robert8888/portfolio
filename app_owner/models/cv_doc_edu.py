@@ -11,6 +11,9 @@ class CVDocumentEducation(models.Model):
         max_length = 100
     )
 
+    def __str__(self):
+        return self.id_name
+
     class Meta:
         verbose_name = gettext_lazy('CV document education')
         verbose_name_plural = gettext_lazy('CV documents educations')

@@ -22,7 +22,9 @@ form{
         background: transparent;
         //display: flex;
         //flex-wrap: wrap;
-
+        h2 {
+            background: var(--color-pallet-4);
+        }
         label{
             color: var(--color-text);
         }
@@ -256,6 +258,16 @@ form{
             }
         }
     }
+}
+
+
+
+ul.errorlist,
+p.errornote{
+   & ,li, p, div {
+       background: var(--color-pallet-warning);
+       color: var(--color-text-primary)
+   }
 }
 
 .page__path{

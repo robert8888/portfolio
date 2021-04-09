@@ -36,6 +36,9 @@ class CVDocumentAdditional(TranslatableModel):
         )
     )
 
+    def __str__(self):
+        return self.id_name + ' - ' + self.type
+
     class Meta:
         verbose_name = gettext_lazy('CV document additional info')
         verbose_name_plural = gettext_lazy('CV document additional infos')
