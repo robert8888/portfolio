@@ -133,6 +133,7 @@ main{
   &__title{
     color: var(--color-primary);
     margin-bottom: .5rem;
+    text-transform: uppercase;
   }
   margin-bottom: 1.25rem;
   &__group{
@@ -184,10 +185,17 @@ main{
         display: inline-block;
       }
     }
+    &__position{
+      text-transform: uppercase;
+    }
     &__desc{
       ul, ol {
         padding-left: 1rem;
+        margin-top: .5rem;
       }
+    }
+    &__period{
+      @include time-separator('-');
     }
   }
 }
@@ -203,6 +211,7 @@ main{
   .school{
     &__period{
       font-weight: 300;
+      @include time-separator('-');
     }
   }
 }
@@ -216,7 +225,7 @@ main{
       font-size: 1rem;
     }
   }
-  .personal__link{
+  .contact__portfolio{
       color: var(--color-primary);
   }
 }

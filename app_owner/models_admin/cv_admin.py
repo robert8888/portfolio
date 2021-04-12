@@ -7,9 +7,9 @@ from app_owner.models import (
 
 @admin.register(CV)
 class CV_Admin(admin.ModelAdmin):
-    list_display = ('name', 'full_path')
+    list_display = ('name', 'full_path', 'on_main_page')
     readonly_fields = ('full_path',)
-    fields = ['full_path', 'name', 'template', 'color_profile', 'data']
+    fields = ['full_path', 'on_main_page', 'name',  'template', 'color_profile', 'data']
 
     def get_queryset(self, request):
         qs = super(CV_Admin, self).get_queryset(request)

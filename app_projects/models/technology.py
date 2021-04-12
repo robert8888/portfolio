@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy
 from polymorphic.models import PolymorphicModel
 from parler.models import TranslatableModel, TranslatedFields
 from .project_search_autocomplete import ProjectSearchAutocomplete
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Technology(models.Model):
     type = models.ForeignKey(
@@ -25,6 +26,17 @@ class Technology(models.Model):
         verbose_name = gettext_lazy('Color')
     )
 
+    skill_level = models.DecimalField(
+        max_digits = 3,
+        decimal_places = 1,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(10)
+        ],
+        verbose_name = gettext_lazy('Skill level'),
+        default = 0
+    )
+
     show_on_index = models.BooleanField(
         default = False,
         verbose_name = gettext_lazy('Show on main page')
@@ -38,6 +50,9 @@ class Technology(models.Model):
     def delete(self, *args, **kwargs):
         ProjectSearchAutocomplete.objects.filter(source_id = self.id, type='technology').delete()
         super(Technology, self).delete(*args, **kwargs)
+
+    def skill_level_percentage(self):
+        return str(self.skill_level * 10) + '%'
 
     def __str__(self):
         return self.name

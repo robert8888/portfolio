@@ -1,0 +1,6 @@
+<h6>
+    <span class="job__company">{{job.company}}</span>
+    <span class="job__period">
+        <time>{{job.from_date|date:"Y/m"}}</time><time>{% firstof job.to_date|date:"Y/m" translate 'PRESENT' %}</time>
+    </span>
+</h6>

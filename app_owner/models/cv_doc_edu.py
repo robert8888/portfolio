@@ -4,12 +4,20 @@ from django.utils.translation import gettext_lazy
 from django_better_admin_arrayfield.models.fields import ArrayField
 
 
-class CVDocumentEducation(models.Model):
+class CVDocumentEducation(TranslatableModel):
 
     id_name = models.CharField(
         verbose_name = gettext_lazy("Identification name"),
         max_length = 100
     )
+
+    translation = TranslatedFields(
+        section_title = models.CharField(
+            max_length = 255,
+            verbose_name = gettext_lazy('Section title')
+        )
+    )
+
 
     def __str__(self):
         return self.id_name
@@ -38,7 +46,7 @@ class CVDocumentEducationSchool(TranslatableModel):
     )
 
     translation = TranslatedFields(
-        school = models.CharField(
+        name = models.CharField(
             max_length = 255,
             verbose_name = gettext_lazy('School name')
         ),
@@ -57,3 +65,4 @@ class CVDocumentEducationSchool(TranslatableModel):
         verbose_name = gettext_lazy('School')
         verbose_name_plural = gettext_lazy('Schools')
         db_table = 'app_owner_cv_doc_edu_school'
+        ordering = ['-from_date']

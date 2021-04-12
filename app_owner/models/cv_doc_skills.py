@@ -6,18 +6,33 @@ from polymorphic.models import PolymorphicModel, PolymorphicManager
 from parler.managers import TranslatableManager, TranslatableQuerySet
 from polymorphic.query import PolymorphicQuerySet
 from sortedm2m.fields import SortedManyToManyField
+from parler.models import TranslatableModel,TranslatedFields
 
-class CVDocumentSkills(models.Model):
+class CVDocumentSkills(TranslatableModel):
 
     id_name = models.CharField(
         verbose_name = gettext_lazy("Identification name"),
         max_length = 100
     )
 
+    translation = TranslatedFields(
+        section_title = models.CharField(
+            verbose_name = gettext_lazy('Section title'),
+            max_length = 255
+        )
+    )
+
     technologies = SortedManyToManyField(
         Technology,
         verbose_name = gettext_lazy('Technologies')
     )
+
+    @property
+    def languages_skills(self):
+        return CVDocumentSkillLanguage.objects.get(document_skills = self.id)
+
+    def other_skills(self):
+        return CVDocumentSkillOther.objects.get(document_skills = self.id)
 
     def __str__(self):
         return self.id_name

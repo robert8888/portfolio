@@ -3,6 +3,7 @@ from .contact_img import *
 from .cv import *
 from .cv_doc import *
 from .cv_doc_additional import *
+from .cv_doc_contact import *
 from .cv_doc_personal import *
 from .cv_doc_edu import *
 from .cv_doc_exp import *
@@ -10,3 +11,4 @@ from .cv_doc_skills import *
 from .cv_doc_summary import *
 from .cv_doc_photo import *
 from .cv_color_profile import *
+from .cv_doc_agreements import *

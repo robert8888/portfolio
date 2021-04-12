@@ -4,6 +4,7 @@ from app_owner.models import CVDocumentEducation
 from parler.admin import (
     TranslatableStackedInline,
     TranslatableModelForm,
+    TranslatableAdmin
 )
 
 from nested_admin import (
@@ -36,7 +37,8 @@ class CVDocumentSkillInline(NestedStackedPolymorphicInline):
 
 
 @admin.register(CVDocumentSkills)
-class CVDocumentEducationAdmin(NestedPolymorphicModelAdmin):
+class CVDocumentEducationAdmin(NestedPolymorphicModelAdmin,TranslatableAdmin):
     def has_module_permission(self, request): return False
     inlines = [CVDocumentSkillInline]
+    fields = ['id_name', 'section_title', 'technologies']
     pass

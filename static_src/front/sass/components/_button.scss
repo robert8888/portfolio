@@ -8,6 +8,7 @@ button, .btn {
   border-radius: 4px;
   cursor: pointer;
   white-space: nowrap;
+  font-family: "Source Sans Pro", "Roboto", sans-serif;
   &:hover, &:focus {
     border-color: var(--color-pallet-secondary);
   }

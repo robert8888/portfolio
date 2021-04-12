@@ -79,13 +79,6 @@ main{
 
 }
 
-.job{
-  &__profession{
-    font-size: 1.5rem;
-    text-transform: uppercase;
-  }
-}
-
 .personal{
   &__full-name{
     font-size: 3rem;
@@ -99,12 +92,19 @@ main{
     margin: 1.5cm -1cm;
     object-fit: cover;
   }
+  &__profession{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+}
+
+.contact{
   $icons: (
     'number': $phone-white-svg,
     'address': $marker-grey-svg,
     'email': $envelope-white-svg,
-    'link.linkedin': $linkedin-svg,
-    'link.portfolio': $globe-americas-gray-svg,
+    'linkedin': $linkedin-svg,
+    'portfolio': $globe-americas-gray-svg,
   );
   @each $selector, $icon in $icons{
     &__#{$selector}{
@@ -113,6 +113,14 @@ main{
         margin-right: .2em;
       }
     }
+  }
+  &__list-item {
+    padding-left: 1.35rem;
+    text-indent: -1.35rem;
+    margin: .3rem 0;
+  }
+  &__linkedin{
+    white-space: nowrap;
   }
 }
 
@@ -125,13 +133,19 @@ main{
     * {
       margin: 0.25rem 0;
     }
-    h4, h6{
+    h3, h6{
       font-size: 1em;
       font-weight: 400;
     }
   }
-  .school__field{
-    color: var(--color-text-focus);
+  .school{
+    &__field{
+      font-size: 1.1rem;
+      color: var(--color-text-focus);
+    }
+    &__period{
+      @include time-separator('-')
+    }
   }
 }
 
@@ -189,5 +203,6 @@ main{
   }
   .job__period{
     font-weight: 400;
+    @include time-separator('-')
   }
 }

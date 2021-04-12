@@ -1,5 +1,5 @@
 {% extends 'pdf/base.html' %}
-{% load static compress %}
+{% load static compress utils %}
 {% block style %}
 {% compress css inline %}
 <link rel="stylesheet" href="{% static '/front/css/pdf/cv_simple.css'%}"/>
@@ -9,157 +9,26 @@
 <header>
     <div class="container">
         <a class="personal__link" href="www.rkam.dev">www.rkam.dev</a>
-        <h1>Fronted Developer</h1>
+        <h1 class="personal__position">{{cv.data.personal.position_title}}</h1>
         <div class="personal">
-            <h4 class="personal__name">ADAM LEVINE</h4>
-            <span class="personal__birthday">1990/19/19</span>
-            <ul class="personal__list">
-                <li class="contact__list-item"><span class="personal__address"><i></i>Address: D.B.Sandra 999, 99999, Bengaluru, India</span></li>
-                <li class="contact__list-item"><span class="personal__number"><i></i>000 000 000</span></li>
-                <li class="contact__list-item"><span class="personal__email"><i></i>email@email.com</span></li>
-            </ul>
+            <h4 class="personal__name">{{cv.data.personal.full_name}}</h4>
+            <span class="personal__birthday">{{cv.data.personal.birthday|date:"Y/m/d"}}</span>
+            {% to_list 'address' 'number' 'email' as contact_field_order %}
+            {% include 'pdf/partial/contact_list.html' %}
         </div>
     </div>
 </header>
 <main>
     <div class="container">
-        <section class="section summary">
-            <h3 class="section__title">Profile</h3>
-            <div class="section__text">
-                I am passionate about creating ideas and executing them. Two such instances in the past where I discovered this passion was:
-                <ol>
-                    <li>
-                        Standardising final checklist tests and drafting market approaches for SAP GANGES (an FMCG last mile business initiative by SAP), I ended up creating a standard document for the above, which was later used by the development and testing teams within SAP GANGES.
-                    </li>
-                    <li>
-                        Following the success of a proof of concept exhibiting the possibilities of free communication between SAP applications and selective Social Media, I was provided with an opportunity to support and assist the team’s architect and product owner with designing a legal framework which was to be implemented in applications built using SAP Social Intelligence framework.
-                    </li>
-                </ol>
-            </div>
-        </section>
-        <section class="section experience">
-            <h3 class="section__title">Work experience</h3>
-            <ul class="experience__list">
-                <li class="experience__list-item">
-                    <div class="job__detail">
-                        <h6>
-                            <span class="job__period">
-                                <i></i><time>2015-08</time> - <time>PRESENT</time>
-                            </span>
-                            <span class="job__address">
-                                <i></i> poznań
-                            </span>
-                        </h6>
-                        <h3 class="job__position">SENIOR PHP DEVELOPER</h3>
-                        <h4 class="job__company">Korbanek sp. z o.o</h4>
-                    </div>
-                    <div class="job__desc">
-                        <p>asdf</p>
-                        <p>
-                            Social Media ABAP Integration Library (SAIL) and the Ad-hoc Collaboration team develops a service to integrate SAP Business Suite objects on SAP Jam(SAP's social media collaboration solution). My tasks and responsibilities in this team were:
-                        </p>
-                        <ol>
-                            <li>Developing an OData Service for Sales Document.</li>
-                            <li>Configuring the OData Services on various system landscapes in SAP.</li>
-                            <li>Testing the OData Services developed within the team by other developers.</li>
-                        </ol>
-                    </div>
-                </li>
-                <li class="experience__list-item">
-                    <div class="job__detail">
-                        <h6>
-                            <span class="job__period">
-                                <i></i><time>2015-08</time> - <time>PRESENT</time>
-                            </span>
-                            <span class="job__address">
-                                <i></i> pozna
-                            </span>
-                        </h6>
-                        <h3 class="job__position">SENIOR PHP DEVELOPER</h3>
-                        <h4 class="job__company">Korbanek sp. z o.o</h4>
-                    </div>
-                    <div class="job__desc">
-                        <p>
-                            Social Media ABAP Integration Library (SAIL) and the Ad-hoc Collaboration team develops a service to integrate SAP Business Suite objects on SAP Jam(SAP's social media collaboration solution). My tasks and responsibilities in this team were:
-                        </p>
-                        <ol>
-                            <li>Developing an OData Service for Sales Document.</li>
-                            <li>Configuring the OData Services on various system landscapes in SAP.</li>
-                        </ol>
-                    </div>
-                </li>
-            </ul>
-        </section>
-        <section class="section education">
-            <h3 class="section__title">Education</h3>
-            <ul class="education__list">
-                <li class="education__list-item school">
-                    <h6 class="school__period"><i></i><time>08/2012</time> - <time>07/2014</time></h6>
-                    <h3 class="school__name">Uniwerste Adama mickiewcza</h3>
-                    <h4 class="school__field">Inoformatyka na wydziele Informatki i Matematki</h4>
-                    <div class="school__description">
-                        <p>Grade: 5.5</p>
-                        <ul>
-                            <li>
-                                I was an active participant and leader in many case studies performed during the classes, trying to bring
-                                in as many points up for discussion and empowering my fellow team-mates to pitch in to contribute.
-                            </li>
-                            <li>
-                                I took part in conceptualising and developing new breakthrough ideas for different daily use materials
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </section>
-        <section class="section skills">
-            <h3 class="section__title">Skills</h3>
-            <div class="skills__group languages">
-                <p class="language">
-                    <span class="language__name">English</span>
-                    <span class="language_level">B2</span>
-                </p>
-            </div>
-            <div class="skills__group technologies">
-                <ul>
-                    <li>Javascript</li>
-                    <li>Typescript</li>
-                    <li>Html</li>
-                    <li>Css</li>
-                    <li>Sass</li>
-                    <li>Python</li>
-                    <li>SQL</li>
-                    <li>GraphQl</li>
-                    <li>React</li>
-                    <li>Vue</li>
-                    <li>Git</li>
-                </ul>
-            </div>
-        </section>
-        <section class="section additional">
-            <div class="additional__group">
-                <h3 class="section__title">Strengths</h3>
-                <ul>
-                    <li>Addaptive</li>
-                    <li>Effecitly managint multple projects</li>
-                    <li>Accuarcy</li>
-                    <li>Addaptive</li>
-                    <li>Effecitly managint multple projects</li>
-                    <li>Accuarcy</li>
-                    <li>Addaptive</li>
-                    <li>Effecitly managint multple projects</li>
-                    <li>Accuarcy</li>
-                    <li>Addaptive</li>
-                    <li>Aasdfddaptive</li>
-                    <li>Effecitly managint multple projects</li>
-                    <li>Accuarcy</li>
-                    <li>Addaasdfasdfptive</li>
-                    <li>Effecitly managint multple projects</li>
-                    <li>Accuarcy</li>
-                    <li>sdf</li>
-                </ul>
-            </div>
-        </section>
+        {% include 'pdf/partial/summary.html' %}
+        {% include 'pdf/partial/skills.html' %}
+        {% include 'pdf/partial/additional_strengths.html' %}
+
+        {% to_list 'period_address' 'position' 'company' as experience_job_field_order %}
+        {% include 'pdf/partial/experience.html' %}
+
+        {% to_list 'period' 'name' 'field' as education_school_field_order %}
+        {% include 'pdf/partial/education.html' with description=True %}
     </div>
 </main>
 {% endblock %}

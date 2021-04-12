@@ -168,9 +168,6 @@ main{
     &-item{
       margin: .5rem 0;
       padding-bottom: .5rem;
-      &:not(:last-of-type){
-        border-bottom: 1px solid var(--color-text-secondary);
-      }
       font-size: .8rem;
       min-height: 2rem;
       padding-left: 2.25rem;
@@ -178,6 +175,9 @@ main{
       flex-direction: column;
       justify-content: center;
       position: relative;
+      &:not(:last-of-type){
+        border-bottom: 1px solid var(--color-text-secondary);
+      }
       $icons:(
           'address': $marker-white-svg,
           'number': $phone-white-svg,
@@ -193,11 +193,12 @@ main{
             width: 1.35rem;
             margin-left: .4rem;
             margin-bottom: .25rem;
+            transform: translateY(-.01in);
           }
         }
       }
-      &.address:before{
-        transform: translateY(-.01in);
+      span {
+        margin: .25em 0;
       }
     }
   }
@@ -247,10 +248,12 @@ main{
     }
   }
 }
+
 h3{
   font-size: 1.1rem;
   margin-bottom: .15em;
 }
+
 h6, h4{
   font-size: .85rem;
   opacity: .8;
@@ -269,6 +272,7 @@ h6, h4{
       top: .35rem;
       opacity: .8;
       font-size: .65rem;
+      @include time-separator('-');
     }
     &__desc{
       margin-top: .5rem;
@@ -298,18 +302,29 @@ h6, h4{
       top: .2rem;
       opacity: .8;
       font-size: .65rem;
+      @include time-separator('-');
+    }
+    &__field{
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-text-primary-focus);
+      opacity: 1;
     }
     &__name{
       opacity: .8;
+      font-size: .9rem;
+      font-weight: 500;
     }
   }
 }
 
 .section.agreements{
-  font-size: .7rem;
   margin-top: auto;
-  @include icon-before($info-svg, var(--color-text-secondary));
-  &:before{
-    margin-right: .1rem;
+  p {
+    font-size: .7rem;
+    @include icon-before($info-svg, var(--color-text-secondary));
+    &:before{
+      margin-right: .1rem;
+    }
   }
 }

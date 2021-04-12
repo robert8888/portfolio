@@ -50,6 +50,14 @@
   }
 }
 
+@mixin time-separator($separator){
+  time:first-of-type:after{
+    content: $separator;
+    display: inline-block;
+    margin: 0 .25rem;
+  }
+}
+
 @page {
   size: A4;
   margin: 0 0 0 0;

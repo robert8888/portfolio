@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
 from polymorphic.models import PolymorphicModel
+import phonenumbers
+import re
 
 class Contact(PolymorphicModel):
     IS_NUMBER = ''
@@ -24,8 +26,11 @@ class Contact(PolymorphicModel):
     def type(self):
         return self.TYPE
 
-    type.short_description =gettext_lazy("Contact type")
+    type.short_description = gettext_lazy("Contact type")
 
+
+    def value(self):
+        return ''
 
     def is_number(self):
         return self.TYPE
@@ -46,6 +51,14 @@ class ContactPortal(Contact):
         verbose_name = gettext_lazy("Contact url")
     )
 
+    def value(self):
+        return self.url
+
+
+    def value_display(self):
+        return re.sub('mailto:|https?://', '', self.url)
+
+
     class Meta:
         verbose_name = gettext_lazy("Contact portal")
 
@@ -57,6 +70,19 @@ class ContactNumber(Contact):
         verbose_name = gettext_lazy("Contact number")
     )
 
+    def value(self):
+        return self.number
+
+    def value_display(self):
+        try:
+            return phonenumbers.format_number(
+                phonenumbers.parse(self.number, None),
+                phonenumbers.PhoneNumberFormat.INTERNATIONAL
+            )
+        except BaseException as error:
+            self.number
+
+
     class Meta:
         verbose_name = gettext_lazy("Contact number")
 
@@ -67,6 +93,12 @@ class ContactAddress(Contact):
         verbose_name = gettext_lazy('Address'),
         default = ''
     )
+
+    def value(self):
+        return self.address
+
+    def value_display(self):
+        return self.address
 
     class Meta:
         verbose_name = gettext_lazy('Contact address')

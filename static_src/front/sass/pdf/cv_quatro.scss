@@ -17,8 +17,8 @@ body{
 .grid{
   display: grid;
   grid-template-columns: .7fr 1fr;
-  grid-template-rows: .7fr 1fr;
-  margin-top: 5cm;
+  grid-template-rows: .6fr 1fr;
+  margin-top: 4.5cm;
   position: relative;
   z-index: 0;
   height: calc(100% - 5cm);
@@ -52,7 +52,8 @@ body{
         grid-row: $row;
         padding: 1cm;
         @if $row == 1 {
-          padding-top: 2.5cm;
+          padding-top: 3cm;
+          padding-bottom: .5cm;
         }
       }
     }
@@ -103,12 +104,19 @@ body{
     z-index: 5;
     box-shadow: 0 0 2px black;
   }
+
+}
+
+.contact{
+  padding: 2cm 1.5cm;
   &__list{
     list-style: none;
     font-family: kanit, sans-serif;
     font-size: 1rem;
     li {
       margin: 1em 0;
+      margin-left: 1.6em;
+      text-indent: -1.6em;
     }
   }
 
@@ -116,8 +124,8 @@ body{
     'number': $phone-white-svg,
     'address': $marker-grey-svg,
     'email': $envelope-white-svg,
-    'link.linkedin': $linkedin-svg,
-    'link.portfolio': $globe-americas-gray-svg,
+    'linkedin': $linkedin-svg,
+    'portfolio': $globe-americas-gray-svg,
   );
   @each $selector, $icon in $icons{
     &__#{$selector}{
@@ -127,10 +135,6 @@ body{
       }
     }
   }
-}
-
-.contact{
-  padding: 2cm 1.5cm;
 }
 
 .skills{
@@ -184,7 +188,7 @@ body{
       margin: 0.3em 0;
     }
     &-item {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       ul, ol {
         padding-left: 1.25rem;
       }
@@ -220,11 +224,38 @@ body{
   }
 }
 
+.experience{
+  .job__period{
+    @include time-separator('-')
+  }
+}
+
 .education{
-  .school__description{
-    &, * {
+  .school{
+    &__field{
+      font-size: 1.1rem;
+      line-height: 1.25rem;
+      font-weight: 400;
+      word-spacing: -.25em;
+    }
+    &__name{
       font-size: .9rem;
-      margin: 0.3em 0;
+      line-height: .9rem;
+      font-weight: 700;
+    }
+    &__description{
+      &, * {
+        font-size: .8rem;
+        margin: 0.2em 0;
+      }
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 5;
+      overflow: hidden;
+
+    }
+    &__period{
+      @include time-separator('-')
     }
   }
 }
@@ -236,8 +267,10 @@ body{
   bottom: .25cm;
   color: var(--color-text-primary);
   font-size: .6rem;
-  @include icon-before($info-svg, var(--color-text-primary));
-  &::before{
-    margin-right: .05em;
+  p{
+    @include icon-before($info-svg, var(--color-text-primary));
+    &::before{
+      margin-right: .05em;
+    }
   }
 }

@@ -8,16 +8,6 @@ $font-sans-pro: 'Source Sans Pro', sans-serif;
 $font-calling: calling-code, sans-serif;
 
 
-
-
-//:root{
-//  --color-text-primary: #3d3d3d;
-//  --color-text-primary-focus: #222;
-//  --color-text-secondary: white;
-//}
-
-
-
 * {
   font-family: $font-roboto;
   box-sizing: border-box;
@@ -27,7 +17,7 @@ $font-calling: calling-code, sans-serif;
 
 @mixin icon-s($url, $color: var(--color-text)){
   @include icon($url, $color);
-  margin-right: .25em;
+  margin-right: 0;
 }
 html{
 
@@ -67,9 +57,7 @@ header{
   position: relative;
 }
 .container{
-  padding: 1.25cm;
-  padding-bottom: .5cm;
-  padding-top: .6in;
+  padding: 1cm 1.25cm .5cm;
 }
 
 h3{
@@ -91,49 +79,27 @@ h5, h6{
   font-size: .8rem;
 }
 
-.personal{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 1.5rem;
-  &__full-name{
-    width: 100px;
-    overflow-wrap: anywhere;
-    font-family: $font-calling;
-    font-size: 2.5rem;
-    font-weight: 400;
-    font-style: normal;
-    letter-spacing: 1px;
-    margin: 0 0 0 .25rem;
-    color: var(--color-text-focus);
-  }
-  &__list{
-    text-align: right;
-    list-style: none;
-    li {
-      margin: .35em 0;
-      font-size: .9rem;
-      color: var(--color-text-primary);
-      font-family: $font-calling;
-    }
-  }
-  $icons:(
-        'birthday': $calendar-white-svg,
-        'number': $phone-white-svg,
-        'email': $envelope-white-svg,
-  );
-  @each $part, $icon in $icons{
-    &__#{$part}::before{
-      content: "";
-      @include icon-s($icon, var(--color-text-primary));
-      width: 1.2em;
+
+main{
+  .container {
+    padding-top: .75cm;
+    display: flex;
+    .col{
+      flex: 1;
+      &:not(:first-of-type){
+        margin-left: .625cm;
+      }
+      &:not(:last-of-type){
+        margin-right: .625cm;
+      }
     }
   }
 }
 
+
 .section{
-  padding-left: .5rem;
-  margin-bottom: 1.5rem;
+  padding-left: .6rem;
+  margin-bottom: 1rem;
   &__title{
     font-family: $font-sans-pro;
     text-transform: uppercase;
@@ -141,8 +107,8 @@ h5, h6{
     font-weight: 600;
     letter-spacing: 1px;
     word-spacing: .3em;
-    margin-left: -1.75rem;
-    margin-bottom: 1rem;
+    margin-left: -1.8rem;
+    margin-bottom: .5rem;
     break-before: auto;
     -webkit-column-break-after: avoid
   }
@@ -160,6 +126,7 @@ h5, h6{
         content: "";
         display: inline-block;
         @include icon($icon, var(--color-text));
+        margin-right: .2cm;
       }
     }
   }
@@ -169,17 +136,76 @@ h5, h6{
   }
 }
 
-main {
-  page-break-inside: auto;
-  .container {
-   column-count: 2 !important;
-   column-gap: 1.25cm;
-   column-fill: auto;
-    overflow-y: hidden;
-    max-height: 22cm;
-    page-break-inside: auto;
+
+
+.personal{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  &__full-name{
+    width: 100px;
+    overflow-wrap: anywhere;
+    font-family: $font-calling;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1px;
+    margin: 0 0 0 .25rem;
+    color: var(--color-text-focus);
+  }
+  &__profession{
+    margin: .25rem 0 0 .30rem;
+    color: var(--color-text-focus);
+    font-family: $font-calling;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  &__birthday{
+    text-align: right;
+    color: var(--color-text-primary);
+    margin: .35em 0;
+    word-spacing: -.1em;
+    span:before{
+      content: "";
+      @include icon-s($calendar-white-svg, var(--color-text-primary));
+      width: 1.2em;
+    }
+  }
+  //on footer
+  &__portfolio{
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: .8rem;
+    color: inherit;
   }
 }
+
+.contact{
+  &__list{
+    text-align: right;
+    list-style: none;
+    li {
+      margin: .35em 0;
+      font-size: .9rem;
+      color: var(--color-text-primary);
+      font-family: $font-calling;
+    }
+  }
+  $icons:(
+    'number': $phone-white-svg,
+    'email': $envelope-white-svg,
+  );
+  @each $part, $icon in $icons{
+    &__#{$part}::before{
+      content: "";
+      @include icon-s($icon, var(--color-text-primary));
+      width: 1.2em;
+    }
+  }
+}
+
+
 .experience{
   &__list{
     &-item{
@@ -204,15 +230,20 @@ main {
     &__detail{
       break-inside: avoid;
     }
+    &__desc{
+      ul, ol {
+        padding-left: 1rem;
+      }
+    }
   }
 }
-
 
 
 .achievements{
   ul, ol {
     list-style: circle;
     margin-left: -.25rem;
+    padding-left: 1.25rem;
     li {
       padding-left: .25rem;
     }
@@ -237,9 +268,13 @@ main {
   .school{
     break-inside: auto;
   }
-  .school__period::before{
-    content: "";
-    @include icon-s($calendar-gray-svg);
+  .school__period{
+    @include time-separator('-');
+    &::before{
+      content: "";
+      @include icon-s($calendar-gray-svg);
+      margin-right: -.1cm;
+    }
   }
   .school__detail{
     break-inside: avoid;
@@ -305,26 +340,22 @@ footer{
   position: fixed;
   width: 100%;
   bottom: -.75cm;
-  height: 4cm;
+  height: 3.5cm;
   z-index: 1;
   color: var(--color-text-primary);
   .container{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-  }
-  .personal__link{
-    text-decoration: none;
-    letter-spacing: 1px;
-    font-size: .8rem;
-    color: inherit;
+    padding-top: 1.1cm;
+    padding-bottom: .4cm;
   }
   .section.agreements{
     font-size: .5rem;
     text-align: right;
     padding-right: 1.25cm;
     padding-top: .25cm;
-    height: 1cm;
+    height: 1.75cm;
     color: inherit;
     p {
       font-size: inherit;

@@ -9,17 +9,16 @@ import os
 from .get_cv_pdf_data import process as get_cv_data
 
 def process(req, slug):
-    context = {
-        'photo_url': generatePresignedUrl('media/upload/2021/03/15/fake-me.png')
-    }
-    response = get_cv_data(req, slug)
-    color = response.data.cv.color_profile.colors['background']
-
-    print(color.hex, color.hsl_dict)
-
-    context['cv'] = response.data.cv
     try:
-        output_file = os.path.join(settings.BASE_DIR, 'static', 'cv_temp.pdf')
+        response = get_cv_data(req, slug)
+        if not response.success:
+            raise Exception('cv data not found for slug' + slug)
+
+        context = {
+            'cv': response.data.cv
+        }
+#         print(response.data.cv.data.get_download_name)
+        output_temp_file = os.path.join(settings.BASE_DIR, 'static', 'cv_temp.pdf')
 
         pdf = render_pdf_from_template(
             input_template=response.data.cv.template,
@@ -35,16 +34,19 @@ def process(req, slug):
                 'marginBottom': '0',
                 'printBackground': True,
                 'preferCSSPageSize': True,
-                'output': output_file,
+                'output': output_temp_file,
                 'pageRanges': 1
             }
         )
-        if os.path.exists(output_file):
-            os.remove(output_file)
+        if os.path.exists(output_temp_file):
+            os.remove(output_temp_file)
+
+        filename = f'filename={response.data.cv.data.get_download_name}.pdf'
 
         response = HttpResponse(pdf, content_type='application/pdf;')
-        response['Content-Disposition'] = 'filename=cv-2.pdf'
+        response['Content-Disposition'] = filename
 
         return response
-    except:
+    except BaseException as error:
+        print('error', error)
         return HttpResponseRedirect('/404')

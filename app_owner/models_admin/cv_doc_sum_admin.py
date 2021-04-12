@@ -19,5 +19,5 @@ class CVDocumentSummaryAdminFrom(TranslatableModelForm):
 class CVDocumentSummaryAdmin(TranslatableAdmin):
     def has_module_permission(self, request): return False
     form = CVDocumentSummaryAdminFrom
-    fields = ['id_name','position_title', 'summary_title', 'summary_content']
+    fields = ['id_name', 'summary_title', 'summary_content']
     pass

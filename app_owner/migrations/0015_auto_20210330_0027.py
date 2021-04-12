@@ -42,6 +42,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'CV documents educations',
                 'db_table': 'app_owner_cv_doc_edu',
             },
+            bases=(parler.models.TranslatableModelMixin, models.Model),
         ),
         migrations.CreateModel(
             name='CVDocumentEducationSchool',
@@ -69,6 +70,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'CV documents experiences',
                 'db_table': 'app_owner_cv_doc_exp',
             },
+            bases=(parler.models.TranslatableModelMixin, models.Model),
         ),
         migrations.CreateModel(
             name='CVDocumentExperienceJob',
@@ -153,6 +155,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Documents skills',
                 'db_table': 'app_owner_cv_doc_skills',
             },
+            bases=(parler.models.TranslatableModelMixin, models.Model)
         ),
         migrations.AddField(
             model_name='cvdocumentskill',
@@ -176,6 +179,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'CV Document contact',
                 'db_table': 'app_owner_cv_doc_contact',
             },
+            bases=(parler.models.TranslatableModelMixin, models.Model),
         ),
         migrations.CreateModel(
             name='CVDocument',

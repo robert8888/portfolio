@@ -76,63 +76,65 @@ header{
   @include horizontal-gradient(10%, -5%);
   & > * {
     color: var(--color-text-primary);
-    text-transform: uppercase;
   }
-  h1{
+}
+.personal {
+  &__position{
     font-family: $font-raleway;
     font-weight: 600;
     font-size: 2.3rem;
     margin-bottom: 0;
+    text-transform: uppercase;
   }
-  h4 {
+  &__name{
     font-family: $font-raleway;
     font-weight: 300;
-    margin: 0;
-    margin-bottom: .25rem;
+    margin: .5em 0;
+    text-transform: uppercase;
   }
-  .personal{
-    &__list{
-      list-style: none;
-      margin: 2rem 0;
-      padding: 0;
-      color: white;
-      font-family: 'Montserrat', sans-serif;
-      font-size: .8rem;
-      li{
-        display: inline-block;
-        margin: 0 1em 1em 0;
-      }
-    }
-    span{
-      color: var(--color-text-primary);
-    }
-    &__link{
-      position: absolute;
-      top: .5cm;
-      right: 3cm;
-      color: white;
-      text-transform: lowercase;
-      text-decoration: none;
-      letter-spacing: 1px;
-    }
-    &__birthday:before{
-      content:"";
-      @include icon-s($calendar-white-svg, var(--color-text-primary));
-      width: 1.3em;
-    }
-    $icons:(
-      'address': $marker-white-svg,
-      'number': $phone-white-svg,
-      'email': $envelope-white-svg,
-    );
-    @each $part, $icon in $icons{
-      &__#{$part}::before {
-        content:"";
-        @include icon-s($icon,  var(--color-text-primary));
-      }
-    }
+  &__link {
+    position: absolute;
+    top: .5cm;
+    right: 3cm;
+    text-transform: lowercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    color: var(--color-text-primary);
   }
+  &__birthday:before {
+    content: "";
+    @include icon-s($calendar-white-svg, var(--color-text-primary));
+    width: 1.3em;
+  }
+}
 
+.contact{
+  &__list{
+    list-style: none;
+    margin: 2rem 0 1rem 0;
+    padding: 0;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .8rem;
+    li{
+      display: inline-block;
+      margin: 0 1em 1em 0;
+    }
+  }
+  span{
+    color: var(--color-text-primary);
+  }
+  $icons:(
+    'address': $marker-white-svg,
+    'number': $phone-white-svg,
+    'email': $envelope-white-svg,
+  );
+  @each $part, $icon in $icons{
+    &__#{$part}::before {
+      content:"";
+      @include icon-s($icon,  var(--color-text-primary));
+    }
+  }
 }
 
 
@@ -169,8 +171,7 @@ main {
 
 .summary{
   p{
-    margin: 1.5rem;
-    font-size: .8rem;
+    margin: .2rem 0;
   }
   ol, ul{
     padding-right: 1rem;
@@ -184,6 +185,7 @@ main {
     list-style: none;
     &-item{
       margin-bottom: 1.25rem;
+      break-inside: avoid;
     }
   }
   .job{
@@ -253,7 +255,7 @@ main {
     }
   }
 }
-.additional{
+.strengths{
   h3{
     break-after: avoid;
     margin-bottom: 0;

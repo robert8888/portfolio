@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy
 from django.utils.text import slugify
 from django.urls import reverse
 from app_index.utils.get_template_choices import getTemplatesChoices
+from django.db import transaction
 
 class CV(models.Model):
     Templates = (
@@ -37,6 +38,11 @@ class CV(models.Model):
         blank = True
     )
 
+    on_main_page = models.BooleanField(
+        default = False,
+        verbose_name = gettext_lazy('Link on main page')
+    )
+
     @property
     def url(self):
         if not self.slug:
@@ -45,7 +51,12 @@ class CV(models.Model):
 
     def save(self):
         self.slug = slugify(self.name)
-        super(CV, self).save()
+        if self.on_main_page:
+            with transaction.atomic():
+                CV.objects.filter(on_main_page = True).update(on_main_page = False)
+
+        return super(CV, self).save()
+
 
     def __str__(self):
         return self.name

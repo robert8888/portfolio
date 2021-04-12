@@ -3,11 +3,18 @@ from parler.models import TranslatableModel,TranslatedFields
 from django.utils.translation import gettext_lazy
 from django_better_admin_arrayfield.models.fields import ArrayField
 
-class CVDocumentExperience(models.Model):
+class CVDocumentExperience(TranslatableModel):
 
     id_name = models.CharField(
         verbose_name = gettext_lazy("Identification name"),
         max_length = 100
+    )
+
+    translation = TranslatedFields(
+        section_title = models.CharField(
+            max_length = 255,
+            verbose_name = gettext_lazy('Section title')
+        )
     )
 
     def __str__(self):
@@ -28,6 +35,12 @@ class CVDocumentExperienceJob(TranslatableModel):
     company = models.CharField(
         max_length = 255,
         verbose_name = gettext_lazy('Company')
+    )
+
+    address = models.CharField(
+        max_length = 255,
+        verbose_name = gettext_lazy('Address'),
+        default = ''
     )
 
     from_date = models.DateField(

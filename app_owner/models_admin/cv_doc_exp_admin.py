@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from app_owner.models import CVDocumentEducation
-from parler.admin import TranslatableStackedInline, TranslatableModelForm
+from parler.admin import TranslatableStackedInline, TranslatableModelForm, TranslatableAdmin
 from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 from django_better_admin_arrayfield.forms.widgets import DynamicArrayTextareaWidget
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
@@ -17,7 +17,7 @@ class CVDocumentExperienceJobFrom(TranslatableModelForm):
     )
     class Meta:
         model = CVDocumentExperienceJob
-        fields = ['company', 'position','from_date', 'to_date', 'description']
+        fields = ['company', 'address', 'position','from_date', 'to_date', 'description']
 
 class CVDocumentExperienceJobInlineAdmin(TranslatableStackedInline, DynamicArrayMixin):
     extra = 0
@@ -25,7 +25,7 @@ class CVDocumentExperienceJobInlineAdmin(TranslatableStackedInline, DynamicArray
     form = CVDocumentExperienceJobFrom
 
 @admin.register(CVDocumentExperience)
-class CVDocumentExperienceAdmin(admin.ModelAdmin):
+class CVDocumentExperienceAdmin(TranslatableAdmin):
     def has_module_permission(self, request): return False
     inlines = [CVDocumentExperienceJobInlineAdmin]
     pass

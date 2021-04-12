@@ -36,7 +36,15 @@ class CVDocument(models.Model):
     personal = models.ForeignKey(
         'CVDocumentPersonal',
         on_delete = models.RESTRICT,
-        verbose_name = gettext_lazy('Personal data')
+        verbose_name = gettext_lazy('Personal'),
+        blank = True,
+        null = True,
+    )
+
+    contact = models.ForeignKey(
+        'CVDocumentContact',
+        on_delete = models.RESTRICT,
+        verbose_name = gettext_lazy('Contact')
     )
 
     summary = models.ForeignKey(
@@ -63,12 +71,46 @@ class CVDocument(models.Model):
         verbose_name = gettext_lazy('Skills')
     )
 
+    agreements = models.ForeignKey(
+        'CVDocumentAgreements',
+        on_delete = models.RESTRICT,
+        verbose_name = gettext_lazy('Rodo agreements'),
+        null = True,
+        blank = True
+    )
+
     additional = models.ManyToManyField(
         'CVDocumentAdditional',
         verbose_name = gettext_lazy('Additional'),
-        blank = True,
         through = CVDocument_additional
     )
+
+    def __getattribute__(self, attr):
+        if attr.startswith('additional_'):
+            type = attr[11:]
+            additional_queryset = CVDocument_additional.objects.filter(cv_document = self.id, cv_document_additional__type = type)
+            if len(additional_queryset):
+                return additional_queryset[0].cv_document_additional
+            return []
+        return super(CVDocument, self).__getattribute__(attr)
+
+    @property
+    def get_download_name(self):
+        if not self.download_name and not self.personal:
+            return 'cv'
+        elif not self.download_name:
+            return self.personal.name + "_" + self.personal.surname
+        else:
+            return self.download_name
+
+    @property
+    def get_document_title(self):
+        if not self.document_title and not self.personal:
+            return 'cv'
+        elif not self.document_title:
+            return self.personal.name + ' ' + self.personal.surname
+        else:
+            return self.document_title
 
     def __str__(self):
         return self.id_name

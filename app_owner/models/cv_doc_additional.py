@@ -13,7 +13,7 @@ class CVDocumentAdditional(TranslatableModel):
     Type = (
         ('hobby', gettext_lazy('Hobby')),
         ('strength', gettext_lazy('Strengths')),
-        ('achievements', gettext_lazy('Achievements')),
+        ('achievement', gettext_lazy('Achievements')),
         ('other', gettext_lazy('Other'))
     )
 
@@ -24,9 +24,9 @@ class CVDocumentAdditional(TranslatableModel):
     )
 
     translation = TranslatedFields(
-        title = models.CharField(
+        section_title = models.CharField(
             max_length = 255,
-            verbose_name = gettext_lazy('Title')
+            verbose_name = gettext_lazy('Section title')
         ),
         items = ArrayField(
             models.CharField(

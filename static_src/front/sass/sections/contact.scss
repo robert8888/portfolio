@@ -127,10 +127,15 @@
     &__container{
       margin-top: auto;
     }
-    &__btn{
+    &__btn,
+    &__btn-link{
       display: block;
       margin-left: auto;
       opacity: 0;
+    }
+    &__btn-link{
+      width: 200px;
+      text-align: center;
     }
   }
 
@@ -144,7 +149,8 @@
       }
     }
     &__resume{
-      &__btn{
+      &__btn,
+      &__btn-link{
         margin-left: auto;
         margin-right: auto;
       }
@@ -274,7 +280,8 @@
       }
     }
     .form__btn--send,
-    #{$self}__resume__btn {
+    #{$self}__resume__btn,
+    #{$self}__resume__btn-link{
       @include fade-up-animation(1s, .5s);
     }
     #{$self}__info__title{

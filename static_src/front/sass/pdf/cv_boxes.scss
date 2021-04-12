@@ -116,7 +116,7 @@ header{
     list-style: none;
     padding: 0;
   }
-  .personal__link{
+  .contact__portfolio{
     color: var(--color-background)
   }
 }
@@ -154,10 +154,16 @@ header{
       padding-left: 1.25rem;
     }
   }
+  .job__position{
+    text-transform: uppercase;
+  }
   .job__company:after{
     content: "|";
     display: inline-block;
     margin: 0 .5em;
+  }
+  .job__period{
+    @include time-separator('-')
   }
 }
 
@@ -176,7 +182,11 @@ header{
       margin: .2em 0;
     }
     &__name{
-      font-weight: 400;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    &__period{
+      @include time-separator('-');
     }
   }
 }

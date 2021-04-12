@@ -1,6 +1,6 @@
 from django.contrib import admin
 from app_owner.models import CVDocumentEducation
-from parler.admin import TranslatableStackedInline, TranslatableModelForm
+from parler.admin import TranslatableStackedInline, TranslatableModelForm, TranslatableAdmin
 from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 from django_better_admin_arrayfield.forms.widgets import DynamicArrayTextareaWidget
 
@@ -16,7 +16,7 @@ class CVDocumentEducationSchoolInlineAdmin(TranslatableStackedInline):
     model = CVDocumentEducationSchool
 
 @admin.register(CVDocumentEducation)
-class CVDocumentEducationAdmin(admin.ModelAdmin, DynamicArrayMixin):
+class CVDocumentEducationAdmin(TranslatableAdmin, DynamicArrayMixin):
     def has_module_permission(self, request): return False
     inlines = [CVDocumentEducationSchoolInlineAdmin]
     pass
