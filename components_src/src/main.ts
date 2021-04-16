@@ -16,6 +16,7 @@ import GalleryItem from "@/components/GalleryItem.vue";
 import ContactForm from "@/components/ContactForm.vue";
 import ContactFormLabel from "@/components/ContactFormLabel.vue";
 import ContactNumber from "@/components/ContactNumber.vue";
+import PdfPreloader from "@/components/PdfPreloader.vue";
 
 import defineVueComponent from "@/define-vue-component";
 
@@ -34,6 +35,7 @@ defineVueComponent(
         ContactForm,
         ContactFormLabel,
         ContactNumber,
+        PdfPreloader
     }, [
         storePlugin,
         ResizeObserver,

@@ -299,6 +299,43 @@
 }
 
 
+@mixin button($url-svg){
+    width: 90px;
+    height: 100px;
+    font-size: 1.15rem;
+    padding: 75px 0 0;
+    text-align: center;
+    position: relative;
+    border:none;
+    transition: opacity .3s;
+    &:disabled{
+      opacity: .1;
+      cursor: not-allowed;
+    }
+    &:after{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 100%;
+      transform: translateX(-50%);
+      height: 60px;
+      @include svgMask(
+        $url-svg,
+        var(--color-text-primary),
+        var(--color-pallet-secondary),
+        60px,
+        60px
+      );
+      mask-size: contain;
+      mask-position: center;
+    }
+
+  &:hover:after{
+    background: var(--color-pallet-primary);
+  }
+}
+
 
 .contact-number{
   &__modal{
@@ -314,8 +351,11 @@
     align-items: center;
   }
   &__controls{
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    place-items: center;
     margin: 0 2rem;
   }
   &__number{
@@ -323,43 +363,29 @@
     font-weight: bold;
   }
   &__btn{
-    width: 90px;
-    height: 100px;
-    font-size: 1.5rem;
-    padding: 75px 0 0;
-    text-align: center;
-    position: relative;
-    border:none;
-    margin: 0 30px;
-    transition: opacity .3s;
-    &:disabled{
-      opacity: .1;
-      cursor: not-allowed;
+    @include button($copy-svg);
+    &--call:after{
+      mask: $call-svg;
     }
-    &:after{
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 100%;
-      transform: translateX(-50%);
-      height: 60px;
-      @include svgMask(
-        $copy-svg,
-        var(--color-text-primary),
-        var(--color-pallet-secondary),
-        60px,
-        60px
-      )
-    }
-    &:hover:after{
-      background: var(--color-pallet-primary);
-    }
+  }
+}
 
-    &--call{
-      &:after{
-        mask: $call-svg;
-      }
+.pdf-downloader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  &__button-wrapper{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    place-items: center;
+  }
+  .btn{
+    @include button($book-open-svg);
+    &--download:after{
+      mask-image: $file-download;
     }
   }
 }

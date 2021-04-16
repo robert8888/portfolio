@@ -6,6 +6,7 @@ from puppeteer_pdf import render_pdf_from_template
 from django.conf import settings
 import tempfile
 import os
+import datetime
 from .get_cv_pdf_data import process as get_cv_data
 
 def process(req, slug):
@@ -17,7 +18,7 @@ def process(req, slug):
         context = {
             'cv': response.data.cv
         }
-#         print(response.data.cv.data.get_download_name)
+
         output_temp_file = os.path.join(settings.BASE_DIR, 'static', 'cv_temp.pdf')
 
         pdf = render_pdf_from_template(
@@ -41,7 +42,9 @@ def process(req, slug):
         if os.path.exists(output_temp_file):
             os.remove(output_temp_file)
 
-        filename = f'filename={response.data.cv.data.get_download_name}.pdf'
+        download_name = response.data.cv.data.get_download_name
+        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        filename = f'filename={download_name}-{current_date}.pdf'
 
         response = HttpResponse(pdf, content_type='application/pdf;')
         response['Content-Disposition'] = filename

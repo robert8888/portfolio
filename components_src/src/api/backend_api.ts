@@ -3,6 +3,19 @@ import getCaptchaToken from "@/utils/get-captcha-token";
 
 const csrfToken = (window as any).csrfToken  as string;
 
+interface Result {
+    success: boolean;
+    error: string[];
+    data: Record<string, any>;
+}
+
+
+const getLanguageFromPath = () =>{
+    let langPath = location.pathname.split("/")[1]
+    return langPath.length === 2 ? langPath + '/' : '';
+}
+
+
 const request = async (path: string, data:  Record<string, any>) => {
     const origin = location.origin
 
@@ -19,16 +32,15 @@ const request = async (path: string, data:  Record<string, any>) => {
     return await response.json() as Promise<Result>
 }
 
-interface Result {
-    success: boolean;
-    error: string[];
-    data: Record<string, any>;
+
+export const getRequest = async (path: string): Promise<Response> =>{
+    if(path.startsWith(location.origin))
+        path = path.replace(location.origin, '')
+
+    return fetch(path, {method: 'GET', headers: {"X-CSRFToken": csrfToken}})
 }
 
-const getLanguageFromPath = () =>{
-    let langPath = location.pathname.split("/")[1]
-    return langPath.length === 2 ? langPath + '/' : '';
-}
+
 
 export const sendForm = async (data:  Record<string, any>): Promise<any> => {
     const path = API_CONFIGURATION.POST_CONTACT_FORM_URL
@@ -67,3 +79,5 @@ export const getAutocomplete = async(data: {input: string}): Promise<Result> => 
 
     return request(path, data)
 }
+
+

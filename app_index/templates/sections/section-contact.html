@@ -23,10 +23,14 @@
                     </div>
                 </div>
                 <div class="contact__resume__container">
-                    <a class="contact__resume__btn-link contact__resume__btn-link--download link-btn btn btn--all"
-                       href="{{cv_download_url}}" target="_blank">
-                        {% translate "Download Reasume" %}
-                    </a>
+                    <vue-component>
+                        <pdf-preloader spinner-label="{% translate 'Preparing' %}" download-label="{% translate 'Download' %}" open-label="{% translate 'Open' %}">
+                            <a class="contact__resume__btn-link contact__resume__btn-link--download link-btn btn btn--all"
+                               href="{{cv_download_url}}" target="_blank" data-download-pdf="true">
+                                {% translate "Download Reasume" %}
+                            </a>
+                        </pdf-preloader>
+                    </vue-component>
                 </div>
             </div>
         </div>
