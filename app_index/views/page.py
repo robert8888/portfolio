@@ -170,12 +170,10 @@ class PageView(View):
         default_language = settings.PARLER_DEFAULT_LANGUAGE_CODE
         prefix_default = settings.PREFIX_DEFAULT_LANGUAGE
 
-        current_language = get_language()
-
         query = buildSelectPathQuery(path)
         data, success, *_ = execute_query(query)
 
-        path_item = py_.find(data, lambda item: item['lang'] == current_language)
+        path_item = py_.find(data, lambda item: item['lang'] == get_language())
 
         if not path_item and len(data):
             lang_code = data[0]['lang']
@@ -211,25 +209,18 @@ class PageView(View):
     def getMenusRaw(self, page_id):
         query = buildSelectPageMenusQuery(page_id, get_language())
         data, success, *_ = execute_query(query)
-
         menus = {}
         for row in data:
-            id = row.get('id')
-            current = menus.get(id, None)
-            if not current:
-                current = {
-                    'id': row['id'],
-                    'name': row['name'],
-                    'template': row['template'],
-                    'style': row['style'],
-                    'items': []
-                }
-            current['items'].append({
-                'text': row['item_text'],
-                'url': row['item_url']
+            menus.setdefault(row.get('id'), {
+               'id': row['id'],
+               'name': row['name'],
+               'template': row['template'],
+               'style': row['style'],
+               'items': []
+            })['items'].append({
+               'text': row['item_text'],
+               'url': row['item_url']
             })
-            menus[id] = current
-
         return menus.values()
 
     def getPageSectionsRaw(self, page_id):
