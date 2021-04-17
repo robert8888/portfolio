@@ -24,7 +24,8 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('app_owner.urls')),
     path('', include('app_projects.urls')),
-    path('', include('app_index.urls')),
+    path('', include('app_cms.urls')),
+#     path('', include('app_index.urls')),
     prefix_default_language= settings.PREFIX_DEFAULT_LANGUAGE
 )
 

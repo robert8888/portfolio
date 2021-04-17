@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils.text import slugify
 from django.urls import reverse
-from app_index.utils.get_template_choices import getTemplatesChoices
+from app_cms.utils.get_template_choices import getTemplatesChoices
 from django.db import transaction
 
 class CV(models.Model):

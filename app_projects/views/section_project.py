@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.translation import get_language
 from app_projects.models import Project
-from app_index.utils.revers_path import revers_page_path
+from app_cms.utils.revers_path import revers_page_path
 
 
 def group_technologies_by_type(technologies):
@@ -15,6 +15,7 @@ def group_technologies_by_type(technologies):
 def process(request, config, context, *args):
     slug = args[0][0]
     lang = get_language()
+
 
     projects = Project.objects.filter(translations__slug=slug, translations__language_code=lang)
 

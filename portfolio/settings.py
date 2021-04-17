@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     'rosetta',
     'parler',
 
-    'app_index.apps.IndexAppConfig',
+    'app_cms.apps.CmsAppConfig',
+#     'app_index.apps.IndexAppConfig',
     'app_projects.apps.ProjectsAppConfig',
     'app_owner.apps.AppOwnerConfig'
 ]
@@ -309,7 +310,8 @@ CKEDITOR_CONFIGS = {
 
 
 ADMIN_REORDER = (
-      'app_index',
+      'app_cms',
+#       'app_index',
       'app_projects',
       'app_owner',
 )

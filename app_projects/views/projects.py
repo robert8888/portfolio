@@ -2,7 +2,7 @@ from django.utils.translation import get_language
 from django.db import connection
 from django.utils.translation import gettext_lazy
 from app_projects.models import ProjectGalleryImage
-from app_index.utils.revers_path import revers_page_path
+from app_cms.utils.revers_path import revers_page_path
 from sqlescapy import sqlescape
 from portfolio.utils.execute_db_queries import execute_queries
 import pydash as py_

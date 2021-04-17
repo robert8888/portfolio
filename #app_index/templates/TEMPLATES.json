@@ -1,0 +1,45 @@
+{
+  "section": [{
+    "name": "Section Footer",
+    "path": "sections/section-footer.html",
+    "style": "front/css/sections/footer.css"
+  }, {
+    "name": "Section Header",
+    "path": "sections/section-header.html",
+    "style": "front/css/sections/header.css"
+  }, {
+    "name": "Section Welcome",
+    "path": "sections/section-welcome.html",
+    "style": "front/css/sections/welcome.css"
+  }, {
+    "name": "Section Stack",
+    "path": "sections/section-stack.html",
+    "style": "front/css/sections/stack.css"
+  }, {
+    "name": "Section Project Slider",
+    "path": "sections/section-projects.html",
+    "style": "front/css/sections/projects-slider.css"
+  }, {
+    "name": "Section About",
+    "path": "sections/section-about.html",
+    "style": "front/css/sections/about.css"
+  }, {
+    "name": "Section Contact",
+    "path": "sections/section-contact.html",
+    "style": "front/css/sections/contact.css"
+  }],
+  "page": [{
+    "name": "Index",
+    "path": "page_index.html"
+  }],
+  "menu": [{
+    "name": "Main",
+    "path": "menus/menu-main.html"
+  }, {
+    "name": "Aside",
+    "path": "menus/menu-aside.html"
+  },{
+    "name": "Addtional",
+    "path": "menus/menu-additional.html"
+  }]
+}

@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from portfolio.utils.validateGoogleCaptcha import validateCaptcha
-from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy, gettext
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
