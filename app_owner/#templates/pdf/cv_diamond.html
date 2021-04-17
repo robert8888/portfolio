@@ -1,0 +1,45 @@
+{% extends 'pdf/base.html' %}
+{% load static compress utils %}
+{% block style %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static '/front/css/pdf/cv_diamond.css'%}"/>
+{% endcompress %}
+{% endblock %}
+{% block content %}
+<header>
+    <div class="container">
+        <div class="personal">
+            <div>
+                {% include 'pdf/partial/name_profession.html' %}
+            </div>
+            <div>
+                <p class="personal__birthday"><span>{{cv.data.personal.birthday|date:'Y / m / d'}}</span></p>
+                {% to_list 'number' 'email' as contact_field_order %}
+                {% include 'pdf/partial/contact_list.html' %}
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        {% to_list 'period' 'name' 'field' as education_school_field_order %}
+        {% to_list 'period_address' 'position' 'company' as experience_job_field_order %}
+        <div class="col">
+            {% include 'pdf/partial/skills.html' %}
+            {% include 'pdf/partial/education.html' with description=True %}
+            {% include 'pdf/partial/additional_achievements.html' %}
+        </div>
+        <div class="col">
+            {% include 'pdf/partial/experience.html' %}
+            {% include 'pdf/partial/additional_strengths.html' %}
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        {% get_dict_value cv.data.contact.contacts_ordered_dict 'portfolio' as portfolio %}
+        <a class="personal__portfolio" href="{{portfolio.value}}">{{portfolio.value_display}}</a>
+    </div>
+    {% include 'pdf/partial/agreements.html' %}
+</footer>
+{% endblock %}

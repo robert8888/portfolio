@@ -4,11 +4,15 @@ import os
 import re
 def getAppsViewsList(pattern = '.*'):
     regex = re.compile(pattern)
+
+    view_dir_path = lambda path: os.path.join(path, 'views')
+
     app_dirs = [
-        {'path': os.path.join(app.path, 'views'), 'name': app.name}
+        {'path': view_dir_path(app.path), 'name': app.name}
         for app in apps.get_app_configs()
-            if app.name.startswith('app')
+            if app.name.startswith('app') and os.path.isdir(view_dir_path(app.path))
     ]
+
     views_list = []
     for app in app_dirs:
          views_list += [

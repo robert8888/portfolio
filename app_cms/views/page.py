@@ -163,12 +163,9 @@ class PageView(View):
         return importlib.import_module(module_name)
 
     def processViews(self, request, views, context, params):
-        print('prcess vies', views)
         context_data = {**context}
         for view in views:
-            print(view)
             context_data = view['module'].process(request, view['config'], context_data, params)
-            print('done')
         return context_data
 
     def processPath(self, path, request):

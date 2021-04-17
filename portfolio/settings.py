@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     'parler',
 
     'app_cms.apps.CmsAppConfig',
-#     'app_index.apps.IndexAppConfig',
+    'app_cms_tpl.apps.CmsTplAppConfig',
     'app_projects.apps.ProjectsAppConfig',
     'app_owner.apps.AppOwnerConfig'
 ]

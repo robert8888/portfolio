@@ -15,5 +15,4 @@ def process(request, config, context, *args):
             for type in ordering
         ]
     }
-    print('---types end', datetime.now())
     return context

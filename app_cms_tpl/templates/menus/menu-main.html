@@ -1,0 +1,13 @@
+<div class="navigation__wrapper--main">
+    <vue-component>
+        <menu-main class="nav">
+            {% for item in menu.items %}
+                <menu-main-item>
+                    <a href="{{item.url}}" class="navigation__item__link">
+                        {{item.text}}
+                    </a>
+                </menu-main-item>
+            {% endfor %}
+        </menu-main>
+    </vue-component>
+</div>
