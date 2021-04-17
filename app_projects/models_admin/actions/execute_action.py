@@ -5,7 +5,6 @@ from django.utils.translation import gettext
 def executeAction(modeladmin, request, queries, msg):
     results = execute_queries(queries)
 
-    queries_affects
     for result, index in results.get("resultEach"):
         queries_affects[index] = result.get("affected", 0)
 

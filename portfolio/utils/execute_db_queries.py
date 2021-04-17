@@ -35,3 +35,14 @@ def execute_queries(queries = []):
         "successAll": success_all,
         "resultEach": result_each
     }
+
+def execute_query(query):
+    result = execute_queries([query])
+    if not result.get('successAll'):
+        return [None, False, 0]
+    else:
+        return [
+            result.get('resultEach')[0].get('data'),
+            result.get('resultEach')[0].get('success'),
+            result.get('resultEach')[0].get('affected')
+        ]

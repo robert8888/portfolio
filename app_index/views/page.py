@@ -3,6 +3,7 @@ from django.views import View
 from django.middleware.csrf import get_token
 from django.shortcuts import render
 from app_index.models import Page, PageSections, Path, View as ViewModel, Property
+from portfolio.utils.execute_db_queries import execute_query
 from django.utils.translation import get_language
 from portfolio.utils.getAppsViewsList import getAppsViewsList
 from django.conf import settings
@@ -14,8 +15,83 @@ import pydash as py_
 import importlib
 import re
 
+
+def buildSelectPathQuery(path):
+    return f"""
+    SELECT
+    app_index_path.page_id as "page_id",
+    app_index_path_translation.pattern as "pattern",
+    app_index_path_translation.language_code as "lang"
+    FROM app_index_path
+    LEFT JOIN app_index_path_translation ON app_index_path.id = app_index_path_translation.master_id
+    WHERE ( '{path}' ~ app_index_path_translation.pattern)
+    """
+
+def buildSelectPageQuery(page_id):
+    return f"""
+    SELECT
+    name,
+    template
+    FROM app_index_page
+    WHERE id = {page_id}
+    """
+
+def buildSelectPageMenusQuery(page_id, lang):
+    return f"""
+    SELECT
+    "app_index_menu"."id" as "id",
+    "app_index_menu"."name" as "name",
+    "app_index_menu"."template" as "template",
+    "app_index_menu"."style" as "style",
+    "app_index_menuitem_translation"."text" as "item_text",
+    "app_index_menuitem_translation"."url"  as "item_url"
+    FROM "app_index_page_menu"
+    LEFT JOIN "app_index_menu" ON "app_index_menu"."id" = "app_index_page_menu"."menu_id"
+    LEFT JOIN "app_index_menuitem" ON "app_index_menuitem"."menu_id" = "app_index_menu"."id"
+    LEFT JOIN "app_index_menuitem_translation" ON "app_index_menuitem_translation"."master_id" = "app_index_menuitem"."id"
+    WHERE "app_index_page_menu"."page_id" = {page_id}
+    AND "app_index_menuitem_translation"."language_code" = '{lang}'
+    """
+
+def buildSelectSectionQuery(page_id):
+    return f"""
+    SELECT
+    "app_index_section"."id" as "id",
+    "app_index_section"."name" as "name",
+    "app_index_section"."template" as "template",
+    "app_index_section"."style" as "style"
+    FROM  "app_index_pagesections"
+    LEFT JOIN "app_index_section" ON "app_index_section"."id" = "app_index_pagesections"."section_id"
+      WHERE "app_index_pagesections"."page_id" = {page_id}
+      ORDER BY "app_index_pagesections"."order"
+    """
+
+def buildSelectSectionPropQuery(section_ids, lang):
+    return f'''
+    SELECT
+    "app_index_property"."section_id" as "id",
+    "app_index_property"."name" as "name",
+    COALESCE(
+      "app_index_propertytext_translation"."value",
+      "app_index_propertytextrich_translation"."value",
+      "app_index_propertytextlong_translation"."value",
+      ''
+    ) as "value"
+    FROM  "app_index_property"
+    LEFT JOIN "app_index_propertytextrich" ON "app_index_propertytextrich"."property_ptr_id" =  "app_index_property"."id"
+    LEFT JOIN "app_index_propertytextrich_translation" ON "app_index_propertytextrich_translation"."master_id" = "app_index_propertytextrich"."property_ptr_id"
+    LEFT JOIN "app_index_propertytextlong" ON "app_index_propertytextlong"."property_ptr_id" =  "app_index_property"."id"
+    LEFT JOIN "app_index_propertytextlong_translation" ON "app_index_propertytextlong_translation"."master_id" = "app_index_propertytextlong"."property_ptr_id"
+    LEFT JOIN "app_index_propertytext" ON "app_index_propertytext"."property_ptr_id" =  "app_index_property"."id"
+    LEFT JOIN "app_index_propertytext_translation" ON "app_index_propertytext_translation"."master_id" = "app_index_propertytext"."property_ptr_id"
+       WHERE
+       "app_index_property"."section_id" IN  {section_ids}
+       AND "app_index_propertytextrich_translation"."language_code" = '{lang}'
+       OR "app_index_propertytextlong_translation"."language_code" = '{lang}'
+       OR "app_index_propertytext_translation"."language_code" = '{lang}'
+   '''
+
 class PageView(View):
-    greeting = "Good Day"
 
     def get(self, request, path):
         context = {
@@ -36,7 +112,6 @@ class PageView(View):
             if route.get('not_found'):
                 raise LookupError('not found')
 
-            print('route', route)
             page_id = route.get('page_id')
             pattern = route.get('pattern')
 
@@ -96,23 +171,14 @@ class PageView(View):
         prefix_default = settings.PREFIX_DEFAULT_LANGUAGE
 
         current_language = get_language()
-        query = f"""
-        SELECT
-        app_index_path.page_id,
-        app_index_path_translation.pattern,
-        app_index_path_translation.language_code
-        FROM app_index_path
-        LEFT JOIN app_index_path_translation ON app_index_path.id = app_index_path_translation.master_id
-        WHERE ( '{path}' ~ app_index_path_translation.pattern)
-        """
-        with connection.cursor() as cursor:
-            cursor.execute(query)
-            rows = cursor.fetchall()
 
-        path_row = py_.find(rows, lambda row: row[2] == current_language)
+        query = buildSelectPathQuery(path)
+        data, success, *_ = execute_query(query)
 
-        if not path_row and len(rows):
-            *_, lang_code = rows[0]
+        path_item = py_.find(data, lambda item: item['lang'] == current_language)
+
+        if not path_item and len(data):
+            lang_code = data[0]['lang']
             protocol = request.scheme + '://'
             redirect = ''
             if lang_code == default_language and not prefix_default:
@@ -126,87 +192,56 @@ class PageView(View):
                 'redirect': protocol + redirect + query
             }
 
-        if not path_row:
+        if not path_item:
             return {
                 'not_found': True
             }
 
         return {
-            'page_id': path_row[0],
-            'pattern': path_row[1]
+            'page_id': path_item.get('page_id'),
+            'pattern': path_item.get('pattern')
         }
 
 
     def getPageRaw(self, page_id):
-        query = f"""
-        SELECT
-        name,
-        template
-        FROM app_index_page
-        WHERE id = {page_id}
-        """
-        with connection.cursor() as cursor:
-            cursor.execute(query)
-            row = cursor.fetchone()
-        return row if row else []
+        query = buildSelectPageQuery(page_id)
+        page, success, *_ = execute_query(query)
+        return [page[0].get('name'), page[0].get('template')] if success else []
 
     def getMenusRaw(self, page_id):
-        lang = get_language()
-        query = f"""
-        SELECT
-        "app_index_menu"."id",
-        "app_index_menu"."name",
-        "app_index_menu"."template",
-        "app_index_menu"."style",
-        "app_index_menuitem_translation"."text",
-        "app_index_menuitem_translation"."url"
-        FROM "app_index_page_menu"
-        LEFT JOIN "app_index_menu" ON "app_index_menu"."id" = "app_index_page_menu"."menu_id"
-        LEFT JOIN "app_index_menuitem" ON "app_index_menuitem"."menu_id" = "app_index_menu"."id"
-        LEFT JOIN "app_index_menuitem_translation" ON "app_index_menuitem_translation"."master_id" = "app_index_menuitem"."id"
-        WHERE "app_index_page_menu"."page_id" = {page_id}
-        AND "app_index_menuitem_translation"."language_code" = '{lang}'
-        """
-        with connection.cursor() as cursor:
-            cursor.execute(query)
-            rows = cursor.fetchall()
+        query = buildSelectPageMenusQuery(page_id, get_language())
+        data, success, *_ = execute_query(query)
 
         menus = {}
-        for row in rows:
-            current = menus.get(row[0])
+        for row in data:
+            id = row.get('id')
+            current = menus.get(id, None)
             if not current:
-                current = []
-            current.append(row)
-            menus[row[0]] = current
+                current = {
+                    'id': row['id'],
+                    'name': row['name'],
+                    'template': row['template'],
+                    'style': row['style'],
+                    'items': []
+                }
+            current['items'].append({
+                'text': row['item_text'],
+                'url': row['item_url']
+            })
+            menus[id] = current
 
-        return [
-            {
-                "id": menu[0][0],
-                "name": menu[0][1],
-                "template": menu[0][2],
-                "style": menu[0][3],
-                "items": [{
-                    "text": menu_item[4],
-                    "url": menu_item[5],
-                } for menu_item in menu]
-            }
-            for menu in menus.values()
-        ]
+        return menus.values()
 
     def getPageSectionsRaw(self, page_id):
-#         print('--section-raw-start', datetime.now())
         sections = self.getSectionsRaw(page_id)
         section_ids = [section.get("id") for section in sections]
         props = self.getSectionPropsRaw(section_ids)
 
-        sections_view_data = []
-        for section in sections:
-            section_data = {
-                'template': section.get("template"),
-                'style': section.get("style"),
-                'props': props.get(section.get("id"))
-            }
-            sections_view_data.append(section_data)
+        sections_view_data = [{
+            'template': section.get("template"),
+            'style': section.get("style"),
+            'props': props.get(section.get("id"))
+        } for section in sections]
 
         return {
             'view_data': sections_view_data,
@@ -214,60 +249,16 @@ class PageView(View):
         }
 
     def getSectionsRaw(self, page_id):
-        query = f"""
-        SELECT
-        "app_index_section"."id" as "id",
-        "app_index_section"."name" as "name",
-        "app_index_section"."template" as "tempalte",
-        "app_index_section"."style" as "style"
-        FROM  "app_index_pagesections"
-        LEFT JOIN "app_index_section" ON "app_index_section"."id" = "app_index_pagesections"."section_id"
-          WHERE "app_index_pagesections"."page_id" = {page_id}
-          ORDER BY "app_index_pagesections"."order"
-        """
-        with connection.cursor() as cursor:
-            cursor.execute(query)
-            rows = cursor.fetchall()
-        return [{
-                "id": row[0],
-                "name": row[1],
-                "template": row[2],
-                "style": row[3]
-            } for row in rows
-        ]
+        query = buildSelectSectionQuery(page_id)
+        data, success, *_ = execute_query(query)
+        return data
 
     def getSectionPropsRaw(self, ids):
-#         print("raw start", datetime.now())
         section_ids = '(' + ','.join([str(id) for id in ids]) + ')'
-        lang = get_language()
-        query =  f'''
-        SELECT
-        "app_index_property"."section_id",
-        "app_index_property"."name",
-        "app_index_propertytext_translation"."value" as "text",
-        "app_index_propertytextrich_translation"."value" as "text_rich",
-        "app_index_propertytextlong_translation"."value" as "text_long"
-        FROM  "app_index_property"
-        LEFT JOIN "app_index_propertytextrich" ON "app_index_propertytextrich"."property_ptr_id" =  "app_index_property"."id"
-        LEFT JOIN "app_index_propertytextrich_translation" ON "app_index_propertytextrich_translation"."master_id" = "app_index_propertytextrich"."property_ptr_id"
-        LEFT JOIN "app_index_propertytextlong" ON "app_index_propertytextlong"."property_ptr_id" =  "app_index_property"."id"
-        LEFT JOIN "app_index_propertytextlong_translation" ON "app_index_propertytextlong_translation"."master_id" = "app_index_propertytextlong"."property_ptr_id"
-        LEFT JOIN "app_index_propertytext" ON "app_index_propertytext"."property_ptr_id" =  "app_index_property"."id"
-        LEFT JOIN "app_index_propertytext_translation" ON "app_index_propertytext_translation"."master_id" = "app_index_propertytext"."property_ptr_id"
-           WHERE
-           "app_index_property"."section_id" IN  {section_ids}
-           AND "app_index_propertytextrich_translation"."language_code" = '{lang}'
-           OR "app_index_propertytextlong_translation"."language_code" = '{lang}'
-           OR "app_index_propertytext_translation"."language_code" = '{lang}'
-       '''
-        with connection.cursor() as cursor:
-            cursor.execute(query)
-            rows = cursor.fetchall()
+        query = buildSelectSectionPropQuery(section_ids, get_language())
+        data, success, *_ = execute_query(query)
         props = {}
-        for row in rows:
-            current = props.get(row[0])
-            props[row[0]] = {
-                **(current if current else {}),
-                row[1] : next(value for value in row[2:] if value is not None)
-            }
+        for prop in data:
+            props.setdefault(prop['id'], {})[prop['name']] = prop['value']
+
         return props

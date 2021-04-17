@@ -4,10 +4,11 @@ from django.template.loader import render_to_string
 from portfolio.s3proxy import generatePresignedUrl
 from puppeteer_pdf import render_pdf_from_template
 from django.conf import settings
+from .get_cv_pdf_data import process as get_cv_data
+from django.utils.translation import get_language
 import tempfile
 import os
 import datetime
-from .get_cv_pdf_data import process as get_cv_data
 
 def process(req, slug):
     try:
@@ -44,7 +45,7 @@ def process(req, slug):
 
         download_name = response.data.cv.data.get_download_name
         current_date = datetime.datetime.now().strftime("%Y-%m-%d")
-        filename = f'filename={download_name}-{current_date}.pdf'
+        filename = f'filename={download_name}-{get_language().upper()}-{current_date}.pdf'
 
         response = HttpResponse(pdf, content_type='application/pdf;')
         response['Content-Disposition'] = filename
