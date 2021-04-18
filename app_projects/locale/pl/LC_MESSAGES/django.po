@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-28 20:57+0200\n"
-"PO-Revision-Date: 2021-03-28 21:08+0000\n"
+"PO-Revision-Date: 2021-04-18 02:11+0000\n"
 "Last-Translator: b'  <robert.kami88@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -228,11 +228,12 @@ msgstr "Dodaj do słownika wskazówek"
 #: .\models_admin\actions\update_technology_autocompletes.py:14
 msgid "Add to autocomplete dictionary. Removed %d term and added %(0) terms"
 msgstr ""
+"Dodano do słownika auto podpowiedzi. Usunięto %d terminy i dodano %(0)"
 
 #: .\models_admin\actions\delete_project_autocomplete.py:19
 #, python-format
 msgid "Delete %d terms from autocomplete dictionary"
-msgstr ""
+msgstr "Usunięto %d terminów z słownika auto podpowiedzi "
 
 #: .\models_admin\actions\delete_project_autocomplete.py:20
 #: .\models_admin\actions\delete_technology_autocomplete.py:19
