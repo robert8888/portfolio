@@ -1,10 +1,10 @@
 <template>
   <teleport to="body" v-if="isOpen">
-    <div class="modal__container" @click="containerClick">
-      <div :class="['modal', $props.class]">
-        <slot/>
+      <div class="modal__container" v-if="isOpen" @click="containerClick">
+        <div :class="['modal', $props.class]">
+          <slot/>
+        </div>
       </div>
-    </div>
   </teleport>
 </template>
 <script lang="ts">
@@ -57,7 +57,6 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .modal{
-
   &__container{
     --backdrop-color: #0009;
     position: fixed;
@@ -71,13 +70,6 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
   }
-
-  max-width: 600px;
-  min-width: 280px;
-
-  max-height: 300px;
-  min-height: 180px;
-
-
 }
+
 </style>

@@ -79,6 +79,12 @@
   }
 }
 
+@mixin hover-pseudo($type: after){
+  &:hover:#{$type}{
+    @content
+  }
+}
+
 @mixin pseudo-content($type: 'after'){
   &:#{$type}{
     @content
@@ -105,6 +111,23 @@
   &:hover,
   &:focus{
     background-color: $color-h;
+  }
+}
+
+@mixin svg-pseudo($url,$color, $color-hover, $padding: .2em){
+  @include pseudo(){
+    background-color: $color;
+    mask-image: $url;
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    top: $padding;
+    bottom: $padding;
+    left: $padding;
+    right: $padding;
+  }
+  @include hover-pseudo(){
+    background-color: $color-hover;
   }
 }
 

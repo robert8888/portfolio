@@ -1,6 +1,17 @@
+@use "@sass/abstracts/animations" as *;
+
 .modal{
   background: var(--color-background-primary);
   border: 1px solid var(--color-pallet-primary);
   border-radius: 2px;
   box-shadow: 0 0 4px var(--color-pallet-primary);
+
+
+  max-width: 600px;
+  min-width: 280px;
+
+  max-height: 300px;
+  min-height: 180px;
+
+  @include scale-show-in(0s, .5s)
 }

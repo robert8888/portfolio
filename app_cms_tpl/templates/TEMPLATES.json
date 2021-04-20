@@ -62,24 +62,31 @@
   }],
   "pdf": [{
     "name": "Asymmetric",
+    "slug": "asymmetric",
     "path": "pdf/cv_asymmetric.html"
   }, {
     "name": "Boxes",
+    "slug": "boxes",
     "path": "pdf/cv_boxes.html"
   }, {
     "name": "Clean",
+    "slug": "clean",
     "path": "pdf/cv_clean.html"
   }, {
     "name": "Diamond",
+    "slug": "diamond",
     "path": "pdf/cv_diamond.html"
   },{
     "name": "Inverted",
+    "slug": "inverted",
     "path": "pdf/cv_inverted.html"
   },{
     "name": "Quatro",
+    "slug": "quatro",
     "path": "pdf/cv_quatro.html"
   }, {
     "name": "Simple",
+    "slug": "simple",
     "path": "pdf/cv_simple.html"
   }]
 }

@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'polymorphic',
     'rosetta',
     'parler',
+    'svg',
 
     'app_cms.apps.CmsAppConfig',
     'app_cms_tpl.apps.CmsTplAppConfig',
@@ -106,6 +107,11 @@ TEMPLATES = [
         },
     },
 ]
+
+SVG_DIRS=[
+    os.path.join(BASE_DIR, 'assets', 'img')
+]
+
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 

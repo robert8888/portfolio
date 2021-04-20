@@ -17,6 +17,9 @@ import ContactForm from "@/components/ContactForm.vue";
 import ContactFormLabel from "@/components/ContactFormLabel.vue";
 import ContactNumber from "@/components/ContactNumber.vue";
 import PdfPreloader from "@/components/PdfPreloader.vue";
+import PdfConfigurator from "@/components/PdfConfigurator.vue";
+import PdfConfiguratorTemplate from "@/components/PdfConfiguratorTemplate.vue";
+import PdfConfiguratorColor from "@/components/PdfConfiguratorColor.vue";
 
 import defineVueComponent from "@/define-vue-component";
 
@@ -35,7 +38,10 @@ defineVueComponent(
         ContactForm,
         ContactFormLabel,
         ContactNumber,
-        PdfPreloader
+        PdfPreloader,
+        PdfConfigurator,
+        PdfConfiguratorTemplate,
+        PdfConfiguratorColor
     }, [
         storePlugin,
         ResizeObserver,

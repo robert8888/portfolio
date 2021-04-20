@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
 from portfolio.db.color_field import ColorField
-
+from portfolio.utils.to_camel_case import to_camel_case
 
 class CVColorProfile(models.Model):
     id_name = models.CharField(
@@ -69,6 +69,14 @@ class CVColorProfile(models.Model):
             'text-secondary':self.text_secondary,
             'text-secondary-focus':self.text_secondary_focus
         }
+
+    @property
+    def to_js_obj_str(self):
+        object = ' {'
+        for name, color in self.colors.items():
+            object += to_camel_case(name) + ":'" + color.hex +"',"
+        object += '} '
+        return object
 
     def __str__(self):
         return self.id_name

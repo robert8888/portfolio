@@ -198,7 +198,7 @@ main{
         }
       }
       span {
-        margin: .25em 0;
+        margin: .25em .5em;
       }
     }
   }
@@ -307,7 +307,7 @@ h6, h4{
     &__field{
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--color-text-primary-focus);
+      color: var(--color-text-focus);
       opacity: 1;
     }
     &__name{

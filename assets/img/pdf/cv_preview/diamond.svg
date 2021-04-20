@@ -1,0 +1,100 @@
+<svg viewBox="0 0 302 343" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0)">
+<!--  border  -->
+<rect x="0.5" y="0.5" width="301" height="342" rx="6.5" style="stroke: var(--border)"/>
+<!-- background  -->
+<rect x="0.5" y="0.5" width="301" height="342" rx="6.5" style="fill: var(--background)"/>
+<!--  header text  -->
+<g style="fill: var(--text)">
+    <rect x="20" y="48" width="56" height="9" rx="4.5" />
+    <rect x="20" y="33" width="47" height="9" rx="4.5" />
+    <rect x="21" y="64" width="63" height="6" rx="3" />
+</g>
+<!--  header  -->
+<rect x="154" y="100" width="92" height="6" rx="3"  style="fill: var(--primary)"/>
+<!--text-->
+<g style="fill: var(--text)">
+    <rect x="164.356" y="113.714" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="139.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="148.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="163.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="172.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="181.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="190.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="199.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="209.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="219.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="122.286" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="164.356" y="130.857" width="115.644" height="2.57143" rx="1.28571" />
+</g>
+<!-- header   -->
+<rect x="15" y="160" width="92" height="6" rx="3"  style="fill: var(--primary)"/>
+<!-- text -->
+<g style="fill: var(--text)">
+    <rect x="25.3562" y="173.714" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="199.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="209.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="219.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="182.286" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="190.857" width="115.644" height="2.57143" rx="1.28571" />
+</g>
+<!--  haeder  -->
+<rect x="15" y="236" width="92" height="6" rx="3"  style="fill: var(--primary)"/>
+<!-- text -->
+<g style="fill: var(--text)">
+    <rect x="25.3562" y="249.714" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="275.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="285.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="295.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="258.286" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="25.3562" y="266.857" width="115.644" height="2.57143" rx="1.28571" />
+</g>
+<!--header -->
+<rect x="158" y="237" width="92" height="6" rx="3"  style="fill: var(--primary)"/>
+<!--text-->
+<g style="fill: var(--text)">
+    <rect x="168.356" y="250.714" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="168.356" y="276.428" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="168.356" y="259.286" width="115.644" height="2.57143" rx="1.28571" />
+    <rect x="168.356" y="267.857" width="115.644" height="2.57143" rx="1.28571" />
+</g>
+<!--header-->
+<rect x="13" y="99" width="81.3474" height="6" rx="3"  style="fill: var(--primary)"/>
+<!--text-->
+<g style="fill: var(--text)">
+    <rect x="26.2631" y="113" width="33.1579" height="2" rx="1" />
+    <rect x="26.2631" y="113" width="29.0132" height="2" rx="1" />
+    <rect x="65.2237" y="113" width="29.0132" height="2" rx="1" />
+    <rect x="104.958" y="113" width="33.6" height="2" rx="1" />
+    <rect x="26.2631" y="129" width="29.0132" height="2" rx="1" />
+    <rect x="65.2237" y="129" width="29.0132" height="2" rx="1" />
+    <rect x="26.2237" y="129" width="29.0132" height="2" rx="1" />
+    <rect x="104.958" y="129" width="33.6" height="2" rx="1" />
+    <rect x="26.2631" y="121" width="23.2105" height="2" rx="1" />
+    <rect x="90.2631" y="121" width="48.2105" height="2" rx="1" />
+    <rect x="56.9342" y="121" width="29.0132" height="2" rx="1" />
+    <rect x="26.2631" y="138" width="23.2105" height="2" rx="1" />
+    <rect x="95.2631" y="138" width="44.2105" height="2" rx="1" />
+    <rect x="56.9342" y="138" width="29.0132" height="2" rx="1" />
+</g>
+<!--background shapes - primary -->
+<g style="fill: var(--primary)">
+    <path d="M118.5 0H306.5V87L189.5 74.5L118.5 0Z" />
+    <path d="M146 311.5L319 298.5V343H104L146 311.5Z" />
+</g>
+<!--  text primary  -->
+<g style="fill: var(--text-primary)">
+    <rect width="38.6667" height="2.66667" rx="1.33333" transform="matrix(1 0 0 -1 243.333 43.6667)" />
+    <rect width="46.6667" height="2.66667" rx="1.33333" transform="matrix(1 0 0 -1 235.333 54.3333)" />
+    <rect width="50.6667" height="2.66667" rx="1.33333" transform="matrix(1 0 0 -1 231.333 65)" />
+    <rect x="248" y="325" width="31" height="2" rx="1" />
+</g>
+
+</g>
+
+<defs>
+<clipPath id="clip0">
+    <rect x="0" y="0" width="302" height="343" rx="8" ry="8"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n svg %}
 <section class="contact" id="{% translate 'contact' %}">
     <div class="l-container">
         <div class="l-row contact__container">
@@ -22,15 +22,9 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="contact__resume__container">
-                    <vue-component>
-                        <pdf-preloader spinner-label="{% translate 'Preparing' %}" download-label="{% translate 'Download' %}" open-label="{% translate 'Open' %}">
-                            <a class="contact__resume__btn-link contact__resume__btn-link--download link-btn btn btn--all"
-                               href="{{cv_download_url}}" target="_blank" data-download-pdf="true">
-                                {% translate "Download Reasume" %}
-                            </a>
-                        </pdf-preloader>
-                    </vue-component>
+                <div class="contact-resume__container">
+                    {% include 'partial/contact_cv_download_component.html' %}
+
                 </div>
             </div>
         </div>

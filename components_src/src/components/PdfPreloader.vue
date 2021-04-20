@@ -1,8 +1,12 @@
 <template>
-  <div ref="container">
-  <slot/>
+  <div ref="container" class="pdf-downloader__container">
+    <slot/>
+    <button class="pdf-downloader__btn-configurator" @click="modalConfigOpen = true"></button>
   </div>
-  <modal :open="modalOpen" @close="modalOpen = false" class="pdf-downloader">
+  <modal class="pdf-configurator" :open="modalConfigOpen" @close="modalConfigOpen = false">
+    <slot name="configurator"/>
+  </modal>
+  <modal :open="modalDownloadOpen" @close="modalDownloadOpen = false" class="pdf-downloader">
     <div class="pdf-downloader__spinner-wrapper">
       <spinner v-if="isLoading" :label="spinnerLabel"/>
     </div>
@@ -34,7 +38,8 @@ type EventName = 'click';
 
 interface ComponentData{
   eventMapping: Map<HTMLElement, {[key: string]: EventCallback}>;
-  modalOpen: boolean;
+  modalDownloadOpen: boolean;
+  modalConfigOpen: boolean;
   isLoading: boolean;
   pdfBlobData: Blob | null;
   pdfFilename: string;
@@ -55,13 +60,17 @@ export default defineComponent({
     openLabel:{
       type: String,
       default: 'Open'
+    },
+    configurable:{
+      type: Boolean,
     }
   },
 
   data(): ComponentData{
     return {
       eventMapping: new Map<HTMLElement, {[key: string]: EventCallback}>(),
-      modalOpen: false,
+      modalDownloadOpen: false,
+      modalConfigOpen: false,
       isLoading: true,
       pdfBlobData: null,
       pdfFilename: ''
@@ -107,7 +116,7 @@ export default defineComponent({
     },
     onAnchorClick(ev: MouseEvent): void{
       ev.preventDefault();
-      this.modalOpen = true;
+      this.modalDownloadOpen = true;
 
       const url = (ev.target as HTMLElement).getAttribute('href');
       if(!url)
@@ -139,7 +148,7 @@ export default defineComponent({
         this.downloadBlob();
 
       this.openBlob();
-      this.modalOpen = false;
+      this.modalDownloadOpen = false;
     },
 
     downloadBlob(){

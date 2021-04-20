@@ -4,6 +4,7 @@ section{
   min-height: calc(var(--vh) * 100 - 100px);
   display: flex;
   margin: 75px 0;
+  overflow: hidden;
   &:first-of-type{
     margin-top: 75px;
   }

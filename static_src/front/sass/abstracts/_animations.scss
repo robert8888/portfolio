@@ -181,3 +181,10 @@
     }
   }
 }
+
+@mixin scale-show-in($delay, $duration){
+  @include scale-in-animation($delay,$duration);
+  @include show-in-animation($delay, $duration);
+  animation-name: scale-both, opacity;
+  @include no-motion();
+}
