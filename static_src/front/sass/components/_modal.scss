@@ -1,4 +1,6 @@
 @use "@sass/abstracts/animations" as *;
+@use "@sass/abstracts/mixins" as *;
+@use "@sass/abstracts/assets" as *;
 
 .modal{
   background: var(--color-background-primary);
@@ -13,5 +15,28 @@
   max-height: 300px;
   min-height: 180px;
 
-  @include scale-show-in(0s, .5s)
+  @include scale-show-in(0s, .5s);
+
+  &__container{
+    position: relative;
+  }
+  &--with-close-btn{
+    padding-top: 3rem;
+  }
+  &__btn-close{
+    @include svg-pseudo($close-svg, var(--color-pallet-primary), var(--color-pallet-secondary));
+    position: absolute;
+    top: 1rem;
+    right: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: none;
+    @include media('sm'){
+      width: 2rem;
+      height: 2rem;
+      top: 1rem;
+      right: 1rem;
+    }
+  }
 }

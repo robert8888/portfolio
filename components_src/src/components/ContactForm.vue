@@ -13,10 +13,11 @@
   </form>
 </template>
 <script lang="ts">
-import {defineComponent, computed} from "vue";
+import {defineComponent} from "vue";
 import Spinner from "./Spinner.vue";
-import shallowArrayEqual from "@/utils/shallow-array-compare";
 import {sendForm} from "@/api/backend_api";
+import useFormValidation from "@/hooks/useFormValidation";
+import useFromDataMapper from "@/hooks/useFromDataMapper";
 
 export type ErrorList = Array<{
   message: string;
@@ -24,10 +25,6 @@ export type ErrorList = Array<{
 }>
 
 interface ComponentData {
-  message: string;
-  isSuccessMessage: boolean;
-  fieldsMap: Map<string, Element>;
-  validationErrors: ErrorList;
   isSending: boolean;
 }
 
@@ -64,26 +61,25 @@ export default defineComponent({
 
   data(): ComponentData{
     return {
-      message: "",
-      isSuccessMessage: false,
-      fieldsMap: new Map<string, HTMLFormField>(),
-      validationErrors: [] as ErrorList,
       isSending: false,
     }
   },
 
-  provide(){
+  setup(props){
     return {
-      registerFieldId: (id: string) => {
-        const form = this.$refs.form as HTMLFormElement;
-        const elements = form.elements as FormControlsCollection;
-        this.fieldsMap.set(id, elements[id])
-        this.clientValidation(elements[id])
-      },
-
-      validationErrors: computed(() => this.validationErrors)
+      ...useFormValidation(
+          props.validationMessageFail,
+          props.validationMessageSuccess,
+          props.errorMessage,
+      ),
+      ...useFromDataMapper(),
     }
   },
+
+  mounted() {
+    this.setFormRef(this.$refs.form as HTMLFormElement)
+  },
+
 
   methods: {
     async submit(e: Event) {
@@ -92,10 +88,7 @@ export default defineComponent({
       this.isSending = true;
       this.clearValidation();
 
-      const data = [...this.fieldsMap].reduce((data, [id, element]) => ({
-            ...data,
-            [id]: (element as HTMLFormField).value
-          }), {})
+      const data = this.getData(this.fieldsMap);
 
       try{
         const response = await sendForm(data);
@@ -109,63 +102,6 @@ export default defineComponent({
         this.isSending = false;
       }
     },
-
-    clientValidation(element: HTMLFormField){
-      element.addEventListener('invalid', (event: Event) => {
-          event.preventDefault();
-
-          const id = (event.target as HTMLFormField).getAttribute("id");
-          const name = (event.target as HTMLFormField).getAttribute("aria-label");
-
-          if(!id || !name)
-            return;
-
-          const message = `${name} is required`
-          this.setValidationMessages([...this.validationErrors, {field: id, message}]);
-      });
-
-      element.addEventListener('input', (event: Event) => {
-          const element = event.target as HTMLFormField;
-          if(!element.checkValidity())
-              return
-          const id = element.getAttribute("id");
-          const validationErrors = this.validationErrors.filter(error => error.field !== id)
-          if(!shallowArrayEqual(validationErrors, this.validationErrors))
-            this.setValidationMessages(validationErrors)
-      });
-    },
-
-    clearValidation(){
-      this.message = ""
-      this.fieldsMap.forEach((element) => {
-        const label = element?.closest('label')
-        label?.removeAttribute('data-validation-msg');
-      })
-    },
-
-    setValidationMessages(errors: ErrorList){
-      this.validationErrors = errors;
-      this.isSuccessMessage = false;
-
-      errors.length
-        ? this.message = this.validationMessageFail //"Not all form fields have been filled in correctly"
-        : this.message = ""
-
-      errors.forEach(({message, field}) => {
-        const formElement = this.fieldsMap.get(field);
-        const label = formElement?.closest('label')
-        label?.setAttribute('data-validation-msg', message);
-      })
-    },
-
-    setSuccessMessage(){
-      this.message = this.validationMessageSuccess;//"The message has reached me, I will contact back to you.";
-      this.isSuccessMessage = true;
-      this.fieldsMap.forEach(element => {
-        (element as HTMLFormField).value = ""
-      })
-    },
-
   },
 })
 </script>

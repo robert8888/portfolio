@@ -91,6 +91,14 @@
   }
 }
 
+@mixin stretch($position: absolute){
+  position: $position;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
 @mixin transition-center(){
   left: 50%;
   top: 50%;
@@ -114,17 +122,21 @@
   }
 }
 
+@mixin svg-mask($url,$color, $color-hover, $padding: .2em){
+  background-color: $color;
+  mask-image: $url;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  top: $padding;
+  bottom: $padding;
+  left: $padding;
+  right: $padding;
+}
+
 @mixin svg-pseudo($url,$color, $color-hover, $padding: .2em){
   @include pseudo(){
-    background-color: $color;
-    mask-image: $url;
-    mask-size: contain;
-    mask-position: center;
-    mask-repeat: no-repeat;
-    top: $padding;
-    bottom: $padding;
-    left: $padding;
-    right: $padding;
+    @include svg-mask($url,$color, $color-hover, $padding)
   }
   @include hover-pseudo(){
     background-color: $color-hover;

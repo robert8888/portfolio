@@ -61,10 +61,5 @@ export default defineComponent({
     }
   },
 
-  created(){
-    console.log('created', this.profileId)
-    // this.colors.entries().map()
-  },
-
 })
 </script>

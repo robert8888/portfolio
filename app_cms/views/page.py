@@ -6,6 +6,7 @@ from app_cms.models import Page, PageSections, Path, View as ViewModel, Property
 from portfolio.utils.execute_db_queries import execute_query
 from django.utils.translation import get_language
 from portfolio.utils.getAppsViewsList import getAppsViewsList
+from htmlmin.decorators import minified_response
 from django.conf import settings
 from sqlescapy import sqlescape
 from django.http import HttpResponse
@@ -15,6 +16,8 @@ import pydash as py_
 import importlib
 import re
 import os
+
+
 
 def buildSelectPathQuery(path):
     return f"""
@@ -93,6 +96,7 @@ def buildSelectSectionPropQuery(section_ids, lang):
 
 class PageView(View):
 
+    @minified_response
     def get(self, request, path):
         context = {
            'gCaptchaPublicKey':  os.getenv("GCAPTCHA_PUBLIC_KEY"),

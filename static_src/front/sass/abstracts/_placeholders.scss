@@ -12,3 +12,18 @@
     padding-left: $paragraph-indent + 25px;
   }
 }
+
+.icon-button{
+  width: 90px;
+  height: 100px;
+  font-size: 1.15rem;
+  padding: 75px 0 0;
+  text-align: center;
+  position: relative;
+  border:none;
+  transition: opacity .3s;
+  &:disabled{
+    opacity: .1;
+    cursor: not-allowed;
+  }
+}

@@ -3,7 +3,8 @@
 @use "@sass/abstracts/animations" as *;
 @use "@sass/abstracts/assets" as *;
 @use "@sass/components/modal";
-
+@use "@sass/components/simple-slider";
+@use "@sass/components/cv-configurator";
 
 .contact{
   $self: &;
@@ -74,11 +75,12 @@
       margin-top: 10vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
     }
     &__text{
       color: var(--color-pallet-primary);
       opacity: 0;
+      margin-top: 1em;
       &:first-of-type{
         margin-top: 2rem;
       }
@@ -125,6 +127,7 @@
   }
 
   &-resume__container{
+    margin-top: auto;
     display: flex;
     justify-content: center;
     opacity: 0;
@@ -297,42 +300,11 @@
 }
 
 
-@mixin button($url-svg){
-    width: 90px;
-    height: 100px;
-    font-size: 1.15rem;
-    padding: 75px 0 0;
-    text-align: center;
-    position: relative;
-    border:none;
-    transition: opacity .3s;
-    &:disabled{
-      opacity: .1;
-      cursor: not-allowed;
-    }
-    &:after{
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 100%;
-      transform: translateX(-50%);
-      height: 60px;
-      @include svgMask(
-        $url-svg,
-        var(--color-text-primary),
-        var(--color-pallet-secondary),
-        60px,
-        60px
-      );
-      mask-size: contain;
-      mask-position: center;
-    }
-
-  &:hover:after{
-    background: var(--color-pallet-primary);
-  }
-}
+//@mixin button($url-svg){
+//  @extend .icon-button;
+//  @include svg-pseudo($url-svg, var(--color-text-primary),var(--color-pallet-secondary));
+//  @include pseudo-content(){ bottom: 2.5rem;}
+//}
 
 
 .contact-number{
@@ -361,179 +333,53 @@
     font-weight: bold;
   }
   &__btn{
-    @include button($copy-svg);
+    @extend .icon-button;
+    @include svg-pseudo($copy-svg, var(--color-text-primary),var(--color-pallet-secondary));
+    @include pseudo-content(){ bottom: 2.5rem;}
     &--call:after{
-      mask: $call-svg;
+      mask-image: $call-svg;
     }
   }
 }
 
-.pdf-downloader{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  &__button-wrapper{
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 2rem;
-    place-items: center;
-  }
-  .btn{
-    @include button($book-open-svg);
-    &--download:after{
-      mask-image: $file-download;
-    }
-  }
+//.pdf-downloader{
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//  padding: 2rem;
+//  &__button-wrapper{
+//    display: grid;
+//    grid-template-rows: 1fr;
+//    grid-template-columns: 1fr 1fr;
+//    grid-gap: 2rem;
+//    place-items: center;
+//  }
+//  .btn{
+//    @include button($book-open-svg);
+//    &--download:after{
+//      mask-image: $file-download;
+//    }
+//  }
+//
+//  &__btn-configurator{
+//    &:before{
+//      content: " ";
+//      display: inline-block;
+//    }
+//    @include pseudo(){
+//      background: var(--color-pallet-primary);
+//      mask-image: $gear-svg;
+//      mask-size: contain;
+//      mask-repeat: no-repeat;
+//      mask-position: center;
+//      top: .2em;
+//      right: .2em;
+//      left: .2em;
+//      bottom: .2em;
+//    }
+//    @include hover-pseudo(){
+//      background: var(--color-pallet-secondary);
+//    }
+//  }
+//}
 
-  &__btn-configurator{
-    &:before{
-      content: " ";
-      display: inline-block;
-    }
-    @include pseudo(){
-      background: var(--color-pallet-primary);
-      mask-image: $gear-svg;
-      mask-size: contain;
-      mask-repeat: no-repeat;
-      mask-position: center;
-      top: .2em;
-      right: .2em;
-      left: .2em;
-      bottom: .2em;
-    }
-    @include hover-pseudo(){
-      background: var(--color-pallet-secondary);
-    }
-  }
-}
-
-.pdf-configurator{
-  &.modal{
-    max-width: 280px;
-    max-height: unset;
-    padding: .75rem;
-    @include media('sm'){
-      max-width: 320px;
-    }
-    @include media('lg'){
-      max-width: 760px;
-      padding: 1.75rem;
-    }
-    @include media('xxl'){
-      max-width: 1100px;
-      padding: 2.75rem;
-    }
-  }
-  h5{
-    text-align: center;
-    margin: .5rem;
-  }
-  &__colors{
-    .color-profile{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      ul{
-        list-style: none;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        li {
-          position: relative;
-          height: 3rem;
-          width: 3rem;
-          margin: 0 .25rem;
-        }
-      }
-      &__wrapper{
-        border-top: 1px solid transparent;
-        padding-top: .5rem;
-      }
-
-      &--current{
-        .color-profile__wrapper{
-          border-color: var(--color-pallet-primary);
-        }
-        .color-profile__name{
-          color: var(--color-pallet-primary)
-        }
-      }
-
-      &__name{
-        text-align: center;
-        text-transform: uppercase;
-        margin: .5rem;
-      }
-      &__color{
-        @debug &;
-        height: 3rem;
-        width: 3rem;
-        background: var(--color);
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        &:last-of-type{
-          height: 1rem;
-          top: unset;
-          bottom: 0;
-        }
-      }
-    }
-  }
-  &__btn{
-    &-container{
-      display: flex;
-      justify-content: center;
-    }
-  }
-
-  &__tpl{
-    h5{
-      text-transform: uppercase;
-    }
-
-    &-wrapper{
-      width: 250px;
-    }
-    max-width: 300px;
-    display: grid;
-    place-items: center;
-  }
-
-
-
-  .slider{
-    width: 100%;
-    margin: .5rem 0 1rem 0;
-    @include media('sm'){margin: .5rem 0 1rem 0;}
-    @include media('lg'){margin: 1rem 0 1.5rem 0;}
-    @include media('xxl'){margin: 1.5rem 0 2rem 0;}
-    &__container{
-      width: calc(100% - 6rem);
-      margin: 0 auto;
-    }
-    &__slides{
-      transition: transform 1s ease 0s;
-      will-change: transition;
-    }
-    &__controls{
-      .btn{
-        border: none;
-        @include pseudo('before'){
-          top: -1rem;
-          bottom: -1rem;
-        }
-        &--prev{
-          @include svg-pseudo($arrow-svg, var(--color-pallet-primary), var(--color-pallet-secondary), 0);
-          transform: rotate(180deg);
-        }
-        &--next{
-          @include svg-pseudo($arrow-svg, var(--color-pallet-primary), var(--color-pallet-secondary), 0);
-        }
-      }
-    }
-  }
-}

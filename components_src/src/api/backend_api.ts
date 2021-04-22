@@ -5,18 +5,20 @@ const csrfToken = (window as any).csrfToken  as string;
 
 interface Result {
     success: boolean;
-    error: string[];
+    errors: { message: string; field: string }[];
     data: Record<string, any>;
 }
 
 
 const getLanguageFromPath = () =>{
-    let langPath = location.pathname.split("/")[1]
+    const langPath = location.pathname.split("/")[1]
     return langPath.length === 2 ? langPath + '/' : '';
 }
 
+const buildPath = (apiPath: string) => `/${getLanguageFromPath()}${apiPath}`;
 
-const request = async (path: string, data:  Record<string, any>) => {
+
+const request = async (path: string, data:  Record<string, any>, clean= false) => {
     const origin = location.origin
 
     const response = await fetch(`${origin}` + path, {
@@ -29,7 +31,16 @@ const request = async (path: string, data:  Record<string, any>) => {
         referrerPolicy: 'origin',
         body: JSON.stringify(data)
     })
-    return await response.json() as Promise<Result>
+
+    if(response.ok)
+        return clean ? response : await response.json() as Promise<Result>
+
+    return {
+        success: false,
+        errors: [{field: "_server", message: ''}],
+        data: {}
+    }
+
 }
 
 
@@ -42,14 +53,14 @@ export const getRequest = async (path: string): Promise<Response> =>{
 
 
 
-export const sendForm = async (data:  Record<string, any>): Promise<any> => {
+export const sendForm = async (data:  Record<string, any>): Promise<Result> => {
     const path = API_CONFIGURATION.POST_CONTACT_FORM_URL
     const token = await getCaptchaToken();
     Object.assign(data, {
         gRrecaptchaRresponse: token,
         csrfMiddlewareToken: csrfToken
     })
-    return request(location.pathname + path, data)
+    return request(location.pathname + path, data) as Promise<Result>
 }
 
 export const getNumber = async (): Promise<any> => {
@@ -62,22 +73,24 @@ export const getNumber = async (): Promise<any> => {
 
 export const getProjects = async(data: Record<string, any>): Promise<Result> => {
     const apiPath = API_CONFIGURATION.GET_PROJECTS_URL
-
-    const langPath = getLanguageFromPath()
-
-    const path = `/${langPath}${apiPath}`;
-
-    return request(path, data)
+    return request(buildPath(apiPath), data) as Promise<Result>
 }
 
 export const getAutocomplete = async(data: {input: string}): Promise<Result> => {
     const apiPath = API_CONFIGURATION.GET_AUTOCOMPLETE
-
-    const langPath = getLanguageFromPath()
-
-    const path = `/${langPath}${apiPath}`;
-
-    return request(path, data)
+    return request(buildPath(apiPath), data) as Promise<Result>
 }
 
 
+export type GetCVPayload = {
+    templateId: string;
+    colorProfileId: string;
+    recruiterEmail: string;
+    recruiterCompany: string;
+    captchaToken?: string;
+}
+export const getCv = async (data: GetCVPayload): Promise<Response> => {
+    const apiPath = API_CONFIGURATION.GET_CV;
+    data.captchaToken = await getCaptchaToken()
+    return request(buildPath(apiPath), data, true) as Promise<Response>
+}

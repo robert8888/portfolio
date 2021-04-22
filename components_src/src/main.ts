@@ -14,12 +14,18 @@ import CardProject from "@/components/Card.vue"
 import Gallery from "@/components/Gallery.vue";
 import GalleryItem from "@/components/GalleryItem.vue";
 import ContactForm from "@/components/ContactForm.vue";
-import ContactFormLabel from "@/components/ContactFormLabel.vue";
+import FormLabel from "@/components/FormLabel.vue";
+import InputCheckbox from "@/components/InputCheckbox.vue";
 import ContactNumber from "@/components/ContactNumber.vue";
+
+import CvDownloader from "@/components/CvDownloader.vue";
+
+import CvConfigurator from "@/components/CvConfigurator.vue";
+import CvConfiguratorTemplate from "@/components/CvConfiguratorTemplate.vue";
+import CvConfiguratorColor from "@/components/CvConfiguratorColor.vue";
+
 import PdfPreloader from "@/components/PdfPreloader.vue";
-import PdfConfigurator from "@/components/PdfConfigurator.vue";
-import PdfConfiguratorTemplate from "@/components/PdfConfiguratorTemplate.vue";
-import PdfConfiguratorColor from "@/components/PdfConfiguratorColor.vue";
+
 
 import defineVueComponent from "@/define-vue-component";
 
@@ -36,12 +42,16 @@ defineVueComponent(
         Gallery,
         GalleryItem,
         ContactForm,
-        ContactFormLabel,
+        FormLabel,
+        InputCheckbox,
         ContactNumber,
+
+        CvDownloader,
+
         PdfPreloader,
-        PdfConfigurator,
-        PdfConfiguratorTemplate,
-        PdfConfiguratorColor
+        CvConfigurator,
+        CvConfiguratorTemplate,
+        CvConfiguratorColor
     }, [
         storePlugin,
         ResizeObserver,

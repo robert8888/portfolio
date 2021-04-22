@@ -3,10 +3,10 @@
     <contact-form
             aria-label="Send contact message"
             submit-button-label="Send message"
-            errro-message="Sorry. The form could not be sent for reasons beyond your control"
+            error-message="Sorry. The form could not be sent for reasons beyond your control"
             validation-message-success="The message has reached me, I will contact back to you."
             validation-message-fail="Not all form fields have been filled in correctly">
-        <contact-form-label for="emailField" label="Email" class="floating">
+        <form-label for="emailField" label="Email" class="floating">
             <input class="form__input form__input--email"
                    id="emailField"
                    name="emailField"
@@ -15,8 +15,8 @@
                    autocomplete="email"
                    aria-label="email"
                    required>
-        </contact-form-label>
-        <contact-form-label for="subjectField" label="subject" class="floating">
+        </form-label>
+        <form-label for="subjectField" label="subject" class="floating">
             <input class="form__input form__input--subject"
                    id="subjectField"
                    name="subjectField"
@@ -25,8 +25,8 @@
                    aria-label="subject"
                    required>
             </label>
-        </contact-form-label>
-        <contact-form-label for="messageField" label="message" class="floating">
+        </form-label>
+        <form-label for="messageField" label="message" class="floating">
             <textarea class="form__text form__text--message"
                       placeholder=" "
                       id="messageField"
@@ -34,6 +34,6 @@
                       aria-label="message"
                       rows="10"
                       required></textarea>
-        </contact-form-label>
+        </form-label>
     </contact-form>
 </vue-component>

@@ -133,12 +133,12 @@ export default defineComponent({
       this.isLoading = false;
     },
 
-    getDownloadElement(blob: Blob): HTMLAnchorElement{
-      const a = document.createElementNS("http://www.w3.org/1999/xhtml", "a") as HTMLAnchorElement;
-      const url = URL.createObjectURL(blob)
-      a.href = url;
-      return a;
-    },
+    // getDownloadElement(blob: Blob): HTMLAnchorElement{
+    //   const a = document.createElementNS("http://www.w3.org/1999/xhtml", "a") as HTMLAnchorElement;
+    //   const url = URL.createObjectURL(blob)
+    //   a.href = url;
+    //   return a;
+    // },
 
     onButtonClick(actionName: string){
       if(!this.pdfBlobData)

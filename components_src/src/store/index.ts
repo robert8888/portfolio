@@ -24,7 +24,8 @@ export const store = createStore<RootState>({
     paths: [
         'projects.projects',
         'card',
-        'cv'
+        'cv.colorProfile',
+        'cv.templatedId'
     ]
   })]
 })

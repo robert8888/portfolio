@@ -81,8 +81,8 @@ def send(data, req):
         'message':  data['messageField']
     }
 
-    html_version = os.path.join(BASE_DIR, 'app_index/templates/email_contact_form_html.html')
-    plain_version = os.path.join(BASE_DIR, 'app_index/templates/email_contact_form_plain.html')
+    html_version = os.path.join(BASE_DIR, 'app_cms_tpl/templates/email_contact_form_html.html')
+    plain_version = os.path.join(BASE_DIR, 'app_cms_tpl/templates/email_contact_form_plain.html')
     html_message = render_to_string(html_version, context = context)
     plain_message = render_to_string(plain_version, context = context)
 

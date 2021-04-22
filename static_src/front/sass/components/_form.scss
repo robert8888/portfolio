@@ -40,16 +40,27 @@ textarea{
   resize: none;
 }
 
+@mixin error-message(){
+  color: var(--color-pallet-warning);
+  min-height: 1.4em;
+  font-size: 0.875em;
+  &:first-letter{
+    text-transform: uppercase;
+  }
+}
+
 
 label.floating{
   box-sizing: border-box;
   display: table;
   position: relative;
-  margin: 25px 0;
+  margin: 2em 0;
   height: 2em;
   //noinspection CssInvalidPropertyValue
   width: stretch;
-  input, textarea{
+  input[type='text'],
+  input[type='email'],
+  textarea{
     position: relative;
     padding-left: 1.5em;
     top: .7em;
@@ -89,6 +100,7 @@ label.floating{
     top: 1em;
     font-size: 1em;
     letter-spacing: .5px;
+    pointer-events: none;
   }
 
   textarea + span{
@@ -113,23 +125,23 @@ label.floating{
   }
 
   p{
-    color: var(--color-pallet-warning);
-    min-height: 1.2em;
-    margin-left: 1em;
-    font-size: 0.875em;
-    &:first-letter{
-      text-transform: uppercase;
-    }
+    @include error-message();
+  }
+
+  input ~ p {
+    margin-top: 1.5em;
   }
 
   textarea ~ p {
-    margin-top: 3em;
+    margin-top: 3rem;
   }
+
 }
+
 
 @include media('sm'){
   $indent: $paragraph-indent;
-  label.floating{
+  label.floating:not(.no-ident){
     textarea, input{
       left: $indent;
       width: calc(100% - #{$indent});
@@ -149,5 +161,44 @@ label.floating{
     p{
       margin: 1.5em 0 0 #{$indent};
     }
+    textarea ~ p {
+      margin-top: 3rem;
+    }
+  }
+}
+
+
+
+.checkbox{
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  &__input{
+    appearance: none;
+    border: none;
+    outline: none;
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+    padding: 0;
+    display: block;
+
+    &:checked + div{
+      background: var(--color-pallet-primary);
+    }
+  }
+  &__input-wrapper{
+    position: relative;
+  }
+  &__box{
+    @include stretch();
+    border: 1px solid var(--color-pallet-primary);
+    border-radius: 20%;
+  }
+
+  & + p[class*='validation-message'] {
+    @include error-message();
+    margin: 1rem 0;
   }
 }

@@ -1,7 +1,8 @@
 <template>
   <teleport to="body" v-if="isOpen">
       <div class="modal__container" v-if="isOpen" @click="containerClick">
-        <div :class="['modal', $props.class]">
+        <div :class="['modal', $props.class,  {'modal--with-close-btn':!backdropClose }]">
+          <button class="modal__btn-close" v-if="!backdropClose" @click="close"></button>
           <slot/>
         </div>
       </div>
@@ -20,6 +21,10 @@ export default defineComponent({
     },
     class:{
       type: String
+    },
+    backdropClose: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -35,16 +40,18 @@ export default defineComponent({
     }
   },
 
-  mounted() {
-    console.log("modal ref", this.$refs)
-  },
 
   methods:{
+    close(){
+      this.isOpen = false;
+      this.$emit("close")
+    },
     containerClick(event: Event): void{
-        if((event.target as HTMLElement).closest(".modal"))
+        if(!this.backdropClose)
           return;
-        this.isOpen = false;
-        this.$emit("close")
+        if((event.target as HTMLElement).closest(".modal") || !(event.target as HTMLElement).closest("html"))
+          return;
+        this.close();
     }
   },
 

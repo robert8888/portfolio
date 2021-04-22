@@ -14,5 +14,6 @@
     {% render_bundle 'main' 'js' %}
     {% compress js %}
         {% include 'partial/script.html' with script_url='front/js/index.js' %}
+        {% include 'partial/validation_msg.html' %}
     {% endcompress %}
 {% endblock %}

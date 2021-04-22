@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 from app_cms.utils.get_template_choices import getTemplatesChoices
 from django.db import transaction
+from nanoid import generate
 
 class CV(models.Model):
     Templates = (
@@ -13,6 +14,8 @@ class CV(models.Model):
     slug = models.SlugField(
         verbose_name = gettext_lazy('Slug')
     )
+
+    reset_slug = models.BooleanField(default = False)
 
     name = models.CharField(
         max_length = 255,
@@ -38,11 +41,6 @@ class CV(models.Model):
         blank = True
     )
 
-    on_main_page = models.BooleanField(
-        default = False,
-        verbose_name = gettext_lazy('Link on main page')
-    )
-
     @property
     def url(self):
         if not self.slug:
@@ -50,11 +48,11 @@ class CV(models.Model):
         return reverse('cv', kwargs={'slug': self.slug })
 
     def save(self):
-        self.slug = slugify(self.name)
-        if self.on_main_page:
-            with transaction.atomic():
-                CV.objects.filter(on_main_page = True).update(on_main_page = False)
+        if self.reset_slug or not self.slug:
+            hash = generate('1234567890abcdefefghijklmneoprstyuvwxyz')
+            self.slug = slugify(hash)
 
+        self.reset_slug = False
         return super(CV, self).save()
 
 

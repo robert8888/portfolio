@@ -1,4 +1,4 @@
-{% load static i18n svg %}
+{% load static i18n utils svg %}
 <section class="contact" id="{% translate 'contact' %}">
     <div class="l-container">
         <div class="l-row contact__container">
@@ -23,7 +23,62 @@
                     </div>
                 </div>
                 <div class="contact-resume__container">
-                    {% include 'partial/contact_cv_download_component.html' %}
+                    <vue-component>
+                        <cv-downloader download-label="{% translate 'Download Resume' %}"
+                                       download-label-short="{% translate 'Download' %}"
+                                       spinner-label="{% translate 'Preloading' %}"
+                                       open-label="{% translate 'Open' %}" >
+                            <template #configurator>
+                                <cv-configurator download-label="{% translate 'Download' %}">
+                                    <template #colors>
+                                        {% for profile in cv_color_profiles %}
+                                        <cv-configurator-color name="{{profile.id_name}}" profile-id="{{profile.id}}" :colors="{{profile.to_js_obj_str}}"></cv-configurator-color>
+                                        {% endfor %}
+                                    </template>
+                                    {% for tpl_name in cv_template_names %}
+                                    {% concat_all 'pdf/cv_preview/' tpl_name.0 as svg_path %}
+                                    <cv-configurator-template name="{{tpl_name.1}}" template-id="{{tpl_name.0}}">{% svg svg_path %}</cv-configurator-template>
+                                    {% endfor %}
+                                </cv-configurator>
+                            </template>
+                            <template #form>
+                                <h3>{% translate 'Confirm your identify' %}</h3>
+                                <form-label for="emailField" label="Email" class="floating no-ident">
+                                    <input class="form__input form__input--email"
+                                           id="emailField"
+                                           name="emailField"
+                                           type="email"
+                                           placeholder=" "
+                                           autocomplete="email"
+                                           aria-label="email"
+                                           required>
+                                </form-label>
+                                <form-label for="companyField" label="{% translate 'Company' %}" class="floating no-ident">
+                                    <input class="form__input form__input--email"
+                                           id="companyField"
+                                           name="companyField"
+                                           minlength="8"
+                                           type="text"
+                                           placeholder=" "
+                                           autocomplete="none"
+                                           aria-label="{% translate 'Company' %}"
+                                           required>
+                                </form-label>
+
+                                <form-label for="rulesField"  class="">
+                                    <input-checkbox id='rulesField'
+                                                    name="rulesField"
+                                                    placeholder=" "
+                                                    autocomplete="none"
+                                                    aria-label="{% translate 'Agreement' %}"
+                                                    class-name="form__input form__input--rule"
+                                                    required>
+                                        {{ section.props.cv_agreement|safe }}
+                                    </input-checkbox>
+                                </form-label>
+                            </template>
+                        </cv-downloader>
+                    </vue-component>
 
                 </div>
             </div>

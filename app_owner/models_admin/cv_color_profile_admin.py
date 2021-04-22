@@ -16,4 +16,3 @@ class CV_Admin(admin.ModelAdmin):
             'fields': ['secondary', 'text_secondary', 'text_secondary_focus']
         })
     )
-    def has_module_permission(self, request): return False

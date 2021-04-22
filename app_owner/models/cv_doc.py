@@ -19,6 +19,11 @@ class CVDocument(models.Model):
         verbose_name = gettext_lazy('Identification name')
     )
 
+    on_main_page = models.BooleanField(
+        default = False,
+        verbose_name = gettext_lazy('Link on main page')
+    )
+
     document_title = models.CharField(
         max_length = 255,
         verbose_name = gettext_lazy('Document title'),

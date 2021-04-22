@@ -83,3 +83,5 @@ class CVColorProfile(models.Model):
 
     class Meta:
         db_table = 'app_owner_cv_color_profile'
+        verbose_name = gettext_lazy('Cv Color Profile')
+        verbose_name_plural = gettext_lazy('Cv Color Profiles')
