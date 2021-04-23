@@ -41,7 +41,8 @@ export default defineComponent({
 
   watch: {
     expanded: function(){
-      this.expanded ? this.scrollDisable() :this.scrollEnable();
+      this.expanded && window.matchMedia('(max-width: 1280px)').matches
+          ? this.scrollDisable() : this.scrollEnable();
     }
   }
 
