@@ -2,25 +2,6 @@
 @use "@sass/abstracts/assets" as *;
 
 
-.simple-slider{
-  &__container{
-
-  }
-  &__slides{
-    display: flex;
-    justify-content: space-around;
-    & > * {
-      width: var(--slide-width);
-    }
-  }
-  &__controls{
-    pointer-events: none;
-    button{
-      pointer-events: all;
-    }
-  }
-}
-
 
 .simple-slider{
   width: 100%;
@@ -42,6 +23,7 @@
     justify-content: space-around;
     transition: transform .5s ease 0s;
     will-change: transform;
+    padding-bottom: 5px;
     & > * {
       width: var(--slide-width);
     }

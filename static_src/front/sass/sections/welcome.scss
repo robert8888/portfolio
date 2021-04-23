@@ -13,6 +13,12 @@ $intro-animation-delay: 1.6s;
     }
   }
 
+  @media (min-height: 600px){
+    .l-container{
+      padding-top: 1rem;
+    }
+  }
+
   &__column:first-of-type {
     display: flex;
     flex-direction: column;

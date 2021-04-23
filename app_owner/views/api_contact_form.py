@@ -1,12 +1,12 @@
 from django.http import JsonResponse
 from portfolio.utils.validateGoogleCaptcha import validateCaptcha
 from django.utils.translation import gettext_lazy, gettext
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-from django.conf import settings
+from ..utils.email_sender import send as send_email
 import json
 import re
 import os
+
+
 
 def process(req):
     body_unicode = req.body.decode('utf-8')
@@ -69,23 +69,18 @@ def Validation(data):
 
     return validate
 
-def send(data, req):
-    BASE_DIR = settings.BASE_DIR
-    sender_email = os.getenv('EMAIL_HOST_USER')
-    target_email = os.getenv('CONTACT_FORM_EMAIL')
 
-    subject =data['subjectField']
+def send(data, req):
     context = {
         'path': req.get_host(),
         'from':  data['emailField'],
-        'message':  data['messageField']
+        'message':  data['messageField'],
+        'subject':  data['subjectField'],
     }
 
-    html_version = os.path.join(BASE_DIR, 'app_cms_tpl/templates/email_contact_form_html.html')
-    plain_version = os.path.join(BASE_DIR, 'app_cms_tpl/templates/email_contact_form_plain.html')
-    html_message = render_to_string(html_version, context = context)
-    plain_message = render_to_string(plain_version, context = context)
+    template_names = {
+        'html': 'email_contact_form_html.html',
+        'plain': 'email_contact_form_plain.html',
+    }
 
-    message = EmailMultiAlternatives(subject, plain_message, sender_email, [target_email])
-    message.attach_alternative(html_message, "text/html")
-    message.send()
+    send_email(req, context, template_names)

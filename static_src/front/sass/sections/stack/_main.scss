@@ -72,12 +72,12 @@
     &:hover{
       & > img {
         transform: rotateY(-180deg);
-        transition: filter .1s, transform 1s 1s;
+        transition: filter .1s, transform 1s .5s;
         @include no-motion()
       }
       #{$self}-text{
         transform: rotateY(0);
-        transition: transform 1s 1s;
+        transition: transform 1s .5s;
         @include no-motion();
       }
     }

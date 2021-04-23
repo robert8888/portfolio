@@ -1,7 +1,11 @@
 @import "./../../common_css/colors.scss";
 
 
-.login{
+html body.login{
+
+    padding: 0;
+
+
     background: var(--color-bg-primary);
     p, span, label{
         color: var(--color-text);
@@ -9,16 +13,33 @@
     #container{
         border: none;
         background: none;
-     
+        margin: 0;
     }
     .content{
         background: var(--color-bg-secondary);
         box-shadow: 0 0 2px #fff5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-main{
+            max-width: 300px;
+            max-height: 400px;
+        }
     }
-    
+    form{
+        border: 2px solid var(--color-pallet-4);
+        padding: 2rem;
+        background: var(--color-bg-primary);;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-radius: .25rem;
+    }
+
     .form-row{
         label{
             color: white;
+            margin-right: .5rem;
         }
 
         input[type=text], input[type=password]{
@@ -30,7 +51,7 @@
                 border-color: var(--color-pallet-10-light);
             }
             &:-webkit-autofill,
-            &:-webkit-autofill:hover, 
+            &:-webkit-autofill:hover,
             &:-webkit-autofill:focus{
                 background: var(--color-bg-primary);
                 border: 1px solid var(--color-pallet-4);
@@ -45,6 +66,9 @@
     }
 
     .submit-row{
+        text-align: center;
+        padding-top: 1rem;
+
         input[type=submit]{
             background: var(--color-pallet-2);
             &:hover{

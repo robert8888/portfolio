@@ -2,7 +2,7 @@
   <div :class="['card-project', {'card-project--extended': isExpanded, 'card-project--collapsed': !isExpanded}]">
     <header>
       <slot name="header">
-        <h4 class="card-project__title">{{title}}</h4>
+        <h4 class="card-project__title"><a :href="href">{{title}}</a></h4>
         <button
             v-if="extensible"
             class="card-project__btn card-project__btn--expand"

@@ -1,31 +1,31 @@
 {
   "section": [{
-    "name": "Section Footer - CMS",
-    "path": "sections/section-footer.html",
+    "name": "Section Footer - Index",
+    "path": "sections/section_footer.html",
     "style": "front/css/sections/footer.css"
   }, {
-    "name": "Section Header - CMS",
-    "path": "sections/section-header.html",
+    "name": "Section Header - Index",
+    "path": "sections/section_header.html",
     "style": "front/css/sections/header.css"
   }, {
-    "name": "Section Welcome - CMS",
-    "path": "sections/section-welcome.html",
+    "name": "Section Welcome - Index",
+    "path": "sections/section_welcome.html",
     "style": "front/css/sections/welcome.css"
   }, {
-    "name": "Section Stack - CMS",
-    "path": "sections/section-stack.html",
+    "name": "Section Stack - Index",
+    "path": "sections/section_stack.html",
     "style": "front/css/sections/stack.css"
   }, {
-    "name": "Section Project Slider - CMS",
-    "path": "sections/section-projects.html",
+    "name": "Section Project Slider - Index",
+    "path": "sections/section_projects-slider.html",
     "style": "front/css/sections/projects-slider.css"
   }, {
-    "name": "Section About - CMS",
-    "path": "sections/section-about.html",
+    "name": "Section About - Index",
+    "path": "sections/section_about.html",
     "style": "front/css/sections/about.css"
   }, {
-    "name": "Section Contact - CMS",
-    "path": "sections/section-contact.html",
+    "name": "Section Contact - Index",
+    "path": "sections/section_contact.html",
     "style": "front/css/sections/contact.css"
   },{
     "name": "Section Projects Filters",

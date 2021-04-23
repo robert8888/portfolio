@@ -99,7 +99,6 @@ export default defineComponent({
       e.preventDefault()
       this.clearValidation();
       const data = this.getData(this.fieldsMap);
-
       this.setRecruiterData({
         email: data.emailField,
         company: data.companyField,

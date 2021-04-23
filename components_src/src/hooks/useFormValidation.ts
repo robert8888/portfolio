@@ -77,7 +77,6 @@ export default function useFormValidation(
         element.addEventListener('invalid', (event: Event) => {
             event.preventDefault();
 
-
             const id = (event.target as HTMLFormField).getAttribute("id");
             const name =
                 (event.target as HTMLFormField).getAttribute("aria-label") ||

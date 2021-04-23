@@ -2,7 +2,9 @@
   <div class="simple-slider">
     <div class="simple-slider__container" ref="container">
       <div class="simple-slider__slides"
-           @pointerDown="pointerDown"
+           @mousedown="dragStart"
+           @touchstart="dragStart"
+           @dragstart="() => false"
            ref="wrapper"
            :style="wrapperStyle">
         <slot/>
@@ -113,27 +115,34 @@ export default defineComponent({
       this.index = Math.round(this.position / -this.slideWidth)
       this.updatePosition()
     },
-    pointerDown(event: PointerEvent){
+
+    dragStart(event: TouchEvent | MouseEvent){
       event.preventDefault();
 
       this.animated = false;
-      const startX = event.clientX;
+      const startX = (event as TouchEvent).touches?.[0].clientX || (event as MouseEvent).clientX;
       const startPosition = parseFloat(parseMatrix(window.getComputedStyle(this.$refs.wrapper as HTMLElement)['transform'])?.translateX || "0")
       this.updatePosition({position: startPosition})
 
-      const move = (event: PointerEvent) => {
-        const clientX = event.clientX;
+      const move = (event: TouchEvent | MouseEvent) => {
+        const clientX = (event as TouchEvent).touches?.[0].clientX || (event as MouseEvent).clientX;
         const diff = startX - clientX;
         this.updatePosition({position: startPosition -diff})
       }
 
       const normalize = this.normalize.bind(this);
-      window.addEventListener('pointermove', move, {passive: false} as EventListenerOptions)
-      window.addEventListener('pointerup', function up(){
-        window.removeEventListener('pointermove', move, {passive: false} as EventListenerOptions)
-        window.removeEventListener('pointerup', up)
+      const up = () => {
+        window.removeEventListener('touchmove', move, {passive: false} as EventListenerOptions)
+        window.removeEventListener('mousemove', move, {passive: false} as EventListenerOptions)
+        window.removeEventListener('touchend', up);
+        window.removeEventListener('mouseup', up);
         normalize()
-      })
+      }
+
+      window.addEventListener('touchmove', move, {passive: false} as EventListenerOptions)
+      window.addEventListener('mousemove', move)
+      window.addEventListener('mouseup', up);
+      window.addEventListener('touchend', up)
 
       return false;
     }
@@ -149,23 +158,3 @@ export default defineComponent({
 
 })
 </script>
-<style lang="scss">
-/*.simple-slider{
-  &__container{
-    overflow: hidden;
-  }
-  &__slides{
-    display: flex;
-    justify-content: space-around;
-    & > * {
-      width: var(--slide-width);
-    }
-  }
-  &__controls{
-    pointer-events: none;
-    button{
-      pointer-events: all;
-    }
-  }
-}*/
-</style>

@@ -14,7 +14,7 @@
     <template #gallery>
         {% include 'partial/gallery.html' with images=project.images %}
     </template>
-    <h4 class="card-project__subtitle">{{project.subtitle|safe}}</h4>
+    <h4 class="card-project__subtitle"><a href="{% get_path project.slug page_name='Project' %}">{{project.subtitle|safe}}</a></h4>
     <div class="card-project__text">
         {{project.description|safe}}
     </div>

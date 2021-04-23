@@ -77,7 +77,14 @@ export default defineComponent({
       this.fail = false;
       this.isLoading = true;
       try{
-        const response = await getCv(this.requestData as GetCVPayload)
+        const response = await getCv(this.requestData as GetCVPayload);
+
+        const contentType = response.headers.get("content-type")
+        if(contentType == "application/json"){
+          const jsonData = await response.json();
+          throw new Error(jsonData.errors)
+        }
+
         this.pdfBlobData = await response.blob();
         this.pdfFilename = getResponseFilename(response)
         this.isLoading = false;

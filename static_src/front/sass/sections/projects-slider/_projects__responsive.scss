@@ -20,22 +20,30 @@
     }
   }
 }
+.projects[data-was-intersected]{
+  .slider__item{
+    @include fade-up-animation(0, 2s);
+    @for $i from 0 through 30{
+      &[data-index='#{$i}']{
+        animation-delay: calc(#{$i} * .3s);
+      }
+    }
+  }
+}
 
-@include media-hover(){
+@include media("lg"){
   .projects .slider{
     padding: 0 50px;
     &__controls{
       display: flex;
     }
   }
-
-  @include media("lg"){
-    .projects .slider{
-      margin-left: -25px;
-      margin-right: -25px;
-    }
+  .projects .slider{
+    margin-left: -25px;
+    margin-right: -25px;
   }
 }
+
 
 @include media("lg") {
   .projects{
@@ -53,14 +61,14 @@
     }
   }
   .projects[data-was-intersected]{
-    .slider__item{
-      @include fade-up-animation(0, 2s);
-      @for $i from 0 through 30{
-        &[data-index='#{$i}']{
-          animation-delay: calc(#{$i} * .3s);
-        }
-      }
-    }
+    //.slider__item{
+    //  @include fade-up-animation(0, 2s);
+    //  @for $i from 0 through 30{
+    //    &[data-index='#{$i}']{
+    //      animation-delay: calc(#{$i} * .3s);
+    //    }
+    //  }
+    //}
     .btn.btn--all{
       @include fade-up-animation(1s, 2s);
     }

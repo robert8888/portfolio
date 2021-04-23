@@ -101,6 +101,13 @@
       white-space: nowrap;
       max-width: 75%;
     }
+    a {
+      color: var(--color-text-primary);
+      font-family: Roboto, sans-serif;
+      &:hover{
+        color: var(--color-pallet-primary);
+      }
+    }
   }
 
   &__subtitle{
@@ -111,6 +118,13 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    a {
+      color: var(--color-text-primary);
+      font-family: Roboto, sans-serif;
+      &:hover{
+        color: var(--color-pallet-primary);
+      }
+    }
   }
 
   &__text{

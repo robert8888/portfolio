@@ -9,6 +9,7 @@ from .get_cv_pdf_data import process as get_cv_data
 from django.utils.translation import get_language
 from portfolio.utils.validateGoogleCaptcha import validateCaptcha
 from portfolio.utils.readConfigJson import readConfigJson
+from ..utils.email_sender import send as send_email
 import tempfile
 import os
 import datetime
@@ -66,7 +67,7 @@ class CvPdf(View):
                 'colorProfileId': post_data['colorProfileId'],
                 'default': True,
             })
-            print(response)
+
             if not response.success:
                 raise Exception('cv data not found for slug' + slug)
 
@@ -76,9 +77,12 @@ class CvPdf(View):
 
             template = py_.find(readConfigJson(['templates', 'TEMPLATES.json']).get('pdf', None), {'slug': post_data['templateId']})
 
+            self.send_confirm_email(req, post_data)
+
             return self.render_cv_pdf(context, template['path'])
         except BaseException as error:
-            return JsonResponse({'success': False, errors: [error]})
+            print(error)
+            return JsonResponse({'success': False, 'errors': [str(error)]})
 
 
     def get(self, req, slug):
@@ -96,3 +100,21 @@ class CvPdf(View):
         except BaseException as error:
             print('error', error)
             return HttpResponseRedirect('/404')
+
+    def send_confirm_email(self, req, data):
+        try:
+            context = {
+                'path': req.get_host(),
+                'subject': 'Cv was downloaded',
+                'email':  data['recruiterEmail'],
+                'company':  data['recruiterCompany'],
+            }
+
+            template_names = {
+                'html': 'email_cv_download_html.html',
+                'plain': 'email_cv_download_plain.html',
+            }
+
+            send_email(req, context, template_names)
+        except:
+            print('Cv download confirm email sending error')
