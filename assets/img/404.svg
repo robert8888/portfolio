@@ -1,0 +1,9 @@
+<svg viewBox="0 0 737 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g style="stroke: var(--stroke-color">
+        <path d="M163.37 222.5L163.5 133.5H25.9999C25.9999 133.5 14 134 8 127.5C1.99995 121 2.49995 109.5 2.49995 109.5V2.5H43.4999L42.4999 93.5L163.5 93V4.5H203.5V222.5H163.37Z"  stroke-width="4"/>
+        <path d="M693.88 222L694.01 133H556.51C556.51 133 544.51 133.5 538.51 127C532.51 120.5 533.01 109 533.01 109V2H574.01L573.01 93L694.01 92.5V4H734.01V222H693.88Z"  stroke-width="4"/>
+        <rect x="286" y="45" width="173" height="136" rx="51"  stroke-width="4"/>
+        <rect x="293.928" y="144.491" width="164.985" height="36.428" rx="18.214" transform="rotate(-33.8363 293.928 144.491)"  stroke-width="4"/>
+        <rect x="246" y="5" width="252" height="216" rx="91"  stroke-width="4"/>
+    </g>
+</svg>
