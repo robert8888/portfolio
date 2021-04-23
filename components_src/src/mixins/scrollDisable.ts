@@ -1,19 +1,26 @@
-export default {
-    data(){
+import {defineComponent} from "vue"
+import windowScrollHeight from "@/utils/window-scroll-height";
+
+interface MixinState{
+    lastScrollPosition: number;
+}
+
+export default defineComponent({
+    data(): MixinState{
         return {
             lastScrollPosition: 0,
         }
     },
     methods:{
+        scrollCancel(event: Event){
+            window.scrollTo(0, this.lastScrollPosition)
+        },
         scrollDisable(){
-            document.body.style.overflow = "hidden";
-            // @ts-ignore
             this.lastScrollPosition = window.pageYOffset;
+            window.addEventListener('scroll', this.scrollCancel)
         },
         scrollEnable(){
-            document.body.style.overflow = "auto";
-            // @ts-ignore
-            window.scrollTo(0, this.lastScrollPosition)
+            window.removeEventListener('scroll', this.scrollCancel)
         }
     }
-}
+})

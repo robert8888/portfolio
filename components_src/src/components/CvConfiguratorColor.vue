@@ -16,7 +16,7 @@
 </template>
 <script lang="ts">
 import {defineComponent, computed} from "vue";
-import {GETTERS, MUTATIONS, useStore} from "@/store";
+import {ACTIONS, GETTERS, MUTATIONS, useStore} from "@/store";
 
 
 export default defineComponent({
@@ -33,6 +33,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    default: {
+      type: Boolean,
+    }
   },
 
 
@@ -41,6 +44,12 @@ export default defineComponent({
     const currentId = computed(() => store.getters[GETTERS.GET_CV_COLOR_PROFILE_ID]);
     const setAsCurrent = () => {
       store.commit(MUTATIONS.SET_CV_COLOR_PROFILE, {
+        id: props.profileId,
+        colors: props.colors
+      })
+    }
+    if(props.default){
+      store.commit(ACTIONS.SET_CV_INIT_COLOR_PROFILE, {
         id: props.profileId,
         colors: props.colors
       })

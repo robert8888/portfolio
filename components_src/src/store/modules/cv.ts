@@ -34,6 +34,8 @@ export const MUTATIONS = {
 }
 
 export const ACTIONS = {
+    SET_CV_INIT_COLOR_PROFILE: 'Set_init_color_profile',
+
     CONFIRM_TEMPLATE_CONFIG: 'confirm_template_configuration',
     CONFIRM_RECRUITER: 'config_recruiter_data',
     RESTART_CV_DOWNLOAD_PROCESS: 'set_initial_step',
@@ -57,13 +59,12 @@ export default {
     } as CvState),
 
     mutations: {
-        [MUTATIONS.SET_CV_COLOR_PROFILE](state: CvState, payload: {id: string; colors: Record<string, string>}){
+        [MUTATIONS.SET_CV_COLOR_PROFILE](state: CvState, payload: ColorProfile){
             state.colorProfile = {
                 id: payload.id,
                 colors: payload.colors
             }
         },
-
         [MUTATIONS.SET_CV_TEMPLATE_ID](state: CvState, payload: {id: string}){
             state.templatedId = payload.id;
         },
@@ -102,6 +103,10 @@ export default {
     },
 
     actions: {
+        [ACTIONS.SET_CV_INIT_COLOR_PROFILE]: ({commit, state}: {commit: Function; state: CvState}, payload: ColorProfile) =>{
+            if(!state.colorProfile || !state.colorProfile.id)
+                commit(MUTATIONS.SET_CV_COLOR_PROFILE, payload)
+        },
         [ACTIONS.RESTART_CV_DOWNLOAD_PROCESS]: ({commit}: {commit: Function}) =>{
             commit(MUTATIONS.SET_CV_PROCESS_STEP, {step: PROCESS_STEP.Configuration})
         },

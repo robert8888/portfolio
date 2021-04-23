@@ -161,7 +161,7 @@ export default defineComponent({
 
       setTimeout(() => {
         target.scrollIntoView(true);
-      },300)
+      },600)
 
     }
   },

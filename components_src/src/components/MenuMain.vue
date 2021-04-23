@@ -7,7 +7,7 @@
             aria-label="Menu expand">
     </button>
     <nav id="mainNavContainer" :class="['navigation__container', {'navigation__container--collapsed': !expanded}]">
-      <ul class="navigation__list">
+      <ul class="navigation__list" ref="container">
         <slot/>
       </ul>
     </nav>
@@ -27,6 +27,15 @@ export default defineComponent({
     return {
       expanded: computed(() => store.state.menu.expanded),
       toggle: () => store.commit(MUTATIONS.TOGGLE_MENU_MAIN),
+    }
+  },
+
+  mounted() {
+    const localLinks = (this.$refs.container as HTMLElement).querySelectorAll('a[href*="#"]');
+    for(const link of localLinks){
+      link.addEventListener('click', () =>{
+        this.toggle();
+      })
     }
   },
 

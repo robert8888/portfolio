@@ -32,7 +32,12 @@
                                 <cv-configurator download-label="{% translate 'Download' %}">
                                     <template #colors>
                                         {% for profile in cv_color_profiles %}
-                                        <cv-configurator-color name="{{profile.id_name}}" profile-id="{{profile.id}}" :colors="{{profile.to_js_obj_str}}"></cv-configurator-color>
+                                        <cv-configurator-color name="{{profile.id_name}}"
+                                                               {% if foorloop.counter == 1 %}
+                                                               :default="true"
+                                                               {% endif %}
+                                                               profile-id="{{profile.id}}"
+                                                               :colors="{{profile.to_js_obj_str}}"></cv-configurator-color>
                                         {% endfor %}
                                     </template>
                                     {% for tpl_name in cv_template_names %}
