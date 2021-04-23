@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 20:48+0200\n"
+"POT-Creation-Date: 2021-04-23 07:27+0200\n"
 "PO-Revision-Date: 2021-03-28 20:17+0000\n"
 "Last-Translator: b'  <robert.kami88@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,50 +25,38 @@ msgstr ""
 msgid "Pages - CMS"
 msgstr "Zawartość - CMS"
 
-#: .\templates\partial\contact-number-component.html:8
-msgid "Number was copied to clipboard"
-msgstr "Numer został skopiowany"
+#~ msgid "Number was copied to clipboard"
+#~ msgstr "Numer został skopiowany"
 
-#: .\templates\partial\contact-number-component.html:9
-msgid "copy"
-msgstr "kopiuj"
+#~ msgid "copy"
+#~ msgstr "kopiuj"
 
-#: .\templates\partial\contact-number-component.html:11
-msgid "call"
-msgstr "zadzwoń"
+#~ msgid "call"
+#~ msgstr "zadzwoń"
 
-#: .\templates\sections\section-about.html:2
-msgid "about"
-msgstr "historia"
+#~ msgid "about"
+#~ msgstr "historia"
 
-#: .\templates\sections\section-contact.html:2
-msgid "contact"
-msgstr "kontakt"
+#~ msgid "contact"
+#~ msgstr "kontakt"
 
-#: .\templates\sections\section-contact.html:26
-msgid "Download Reasume"
-msgstr "Pobierz aplikacje"
+#~ msgid "Download Reasume"
+#~ msgstr "Pobierz aplikacje"
 
-#: .\templates\sections\section-footer.html:9
-msgid "All Rights Reserved"
-msgstr "Wszelkie prawa zastrzeżone"
+#~ msgid "All Rights Reserved"
+#~ msgstr "Wszelkie prawa zastrzeżone"
 
-#: .\templates\sections\section-projects.html:2
-msgid "projects"
-msgstr "projekty"
+#~ msgid "projects"
+#~ msgstr "projekty"
 
-#: .\templates\sections\section-projects.html:19
-#: .\templates\sections\section-stack.html:27
-msgid "See all"
-msgstr "Zobacz wszystkie"
+#~ msgid "See all"
+#~ msgstr "Zobacz wszystkie"
 
-#: .\templates\sections\section-stack.html:2
-msgid "technology"
-msgstr "technologie"
+#~ msgid "technology"
+#~ msgstr "technologie"
 
-#: .\templates\sections\section-welcome.html:2
-msgid "welcome"
-msgstr "witaj"
+#~ msgid "welcome"
+#~ msgstr "witaj"
 
 #~ msgid "Google Recaptcha authorization fail"
 #~ msgstr "Autoryzacja google captcha nie powiodła się "

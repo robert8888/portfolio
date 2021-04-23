@@ -2,68 +2,83 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 20:17+0200\n"
-"PO-Revision-Date: 2021-03-28 20:20+0000\n"
+"POT-Creation-Date: 2021-04-23 07:52+0200\n"
+"PO-Revision-Date: 2021-04-23 07:52+0000\n"
 "Last-Translator: b'  <robert.kami88@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
 #: .\apps.py:6
 msgid "Owner"
 msgstr "Właściciel"
 
-#: .\models\contact.py:10
+#: .\models\contact.py:12
 msgid "Contact name"
 msgstr "Identyfikator kontaktu"
 
-#: .\models\contact.py:14
+#: .\models\contact.py:16
 msgid "Weight"
 msgstr "Waga"
 
-#: .\models\contact.py:19
-msgid "YES"
-msgstr "TAK"
-
-#: .\models\contact.py:19
-msgid " - "
-msgstr "-"
-
 #: .\models\contact.py:21
-msgid "Is number ?"
-msgstr "Jest numerem?"
+msgid "Show on main page"
+msgstr "Pokaż na głównej stronie"
 
-#: .\models\contact.py:31
+#: .\models\contact.py:29
+msgid "Contact type"
+msgstr "Identyfikator kontaktu"
+
+#: .\models\contact.py:42 .\models\cv_doc.py:52
 msgid "Contact"
 msgstr "Kontakt"
 
-#: .\models\contact.py:38
+#: .\models\contact.py:47
+msgid "Portal"
+msgstr "Portal"
+
+#: .\models\contact.py:51
 msgid "Contact url"
 msgstr "Kontakt url"
 
-#: .\models\contact.py:42
+#: .\models\contact.py:63
 msgid "Contact portal"
 msgstr "Kontakt portal"
 
-#: .\models\contact.py:49 .\models\contact.py:53
+#: .\models\contact.py:66
+msgid "Number"
+msgstr "Numer"
+
+#: .\models\contact.py:70 .\models\contact.py:87
 msgid "Contact number"
-msgstr "Kontakt number"
+msgstr "Numer kontaktowy"
+
+#: .\models\contact.py:90 .\models\contact.py:93 .\models\cv_doc_exp.py:42
+msgid "Address"
+msgstr "Adres"
+
+#: .\models\contact.py:104
+msgid "Contact address"
+msgstr "Identyfikator kontaktu"
 
 #: .\models\contact_img.py:27
 msgid "Contact image"
 msgstr "Kontakt obraz"
 
 #: .\models\contact_img.py:32 .\models\contact_img.py:88
+#: .\models\cv_doc_photo.py:13
 msgid "Image"
 msgstr "Obraz"
 
@@ -91,6 +106,342 @@ msgstr "Obrazek sprite"
 msgid "Image identification name"
 msgstr "Identyfikator obrazu"
 
+#: .\models\cv.py:15
+msgid "Slug"
+msgstr "Slug"
+
+#: .\models\cv.py:22
+msgid "Version name"
+msgstr "Nazwa wersji"
+
+#: .\models\cv.py:27
+msgid "PDF template"
+msgstr "Szablon PDF"
+
+#: .\models\cv_color_profile.py:9
+msgid "Color profile identification name"
+msgstr "Identyfikator obrazu"
+
+#: .\models\cv_color_profile.py:13
+msgid "Base background color"
+msgstr "Bazowy kolor tła"
+
+#: .\models\cv_color_profile.py:18
+msgid "Base text color"
+msgstr "Bazowy kolor text"
+
+#: .\models\cv_color_profile.py:23
+msgid "Base text focus color"
+msgstr "Bazowy kolor tekstu - wyróżniony"
+
+#: .\models\cv_color_profile.py:27
+msgid "Primary color"
+msgstr "Pierwszoplanowy kolor"
+
+#: .\models\cv_color_profile.py:32
+msgid "Primary text color"
+msgstr "Pierwszoplanowy kolor tekstu"
+
+#: .\models\cv_color_profile.py:38
+msgid "Primary text color - focus"
+msgstr "Pierwszoplanowy kolor wyróżnionego tekstu"
+
+#: .\models\cv_color_profile.py:43
+msgid "Secondary color"
+msgstr "Drugoplanowy kolor"
+
+#: .\models\cv_color_profile.py:48
+msgid "Secondary text color"
+msgstr "Drugoplanowy kolor tekstu"
+
+#: .\models\cv_color_profile.py:53
+msgid "Secondary text color - focus"
+msgstr "Drugoplanowy kolor wyróżnionego"
+
+#: .\models\cv_color_profile.py:86
+msgid "Cv Color Profile"
+msgstr "Profile kolorów CV"
+
+#: .\models\cv_color_profile.py:87
+msgid "Cv Color Profiles"
+msgstr "Profile kolorów CV"
+
+#: .\models\cv_doc.py:13 .\models_admin\cv_doc_admin.py:20
+#: .\models_admin\cv_doc_admin.py:21
+msgid "Additional information"
+msgstr "Dodatkowe informacje"
+
+#: .\models\cv_doc.py:19 .\models\cv_doc_additional.py:9
+#: .\models\cv_doc_agreements.py:8 .\models\cv_doc_contact.py:26
+#: .\models\cv_doc_edu.py:10 .\models\cv_doc_exp.py:9
+#: .\models\cv_doc_personal.py:9 .\models\cv_doc_skills.py:14
+#: .\models\cv_doc_summary.py:8
+msgid "Identification name"
+msgstr "Identyfikator obrazu"
+
+#: .\models\cv_doc.py:24
+msgid "Link on main page"
+msgstr "Link na głównej stronie"
+
+#: .\models\cv_doc.py:29
+msgid "Document title"
+msgstr "Tytuł dokumentu"
+
+#: .\models\cv_doc.py:31 .\models\cv_doc.py:38
+msgid "If not present default: Name + Surname"
+msgstr "Jeśli nie jest wypełnione użyje: Imię + Nazwisko "
+
+#: .\models\cv_doc.py:36
+msgid "Document download filename"
+msgstr "Nazwa pliku pobieranego dokumentu"
+
+#: .\models\cv_doc.py:44
+msgid "Personal"
+msgstr "Dane osobiste"
+
+#: .\models\cv_doc.py:58
+msgid "Summary"
+msgstr "Podsumowanie"
+
+#: .\models\cv_doc.py:64
+msgid "Education"
+msgstr "Edukacja"
+
+#: .\models\cv_doc.py:70
+msgid "Experience"
+msgstr "Doświadczenie"
+
+#: .\models\cv_doc.py:76 .\models\cv_doc_skills.py:118
+msgid "Skills"
+msgstr "Umiejętności"
+
+#: .\models\cv_doc.py:82
+msgid "Rodo agreements"
+msgstr "Zgody rodo"
+
+#: .\models\cv_doc.py:89 .\models_admin\cv_doc_admin.py:13
+msgid "Additional"
+msgstr "Dodatkowe"
+
+#: .\models\cv_doc.py:124
+msgid "CV Document"
+msgstr "Dokument CV"
+
+#: .\models\cv_doc.py:125
+msgid "CV Documents"
+msgstr "Dokument CV"
+
+#: .\models\cv_doc_additional.py:14
+msgid "Hobby"
+msgstr "Hobby"
+
+#: .\models\cv_doc_additional.py:15
+msgid "Strengths"
+msgstr "Mocne storny"
+
+#: .\models\cv_doc_additional.py:16
+msgid "Achievements"
+msgstr "Osiągnięcia"
+
+#: .\models\cv_doc_additional.py:17
+msgid "Other"
+msgstr "Inne"
+
+#: .\models\cv_doc_additional.py:22
+msgid "Type"
+msgstr "Typ"
+
+#: .\models\cv_doc_additional.py:29 .\models\cv_doc_edu.py:17
+#: .\models\cv_doc_exp.py:16 .\models\cv_doc_skills.py:20
+msgid "Section title"
+msgstr "Tytuł sekcji"
+
+#: .\models\cv_doc_additional.py:34
+msgid "Items"
+msgstr "Elementy"
+
+#: .\models\cv_doc_additional.py:43
+msgid "CV document additional info"
+msgstr "Dodatkowe informacje dokumentu cv"
+
+#: .\models\cv_doc_additional.py:44
+msgid "CV document additional infos"
+msgstr "Dodatkowe informacje dokumentu cv"
+
+#: .\models\cv_doc_agreements.py:13
+msgid "Agreements text"
+msgstr "Tekst sekcji warunki"
+
+#: .\models\cv_doc_agreements.py:21 .\models\cv_doc_agreements.py:22
+msgid "Cv document agreements"
+msgstr "Dokument CV - warunki"
+
+#: .\models\cv_doc_contact.py:32
+msgid "Contact section title"
+msgstr "Kontakt portal"
+
+#: .\models\cv_doc_contact.py:39
+msgid "Contacts"
+msgstr "Kontakt"
+
+#: .\models\cv_doc_contact.py:60
+msgid "CV Document contact"
+msgstr "Dokument CV - kontakt"
+
+#: .\models\cv_doc_edu.py:26
+msgid "CV document education"
+msgstr "Dokument CV - edukacja"
+
+#: .\models\cv_doc_edu.py:27
+msgid "CV documents educations"
+msgstr "Dokumenty CV - edukacja"
+
+#: .\models\cv_doc_edu.py:40 .\models\cv_doc_exp.py:48
+msgid "From"
+msgstr "Od"
+
+#: .\models\cv_doc_edu.py:45 .\models\cv_doc_exp.py:53
+msgid "To"
+msgstr "Do"
+
+#: .\models\cv_doc_edu.py:51
+msgid "School name"
+msgstr "Nazwa szkoły"
+
+#: .\models\cv_doc_edu.py:56
+msgid "Field of study"
+msgstr "Kierunek szkoły"
+
+#: .\models\cv_doc_edu.py:60 .\models\cv_doc_exp.py:65
+msgid "Description"
+msgstr "Opis"
+
+#: .\models\cv_doc_edu.py:65
+msgid "School"
+msgstr "Szkoła"
+
+#: .\models\cv_doc_edu.py:66
+msgid "Schools"
+msgstr "Szkoły"
+
+#: .\models\cv_doc_exp.py:24
+msgid "CV document experience"
+msgstr "Dokument CV - doświadczenie"
+
+#: .\models\cv_doc_exp.py:25
+msgid "CV documents experiences"
+msgstr "Dokumenty CV - doświadczenie"
+
+#: .\models\cv_doc_exp.py:37
+msgid "Company"
+msgstr "Firma"
+
+#: .\models\cv_doc_exp.py:61
+msgid "Job position"
+msgstr "Stanowisko"
+
+#: .\models\cv_doc_exp.py:73
+msgid "Job"
+msgstr "Praca"
+
+#: .\models\cv_doc_exp.py:74
+msgid "Jobs"
+msgstr "Prace"
+
+#: .\models\cv_doc_personal.py:15 .\models\cv_doc_photo.py:38
+msgid "Photo"
+msgstr "Zdjęcie"
+
+#: .\models\cv_doc_personal.py:20
+msgid "Name"
+msgstr "Imię"
+
+#: .\models\cv_doc_personal.py:25
+msgid "Surname"
+msgstr "Nazwisko"
+
+#: .\models\cv_doc_personal.py:30
+msgid "Birthday"
+msgstr "Urodziny"
+
+#: .\models\cv_doc_personal.py:37
+msgid "Position title"
+msgstr "Tytuł stanowiska"
+
+#: .\models\cv_doc_personal.py:49
+msgid "CV Document personal"
+msgstr "Dokument CV - dane osobowe"
+
+#: .\models\cv_doc_photo.py:9
+#, fuzzy
+#| msgid "Image identification name"
+msgid "Photo identification name"
+msgstr "Identyfikator obrazu"
+
+#: .\models\cv_doc_photo.py:24
+msgid "Image width"
+msgstr "Szerokość obrazka"
+
+#: .\models\cv_doc_photo.py:28
+msgid "Image height"
+msgstr "Wysokość obrazka"
+
+#: .\models\cv_doc_photo.py:39
+msgid "Photos"
+msgstr "Zdjęcie"
+
+#: .\models\cv_doc_skills.py:27
+msgid "Technologies"
+msgstr "Technologie"
+
+#: .\models\cv_doc_skills.py:41
+msgid "Document skills"
+msgstr "Dokument CV - umiejętności"
+
+#: .\models\cv_doc_skills.py:42
+msgid "Documents skills"
+msgstr "Dokumenty CV - umiejętności"
+
+#: .\models\cv_doc_skills.py:54 .\models\cv_doc_skills.py:117
+msgid "Skill"
+msgstr "Umiejętności"
+
+#: .\models\cv_doc_skills.py:70
+msgid "Language name"
+msgstr "Język"
+
+#: .\models\cv_doc_skills.py:85 .\models\cv_doc_skills.py:110
+msgid "Level"
+msgstr "Poziom"
+
+#: .\models\cv_doc_skills.py:93
+msgid "Language"
+msgstr "Język"
+
+#: .\models\cv_doc_skills.py:94
+msgid "Languages"
+msgstr "Języki"
+
+#: .\models\cv_doc_skills.py:103
+msgid "Text"
+msgstr "Tekst"
+
+#: .\models\cv_doc_summary.py:15
+msgid "Summary section tittle"
+msgstr "Tytuł sekcji podsumowania"
+
+#: .\models\cv_doc_summary.py:19
+msgid "Summary content"
+msgstr "Zawartość sekcji podsumowanie"
+
+#: .\models\cv_doc_summary.py:27
+msgid "CV document Summary"
+msgstr "Dokument CV - podsumowanie"
+
+#: .\models_admin\cv_admin.py:25
+msgid "Download link"
+msgstr "Link do pobrania"
+
 #: .\views\api_contact_form.py:29
 msgid "Google Recaptcha authorization fail"
 msgstr "Autoryzacja Google Recaptcha"
@@ -106,3 +457,12 @@ msgstr "Długość tematu za krótka. minimum 6 znaków"
 #: .\views\api_contact_form.py:57
 msgid "Message value too short, min 20 chars"
 msgstr "Długość wiadomości za krótka. minimum 20 znaków"
+
+#~ msgid "YES"
+#~ msgstr "TAK"
+
+#~ msgid " - "
+#~ msgstr "-"
+
+#~ msgid "Is number ?"
+#~ msgstr "Jest numerem?"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-21 21:16+0200\n"
-"PO-Revision-Date: 2021-04-21 21:22+0000\n"
+"POT-Creation-Date: 2021-04-23 07:24+0200\n"
+"PO-Revision-Date: 2021-04-23 07:26+0000\n"
 "Last-Translator: b'  <robert.kami88@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -37,11 +37,13 @@ msgstr "Przygotowuję"
 
 #: .\templates\partial\contact_cv_download_component.html:4
 #: .\templates\partial\contact_cv_download_component.html:15
-#: .\templates\sections\section-contact.html:29
+#: .\templates\sections\section_contact.html:28
+#: .\templates\sections\section_contact.html:32
 msgid "Download"
 msgstr "Pobierz"
 
 #: .\templates\partial\contact_cv_download_component.html:5
+#: .\templates\sections\section_contact.html:30
 msgid "Open"
 msgstr "Otwórz"
 
@@ -65,73 +67,60 @@ msgstr "Pole [field] ma niepoprawną wartość"
 msgid "[field] don't fit to range. Value to big"
 msgstr "Pole [field] nie mieści się w przedziale. Wartość zbyt duża"
 
-#: .\templates\partial\validation_msg.html:7
-msgid "[field] don't fit to range. Value to small"
-msgstr "Pole [field] nie mieści się w przedziale. Wartość zbyt mała"
-
 #: .\templates\partial\validation_msg.html:8
 msgid "[field] not correct value"
 msgstr "Pole [field] posiada nieprawidłową wartość"
 
 #: .\templates\partial\validation_msg.html:9
+msgid "Value of [field] is to short"
+msgstr "Wartość pola [field] jest zbyt krótka"
+
+#: .\templates\partial\validation_msg.html:10
 msgid "[field] value is to long"
 msgstr "Pole [field] wartość jest zbyt długa"
 
-#: .\templates\partial\validation_msg.html:10
+#: .\templates\partial\validation_msg.html:11
 msgid "[field] type value is not correct"
 msgstr "Pole [field] posiada nieprawidłowy typ."
 
-#: .\templates\partial\validation_msg.html:11
+#: .\templates\partial\validation_msg.html:12
 msgid "[field] value is required"
 msgstr "Pole [field] jest wymagane. "
 
-#: .\templates\sections\section-about.html:2
+#: .\templates\sections\section_about.html:2
 msgid "about"
 msgstr "historia"
 
-#: .\templates\sections\section-contact.html:2
+#: .\templates\sections\section_contact.html:2
 msgid "contact"
 msgstr "kontakt"
 
-#: .\templates\sections\section-contact.html:27
+#: .\templates\sections\section_contact.html:27
 #, fuzzy
 #| msgid "Download Reasume"
 msgid "Download Resume"
 msgstr "Pobierz aplikację"
 
-#: .\templates\sections\section-contact.html:42
+#: .\templates\sections\section_contact.html:29
+msgid "Preloading"
+msgstr "Przygotowuje"
+
+#: .\templates\sections\section_contact.html:45
 msgid "Confirm your identify"
 msgstr "Potwierdź swoją tożsamość"
 
-#: .\templates\sections\section-contact.html:53
-#: .\templates\sections\section-contact.html:60
+#: .\templates\sections\section_contact.html:56
+#: .\templates\sections\section_contact.html:64
 msgid "Company"
 msgstr "Firma"
 
-#: .\templates\sections\section-contact.html:69
+#: .\templates\sections\section_contact.html:73
 msgid "Agreement"
 msgstr "Uzgodnienia"
 
-#: .\templates\sections\section-footer.html:9
+#: .\templates\sections\section_footer.html:9
 msgid "All Rights Reserved"
 msgstr "Wszelkie prawa zastrzeżone"
-
-#: .\templates\sections\section-projects.html:2
-msgid "projects"
-msgstr "projekty"
-
-#: .\templates\sections\section-projects.html:19
-#: .\templates\sections\section-stack.html:27
-msgid "See all"
-msgstr "Zobacz wszystkie"
-
-#: .\templates\sections\section-stack.html:2
-msgid "technology"
-msgstr "technologie"
-
-#: .\templates\sections\section-welcome.html:2
-msgid "welcome"
-msgstr "witaj"
 
 #: .\templates\sections\section_project.html:40
 msgid "Related Projects"
@@ -140,3 +129,23 @@ msgstr "Powiązane projekty"
 #: .\templates\sections\section_project.html:50
 msgid "Stack"
 msgstr "Stack"
+
+#: .\templates\sections\section_projects-slider.html:2
+msgid "projects"
+msgstr "projekty"
+
+#: .\templates\sections\section_projects-slider.html:19
+#: .\templates\sections\section_stack.html:28
+msgid "See all"
+msgstr "Zobacz wszystkie"
+
+#: .\templates\sections\section_stack.html:2
+msgid "technology"
+msgstr "technologie"
+
+#: .\templates\sections\section_welcome.html:2
+msgid "welcome"
+msgstr "witaj"
+
+#~ msgid "[field] don't fit to range. Value to small"
+#~ msgstr "Pole [field] nie mieści się w przedziale. Wartość zbyt mała"
