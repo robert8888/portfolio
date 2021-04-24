@@ -61,11 +61,12 @@ header{
 }
 
 h3{
-  margin: .3rem 0;
+  margin: .5rem 0;
   color: var(--color-text-focus);
+  font-size: 1.25rem;
 }
 h4{
-  margin: .25rem 0;
+  margin: .3rem 0;
   color: var(--color-text-focus);
 }
 
@@ -271,6 +272,9 @@ main{
   }
   .school{
     break-inside: auto;
+    &__name{
+      font-size: 1.25rem;
+    }
   }
   .school__period{
     @include time-separator('-');
