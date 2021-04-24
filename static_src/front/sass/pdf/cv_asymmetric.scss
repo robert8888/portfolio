@@ -99,8 +99,8 @@ header{
   h3{
     font-size: 2.75cm;
     margin: 0;
-    margin-top: -.19em;
-    margin-left: -.02em;
+    //margin-top: -.9em;
+    line-height: 2.75cm;
     position: absolute;
     top: 0;
     left: 0;
@@ -110,14 +110,14 @@ header{
     letter-spacing: .01cm;
     position: absolute;
     margin: 0;
-    top: 3cm;
+    top: 3.5cm;
     left: 1.75cm;
   }
 }
 
 main{
   box-sizing: border-box;
-  margin-top: 4.75cm;
+  margin-top: 5cm;
   padding: 0 1.5cm 2cm 5cm;
   z-index: 2;
   position: absolute;
@@ -227,5 +227,14 @@ main{
   }
   .contact__portfolio{
       color: var(--color-primary);
+  }
+}
+
+.agreements{
+  position: fixed;
+  bottom: -.5cm;
+  max-width: 12.25cm;
+  p{
+    font-size: .5rem;
   }
 }
