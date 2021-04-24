@@ -19,7 +19,7 @@ class CV_Admin(admin.ModelAdmin):
     def full_path(self, instance):
         url =  self.request.scheme + '://' + self.request.get_host() + instance.url
         return format_html(
-            "<a href={}>{}</a>", url , url
+            "<a href={} target='_blank'>{}</a>", url , url
         )
 
     full_path.short_description = gettext_lazy('Download link')
