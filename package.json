@@ -15,7 +15,7 @@
     "compile:components:w": "cd components_src && npm start",
     "dev": "run-p compile:assets:w compile:components:w",
     "build": "run-s compile:assets compile:components",
-    "intall:components": "npm install --prefix ./components_src",
+    "install:components": "npm install --prefix ./components_src",
     "postinstall": "run-s install:components patch-package"
   },
   "repository": {
