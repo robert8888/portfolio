@@ -101,7 +101,7 @@ main{
   padding-left: .6rem;
   margin-bottom: 1rem;
   &__title{
-    font-family: $font-sans-pro;
+    font-family: source-sans-pro, sans-serif;
     text-transform: uppercase;
     color: var(--color-primary);
     font-weight: 600;
@@ -215,9 +215,12 @@ main{
     }
   }
   .job{
-    &__period::before{
+    &__period{
+      @include time-separator('-');
+      &::before{
         content: "";
         @include icon-s($calendar-gray-svg);
+      }
     }
     &__address{
       margin-left: .5rem;
