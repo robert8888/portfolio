@@ -274,8 +274,7 @@ body{
   font-size: .6rem;
   opacity: .7;
   p{
-    @include icon-before($info-svg, var(--color-text));
-    &::before{
+    @include icon-before($info-svg, var(--color-text)){
       margin-right: .05em;
     }
   }

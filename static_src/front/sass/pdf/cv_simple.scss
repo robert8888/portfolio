@@ -22,7 +22,6 @@ html{
 body {
   background: var(--color-background);
   overflow: hidden;
-  padding-bottom: 5rem;
 }
 
 p, li {
@@ -88,8 +87,9 @@ header{
   }
   &__name{
     font-family: $font-raleway;
-    font-weight: 300;
-    margin: .5em 0;
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin: 1.25rem 0;
     text-transform: uppercase;
   }
   &__link {
@@ -113,17 +113,19 @@ header{
     list-style: none;
     margin: 2rem 0 1rem 0;
     padding: 0;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
+    color: var(--color-text-primary);
+    font-family: $font-raleway;
     font-size: .8rem;
     li{
       display: inline-block;
       margin: 0 1em 1em 0;
+      span{
+        color: var(--color-text-primary);
+        font-family: $font-merriweather
+      }
     }
   }
-  span{
-    color: var(--color-text-primary);
-  }
+
   $icons:(
     'address': $marker-white-svg,
     'number': $phone-white-svg,
@@ -140,14 +142,15 @@ header{
 
 main {
   .container{
-    column-count: 2;
-    column-gap: 2.5rem;
-    column-fill: auto;
     padding: 0 .4in 0cm 1.25cm;
     padding-bottom: 5rem;
     margin-bottom: 4rem;
-    max-height: 25cm;
+    max-height: 24.5cm;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 2.5rem;
   }
 }
 
@@ -155,7 +158,7 @@ main {
   &__title{
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.25rem;
     text-align: left;
     text-transform: uppercase;
     color: var(--color-text-focus);
@@ -192,16 +195,18 @@ main {
     &__detail {
       break-inside: avoid;
     }
-    &__period::before{
-      content:"";
-      @include icon-s($briefcase-grey-svg, var(--color-text));
+    &__period{
+      @include time-separator("-");
+      @include icon-before($briefcase-grey-svg, var(--color-text)){
+        margin-right: .25rem;
+      };
+
     }
     &__address{
       margin-left: 1rem;
-      &::before{
-        content:"";
-        @include icon-s($marker-grey-svg,  var(--color-text));
+      @include icon-before($marker-grey-svg,  var(--color-text)){
         width: .8em;
+        margin-right: .25rem;
       }
     }
     &__position{
@@ -215,14 +220,18 @@ main {
 
 
 .education{
+  break-inside: avoid;
   &__list{
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  .school__period::before{
-    content:"";
-    @include icon-s($book-gray-svg,  var(--color-text-primary));
+  .school__period{
+    @include time-separator("-");
+    &::before{
+      content:"";
+      @include icon-s($book-gray-svg,  var(--color-text));
+    }
   }
 }
 
@@ -247,7 +256,7 @@ main {
       flex-wrap: wrap;
     }
     li {
-      padding: 0.2em 0.5em;
+      padding: 0.3em 0.6em;
       margin: .3em .6em .3em 0;
       background: var(--color-secondary);
       color: var(--color-text-secondary);
@@ -266,10 +275,24 @@ main {
     margin: 1em 0 0 0;
   }
   li {
-    padding: 0.2em 0.5em;
+    padding: 0.3em 0.6em;
     margin: .3em .6em .3em 0;
     border: 1px solid var(--color-secondary);
     color: var(--color-secondary);
     display: inline-block;
+  }
+}
+
+.agreements{
+  position: fixed;
+  bottom: -.5cm;
+  color: var(--color-text);
+  font-size: .75rem;
+  opacity: .9;
+  p{
+    color: var(--color-text);
+    @include icon-before($info-svg, var(--color-text)){
+      margin-right: .05em;
+    }
   }
 }

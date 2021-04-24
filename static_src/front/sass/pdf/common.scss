@@ -46,7 +46,8 @@
 @mixin icon-before($url, $color){
   &:before{
     content: "";
-    @include icon($url, $color)
+    @include icon($url, $color);
+    @content
   }
 }
 
