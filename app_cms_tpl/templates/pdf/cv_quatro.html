@@ -30,6 +30,8 @@
 
     {% to_list 'position' 'company_period' as experience_job_field_order %}
     {% include 'pdf/partial/experience.html' %}
+
+    {% include 'pdf/partial/agreements.html' %}
 </div>
 {% include 'pdf/partial/agreements.html' %}
 {% endblock %}
