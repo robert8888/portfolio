@@ -11,7 +11,7 @@
 }
 
 :root{
-  font-size: 14px;
+  font-size: 15px;
 }
 
 body{
@@ -82,6 +82,8 @@ main{
 .personal{
   &__full-name{
     font-size: 3rem;
+    line-height: 3rem;
+    margin: 1rem 0;
     font-weight: 500;
     text-transform: uppercase;
   }
@@ -110,14 +112,15 @@ main{
     &__#{$selector}{
       @include icon-before($icon, var(--color-text));
       &:before{
-        margin-right: .2em;
+        margin-right: .4em;
       }
     }
   }
   &__list-item {
-    padding-left: 1.35rem;
-    text-indent: -1.35rem;
-    margin: .3rem 0;
+    padding-left: 1.30rem;
+    text-indent: -1.30rem;
+    margin: .5rem 0;
+    font-size: .9rem;
   }
   &__linkedin{
     white-space: nowrap;
@@ -128,10 +131,10 @@ main{
   &__list{
     list-style: none;
     &-item:not(:last-of-type){
-      margin-bottom: .75rem;
+      margin-bottom: 1.25rem;
     }
     * {
-      margin: 0.25rem 0;
+      margin: 0.35rem 0;
     }
     h3, h6{
       font-size: 1em;
@@ -153,12 +156,15 @@ main{
   ul, ol {
     list-style: none;
     li {
-      margin: 0.3rem 0;
+      margin: 0.4rem 0;
     }
   }
 }
 
 .skills{
+  .language{
+    margin: .5rem 0;
+  }
   .technologies{
     ul, ol {
       list-style: none;
@@ -184,7 +190,7 @@ main{
       padding-left: 1.25rem;
     }
     &-item{
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
   h3{
@@ -192,17 +198,36 @@ main{
   }
   h6 {
     font-size: 1rem;
-    margin: .2em 0;
+    margin: .4em 0;
   }
-  .job_desc{
-    margin-top: .3rem;
+  .job{
+    &__desc{
+      margin-top: .3rem;
+    }
+    &__position{
+      margin-top: 1rem;
+    }
+    &__company::after{
+      content: "|";
+      margin: 0 .5em;
+    }
+    &__period{
+      font-weight: 400;
+      @include time-separator('-')
+    }
   }
-  .job__company::after{
-    content: "|";
-    margin: 0 .5em;
-  }
-  .job__period{
-    font-weight: 400;
-    @include time-separator('-')
+}
+
+.agreements{
+  position: fixed;
+  bottom: .5cm;
+  width: 5cm;
+  p {
+    font-size: .75rem;
+    color: var(--color-text);
+    @include icon-before($info-svg, var(--color-text));
+    &::before{
+      margin-right: .25em;
+    }
   }
 }
