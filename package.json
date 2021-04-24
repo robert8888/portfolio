@@ -16,7 +16,8 @@
     "dev": "run-p compile:assets:w compile:components:w",
     "build": "run-s compile:assets compile:components",
     "install:components": "npm install --prefix ./components_src",
-    "postinstall": "run-s install:components patch-package"
+    "patch": "npx patch-package",
+    "postinstall": "run-s install:components patch"
   },
   "repository": {
     "type": "git",
