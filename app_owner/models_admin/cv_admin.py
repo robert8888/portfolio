@@ -7,7 +7,7 @@ from app_owner.models import (
 
 @admin.register(CV)
 class CV_Admin(admin.ModelAdmin):
-    list_display = ('name', 'template', 'color_profile', 'full_path')
+    list_display = ('name', 'data', 'template', 'color_profile', 'full_path')
     readonly_fields = ('full_path', 'slug')
     fields = ['full_path', 'reset_slug', 'name',  'template', 'color_profile', 'data']
 
