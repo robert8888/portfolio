@@ -42,6 +42,10 @@ export default defineComponent({
      wide:{
        type: Boolean,
        default: false
+     },
+     touchDiffChangeRatio:{
+       type: Number,
+       default: 1/5
      }
   },
 
@@ -156,7 +160,7 @@ export default defineComponent({
       return toRange(index, -this.numberOfHiddenItems, 0)
     },
 
-    setIndex(index){
+    setIndex(index) {
       const min = -this.numberOfHiddenItems;
       const max = 0;
       this.index = toRange(index, min, max);
@@ -173,6 +177,7 @@ export default defineComponent({
 
     setPositionToIndex(index = this.index, animated = true){
       const targetPosition = this.getPositionFromIndex(index)
+      console.log("set position to index", index);
       this.setPosition(targetPosition, animated)
     },
 
@@ -202,6 +207,7 @@ export default defineComponent({
     },
 
     balance(nextIndex){
+      console.log("balianging")
       const _nextIndex = nextIndex || this.balancedIndex(this.index);
       this.setPosition(this.getPositionFromIndex(_nextIndex), false)
       this.index = _nextIndex;
@@ -221,17 +227,25 @@ export default defineComponent({
       const startX = event.clientX || event.touches[0]?.clientX || 0;
 
       let wasDragged = false;
+      let diffX = 0;
       const touchMove = (event) =>{
         const clientX = event.clientX || event.touches[0]?.clientX || 0;
-        const diffX = clientX - startX;
+        diffX = clientX - startX;
         this.setPosition(startPositionX + diffX, false);
-
         wasDragged = true;
       }
 
       const finishMove = () => {
         if(!wasDragged) return;
-        this.index = this.getIndexFromPosition(this.position);
+        const currentIndex = this.getIndexFromPosition(this.position);
+
+        let move = 0;
+        if(Math.abs(diffX) / this.itemWidth > this.touchDiffChangeRatio &&
+           currentIndex === this.index
+        ){
+          move = diffX > 0 ? 1 : -1;
+        }
+        this.index = currentIndex + move;
         this.setPositionToIndex(this.index);
       }
 

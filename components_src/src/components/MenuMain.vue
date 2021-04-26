@@ -6,11 +6,20 @@
             :aria-expanded="expanded"
             aria-label="Menu expand">
     </button>
-    <nav id="mainNavContainer" :class="['navigation__container', {'navigation__container--collapsed': !expanded}]">
+    <nav v-if="!isMobile"  :class="['navigation__container']">
       <ul class="navigation__list" ref="container">
         <slot/>
       </ul>
     </nav>
+    <teleport v-if="isMobile && expanded" to="body">
+      <div class="navigation--main">
+        <nav id="mainNavContainer" :class="['navigation__container', 'navigation__container--mobile']">
+          <ul class="navigation__list" ref="container">
+            <slot/>
+          </ul>
+        </nav>
+      </div>
+    </teleport>
   </main>
 </template>
 
@@ -19,8 +28,20 @@ import {computed, defineComponent} from 'vue';
 import {useStore, MUTATIONS} from "@/store";
 import scrollDisableMixin from "./../mixins/scrollDisable";
 
+interface ComponentState{
+  matchMobile: MediaQueryList | null;
+  isMobile: boolean;
+}
+
 export default defineComponent({
   mixins: [scrollDisableMixin],
+
+  data(): ComponentState{
+    return {
+      matchMobile: null,
+      isMobile: false,
+    }
+  },
 
   setup(){
     const store = useStore();
@@ -30,18 +51,34 @@ export default defineComponent({
     }
   },
 
-  mounted() {
-    const localLinks = (this.$refs.container as HTMLElement).querySelectorAll('a[href*="#"]');
-    for(const link of localLinks){
-      link.addEventListener('click', () =>{
-        this.toggle();
-      })
+  mounted(){
+    this.matchMobile = window.matchMedia('(max-width: 1280px)')
+    this.matchMobile.addEventListener('change', this.mobileMatchChange)
+    this.isMobile = this.matchMobile.matches;
+  },
+
+  unmounted() {
+    this.matchMobile?.removeEventListener('change', this.mobileMatchChange)
+  },
+
+
+  methods:{
+    mobileMatchChange(event: {matches: boolean}){
+      this.isMobile = event.matches;
+    },
+    handleLocalLinksClicks(){
+      const localLinks = (this.$refs.container as HTMLElement).querySelectorAll('a[href*="#"]');
+      for(const link of localLinks){
+        link.addEventListener('click', () =>{
+          this.toggle();
+        })
+      }
     }
   },
 
   watch: {
     expanded: function(){
-      this.expanded && window.matchMedia('(max-width: 1280px)').matches
+      this.expanded && this.isMobile
           ? this.scrollDisable() : this.scrollEnable();
     }
   }

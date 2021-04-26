@@ -60,6 +60,19 @@
       }
     }
   }
+
+  @include media-vertical('smd'){
+    .card-project{
+      min-height: 470px;
+    }
+    .card-project__text{
+      min-height: unset;
+      -webkit-line-clamp: 4;
+    }
+    .card-project__tech-list{
+      display: none;
+    }
+  }
 }
 
 @include media("xl"){

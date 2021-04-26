@@ -80,6 +80,8 @@
     }
   }
 
+
+
   .card-project{
     max-width: min(100%, 300px);
     min-height: 585px;
@@ -97,5 +99,45 @@
         transform:  scale(1);
       }
     };
+
+
+    //low screen height
+    @include media('lg'){
+      @include media-vertical('smd'){
+        min-height: 520px;
+        header{
+          height: 30px;
+        }
+        &__subtitle{
+          font-size: 1rem;
+
+          height: 2.5rem;
+          display: flex;
+          align-items: center;
+        }
+        &__text{
+          font-size: 0.75rem;
+        }
+        &__tech-list{
+          height: 60px;
+          &-item{
+            height: 25.5px;
+            margin: 3px 3px 3px 0;
+            padding: 0 5px;
+            font-size: 0.75rem;
+          }
+        }
+        &__link--more{
+          font-size: .75rem;
+        }
+        &,
+        &__content,
+        &__container{
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+      }
+    }
   }
 }

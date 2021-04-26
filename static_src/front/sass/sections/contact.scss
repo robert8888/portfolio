@@ -39,6 +39,7 @@
     &__btn--send{
       margin-left: auto;
       margin-top: 20px;
+      margin-right: 0;
       opacity: 0;
     }
 
@@ -105,7 +106,6 @@
     }
     &__link{
       position: relative;
-      display: inline-block;
       width: 60px;
       height: 60px;
       display: flex;
@@ -166,10 +166,7 @@
       }
       &__message{
         margin-top: 0;
-        margin-left: 1em;
-      }
-      &__btn{
-        margin-right: auto;
+        margin-left: 0;
       }
     }
 
@@ -206,6 +203,28 @@
     &-resume__container{
       justify-content: flex-end;
     }
+
+    @include media-vertical('smd'){
+      .contact__container>div{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      h3{
+        margin-bottom: 1rem;
+      }
+      label.floating{
+        margin: 0;
+        &:last-of-type{
+          margin-bottom: 0;
+        }
+      }
+      .contact__info__text{
+        &:first-of-type{
+          margin-top: 0;
+        }
+      }
+    }
   }
 
   @include media("lg"){
@@ -220,6 +239,20 @@
       }
     }
   }
+
+  @include media("xl"){
+    &__info{
+      &__container{
+        margin-top: 0;
+      }
+      &__text{
+        &:first-of-type{
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+
 
   //--- animations portal logos
   @include media("xxl", min, 50px){
@@ -299,14 +332,6 @@
   }
 }
 
-
-//@mixin button($url-svg){
-//  @extend .icon-button;
-//  @include svg-pseudo($url-svg, var(--color-text-primary),var(--color-pallet-secondary));
-//  @include pseudo-content(){ bottom: 2.5rem;}
-//}
-
-
 .contact-number{
   &__modal{
     width: 320px;
@@ -341,45 +366,3 @@
     }
   }
 }
-
-//.pdf-downloader{
-//  display: flex;
-//  justify-content: center;
-//  align-items: center;
-//  padding: 2rem;
-//  &__button-wrapper{
-//    display: grid;
-//    grid-template-rows: 1fr;
-//    grid-template-columns: 1fr 1fr;
-//    grid-gap: 2rem;
-//    place-items: center;
-//  }
-//  .btn{
-//    @include button($book-open-svg);
-//    &--download:after{
-//      mask-image: $file-download;
-//    }
-//  }
-//
-//  &__btn-configurator{
-//    &:before{
-//      content: " ";
-//      display: inline-block;
-//    }
-//    @include pseudo(){
-//      background: var(--color-pallet-primary);
-//      mask-image: $gear-svg;
-//      mask-size: contain;
-//      mask-repeat: no-repeat;
-//      mask-position: center;
-//      top: .2em;
-//      right: .2em;
-//      left: .2em;
-//      bottom: .2em;
-//    }
-//    @include hover-pseudo(){
-//      background: var(--color-pallet-secondary);
-//    }
-//  }
-//}
-
