@@ -33,7 +33,7 @@
                                     <template #colors>
                                         {% for profile in cv_color_profiles %}
                                         <cv-configurator-color name="{{profile.id_name}}"
-                                                               {% if foorloop.counter == 1 %}
+                                                               {% if forloop.counter == 1 %}
                                                                :default="true"
                                                                {% endif %}
                                                                profile-id="{{profile.id}}"

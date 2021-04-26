@@ -35,6 +35,7 @@ export default defineComponent({
     },
     default: {
       type: Boolean,
+      default: false,
     }
   },
 
@@ -48,8 +49,9 @@ export default defineComponent({
         colors: props.colors
       })
     }
+
     if(props.default){
-      store.commit(ACTIONS.SET_CV_INIT_COLOR_PROFILE, {
+      store.dispatch(ACTIONS.SET_CV_INIT_COLOR_PROFILE, {
         id: props.profileId,
         colors: props.colors
       })
