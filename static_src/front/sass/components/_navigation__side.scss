@@ -7,6 +7,8 @@
   $self: &;
   &__wrapper--aside{
     position: absolute;
+    min-width: 70vw;
+    min-height: 40px;
   }
 
   &__list {
@@ -184,6 +186,9 @@
 
   @include media("xl"){
     $self: &;
+    &__wrapper--aside{
+      min-width: unset;
+    }
     &--aside{
       position: fixed;
       top: 0;

@@ -85,6 +85,8 @@
   .card-project{
     max-width: min(100%, 300px);
     min-height: 600px;
+    min-width: 260px;
+    width: unset;
     transition: transform .2s;
     will-change: opacity;
     -webkit-font-smoothing: subpixel-antialiased;

@@ -20,8 +20,6 @@ const resizeObserveDirective = {
         })
         observer.observe(el);
 
-        update(el.getBoundingClientRect());
-
         observers.set(id, observer);
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

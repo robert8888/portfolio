@@ -23,8 +23,9 @@ export default defineComponent({
     class: {
       type: String
     },
-    defaultCurrent:{
+    default:{
       type: Boolean,
+      default: false,
     },
     index:{
       type: Number,
@@ -48,7 +49,10 @@ export default defineComponent({
       return `navigation__item navigation__list-item` + (this.isCurrent ? ' navigation__list-item--current' : '')
     },
     isCurrent(): boolean{
-       return this.internalIndex === this.currentIntersected
+       return (
+           (this.internalIndex === this.currentIntersected )||
+           (this.currentIntersected === -1  && this.default)
+       )
     }
   },
 
