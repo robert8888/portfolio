@@ -1,0 +1,38 @@
+
+body {
+    background: var(--color-bg-primary);
+}
+  
+
+#header{
+    height: 40px;
+    background: var(--color-pallet-9);
+    color: #000;
+    box-shadow: 
+        0 7px 2px -7px #0008 inset, 
+        0 -7px 2px -7px #0008 inset;
+}
+
+#branding {
+    h1{
+        & a:link, & a:visited{
+        color: var(--color-text);
+        font-weight: 800;
+        }   
+    }
+}
+
+#user-tools{
+    color: white;
+    strong{
+        margin-right: 10px;
+
+    }
+    a:hover{
+        color: var(--color-text-secondary);
+    }
+}
+
+div.breadcrumbs{
+    background-color: var(--color-pallet-7);
+}

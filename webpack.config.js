@@ -13,9 +13,9 @@ const tsEntries = [
 
 const sassEntries = [
     //backend
-    "admin/css/admin.scss",
-    'admin/css/login.scss',
-    'admin/css/ckeditor-content.scss',
+    "admin/sass/admin.scss",
+    'admin/sass/login.scss',
+    'admin/sass/ckeditor-content.scss',
 
     'ckeditor/ckeditor/skins/prestige/editor.scss',
     'ckeditor/ckeditor/skins/prestige/editor_gecko.scss',
@@ -93,9 +93,11 @@ module.exports = [
     resolve: {
         alias: {
             "@": path.resolve(__dirname),
-            "@common": path.resolve(__dirname, "static_src", "common_css"),
-            "@front": path.resolve(__dirname, "static_src", "front", "css"),
+            // "@common": path.resolve(__dirname, "static_src", "common_css"),
+            // "@front": path.resolve(__dirname, "static_src", "front", "css"),
             "@sass": path.resolve(__dirname, "static_src", "front", "sass"),
+            "@sass_admin": path.resolve(__dirname, "static_src", "admin", "sass"),
+
         }
     },
     module: {

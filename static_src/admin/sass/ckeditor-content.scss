@@ -1,5 +1,5 @@
-@import "./../../common_css/mixins/mixins-admin.scss";
-@import "./../../common_css/colors.scss";
+@import "@sass_admin/abstracts/mixins";
+@import "@sass_admin/abstracts/colors";
 
 body{
   background: var(--color-bg-secondary);

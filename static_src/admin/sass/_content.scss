@@ -1,0 +1,49 @@
+.content{
+    
+    h1, h2, h3, h4, h5, h6, p , span, div, ul li, ol{
+        color: var(--color-text);
+    }
+
+    .object-tools{
+        a {
+            background: var(--color-pallet-5);
+        }
+    }
+
+    #change-history{
+        thead tr,
+        thead th {
+            background: var(--color-pallet-8);
+            color: var(--color-text);
+            border-color: var(--color-separator);
+        }
+    }
+}
+.content{
+    ul.messagelist{
+        li{
+            background: var(--color-pallet-1);
+            color: var(--color-text);
+            position: relative;
+            &.success{
+                &::before{
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 62.5px;
+                    background-image: url("./../../img/check.svg");
+                    background-size: 20px 20px;
+                    background-position: 40px;
+                    background-repeat: no-repeat;
+                    filter: invert(100%) brightness(0.9);
+                }
+            }
+            &.error{
+                background: var(--color-pallet-warning);
+            }
+        }
+    }
+}
