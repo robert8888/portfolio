@@ -1,8 +1,8 @@
 {% load l10n %}
 {% localize off %}
 {% if is_sprite %}
-<img style=" --x: {{ left }}px;--y: {{ top }}px; --w: {{ width }}px;--h: {{ height }}px;--url: url({{ url|safe }})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+<img style=" --x: {{ left }}px;--y: {{ top }}px; --w: {{ width }}px;--h: {{ height }}px;--url: url({{ url|safe }})" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" loading="lazy" alt="{{alt|default:'icon'}}">
 {% else %}
-<img alt="{{contact.name|slugify}}" width="img.width" height="{{img.height}}" src="{{img.image.source.url}}"/>
+<img alt="{{alt|default:'icon'}}" width="img.width" height="{{img.height}}" loading="lazy" src="{{img.image.source.url}}"/>
 {% endif %}
 {% endlocalize %}

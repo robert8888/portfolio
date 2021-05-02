@@ -14,8 +14,8 @@
         </node-cloner>
     </div>
     <div class="slider__controls">
-      <button @click="next" class="slider__controls__btn slider__controls__btn--next"/>
-      <button @click="prev" class="slider__controls__btn slider__controls__btn--prev"/>
+      <button @click="next" class="slider__controls__btn slider__controls__btn--next" aria-label="next"/>
+      <button @click="prev" class="slider__controls__btn slider__controls__btn--prev" aria-label="previous"/>
     </div>
 
   </div>

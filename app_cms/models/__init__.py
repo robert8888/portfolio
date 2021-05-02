@@ -1,5 +1,6 @@
 from .page import *
 from .page_sections import *
+from .page_meta import *
 from .path import *
 from .menu import *
 from .menu_item import *

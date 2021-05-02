@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /rosetta/
+Disallow: /_nested_admin/
+Disallow: /ckeditor/

@@ -1,12 +1,16 @@
 {% extends "base_page.html" %}
 {% load compress static %}
 
+{% block meta %}
+    {% include 'partial/meta.html' %}
+{% endblock %}
+
 {% block head %}
     {{ block.super }}
-    {% compress css %}
+    {% compress css inline %}
         {% include 'partial/style.html' with style_url='front/css/pages/common.css' %}
     {% endcompress %}
-    {% compress css %}
+    {% compress css inline %}
         {% block pagestyle %}{% endblock %}
         {% for section in sections %}
             {% include 'partial/style.html' with style_url=section.style %}

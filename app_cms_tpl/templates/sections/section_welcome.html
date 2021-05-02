@@ -22,7 +22,10 @@
                                     </defs>
                                 </svg>
                                 <div id="logoContainer" class="logo__img-container">
-                                    <img class="logo__img" src="{% static_webp 'img/code.png' %}" alt="Code">
+                                    <img class="logo__img"
+                                         srcset="{% static_webp 'img/code.png' %} 600w"
+                                         sizes="600px"
+                                         src="{% static_webp 'img/code.png' %}" alt="Code">
                                 </div>
                             </div>
                         </div>

@@ -21,6 +21,7 @@ class Page(models.Model):
         choices = getTemplatesChoices('page')
     )
 
+
     section = models.ManyToManyField(
         'Section',
         verbose_name = 'Page sections',

@@ -48,7 +48,7 @@
       grid-area: content;
       width: var(--w);
       height: var(--h);
-      background-image: var(--url);
+      //background-image: var(--url);
       background-position: var(--x) var(--y);
       background-repeat: no-repeat;
       filter: grayscale(1);
@@ -82,7 +82,15 @@
       }
     }
   }
+
+
+
   &[data-was-intersected] {
+     #{$self} > img {
+       @debug &;
+       background-image: var(--url);
+     }
+
     #{$self}{
       @include show-in-animation(0s, 2s);
       @for $i from 1 through 30 {

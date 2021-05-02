@@ -19,7 +19,7 @@ import os
 
 
 
-def buildSelectPathQuery(path):
+def build_select_path_query(path):
     return f"""
     SELECT
     app_cms_path.page_id as "page_id",
@@ -30,7 +30,7 @@ def buildSelectPathQuery(path):
     WHERE ( '{path}' ~ app_cms_path_translation.pattern)
     """
 
-def buildSelectPageQuery(page_id):
+def build_select_page_query(page_id):
     return f"""
     SELECT
     name,
@@ -39,7 +39,7 @@ def buildSelectPageQuery(page_id):
     WHERE id = {page_id}
     """
 
-def buildSelectPageMenusQuery(page_id, lang):
+def build_select_page_menus_query(page_id, lang):
     return f"""
     SELECT
     "app_cms_menu"."id" as "id",
@@ -56,7 +56,7 @@ def buildSelectPageMenusQuery(page_id, lang):
     AND "app_cms_menuitem_translation"."language_code" = '{lang}'
     """
 
-def buildSelectSectionQuery(page_id):
+def build_select_section_query(page_id):
     return f"""
     SELECT
     "app_cms_section"."id" as "id",
@@ -69,7 +69,7 @@ def buildSelectSectionQuery(page_id):
       ORDER BY "app_cms_pagesections"."order"
     """
 
-def buildSelectSectionPropQuery(section_ids, lang):
+def build_select_section_prop_query(section_ids, lang):
     return f'''
     SELECT
     "app_cms_property"."section_id" as "id",
@@ -94,6 +94,17 @@ def buildSelectSectionPropQuery(section_ids, lang):
        OR "app_cms_propertytext_translation"."language_code" = '{lang}'
    '''
 
+def build_select_page_meta_query(page_id, lang):
+    return f'''
+    SELECT
+    app_cms_page_meta_translation.title as "title",
+    app_cms_page_meta_translation.meta_title as "meta_title",
+    app_cms_page_meta_translation.meta_description as "meta_description"
+    FROM app_cms_page_meta 
+    LEFT JOIN app_cms_page_meta_translation ON app_cms_page_meta_translation.master_id = app_cms_page_meta.id
+    WHERE app_cms_page_meta.page_id = {page_id} AND app_cms_page_meta_translation.language_code = '{lang}'
+    '''
+
 class PageView(View):
 
     @minified_response
@@ -108,7 +119,7 @@ class PageView(View):
             if re.match('.*\.\w{,5}$', path): #file
                 return HttpResponse(status=404)
 
-            route = self.processPath(sqlescape(path), request)
+            route = self.process_path(sqlescape(path), request)
 
             if route.get('redirect'):
                 return HttpResponseRedirect(route.get('redirect'))
@@ -119,24 +130,25 @@ class PageView(View):
             page_id = route.get('page_id')
             pattern = route.get('pattern')
 
-            page_name, page_template = self.getPageRaw(page_id)
+            page_name, page_template = self.get_page_raw(page_id)
 
-            params = self.getGroups(pattern, path)
-            sections = self.getPageSectionsRaw(page_id)
+            params = self.get_groups(pattern, path)
+            sections = self.get_page_sections_raw(page_id)
 
-            views = self.importViews(sections)
+            views = self.import_views(sections)
 
             views_context = {
                 'page_id': page_id
             }
 
-            views_data = self.processViews(request, views, views_context,  params)
+            views_data = self.process_views(request, views, views_context, params)
 
             context = {
                 **context,
                 **views_data,
                 'sections': sections['view_data'],
-                'menus': self.getMenusRaw(page_id)
+                'menus': self.get_menus_raw(page_id),
+                'meta': self.get_page_meta(page_id)
             }
 
             if context.get('redirect'):
@@ -148,35 +160,39 @@ class PageView(View):
         except (Page.DoesNotExist, IndexError, LookupError):
             return  render(request, 'page_404.html', context = {})
 
-    def getGroups(self, regex, str):
+    @staticmethod
+    def get_groups(regex, str):
         match = re.match(regex, str)
         if match and len(match.groups()):
             return match.groups()
         return []
 
-    def importViews(self, sections):
+    def import_views(self, sections):
         views = ViewModel.objects.filter(section__id__in = sections['section_ids'])
         views = [ {
-            "module": self.importModule(view.module_name),
+            "module": self.import_module(view.module_name),
             "config": view.config
         } for view in views]
         return views
 
-    def importModule(self, module_name):
+    @staticmethod
+    def import_module(module_name):
         module_name = re.sub('\.py', '', module_name)
         return importlib.import_module(module_name)
 
-    def processViews(self, request, views, context, params):
+    @staticmethod
+    def process_views(request, views, context, params):
         context_data = {**context}
         for view in views:
             context_data = view['module'].process(request, view['config'], context_data, params)
         return context_data
 
-    def processPath(self, path, request):
+    @staticmethod
+    def process_path(path, request):
         default_language = settings.PARLER_DEFAULT_LANGUAGE_CODE
         prefix_default = settings.PREFIX_DEFAULT_LANGUAGE
 
-        query = buildSelectPathQuery(path)
+        query = build_select_path_query(path)
         data, success, *_ = execute_query(query)
 
         path_item = py_.find(data, lambda item: item['lang'] == get_language())
@@ -206,14 +222,15 @@ class PageView(View):
             'pattern': path_item.get('pattern')
         }
 
-
-    def getPageRaw(self, page_id):
-        query = buildSelectPageQuery(page_id)
+    @staticmethod
+    def get_page_raw(page_id):
+        query = build_select_page_query(page_id)
         page, success, *_ = execute_query(query)
         return [page[0].get('name'), page[0].get('template')] if success else []
 
-    def getMenusRaw(self, page_id):
-        query = buildSelectPageMenusQuery(page_id, get_language())
+    @staticmethod
+    def get_menus_raw(page_id):
+        query = build_select_page_menus_query(page_id, get_language())
         data, success, *_ = execute_query(query)
         menus = {}
         for row in data:
@@ -229,10 +246,11 @@ class PageView(View):
             })
         return menus.values()
 
-    def getPageSectionsRaw(self, page_id):
-        sections = self.getSectionsRaw(page_id)
+
+    def get_page_sections_raw(self, page_id):
+        sections = self.get_sections_raw(page_id)
         section_ids = [section.get("id") for section in sections]
-        props = self.getSectionPropsRaw(section_ids)
+        props = self.get_section_props_raw(section_ids)
 
         sections_view_data = [{
             'template': section.get("template"),
@@ -245,17 +263,25 @@ class PageView(View):
             'section_ids': section_ids,
         }
 
-    def getSectionsRaw(self, page_id):
-        query = buildSelectSectionQuery(page_id)
+    @staticmethod
+    def get_sections_raw(page_id):
+        query = build_select_section_query(page_id)
         data, success, *_ = execute_query(query)
         return data
 
-    def getSectionPropsRaw(self, ids):
+    @staticmethod
+    def get_section_props_raw(ids):
         section_ids = '(' + ','.join([str(id) for id in ids]) + ')'
-        query = buildSelectSectionPropQuery(section_ids, get_language())
+        query = build_select_section_prop_query(section_ids, get_language())
         data, success, *_ = execute_query(query)
         props = {}
         for prop in data:
             props.setdefault(prop['id'], {})[prop['name']] = prop['value']
 
         return props
+
+    @staticmethod
+    def get_page_meta(page_id):
+        query = build_select_page_meta_query(page_id, get_language())
+        data, success, *_ = execute_query(query)
+        return data[0] if success else {}

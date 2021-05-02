@@ -8,10 +8,12 @@
          <button class="gallery__controls__btn"
                  @mouseup="prev"
                  :disabled="prevDisabled"
+                 aria-label="previous"
                  tabindex="-1"/>
          <button class="gallery__controls__btn"
                  @mouseup="next"
                  :disabled="nextDisabled"
+                 aria-label="next"
                  tabindex="-1"/>
        </div>
      </div>

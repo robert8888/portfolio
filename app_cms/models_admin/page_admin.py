@@ -13,6 +13,7 @@ from parler.admin import (
 
 from ..models import (
     Page,
+    PageMeta,
     Path,
     View,
     Section,
@@ -27,6 +28,9 @@ from nested_admin import (
     NestedPolymorphicInlineSupportMixin,
     NestedStackedPolymorphicInline
 )
+
+class PageMetaInline(TranslatableStackedInline, NestedStackedInline):
+    model = PageMeta
 
 class PathsInline(TranslatableStackedInline, NestedStackedInline):
     extra = 0
@@ -44,8 +48,8 @@ class PageAdmin(FieldsetsInlineMixin, NestedModelAdmin):
     filter_horizontal = ['menu']
     fieldsets_with_inlines = [
          (None, { 'fields': ['name', 'template']}),
+         PageMetaInline,
          PathsInline,
          (None, { 'fields': ['menu']}),
          SectionInline,
-
     ]
