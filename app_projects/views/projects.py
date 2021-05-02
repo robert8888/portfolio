@@ -9,6 +9,13 @@ import pydash as py_
 import re
 
 ordering = [{
+    "column": "app_projects_project.sort_weight",
+    "type": "ASC",
+    "value": "weight",
+    "text": gettext_lazy("Default"),
+    "textType": "-",
+    "default": True
+},{
     "column": "app_projects_project.release_date",
     "type": "ASC",
     "value": "data_asc",
@@ -46,7 +53,7 @@ ordering = [{
     "textType": "Z-A"
 }]
 
-def buildGetProjectsQuery(lang, filter, order, project_page_path):
+def build_get_projects_query(lang, filter, order, project_page_path):
     return f"""
     SELECT
     app_projects_project.id as "id",
@@ -68,7 +75,7 @@ def buildGetProjectsQuery(lang, filter, order, project_page_path):
     {order}
     """
 
-def buildSearchProductsQuery(lang, input, filter, project_page_path):
+def build_search_products_query(lang, input, filter, project_page_path):
     search_phrase = re.sub('([^\w\s]|((?<=[\s])\d+))', '', sqlescape(input))
     words = [word.strip() for word in search_phrase.split(' ') if not word == ""]
     ts_query_phrase = ' <-> '.join(words)
@@ -139,7 +146,7 @@ def build_get_projects_technologies_query(projects_ids_list):
     FROM app_projects_project_technology
     LEFT JOIN app_projects_technology ON app_projects_project_technology.technology_id = app_projects_technology.id
     WHERE app_projects_project_technology.project_id IN ({ids})
-    ORDER BY app_projects_technology.show_on_index, app_projects_technology.show_on_index_all ASC
+    ORDER BY sort_value ASC, app_projects_technology.show_on_index, app_projects_technology.show_on_index_all ASC
     """
 
 def group_by(item_list, prop, force_list = False):
@@ -166,8 +173,10 @@ def get(request, params, doSerialization = False):
     on_index_param = params.get('on_index', False)
 
     def order():
-        if not order_param: return ''
-        order_conf = py_.find(ordering, {'value': order_param})
+        if not order_param:
+            order_conf = py_.find(ordering, {'default': True})
+        else:
+            order_conf = py_.find(ordering, {'value': order_param})
         if not order_conf: return ''
         return f"ORDER BY {order_conf.get('column')} {order_conf.get('type')}"
 
@@ -185,9 +194,9 @@ def get(request, params, doSerialization = False):
         try:
             project_page_path = revers_page_path(page_name = 'Project').split('/')[0]
             if input:
-                query = buildSearchProductsQuery(lang, input, filter(), project_page_path)
+                query = build_search_products_query(lang, input, filter(), project_page_path)
             else:
-                query = buildGetProjectsQuery(lang, filter(), order(), project_page_path)
+                query = build_get_projects_query(lang, filter(), order(), project_page_path)
             query_results = execute_queries([query])
             projects_list = query_results['resultEach'][0]['data']
             return group_by(projects_list, 'id')
@@ -203,17 +212,22 @@ def get(request, params, doSerialization = False):
 
     def getProjectsTechnologies(projects):
         projects_ids_list = list(projects.keys())
+
         query = build_get_projects_technologies_query(projects_ids_list)
         query_results = execute_queries([query])
+
         if not query_results['successAll']: return {}
+
         technology_list = query_results['resultEach'][0]['data']
         technologies = group_by(technology_list, 'project_id', force_list = True)
+
         for project_id, technology_list in technologies.items():
             highlightedTechnology = getHighlightedTechnologyList(projects.get(project_id))
             for technology in technology_list:
                 isHighlighted = technology['name'] in highlightedTechnology
                 technology['isHighlighted'] =  isHighlighted
             technology_list.sort(key = lambda technology: not technology['isHighlighted'])
+
         return technologies
 
 
@@ -229,6 +243,8 @@ def get(request, params, doSerialization = False):
                 gallery.append(image)
             galleries[image.gallery_id] = gallery
         return galleries
+
+
 
     try:
         projects = getProjects(search_param)

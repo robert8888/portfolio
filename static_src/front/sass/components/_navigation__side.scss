@@ -217,14 +217,25 @@
       }
 
       #{$self}__list-item {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 0;
         width: 100%;
 
         &:not(&--current) {
-          display: block;
+          display: flex;
           & #{$self}__item__content {
             display: none;
+          }
+        }
+        a {
+          &:focus,
+          &:active:focus{
+            outline: none;
+            &, & > * {
+              color: var(--color-text-primary)
+            }
           }
         }
 

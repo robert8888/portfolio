@@ -405,8 +405,13 @@ form select {
     )
 }
 
+
+ul.sortedm2m-items.sortedm2m.ui-sortable{
+    padding-left: 1rem;
+}
 ul.ui-sortable,
 ul.sortedm2m-items{
+    padding-left: 1rem;
     @include scroll(
         transparent,
         var(--color-pallet-4),

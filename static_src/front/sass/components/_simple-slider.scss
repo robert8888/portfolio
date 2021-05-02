@@ -24,6 +24,7 @@
     transition: transform .5s ease 0s;
     will-change: transform;
     padding-bottom: 5px;
+    padding-top: 2px;
     & > * {
       width: var(--slide-width);
     }
@@ -47,6 +48,10 @@
       border: none;
       &:disabled{
         cursor: not-allowed;
+      }
+      &:focus{
+        outline: 1px solid var(--color-pallet-primary);
+        outline-offset: .3em;
       }
       @include pseudo('before'){
         top: -1rem;

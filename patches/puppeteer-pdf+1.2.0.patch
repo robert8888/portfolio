@@ -1,0 +1,32 @@
+diff --git a/node_modules/puppeteer-pdf/puppeteer-pdf.js b/node_modules/puppeteer-pdf/puppeteer-pdf.js
+index 68e0d30..1299f3c 100644
+--- a/node_modules/puppeteer-pdf/puppeteer-pdf.js
++++ b/node_modules/puppeteer-pdf/puppeteer-pdf.js
+@@ -103,19 +103,25 @@ cli
+     }
+   });
+ 
+-  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
++  const browser = await puppeteer.launch({ args: ["--no-sandbox" , "--enable-font-antialiasing", "--font-render-hinting=medium"] });
+   const page = await browser.newPage();
+ 
++
+   // Get URL / file path from first argument
+   const location = _.first(cli.args);
+-  await page.goto(isUrl(location) ? location : fileUrl(location), {
++  await page.goto('data:text/html,charset=UTF-8,' + isUrl(location) ? location : fileUrl(location), {
+     waitUntil: _.get(options, "waitUntil", "networkidle2")
+   });
++
+   // Output options if in debug mode
+   if (cli.debug) {
+     console.log(options);
+   }
++  await page.evaluateHandle('document.fonts.ready');
+   await page.pdf(options);
+ 
++  if (browser && browser.process() != null) {
++    browser.process().kill('SIGINT');
++  }
+   await browser.close();
+ })();

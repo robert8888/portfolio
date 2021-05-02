@@ -1,6 +1,9 @@
 <template>
   <div :class="['cv-configurator__tpl', {'cv-configurator__tpl--current': templateId === currentId}]"
-       @click="setAsCurrent">
+       @touchstart.passive="setAsCurrent"
+       @click="setAsCurrent"
+       @focus.prevent="setAsCurrent" 
+       tabindex="0">
     <div class="cv-configurator__tpl-wrapper">
       <slot/>
       <h5>{{name}}</h5>
@@ -36,6 +39,7 @@ export default defineComponent({
       setAsCurrent,
     }
   },
+
 
 })
 </script>

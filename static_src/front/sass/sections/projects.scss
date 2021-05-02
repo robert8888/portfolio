@@ -84,10 +84,10 @@
 
   .card-project{
     max-width: min(100%, 300px);
-    min-height: 585px;
-
+    min-height: 600px;
     transition: transform .2s;
-    will-change: transform, opacity;
+    will-change: opacity;
+    -webkit-font-smoothing: subpixel-antialiased;
     &:hover{
       transform: scale(1.05);
     }
@@ -100,7 +100,24 @@
       }
     };
 
-
+    &,
+    &__content,
+    &__container{
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    &__subtitle{
+      height: 3.5rem;
+    }
+    &__tech-list-item{
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      &:hover{
+        border-color: var(--color);
+      }
+    }
     //low screen height
     @include media('lg'){
       @include media-vertical('smd'){

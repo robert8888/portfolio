@@ -22,13 +22,13 @@
                             </main>
                             <aside class="l-col-xs-12 l-col-lg-4 project__meta">
                                 <div class="list__container">
-                                    <h4 class="list__title">Srouces</h4>
+                                    <h4 class="list__title">{% translate 'Sources' %}</h4>
                                     <dl class="list list--details">
                                         {% for link in project.links %}
                                             <dt class="list__term">{{link.get_type_display}}</dt>
                                             {% for url in link.url %}
                                             <dd class="list__description">
-                                                <a class="list__link" href="https://stackoverflow.com/questions/" target="_blank">
+                                                <a class="list__link" href="{{url}}" target="_blank">
                                                     {{url}}
                                                 </a>
                                             </dd>

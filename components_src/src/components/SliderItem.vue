@@ -1,14 +1,17 @@
 <template>
   <li class="slider__item"
+      ref="container"
       v-size="updateSize"
       :data-index="index"
+      :aria-hidden="!isVisible ? true : null"
+      :tabindex="!isVisible ? -1 : null"
       :style="{margin: '5px ' + itemMargin + 'px' }">
     <slot/>
   </li>
 </template>
 
 <script lang="ts">
-import {defineComponent, inject} from 'vue';
+import {defineComponent, inject, computed} from 'vue';
 
 export default defineComponent({
   props:{
@@ -24,21 +27,54 @@ export default defineComponent({
     }
   },
 
-  setup(){
+  setup(props){
     const itemMargin = inject('itemMargin') as number;
     const sizeChange = inject('itemSizeChange') as (rect: DOMRect) => void;
-    return {itemMargin, sizeChange}
+    const visibleIndexes = inject("visibleItems") as number[];
+ 
+    return {itemMargin, sizeChange, visibleIndexes}
+  },
+
+  mounted(){
+    if(!this.isVisible)
+        this.removeFromTabindex();
   },
 
   methods:{
     updateSize(rect: DOMRect){
       this.size = rect;
     },
+    getFocusableChildes(): NodeListOf<HTMLElement>{
+      return (this.$refs.container as HTMLElement)?.querySelectorAll('a, button, input') || []
+    },
+    removeFromTabindex(){
+      for(let element of this.getFocusableChildes()){
+          element.setAttribute('tabindex', "-1");
+      }
+    },
+    restoreTabIndex(){
+      for(let element of this.getFocusableChildes()){
+        element.removeAttribute('tabindex');
+      }
+    }
+  },
+
+  computed:{
+    isVisible(): boolean{
+      return this.visibleIndexes.includes(this.index) || false;
+    }
   },
 
   watch: {
     size(){
       this.sizeChange(this.size)
+    },
+    isVisible(visible: boolean){
+      if(visible){
+        this.restoreTabIndex();
+      } else {
+        this.removeFromTabindex();
+      }
     }
   },
 

@@ -5,6 +5,7 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from fieldsets_with_inlines import FieldsetsInlineMixin
 from django_better_admin_arrayfield.admin.mixins import DynamicArrayMixin
 from parler.admin import TranslatableModelForm, TranslatableAdmin
+from adminsortable2.admin import SortableAdminMixin
 from .actions import (
     addProjectAutocomplete,
     deleteProjectAutocomplete,
@@ -25,9 +26,10 @@ class ProjectLinksInline(DynamicArrayMixin, admin.StackedInline):
     model = ProjectLink
 
 @admin.register(Project)
-class ProjectAdmin(DynamicArrayMixin, TranslatableAdmin):
+class ProjectAdmin(DynamicArrayMixin,SortableAdminMixin, TranslatableAdmin):
+    list_display = ('name', 'type', 'repo_link', )
     form = ProjectForm
-    filter_horizontal = ['technology', 'related']
+    filter_horizontal = ['related']
     inlines = [ProjectLinksInline]
     fieldsets = (
         (None, {

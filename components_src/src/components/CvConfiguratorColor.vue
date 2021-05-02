@@ -1,6 +1,9 @@
 <template>
   <div :class="['color-profile', {'color-profile--current': profileId === currentId}]"
-       @click="setAsCurrent">
+       @touchstart.passive="activation"
+       @click="activation"
+       @focus="setAsCurrent" 
+       tabindex="0">
     <div class="color-profile__wrapper">
       <ul class="color-profile__color-pair">
         <li v-for="colorPair in colorsToDisplay" :key="colorPair.join('-')">
@@ -59,6 +62,13 @@ export default defineComponent({
     return {
       currentId,
       setAsCurrent,
+    }
+  },
+
+  methods:{
+    activation(event: Event){
+        this.setAsCurrent();
+        (event.target as HTMLElement).focus();
     }
   },
 

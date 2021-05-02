@@ -55,13 +55,14 @@ export default defineComponent({
       numberOfItems: 0,
       numberOfInitialItems: 0,
       numberOfVisibleItems: 0,
+      visibleItemsIndexes: [],
       itemWidth: 0,
       itemMargin: 0,
       position: 0,
       correction: 0,
       index: 0,
       times: 3,
-
+      
       lastExpandedCardIndex: null,
     }
   },
@@ -70,7 +71,8 @@ export default defineComponent({
   provide(){
     return{
       itemMargin: computed(() => this.itemMargin),
-      itemSizeChange: () => {/*no empty*/}
+      itemSizeChange: () => {/*no empty*/},
+      visibleItems: computed(() => this.visibleItemsIndexes)
     }
   },
 
@@ -145,6 +147,11 @@ export default defineComponent({
       );
     },
 
+    updateVisibleIndexes(){
+        const visible = new Array(this.numberOfVisibleItems).fill(0).map((_,i) => -this.index - this.numberOfInitialItems + i)
+        this.visibleItemsIndexes = visible;
+    },
+
     next(){
       this.setIndex(this.index + 1)
       this.setPositionToIndex(this.index);
@@ -177,7 +184,6 @@ export default defineComponent({
 
     setPositionToIndex(index = this.index, animated = true){
       const targetPosition = this.getPositionFromIndex(index)
-      console.log("set position to index", index);
       this.setPosition(targetPosition, animated)
     },
 
@@ -207,7 +213,6 @@ export default defineComponent({
     },
 
     balance(nextIndex){
-      console.log("balianging")
       const _nextIndex = nextIndex || this.balancedIndex(this.index);
       this.setPosition(this.getPositionFromIndex(_nextIndex), false)
       this.index = _nextIndex;
@@ -300,6 +305,10 @@ export default defineComponent({
 
       this.numberOfVisibleItems = visible;
       this.itemMargin = margin;
+      this.updateVisibleIndexes()
+    },
+    index(){
+       this.updateVisibleIndexes()
     }
   }
 })

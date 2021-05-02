@@ -5,8 +5,10 @@ from django.utils.translation import gettext
 def executeAction(modeladmin, request, queries, msg):
     results = execute_queries(queries)
 
-    for result, index in results.get("resultEach"):
-        queries_affects[index] = result.get("affected", 0)
+    queries_affects = {}
+    for index, result in enumerate(results.get("resultEach")):
+        queries_affects[str(index)] = result.get("affected", 0)
+
 
     if results.get("successAll"):
         modeladmin.message_user(request,

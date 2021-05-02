@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'imagefield',
     'puppeteer_pdf',
     'sortedm2m',
+    'adminsortable2',
     'compressor',
     'admin_reorder',
     'django.contrib.admin',

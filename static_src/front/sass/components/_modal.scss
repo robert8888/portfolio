@@ -35,5 +35,9 @@
       top: 1rem;
       right: 1rem;
     }
+    &:focus{
+      outline: 1px solid var(--color-pallet-primary);
+      outline-offset: .3em;
+    }
   }
 }

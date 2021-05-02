@@ -2,3 +2,6 @@
 @use "@sass/components/navigation__side";
 @use "@sass/layout/index-page";
 
+html{
+    scroll-padding: 100px;
+}

@@ -8,6 +8,7 @@ from django_better_admin_arrayfield.models.fields import ArrayField
 from django.db.models import Value
 from .project_search_autocomplete import ProjectSearchAutocomplete
 from .project_links import ProjectLink
+from sortedm2m.fields import SortedManyToManyField
 
 
 class Project(TranslatableModel):
@@ -55,7 +56,7 @@ class Project(TranslatableModel):
         blank = True
     )
 
-    technology = models.ManyToManyField(
+    technology = SortedManyToManyField(
         'Technology',
         verbose_name = gettext_lazy('Technologies'),
     )
@@ -89,24 +90,39 @@ class Project(TranslatableModel):
         default = False
     )
 
+    sort_weight = models.PositiveIntegerField(
+        verbose_name = gettext_lazy('Default sort weight'),
+        default = 0
+    )
+
     def links(self):
         return ProjectLink.objects.filter(project_id = self.id)
+
+    def repo_link(self):
+        link_queryset = ProjectLink.objects.filter(project_id = self.id, type = 'repo')
+        if not len(link_queryset):
+            return ""
+        urls = link_queryset[0].url
+        if not len(urls):
+            return ""
+        return urls[0]
 
     def __str__(self):
         return self.name
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        technologies = ' '.join([technology.name for technology in self.technology.all()])
-        self.search_vector = SearchVector(
-            SearchVector('name', weight="C")
-            + SearchVector('title', weight="A")
-            + SearchVector('subtitle', weight="A")
-            + SearchVector('autocomplete_hint', weight="A")
-            + SearchVector('description_short', weight="B")
-            + SearchVector(Value(technologies, models.TextField()), weight="C")
-        )
-        return super(Project, self).save()
+        if self.id:
+            technologies = ' '.join([technology.name for technology in self.technology.all()])
+            self.search_vector = SearchVector(
+                SearchVector('name', weight="C")
+                + SearchVector('title', weight="A")
+                + SearchVector('subtitle', weight="A")
+                + SearchVector('autocomplete_hint', weight="A")
+                + SearchVector('description_short', weight="B")
+                + SearchVector(Value(technologies, models.TextField()), weight="C")
+            )
+        return super(Project, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         ProjectSearchAutocomplete.objects.filter(source_id = self.id, type='project').delete()
@@ -115,3 +131,4 @@ class Project(TranslatableModel):
     class Meta:
         verbose_name = gettext_lazy('Project')
         verbose_name_plural = gettext_lazy('Projects')
+        ordering = ['sort_weight']

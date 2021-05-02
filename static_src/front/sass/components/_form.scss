@@ -187,6 +187,13 @@ label.floating{
     &:checked + div{
       background: var(--color-pallet-primary);
     }
+    &:focus + div {
+      border-color: var(--color-pallet-secondary)
+    }
+    &:focus:checked + div {
+      background: var(--color-pallet-primary);
+      border-color: var(--color-pallet-secondary)
+    }
   }
   &__input-wrapper{
     position: relative;

@@ -24,7 +24,8 @@
           border-radius: 50%;
           border: 1px solid var(--color-pallet-primary);
         }
-        &:hover{
+        &:hover,
+        &:focus{
           &:after{
             border-width: 2px;
             border-color: var(--color-pallet-secondary);

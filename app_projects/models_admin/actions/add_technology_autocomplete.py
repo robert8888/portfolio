@@ -31,7 +31,7 @@ def addTechnologyAutocomplete(modeladmin, request, queryset):
     query_insert = buildQueryInsert(ids)
 
     msg = {
-        'success': ugettext('Add to autocomplete dictionary. Removed %d term and added %(0) terms'),
+        'success': ugettext('Add to autocomplete dictionary. Removed %(0)s term and added %(1)s terms'),
         'fail': gettext('Adding to autocomplete dictionary fail')
     }
 
