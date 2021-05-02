@@ -1,5 +1,9 @@
 <gallery>
     {% for item in images %}
-    <gallery-item thumb-src="{{item.image.thumb}}" full-src="{{item.image.full}}"></gallery-item>
+    <gallery-item thumb-src="{{item.image.thumb}}"
+                  full-src="{{item.image.full}}"
+                  :width="{{item.width}}"
+                  :height="{{item.height}}">
+    </gallery-item>
     {% endfor %}
 </gallery>
