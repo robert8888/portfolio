@@ -1,7 +1,7 @@
 @use '@sass/components/button' as *;
 
 a, a:link, a:visited{
-  color: var(--color-pallet-primary);
+  color: var(--color-text-secondary);
   text-decoration: none;
   font-family: "Source Sans Pro", "Roboto", sans-serif;
   font-weight: 500;
@@ -10,7 +10,7 @@ a, a:link, a:visited{
     color: var(--color-pallet-secondary);
   }
   &.link--secondary{
-    color: var(--color-pallet-primary);
+    color: var(--color-text-secondary);
     &:hover{
       color: var(--color-text-primary);
     }

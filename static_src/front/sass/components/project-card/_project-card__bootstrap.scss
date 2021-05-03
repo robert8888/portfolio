@@ -83,8 +83,8 @@
   footer{
     display: flex;
     justify-content: flex-end;
-    padding: .5em 0;
     margin-top: auto;
+    padding-top: .5em;
   }
 
   &__gallery{
@@ -104,7 +104,7 @@
       color: var(--color-text-primary);
       font-family: Roboto, sans-serif;
       &:hover{
-        color: var(--color-pallet-primary);
+        color: var(--color-text-secondary);
       }
       &:focus{
         color: var(--color-pallet-secondary);
@@ -125,7 +125,7 @@
       color: var(--color-text-primary);
       font-family: Roboto, sans-serif;
       &:hover{
-        color: var(--color-pallet-primary);
+        color: var(--color-text-secondary);
         outline: none;
       }
       &:focus,

@@ -22,7 +22,7 @@
            @keydown.space="onSpace"
            @cut="onClipboard"
            @paste="onClipboard">
-    <button class="projects__search-button" @click="onButtonClick"/>
+    <button class="projects__search-button" @click="onButtonClick" aria-label="search"/>
     <ul :class="['projects__search__list', {'projects__search__list--visible': autocompleteVisible}]"
         :id="'autocomplete-results-'+id"
         role="listbox"

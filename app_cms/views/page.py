@@ -291,4 +291,4 @@ class PageView(View):
     def get_page_meta(page_id):
         query = build_select_page_meta_query(page_id, get_language())
         data, success, *_ = execute_query(query)
-        return data[0] if success else {}
+        return data[0] if success and len(data) else {}

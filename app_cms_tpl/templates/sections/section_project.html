@@ -6,7 +6,8 @@
                 <article class="project">
                     <header class="project__header">
                         <h2 class="project__title">{{project.title}}</h2>
-                        <a href="/{% get_path page_name='Projects' %}?type={{project.type.value}}" class="project__type-link link-button">{{project.type.display}}</a>
+                        <a href="/{% get_path page_name='Projects' %}?type={{project.type.value}}"
+                           class="project__type-link link-button">{{project.type.display}}</a>
                     </header>
                     <div class="project__container">
                         <h6 class="project__release">
@@ -28,7 +29,7 @@
                                             <dt class="list__term">{{link.get_type_display}}</dt>
                                             {% for url in link.url %}
                                             <dd class="list__description">
-                                                <a class="list__link" href="{{url}}" target="_blank">
+                                                <a class="list__link" href="{{url}}" rel="noreferrer" target="_blank">
                                                     {{url}}
                                                 </a>
                                             </dd>
@@ -52,7 +53,8 @@
                                         {% for technology_type, technologies in project_technologies.items %}
                                             {% for technology in technologies %}
                                                 <li class="list__item">
-                                                    <a class="list__link" href="{{technology.link}}" style="--color:{{technology.color}}" target="_blank">{{technology.name}}</a>
+                                                    <a class="list__link" href="{{technology.link}}"
+                                                       style="--color:{{technology.color}}" target="_blank" rel="noreferrer">{{technology.name}}</a>
                                                 </li>
                                             {% endfor %}
                                             <li class="list__item--separator"></li>

@@ -1,5 +1,6 @@
 $color-background-primary: #101317;
 $color-text-primary: #B2B3B3;
+$color-text-secondary: #158e9e;
 //$color-pallet-primary: #138392;
 $color-pallet-primary: #158e9e;
 $color-pallet-secondary: #8362ac;
@@ -14,6 +15,8 @@ $color-warning: #fa3b4d;
   --color-text-primary-alpha-5:#{rgba($color-text-primary, .5)};
   --color-text-primary-alpha-1:#{rgba($color-text-primary, .1)};
   --color-text-primary-light:#{lighten($color-text-primary, 50%)};
+
+  --color-text-secondary: #{$color-text-secondary};
 
   --color-pallet-primary: #{$color-pallet-primary};
   --color-pallet-primary-alpha: #{rgba($color-pallet-primary, .5)};
