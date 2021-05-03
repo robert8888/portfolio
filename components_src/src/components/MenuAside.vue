@@ -10,7 +10,9 @@
         <slot/>
       </list>
       <div class="navigation__item navigation__fast-scroll">
-        <button @click="fastScroll" :class="fastScrollButtonClass"/>
+        <button @click="fastScroll"
+                :class="fastScrollButtonClass"
+                :aria-label="'scroll ' + fastScrollDir"/>
       </div>
     </nav>
     <div class="navigation__progress">
