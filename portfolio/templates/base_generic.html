@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static pwa %}
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,13 +8,14 @@
 {% block meta %}
 <title>Robert Kamiński</title>
 {% endblock %}
-{% load static %}
 {% include "partial/tokens.html" %}
 <link rel="icon" href="{% static '/img/favicon.ico' %}">
+<link rel="manifest" href="/manifest.json">
 {% block head %}
 {% endblock %}
 {% block headscripts %}
 {% endblock %}
+{% progressive_web_app_meta %}
 </head>
 {% block body_tag %}
 <body>

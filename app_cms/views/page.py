@@ -113,7 +113,7 @@ class PageView(View):
            'gCaptchaPublicKey':  os.getenv("GCAPTCHA_PUBLIC_KEY"),
            'csrfToken': get_token(request)
         }
-
+        print(request.path)
         try:
             start = datetime.now()
             if re.match('.*\.\w{,5}$', path): #file
@@ -158,7 +158,14 @@ class PageView(View):
             return  render(request, page_template, context = context)
 
         except (Page.DoesNotExist, IndexError, LookupError):
-            return  render(request, 'page_404.html', context = {})
+            context = {
+                'meta': {
+                    'title': 'Page not found',
+                    'meta_title': 'Page not found',
+                    'meta_description': 'Page not found'
+                }
+            }
+            return  render(request, 'page_404.html', context = context)
 
     @staticmethod
     def get_groups(regex, str):
