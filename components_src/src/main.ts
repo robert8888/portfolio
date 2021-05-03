@@ -19,12 +19,9 @@ import InputCheckbox from "@/components/InputCheckbox.vue";
 import ContactNumber from "@/components/ContactNumber.vue";
 
 import CvDownloader from "@/components/CvDownloader.vue";
-
 import CvConfigurator from "@/components/CvConfigurator.vue";
 import CvConfiguratorTemplate from "@/components/CvConfiguratorTemplate.vue";
 import CvConfiguratorColor from "@/components/CvConfiguratorColor.vue";
-
-import PdfPreloader from "@/components/PdfPreloader.vue";
 
 
 import defineVueComponent from "@/define-vue-component";
@@ -48,7 +45,6 @@ defineVueComponent(
 
         CvDownloader,
 
-        PdfPreloader,
         CvConfigurator,
         CvConfiguratorTemplate,
         CvConfiguratorColor

@@ -6,7 +6,7 @@
   </label>
 </template>
 <script lang="ts">
-import {defineComponent, inject, computed, watch, ref} from "vue";
+import {defineComponent, inject, watch, ref} from "vue";
 import {ErrorList} from "./ContactForm.vue";
 
 export default defineComponent({

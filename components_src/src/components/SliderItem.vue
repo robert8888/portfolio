@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, computed} from 'vue';
+import {defineComponent, inject } from 'vue';
 
 export default defineComponent({
   props:{
@@ -27,7 +27,7 @@ export default defineComponent({
     }
   },
 
-  setup(props){
+  setup(){
     const itemMargin = inject('itemMargin') as number;
     const sizeChange = inject('itemSizeChange') as (rect: DOMRect) => void;
     const visibleIndexes = inject("visibleItems") as number[];
@@ -48,12 +48,12 @@ export default defineComponent({
       return (this.$refs.container as HTMLElement)?.querySelectorAll('a, button, input') || []
     },
     removeFromTabindex(){
-      for(let element of this.getFocusableChildes()){
+      for(const element of this.getFocusableChildes()){
           element.setAttribute('tabindex', "-1");
       }
     },
     restoreTabIndex(){
-      for(let element of this.getFocusableChildes()){
+      for(const element of this.getFocusableChildes()){
         element.removeAttribute('tabindex');
       }
     }

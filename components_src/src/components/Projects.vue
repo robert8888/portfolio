@@ -42,7 +42,7 @@
   </div>
 </template>
 <script lang="ts">
-import {computed, defineComponent, watch, reactive, ref} from "vue";
+import {computed, defineComponent, watch } from "vue";
 import Spinner from "@/components/Spinner.vue";
 import {ACTIONS, useStore} from "@/store";
 import CardProject from "@/components/Card.vue";
@@ -67,7 +67,7 @@ export default defineComponent({
     const projects  = computed(() => store.state.projects.projects)
 
     const setupTime = performance.now()
-    watch([filters,  order], ([filters, order]) =>{
+    watch([filters,  order], () =>{
       if(performance.now() - setupTime < 300)
           return
       store.dispatch(ACTIONS.FETCH_PROJECTS)

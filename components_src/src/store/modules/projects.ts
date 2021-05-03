@@ -1,6 +1,6 @@
 import {getAutocomplete, getProjects} from "@/api/backend_api";
 
-interface Project {
+export interface Project {
     name: string;
     type: string;
     typeValue: string;
@@ -156,7 +156,7 @@ export default {
             { commit, state }: {commit: Function; state: ProjectsState},
         ){
             commit(MUTATIONS.SET_STATUS_LOADING, true)
-            const data = {} as Record<string, any>
+            const data = {} as Record<string, string>;
             state.filter.forEach((value, key) => {
                 data[key] = value.join(",")
             })

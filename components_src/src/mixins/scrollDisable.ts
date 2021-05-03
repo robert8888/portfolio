@@ -1,5 +1,4 @@
 import {defineComponent} from "vue"
-import windowScrollHeight from "@/utils/window-scroll-height";
 
 interface MixinState{
     lastScrollPosition: number;
@@ -12,7 +11,7 @@ export default defineComponent({
         }
     },
     methods:{
-        scrollCancel(event: Event){
+        scrollCancel(){
             window.scrollTo(0, this.lastScrollPosition)
         },
         scrollDisable(){

@@ -126,7 +126,7 @@ export default defineComponent({
   },
 
   methods: {
-    onInput: function(e: KeyboardEvent){
+    onInput: function(){
         this.updateAutocomplete();
     },
 

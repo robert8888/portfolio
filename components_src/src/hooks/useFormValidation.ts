@@ -29,9 +29,9 @@ export default function useFormValidation(
 ){
     let form = {} as  HTMLFormElement;
     const fieldsMap = new Map<string, HTMLFormField>();
-    let validationErrors = reactive<{ list: ErrorList }>({list: [] as ErrorList});
-    let message =  ref("");
-    let isSuccessMessage = ref(false);
+    const validationErrors = reactive<{ list: ErrorList }>({list: [] as ErrorList});
+    const message =  ref("");
+    const isSuccessMessage = ref(false);
 
 
     const clearValidation = () => {

@@ -60,8 +60,8 @@ export default defineComponent({
     async getNumber(){
       try{
         this.isLoading = true;
-        const data = await getNumber()
-        this.number = this.formatPhoneNumber(data.number);
+        const response = await getNumber()
+        this.number = this.formatPhoneNumber(response.data.number);
       } catch(error){
         this.isSuccess = false;
       } finally{

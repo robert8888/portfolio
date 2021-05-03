@@ -19,7 +19,6 @@ export interface Item{
   text: string;
 }
 
-let index = 0;
 export default defineComponent({
   props: {
       value: {

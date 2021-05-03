@@ -25,7 +25,7 @@ import {computed, defineComponent} from "vue";
 import Spinner from "@/components/Spinner.vue";
 import {getCv, GetCVPayload} from "@/api/backend_api";
 import {getResponseFilename} from "@/utils/get_response_filename";
-import {GETTERS, store, useStore} from "@/store";
+import {GETTERS, useStore} from "@/store";
 
 interface ComponentData{
   isLoading: boolean;
@@ -73,7 +73,7 @@ export default defineComponent({
   },
 
   methods:{
-    async fetchPdf(): Promise<any>{
+    async fetchPdf(): Promise<boolean>{
       this.fail = false;
       this.isLoading = true;
       try{
@@ -88,8 +88,10 @@ export default defineComponent({
         this.pdfBlobData = await response.blob();
         this.pdfFilename = getResponseFilename(response)
         this.isLoading = false;
+        return true;
       } catch {
         this.fail = true;
+        return false;
       } finally {
         this.isLoading = false;
       }

@@ -65,7 +65,7 @@ export default defineComponent({
 
 
   mounted() {
-    this.list.addEventListener('transitionend', event => {
+    this.list.addEventListener('transitionend', () => {
         this.isAnimated = false;
     });
   },

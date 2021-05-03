@@ -8,13 +8,12 @@
   </select-component>
 </template>
 <script lang="ts">
-import {computed, defineComponent} from "vue";
+import {defineComponent} from "vue";
 import {useStore, ACTIONS} from "@/store";
 import SelectItem from "@/components/SelectItem.vue";
 import SelectComponent from "@/components/Select.vue"
 import getUrlParam from "@/utils/get-url-param";
 import setUrlParam from "@/utils/set-url-param";
-import shallowArrayEqual from "@/utils/shallow-array-compare";
 
 export default defineComponent({
   components: {SelectComponent, SelectItem},

@@ -1,12 +1,19 @@
 import {API_CONFIGURATION} from "./api_configuration";
 import getCaptchaToken from "@/utils/get-captcha-token";
+import {Project} from "@/store/modules/projects";
 
-const csrfToken = (window as any).csrfToken  as string;
+declare global{
+    interface Window{
+        csrfToken: string;
+    }
+}
 
-interface Result {
+const csrfToken = window.csrfToken as string;
+
+interface Result<D>{
     success: boolean;
     errors: { message: string; field: string }[];
-    data: Record<string, any>;
+    data: D;
 }
 
 
@@ -18,7 +25,7 @@ const getLanguageFromPath = () =>{
 const buildPath = (apiPath: string) => `/${getLanguageFromPath()}${apiPath}`;
 
 
-const request = async (path: string, data:  Record<string, any>, clean= false) => {
+const request = async <D, I>(path: string, data: I, clean= false) => {
     const origin = location.origin
 
     const response = await fetch(`${origin}` + path, {
@@ -33,7 +40,7 @@ const request = async (path: string, data:  Record<string, any>, clean= false) =
     })
 
     if(response.ok)
-        return clean ? response : await response.json() as Promise<Result>
+        return clean ? response : await response.json() as Promise<Result<D>>
 
     return {
         success: false,
@@ -53,32 +60,32 @@ export const getRequest = async (path: string): Promise<Response> =>{
 
 
 
-export const sendForm = async (data:  Record<string, any>): Promise<Result> => {
+export const sendForm = async (data:  Record<string, string>): Promise<Result<Record<string, string>>> => {
     const path = API_CONFIGURATION.POST_CONTACT_FORM_URL
     const token = await getCaptchaToken();
     Object.assign(data, {
         gRrecaptchaRresponse: token,
         csrfMiddlewareToken: csrfToken
     })
-    return request(location.pathname + path, data) as Promise<Result>
+    return request<Record<string, string>, Record<string, string>>(location.pathname + path, data) as Promise<Result<Record<string, string>>>
 }
 
-export const getNumber = async (): Promise<any> => {
+export const getNumber = async (): Promise<Result<{number: string}>> => {
     const path = API_CONFIGURATION.GET_NUMBER_URL
     const data = {
         captchaToken:  await getCaptchaToken()
     }
-    return request(location.pathname + path, data)
+    return request<{number: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{number: string}>>
 }
 
-export const getProjects = async(data: Record<string, any>): Promise<Result> => {
+export const getProjects = async(data: Record<string, string>): Promise<Result<Project[]>> => {
     const apiPath = API_CONFIGURATION.GET_PROJECTS_URL
-    return request(buildPath(apiPath), data) as Promise<Result>
+    return request<Record<string, string>, Record<string, string>>(buildPath(apiPath), data) as Promise<Result<Project[]>>
 }
 
-export const getAutocomplete = async(data: {input: string}): Promise<Result> => {
+export const getAutocomplete = async(data: {input: string}): Promise<Result<string[]>> => {
     const apiPath = API_CONFIGURATION.GET_AUTOCOMPLETE
-    return request(buildPath(apiPath), data) as Promise<Result>
+    return request(buildPath(apiPath), data) as Promise<Result<string[]>>
 }
 
 

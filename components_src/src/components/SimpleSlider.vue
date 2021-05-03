@@ -73,7 +73,7 @@ export default defineComponent({
     resizeObserver.observe(this.$refs.container as HTMLElement)
     this.resizeObserverDisconnect = () => resizeObserver.disconnect()
 
-    for(let slide of wrapper.children){
+    for(const slide of wrapper.children){
       slide.addEventListener('focus', (event: Event) => {
         event.preventDefault();
         const parent = (event.target as HTMLElement)?.parentElement;
@@ -118,7 +118,7 @@ export default defineComponent({
     evalPosition(index?: number){
         return (index || this.index) * -this.slideWidth;
     },
-    evalIndex(position?: number){
+    evalIndex(){
         const style = window.getComputedStyle((this.$refs.wrapper as HTMLElement))
         const matrix = parseMatrix(style.transform) 
         return matrix?.translateX || 0;

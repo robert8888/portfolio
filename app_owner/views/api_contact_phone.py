@@ -18,7 +18,9 @@ def process(req):
     if(validateCaptcha(json_data['captchaToken'])):
         return JsonResponse({
             'success': True,
-            'number': number
+            'data': {
+                'number': number,
+            }
         })
     else :
         return JsonResponse({
