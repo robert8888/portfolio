@@ -4,7 +4,7 @@ function isString(value: string | string[]): value is string{
     return typeof value === "string"
 }
 
-export function getSearchString(params: Map<string, string[]>){
+export function getSearchString(params: Map<string, string[]>): string{
     const search = [...params.entries()]
         .filter(([, values]) => values.length)
         .reduce((search, [name, values], index ) => {
@@ -15,7 +15,7 @@ export function getSearchString(params: Map<string, string[]>){
     return search
 }
 
-export default function setUrlParam(name: string, value: string | string[]){
+export default function setUrlParam(name: string, value: string | string[]): void{
     const values = isString(value) ? [value] : value;
     const params = getUrlParams();
     params.set(name, values);

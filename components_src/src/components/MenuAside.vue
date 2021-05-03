@@ -23,7 +23,7 @@
   </aside>
 </template>
 <script lang="ts">
-import {defineComponent, computed, nextTick} from "vue";
+import {defineComponent, computed, nextTick, ComponentOptionsMixin} from "vue";
 import List from "./List.vue";
 import getWindowScrollHeight from "@/utils/window-scroll-height";
 import {debounce} from "ts-debounce";
@@ -119,8 +119,7 @@ export default defineComponent({
 
   methods:{
     listRef(): HTMLElement{
-      //@ts-ignore
-      return this.$refs?.list?.$el;
+      return (this.$refs?.list as ComponentOptionsMixin)?.$el as HTMLElement;
     },
 
     intersect(entries: IntersectionObserverEntry[]): void{

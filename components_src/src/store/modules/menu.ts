@@ -1,6 +1,6 @@
 
 export interface MenuState {
-    expanded: boolean;
+    mainExpanded: boolean;
 }
 
 export const MUTATIONS = {
@@ -16,12 +16,12 @@ export const GETTERS = {
 }
 
 export default {
-    state: () => ({
+    state: (): MenuState => ({
         mainExpanded: false,
     }),
     mutations: {
-        [MUTATIONS.TOGGLE_MENU_MAIN](state: MenuState) {
-            state.expanded = !state.expanded;
+        [MUTATIONS.TOGGLE_MENU_MAIN](state: MenuState): void {
+            state.mainExpanded = !state.mainExpanded;
         },
     },
 

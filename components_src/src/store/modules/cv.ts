@@ -23,6 +23,8 @@ export interface CvState {
     step: PROCESS_STEP;
 }
 
+
+
 export const MUTATIONS = {
     SET_CV_COLOR_PROFILE_ID: 'set_color_profile_id',
     SET_CV_COLOR_PROFILE: 'Set_color_profile',
@@ -51,7 +53,7 @@ export const GETTERS = {
 }
 
 export default {
-    state: () => ({
+    state: (): CvState => ({
         colorProfile: null,
         templatedId: '',
         recruiter: {} as Recruiter,
@@ -59,64 +61,74 @@ export default {
     } as CvState),
 
     mutations: {
-        [MUTATIONS.SET_CV_COLOR_PROFILE](state: CvState, payload: ColorProfile){
+        [MUTATIONS.SET_CV_COLOR_PROFILE](state: CvState, payload: ColorProfile): void{
             state.colorProfile = {
                 id: payload.id,
                 colors: payload.colors
             }
         },
-        [MUTATIONS.SET_CV_TEMPLATE_ID](state: CvState, payload: {id: string}){
+        [MUTATIONS.SET_CV_TEMPLATE_ID](state: CvState, payload: {id: string}): void{
             state.templatedId = payload.id;
         },
 
-        [MUTATIONS.SET_CV_RECRUITER_DATA](state: CvState, payload: Recruiter){
+        [MUTATIONS.SET_CV_RECRUITER_DATA](state: CvState, payload: Recruiter): void {
             state.recruiter = payload
         },
 
-        [MUTATIONS.SET_CV_PROCESS_STEP](state: CvState, payload: {step: PROCESS_STEP}){
+        [MUTATIONS.SET_CV_PROCESS_STEP](state: CvState, payload: {step: PROCESS_STEP}): void {
             state.step = payload.step;
         }
     },
 
 
     getters: {
-        [GETTERS.GET_CV_TEMPLATE_ID]: (state: CvState) => {
+        [GETTERS.GET_CV_TEMPLATE_ID]: (state: CvState): string | undefined => {
            return state.templatedId
         },
-        [GETTERS.GET_CV_COLOR_PROFILE_ID]: (state: CvState) => {
+        [GETTERS.GET_CV_COLOR_PROFILE_ID]: (state: CvState): string | undefined => {
             return state.colorProfile?.id
         },
-        [GETTERS.GET_CV_COLOR_PROFILE_COLORS]: (state: CvState) =>{
-            return state.colorProfile?.colors;
+        [GETTERS.GET_CV_COLOR_PROFILE_COLORS]: (state: CvState): Record<string, string> =>{
+            return state.colorProfile?.colors as Record<string, string>;
         },
-        [GETTERS.GET_CV_PROCESS_STEP]: (state: CvState) => {
+        [GETTERS.GET_CV_PROCESS_STEP]: (state: CvState): PROCESS_STEP => {
             return state.step;
         },
-        [GETTERS.GET_CV_REQUEST_DATA]: (state: CvState) => {
+        [GETTERS.GET_CV_REQUEST_DATA]: (state: CvState): Record<string, string> => {
            return {
                templateId: state.templatedId,
                colorProfileId: state.colorProfile?.id,
                recruiterEmail: state.recruiter.email,
                recruiterCompany: state.recruiter.company,
-           }
+           } as Record<string, string>
         }
     },
 
     actions: {
-        [ACTIONS.SET_CV_INIT_COLOR_PROFILE]: ({commit, state}: {commit: Function; state: CvState}, payload: ColorProfile) =>{
+        [ACTIONS.SET_CV_INIT_COLOR_PROFILE]: (
+            {commit, state}: {commit: (commit: string, payload: ColorProfile) => void; state: CvState},
+            payload: ColorProfile
+        ): void =>{
             if(!state.colorProfile || !state.colorProfile.id)
                 commit(MUTATIONS.SET_CV_COLOR_PROFILE, payload)
         },
-        [ACTIONS.RESTART_CV_DOWNLOAD_PROCESS]: ({commit}: {commit: Function}) =>{
+        [ACTIONS.RESTART_CV_DOWNLOAD_PROCESS]: (
+            {commit}: {commit: (commit: string, payload: {step: PROCESS_STEP}) => void}
+        ): void =>{
             commit(MUTATIONS.SET_CV_PROCESS_STEP, {step: PROCESS_STEP.Configuration})
         },
-        [ACTIONS.CONFIRM_TEMPLATE_CONFIG]: ({commit, state}: {commit: Function; state: CvState}) =>{
+        [ACTIONS.CONFIRM_TEMPLATE_CONFIG]: (
+            {commit, state}: {commit: (commit: string, payload: {step: PROCESS_STEP}) => void; state: CvState}
+        ): void =>{
             if(!state.colorProfile?.id || !state.templatedId)
                 return
             commit(MUTATIONS.SET_CV_PROCESS_STEP, {step: PROCESS_STEP.Identification})
         },
 
-        [ACTIONS.CONFIRM_RECRUITER]: ({commit}: {commit: Function}, payload: {email: string; company: string}) => {
+        [ACTIONS.CONFIRM_RECRUITER]: (
+            {commit}: {commit: (mutation: string, payload: Recruiter | {step: PROCESS_STEP}) => void},
+            payload: {email: string; company: string}
+        ): void => {
             commit(MUTATIONS.SET_CV_RECRUITER_DATA, {
                 email: payload.email,
                 company: payload.company

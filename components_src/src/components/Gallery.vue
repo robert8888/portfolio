@@ -130,10 +130,9 @@ export default defineComponent({
           : this.prev();
       }
 
-      list.addEventListener('touchmove', touchMove, {passive: false});
+      list.addEventListener('touchmove', touchMove, {passive: false} as EventListenerOptions);
       list.addEventListener('touchend', function touchEnd(){
-        //@ts-ignore
-        list.removeEventListener('touchmove', touchMove, {passive: false});
+        list.removeEventListener('touchmove', touchMove, {passive: false} as EventListenerOptions);
         list.removeEventListener('touchend', touchEnd);
         finishDragging()
       })

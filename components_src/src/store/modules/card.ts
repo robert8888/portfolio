@@ -18,17 +18,17 @@ export const GETTERS = {
 }
 
 export default {
-    state: () => ({
+    state: (): CardState => ({
         isExpanded: false,
         galleryItemIndexes: {} as {[key: string]: number}
     }),
 
     mutations: {
-        [MUTATIONS.TOGGLE_EXPAND](state: CardState){
+        [MUTATIONS.TOGGLE_EXPAND](state: CardState): void{
             state.isExpanded = !state.isExpanded
         },
 
-        [MUTATIONS.SET_GALLERY_INDEX](state: CardState, payload: {id: string; index: number}){
+        [MUTATIONS.SET_GALLERY_INDEX](state: CardState, payload: {id: string; index: number}): void{
             state.galleryItemIndexes[payload.id] = payload.index;
         }
     },
@@ -39,7 +39,8 @@ export default {
     },
 
     getters: {
-       [GETTERS.GET_GALLERY_INDEX]: (state: CardState) => (id: string) => {
+       [GETTERS.GET_GALLERY_INDEX]: (state: CardState): (id: string) => number =>
+           (id: string): number => {
            return state.galleryItemIndexes[id]
        }
     }

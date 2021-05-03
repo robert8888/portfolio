@@ -30,13 +30,13 @@ export const store = createStore<RootState>({
   })]
 })
 
-export function useStore(){
+export function useStore(): BaseStore<RootState>{
   return baseUseStore<RootState>(key)
 }
 
 export default {
   store,
-  install(app: App) {
+  install(app: App): void {
     app.use(store, key);
   }
 }

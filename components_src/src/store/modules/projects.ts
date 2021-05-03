@@ -26,12 +26,14 @@ interface Status{
     errors: string[];
 }
 
+interface Order{
+    value: string;
+    param: string;
+}
+
 export interface ProjectsState {
     filter: Map<string, string[]>;
-    order: {
-        value: string;
-        param: string;
-    };
+    order: Order;
     infinityScroll: {
         offset: number;
         limit: number;
@@ -75,7 +77,7 @@ export const GETTERS = {
 }
 
 export default {
-    state: () => ({
+    state: (): ProjectsState => ({
         filter: new Map<string, string[]>(),
         order: {
             value: "",
@@ -98,63 +100,67 @@ export default {
     } as ProjectsState),
 
     mutations: {
-        [MUTATIONS.SET_FILTER_VALUE]: (state: ProjectsState, payload: {type: string; value: string | string[] }) => {
+        [MUTATIONS.SET_FILTER_VALUE]: (state: ProjectsState, payload: {type: string; value: string | string[] }): void => {
             if(typeof payload.value === 'string')
                     payload.value = [payload.value]
             state.filter.set(payload.type, payload.value)
         },
-        [MUTATIONS.SET_ORDER]: (state: ProjectsState, {value, param}: {value: string; param: string}) => {
+        [MUTATIONS.SET_ORDER]: (state: ProjectsState, {value, param}: {value: string; param: string}): void => {
             state.order.value = value;
             state.order.param = param;
         },
-        [MUTATIONS.SET_INF_SCROLL_NEXT_LIMIT]:(state: ProjectsState) => {
+        [MUTATIONS.SET_INF_SCROLL_NEXT_LIMIT]:(state: ProjectsState): void => {
             const chunk = state.infinityScroll.chunk;
             state.infinityScroll.offset += chunk;
             state.infinityScroll.limit += chunk;
         },
-        [MUTATIONS.SET_INF_SCROLL_COUNT_LIMIT]: (state: ProjectsState, payload: {count: number}) => {
+        [MUTATIONS.SET_INF_SCROLL_COUNT_LIMIT]: (state: ProjectsState, payload: {count: number}): void => {
             state.infinityScroll.count = payload.count;
         },
-        [MUTATIONS.RESET_INF_SCROLL]: (state: ProjectsState) => {
+        [MUTATIONS.RESET_INF_SCROLL]: (state: ProjectsState): void => {
             state.infinityScroll.offset = 0;
             state.infinityScroll.limit = 0;
         },
-        [MUTATIONS.SET_PROJECTS]: (state: ProjectsState, payload: Project[]) => {
+        [MUTATIONS.SET_PROJECTS]: (state: ProjectsState, payload: Project[]): void => {
             state.projects = payload;
         },
-        [MUTATIONS.SET_STATUS_LOADING]: (state: ProjectsState, payload: boolean) => {
+        [MUTATIONS.SET_STATUS_LOADING]: (state: ProjectsState, payload: boolean): void => {
             state.status.loading = payload;
         },
-        [MUTATIONS.SET_STATUS_RESULTS]: (state: ProjectsState, payload: Status) => {
+        [MUTATIONS.SET_STATUS_RESULTS]: (state: ProjectsState, payload: Status): void => {
             state.status = payload;
         },
-        [MUTATIONS.SET_AUTOCOMPLETE_HINTS]: (state: ProjectsState, payload: string[]) => {
+        [MUTATIONS.SET_AUTOCOMPLETE_HINTS]: (state: ProjectsState, payload: string[]): void => {
             state.autocomplete = payload
         }
     },
 
     getters: {
-        [GETTERS.GET_FILTER_VALUE]: (state: ProjectsState) => (type: string) => {
-            return state.filter.get(type);
+        [GETTERS.GET_FILTER_VALUE]: (state: ProjectsState): (type: string) => string[] =>
+            (type: string): string[] => {
+            return state.filter.get(type) as string[];
         },
-        [GETTERS.GET_ORDER]: (state: ProjectsState) => {
+        [GETTERS.GET_ORDER]: (state: ProjectsState): Order => {
             return state.order;
         },
-        [GETTERS.GET_PROJECTS]: (state: ProjectsState) => {
+        [GETTERS.GET_PROJECTS]: (state: ProjectsState): Project[] => {
             return state.projects;
         },
-        [GETTERS.GET_STATUS]: (state: ProjectsState) => {
+        [GETTERS.GET_STATUS]: (state: ProjectsState): Status => {
             return state.status;
         },
-        [GETTERS.GET_AUTOCOMPLETE]: (state: ProjectsState) => {
+        [GETTERS.GET_AUTOCOMPLETE]: (state: ProjectsState): string[] => {
             return state.autocomplete
         }
     },
 
     actions: {
         async [ACTIONS.FETCH_PROJECTS](
-            { commit, state }: {commit: Function; state: ProjectsState},
-        ){
+            { commit, state }: {
+                commit: (mutation: string, payload: boolean | Project[] | Record<string, unknown>) => void;
+                state: ProjectsState
+            },
+        ): Promise<void>{
             commit(MUTATIONS.SET_STATUS_LOADING, true)
             const data = {} as Record<string, string>;
             state.filter.forEach((value, key) => {
@@ -185,13 +191,23 @@ export default {
                 commit(MUTATIONS.SET_STATUS_LOADING, false)
             }
         },
-        [ACTIONS.UPDATE_FILTER]({ commit }: {commit: Function}, payload: {type: string; value: string[] | number[] | string}){
+        [ACTIONS.UPDATE_FILTER](
+            { commit }: {
+                commit: (mutation: string, payload: Record<string, unknown>) => void},
+            payload: {type: string; value: string[] | number[] | string}
+        ): void{
             commit(MUTATIONS.SET_FILTER_VALUE, payload);
         },
-        [ACTIONS.UPDATE_ORDER]({ commit }: {commit: Function}, payload: {index: number}){
+        [ACTIONS.UPDATE_ORDER](
+            { commit }: {commit: (mutation: string, payload: {index: number}) => void},
+            payload: {index: number}
+        ): void{
             commit(MUTATIONS.SET_ORDER, payload)
         },
-        async [ACTIONS.UPDATE_AUTOCOMPLETE]({ commit }: {commit: Function}, payload: string){
+        async [ACTIONS.UPDATE_AUTOCOMPLETE](
+            { commit }: {commit: (mutation: string, payload: string | string[]) => void},
+            payload: string
+        ): Promise<void>{
             const response = await getAutocomplete({input: payload})
             if(response.success){
                 commit(MUTATIONS.SET_AUTOCOMPLETE_HINTS, response.data as string[])

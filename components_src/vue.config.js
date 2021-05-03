@@ -37,8 +37,8 @@ module.exports = {
                     vendor: {
                         test: /[\\/]node_modules[\\/]/,
                         name: "chunk-vendors",
-                        maxSize: 51200 * 3,
-                        minSize: 51200,
+                        maxSize: 51200 * 4,
+                        minSize: 51200 * 2,
                         chunks: "all",
                         priority: 1
                     },

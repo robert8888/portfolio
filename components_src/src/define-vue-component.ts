@@ -7,7 +7,7 @@ interface VuePlugin {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Components = Record<string, Component<any, any, any, Record<string, any>>>;
 
-export default function defineVueComponent(components: Components, plugins: VuePlugin[]){
+export default function defineVueComponent(components: Components, plugins: VuePlugin[]): void{
     customElements.define('vue-component', class extends HTMLElement{
         private app: App | undefined;
 
@@ -33,5 +33,4 @@ export default function defineVueComponent(components: Components, plugins: VueP
             this.app.unmount()
         }
     })
-
 }

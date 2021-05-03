@@ -1,4 +1,4 @@
-import {provide, reactive, ref} from "vue";
+import {provide, reactive, ref, Ref} from "vue";
 import shallowArrayEqual from "@/utils/shallow-array-compare";
 
 
@@ -22,11 +22,23 @@ declare global{
     }
 }
 
+interface FormValidation{
+    message: Ref<string>;
+    isSuccessMessage: Ref<boolean>;
+    validationErrors: { list: ErrorList };
+    fieldsMap: Map<string, HTMLFormField>;
+    clientValidation: (element: HTMLFormField) => void;
+    setSuccessMessage: () => void;
+    setValidationMessages: (errors: ErrorList) => void;
+    clearValidation: () => void;
+    setFormRef: (form: HTMLFormElement) => void;
+}
+
 export default function useFormValidation(
     validationMessageFail: string,
     validationMessageSuccess: string,
     errorMessage: string,
-){
+): FormValidation{
     let form = {} as  HTMLFormElement;
     const fieldsMap = new Map<string, HTMLFormField>();
     const validationErrors = reactive<{ list: ErrorList }>({list: [] as ErrorList});

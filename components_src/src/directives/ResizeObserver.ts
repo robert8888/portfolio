@@ -33,7 +33,7 @@ const resizeObserveDirective = {
 }
 
 export default {
-    install(app: App) {
+    install(app: App): void{
         app.directive('size', resizeObserveDirective);
     }
 }

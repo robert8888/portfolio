@@ -36,11 +36,6 @@ import {PROCESS_STEP, Recruiter} from "@/store/modules/cv";
 import useFromDataMapper from "@/hooks/useFromDataMapper";
 import CvPreloader from "@/components/CvPreloader.vue"
 
-type HTMLFormField = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | HTMLButtonElement ;
-
-type FormControlsCollection = HTMLFormControlsCollection & {
-  [key: string]: HTMLFormField;
-}
 
 export default defineComponent({
   components: {Modal, CustomFrom, CvPreloader},

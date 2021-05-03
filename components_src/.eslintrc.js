@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    "es6": true
   },
   'extends': [
     'plugin:vue/essential',
@@ -18,6 +19,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     "@typescript-eslint/ban-ts-ignore": "off",
     "prefer-const": "warn",
-    "vue/valid-template-root": "off"
+    "vue/valid-template-root": "off",
+    "no-undef": "off"
   }
 }

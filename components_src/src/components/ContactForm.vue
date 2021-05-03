@@ -28,11 +28,6 @@ interface ComponentData {
   isSending: boolean;
 }
 
-type HTMLFormField = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | HTMLButtonElement ;
-
-type FormControlsCollection = HTMLFormControlsCollection & {
-  [key: string]: HTMLFormField;
-}
 
 export default defineComponent({
   components: {Spinner},
