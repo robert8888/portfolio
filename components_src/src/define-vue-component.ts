@@ -30,7 +30,7 @@ export default function defineVueComponent(components: Components, plugins: VueP
 
         disconnectedCallback(){
             if(!this.app) return;
-            this.app.unmount(this)
+            this.app.unmount()
         }
     })
 

@@ -1,4 +1,5 @@
-const BundleTracker = require("webpack-bundle-tracker");
+// const BundleTracker = require("webpack-bundle-tracker");
+const BundleTracker = require("webpack4-bundle-tracker");
 
 const pages = {
     main: {
@@ -25,7 +26,9 @@ module.exports = {
 
     outputDir: '../static_compiled/vue/',
     runtimeCompiler: true,
-
+    css: {
+        extract: { ignoreOrder: true },
+    },
     chainWebpack: config => {
 
         config.optimization
@@ -34,6 +37,8 @@ module.exports = {
                     vendor: {
                         test: /[\\/]node_modules[\\/]/,
                         name: "chunk-vendors",
+                        maxSize: 51200 * 3,
+                        minSize: 51200,
                         chunks: "all",
                         priority: 1
                     },

@@ -126,8 +126,6 @@ export default defineComponent({
     set(index: number){
       this.index = toRange(index, 0 , this.count - this.visible)
       this.updatePosition();
-      console.log("index after", this.index)
-      console.log(this.evalPosition(this.index))
     },
     change(direction: 'next' | 'prev'){
       const nextIndex = direction === 'next' ? this.index + 1 : this.index -1;

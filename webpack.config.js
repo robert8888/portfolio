@@ -1,6 +1,7 @@
 const path = require("path");
 const RemovePlugin = require('remove-files-webpack-plugin');
 const frontSassEntries = require('./static_src/front/sass/webpack.entries.config');
+
 const tsEntries = [
     //admin
     "admin/ts/admin-form-script.ts",
@@ -24,14 +25,8 @@ const sassEntries = [
     'ckeditor/ckeditor/skins/prestige/editor_iequirks.scss',
 
     'ckeditor/galleriffic/css/galleriffic-2.scss',
-    //front
-    // 'front/css/index.scss',
-    // 'front/css/projects.scss',
-    // 'front/css/project.scss',
 
     ...frontSassEntries,
-    // 'front/sass/pages/common.scss',
-    // 'front/sass/pages/index.scss',
 ]
 
 module.exports = [
@@ -93,8 +88,6 @@ module.exports = [
     resolve: {
         alias: {
             "@": path.resolve(__dirname),
-            // "@common": path.resolve(__dirname, "static_src", "common_css"),
-            // "@front": path.resolve(__dirname, "static_src", "front", "css"),
             "@sass": path.resolve(__dirname, "static_src", "front", "sass"),
             "@sass_admin": path.resolve(__dirname, "static_src", "admin", "sass"),
 

@@ -75,12 +75,5 @@ export default defineComponent({
       id: this.id,
     }
   },
-
-
-  methods:{
-    test(){
-      console.log("clicked")
-    }
-  }
 })
 </script>

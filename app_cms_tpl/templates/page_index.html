@@ -1,17 +1,15 @@
 {% extends "page.html" %}
 {% load render_bundle from webpack_loader %}
+{% load render_entrypoint from webpack_loader %}
 {% load compress static  %}
 
 {% block pagestyle %}
     {% include 'partial/style.html' with style_url='front/css/pages/index.css' %}
-    {% render_bundle 'main' 'css' %}
 {% endblock %}
 
 
 {% block scripts %}
-    {% render_bundle 'chunk-vendors' %}
-    {% render_bundle 'chunk-common' %}
-    {% render_bundle 'main' 'js' %}
+    {% render_entrypoint 'main' %}
     {% compress js %}
         {% include 'partial/script.html' with script_url='front/js/index.js' %}
         {% include 'partial/validation_msg.html' %}
