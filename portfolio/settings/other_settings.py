@@ -1,0 +1,1 @@
+PUPPETEER_PDF_CMD = 'npx puppeteer-pdf'
