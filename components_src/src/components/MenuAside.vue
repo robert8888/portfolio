@@ -6,7 +6,7 @@
           <span class="navigation__item__content">#</span>
         </a>
       </div>
-      <list class="navigation__list" ref="list">
+      <list class="navigation__list" ref="list" is="ul">
         <slot/>
       </list>
       <div class="navigation__item navigation__fast-scroll">

@@ -75,7 +75,6 @@ export default defineComponent({
     this.setFormRef(this.$refs.form as HTMLFormElement)
   },
 
-
   methods: {
     async submit(e: Event) {
       e.preventDefault();
@@ -89,7 +88,8 @@ export default defineComponent({
         const response = await sendForm(data);
         response.success
             ? this.setSuccessMessage()
-            : this.setValidationMessages(response.errors as ErrorList)
+            : this.setValidationMessages(response.errors as ErrorList);
+        (this.$refs.form as HTMLFormElement).reset();
       } catch {
         this.message = this.errorMessage;
         this.isSuccessMessage = false;

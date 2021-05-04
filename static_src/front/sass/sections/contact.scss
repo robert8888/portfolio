@@ -9,8 +9,12 @@
 .contact{
   $self: &;
   min-height: calc(80 * var(--vh));
-  .l-container > .l-row > * {
-    min-height: 50vh;
+  .l-container {
+    display: flex;
+    align-items: center;
+    & > .l-row > * {
+      min-height: 50vh;
+    }
   }
 
   &__container{
@@ -52,7 +56,23 @@
       }
     }
     &__label{
-      opacity: 0
+      opacity: 0;
+      &[for='messageField']{
+        margin-bottom: 1rem;
+        textarea{
+          height: 10em;
+        }
+      }
+      &[for='rulesField']{
+        display: flow-root;
+        margin: 0;
+        .checkbox{
+          margin-top: 1rem;
+        }
+        p {
+          max-width: 50ch;
+        }
+      }
     }
   }
 
@@ -182,15 +202,30 @@
   }
 
   @include media("sm"){
-    .form__summary__group{
-      flex-wrap: nowrap;
+    .form{
+      &__summary__group{
+        flex-wrap: nowrap;
+      }
+      &__label{
+        &[for='rulesField']{
+          margin: 0;
+          .checkbox {
+            margin-left: 3rem;
+          }
+        }
+        & > p {
+          margin-left: 2.75rem;
+        }
+      }
     }
+
     &__portals{
       &__container{
         max-width: unset;
         margin-left: 0;
       }
     }
+
   }
 
   @include media("md"){
@@ -203,7 +238,6 @@
     &-resume__container{
       justify-content: flex-end;
     }
-
     @include media-vertical('smd'){
       .contact__container>div{
         display: flex;
@@ -224,6 +258,10 @@
           margin-top: 0;
         }
       }
+
+      .form__label[for="messageField"] textarea{
+        height: 7em;
+      }
     }
   }
 
@@ -241,6 +279,9 @@
   }
 
   @include media("xl"){
+    label.floating{
+      margin: 1em 0;
+    }
     &__info{
       &__container{
         margin-top: 0;
