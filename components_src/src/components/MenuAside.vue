@@ -2,7 +2,7 @@
   <aside class="navigation navigation--aside" >
     <nav class="navigation__container" >
       <div class="navigation__item navigation__home">
-        <a href="/" class="navigation__item__link">
+        <a :href="indexLink" class="navigation__item__link">
           <span class="navigation__item__content">#</span>
         </a>
       </div>
@@ -48,6 +48,10 @@ export default defineComponent({
      excludeFirst: {
        type: Boolean,
        default: true,
+     },
+     indexLink:{
+       type: String,
+       default: '/'
      }
   },
 
