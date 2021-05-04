@@ -1,2 +1,3 @@
-components_src
-dgfsdafg
+components_src/node_modules
+components_src/src
+components_src/types
