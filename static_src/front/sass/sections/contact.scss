@@ -25,6 +25,7 @@
   &__title{
     margin-bottom: 40px;
     opacity: 0;
+    display: none;
   }
 
   .form{
@@ -109,6 +110,7 @@
     &__title{
       margin-bottom: 1rem;
       opacity: 0;
+      display: none;
     }
   }
 
@@ -345,6 +347,7 @@
 
   &[data-was-intersected]{
     #{$self}__title{
+      display: initial;
       @include fade-left-animation(0s, .6s);
     }
     .form__label{
@@ -360,6 +363,7 @@
       @include fade-up-animation(1s, .5s);
     }
     #{$self}__info__title{
+      display: initial;
       @include fade-right-animation(0, 1s);
     }
     #{$self}__info__text{
