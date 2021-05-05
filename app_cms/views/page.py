@@ -129,6 +129,9 @@ class PageView(View):
         if context.get('redirect'):
             return HttpResponseRedirect(context.get('redirect'))
 
+        if context.get('status'):
+            return HttpResponse(status = context.get('status'))
+
         print("---page render", datetime.now() - start)
         return render(request, template, context = {**context, **tokens})
 
@@ -136,7 +139,7 @@ class PageView(View):
         try:
             context = {}
             if re.match('.*\.\w{,5}$', path): #file
-                return HttpResponse(status=404)
+                return [None, {'status': 404}]
 
             route = self.process_path(sqlescape(path), request)
 

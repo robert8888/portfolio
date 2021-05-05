@@ -7,6 +7,7 @@ AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_URL = os.getenv('AWS_URL')
+AWS_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN')
 AWS_S3_REGION_NAME = 'eu-central-1'
 
 def s3proxy(req):
@@ -17,7 +18,7 @@ def s3proxy(req):
             return HttpResponse(status=404)
 
         response = generatePresignedUrl(path)
-
+        print(response)
         return HttpResponseRedirect(response)
     except:
         return HttpResponse(status=404)
@@ -32,7 +33,7 @@ def generatePresignedUrl(path):
     s3_client = boto3.client('s3',
         aws_access_key_id= AWS_ACCESS_KEY_ID,
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-        region_name=AWS_S3_REGION_NAME
+        region_name=AWS_S3_REGION_NAME,
     )
 
     response = s3_client.generate_presigned_url(
@@ -42,5 +43,8 @@ def generatePresignedUrl(path):
             'Key': path
         }, ExpiresIn=172800
     )
+
+    if AWS_CUSTOM_DOMAIN:
+        response = response.replace(AWS_URL, 'https://' + AWS_CUSTOM_DOMAIN + '/')
 
     return response
