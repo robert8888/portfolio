@@ -16,7 +16,7 @@ import pydash as py_
 import importlib
 import re
 import os
-
+from django.core.cache import cache
 
 
 def build_select_path_query(path):
@@ -105,6 +105,10 @@ def build_select_page_meta_query(page_id, lang):
     WHERE app_cms_page_meta.page_id = {page_id} AND app_cms_page_meta_translation.language_code = '{lang}'
     '''
 
+from django.views.decorators.cache import cache_page
+
+
+
 class PageView(View):
 
     @minified_response
@@ -113,7 +117,7 @@ class PageView(View):
            'gCaptchaPublicKey':  os.getenv("GCAPTCHA_PUBLIC_KEY"),
            'csrfToken': get_token(request)
         }
-        print(request.path)
+
         try:
             start = datetime.now()
             if re.match('.*\.\w{,5}$', path): #file
