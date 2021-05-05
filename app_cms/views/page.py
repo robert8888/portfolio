@@ -123,8 +123,8 @@ class PageView(View):
 
         if not template or not context:
             template, context = self.get_template_and_context(request, path)
-            cache.set(cache_key + '--template', template)
-            cache.set(cache_key + '--context', context)
+            cache.set(cache_key + '--template', template, None)
+            cache.set(cache_key + '--context', context, None)
 
         if context.get('redirect'):
             return HttpResponseRedirect(context.get('redirect'))
