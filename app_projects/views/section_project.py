@@ -22,7 +22,7 @@ def process(request, config, context, *args):
     if not slug or not len(projects):
         path = '/'.join(request.path.split('/')[:-1])
         return {
-            'redirect':HttpResponseRedirect(path)
+            'redirect': path
         }
 
     context['project'] = projects[0]

@@ -12,11 +12,13 @@ from sqlescapy import sqlescape
 from django.http import HttpResponse
 from datetime import datetime
 from django.db import connection
+from django.core.cache import cache
 import pydash as py_
 import importlib
 import re
 import os
-from django.core.cache import cache
+import json
+
 
 
 def build_select_path_query(path):
@@ -105,28 +107,41 @@ def build_select_page_meta_query(page_id, lang):
     WHERE app_cms_page_meta.page_id = {page_id} AND app_cms_page_meta_translation.language_code = '{lang}'
     '''
 
-from django.views.decorators.cache import cache_page
-
-
 
 class PageView(View):
 
     @minified_response
     def get(self, request, path):
-        context = {
+        start = datetime.now()
+        tokens = {
            'gCaptchaPublicKey':  os.getenv("GCAPTCHA_PUBLIC_KEY"),
            'csrfToken': get_token(request)
         }
+        cache_key = self.build_cache_key(request)
+        template = cache.get(cache_key + '--template', None)
+        context = cache.get(cache_key + '--context', None)
 
+        if not template or not context:
+            template, context = self.get_template_and_context(request, path)
+            cache.set(cache_key + '--template', template)
+            cache.set(cache_key + '--context', context)
+
+        if context.get('redirect'):
+            return HttpResponseRedirect(context.get('redirect'))
+
+        print("---page render", datetime.now() - start)
+        return render(request, template, context = {**context, **tokens})
+
+    def get_template_and_context(self, request, path):
         try:
-            start = datetime.now()
+            context = {}
             if re.match('.*\.\w{,5}$', path): #file
                 return HttpResponse(status=404)
 
             route = self.process_path(sqlescape(path), request)
 
             if route.get('redirect'):
-                return HttpResponseRedirect(route.get('redirect'))
+                return [None, {'redirect': route.get('redirect')}]
 
             if route.get('not_found'):
                 raise LookupError('not found')
@@ -155,12 +170,7 @@ class PageView(View):
                 'meta': self.get_page_meta(page_id)
             }
 
-            if context.get('redirect'):
-                return context.get('redirect')
-
-            print("---page render", datetime.now() - start)
-            return  render(request, page_template, context = context)
-
+            return [page_template, context]
         except (Page.DoesNotExist, IndexError, LookupError):
             context = {
                 'meta': {
@@ -169,7 +179,7 @@ class PageView(View):
                     'meta_description': 'Page not found'
                 }
             }
-            return  render(request, 'page_404.html', context = context)
+            return ['page_404.html', context]
 
     @staticmethod
     def get_groups(regex, str):
@@ -255,7 +265,7 @@ class PageView(View):
                'text': row['item_text'],
                'url': row['item_url']
             })
-        return menus.values()
+        return list(menus.values())
 
 
     def get_page_sections_raw(self, page_id):
@@ -296,3 +306,8 @@ class PageView(View):
         query = build_select_page_meta_query(page_id, get_language())
         data, success, *_ = execute_query(query)
         return data[0] if success and len(data) else {}
+
+    @staticmethod
+    def build_cache_key(request):
+        key = request.path + '--' + '_'.join([key + '-' + value for key, value in request.GET.items()])
+        return key
