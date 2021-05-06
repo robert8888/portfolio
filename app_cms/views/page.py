@@ -115,7 +115,8 @@ class PageView(View):
         start = datetime.now()
         tokens = {
            'gCaptchaPublicKey':  os.getenv("GCAPTCHA_PUBLIC_KEY"),
-           'csrfToken': get_token(request)
+           'csrfToken': get_token(request),
+           'analyticsGCode': os.getenv('ANALYTICS_G_CODE', None)
         }
         cache_key = self.build_cache_key(request)
         template = cache.get(cache_key + '--template', None)

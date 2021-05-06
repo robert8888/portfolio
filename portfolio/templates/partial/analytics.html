@@ -1,0 +1,16 @@
+<!-- Global site tag (gtag.js) - Google Analytics -->
+{% if analyticsGCode %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{analyticsGCode}}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Default ad_storage to 'denied'. - no cookies
+  gtag('consent', 'default', {
+    'ad_storage': 'denied'
+  });
+
+  gtag('js', new Date());
+  gtag('config', '{{analyticsGCode}}');
+</script>
+{% endif %}
