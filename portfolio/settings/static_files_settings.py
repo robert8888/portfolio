@@ -38,7 +38,7 @@ STATICFILES_FINDERS = [
 ]
 
 
-COMPRESS_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
+
 
 COMPRESS_ENABLED = True
 COMPRESS_ROOT = STATIC_ROOT
@@ -46,4 +46,4 @@ COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter'
 ]
-COMPRESS_OFFLINE = os.getenv('DEBUG') != 'True'
+# COMPRESS_OFFLINE = os.getenv('DEBUG') != 'True'
