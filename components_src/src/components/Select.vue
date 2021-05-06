@@ -14,12 +14,13 @@
               v-html="buttonContent">
       </button>
       <list :class="['dropdown__list', {'dropdown__list--expanded': isExpanded}]"
-          :id="'list-'+id"
-          role="listbox"
-          :aria-labelledby="'label-' + id"
-          :aria-activedescendant="activeDescendantId"
-          :aria-multiselectable="$props.mode === 'multi'"
-          tabindex="-1">
+            is="ul"
+            :id="'list-'+id"
+            role="listbox"
+            :aria-labelledby="'label-' + id"
+            :aria-activedescendant="activeDescendantId"
+            :aria-multiselectable="$props.mode === 'multi'"
+            tabindex="-1">
         <slot/>
       </list>
     </div>
