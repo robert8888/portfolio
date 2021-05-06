@@ -37,7 +37,6 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 COMPRESS_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
 
