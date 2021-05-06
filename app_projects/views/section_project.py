@@ -25,7 +25,15 @@ def process(request, config, context, *args):
             'redirect': path
         }
 
-    context['project'] = projects[0]
+    project = projects[0]
+
+    context['project'] = project
     context['project_technologies'] = group_technologies_by_type(projects[0].technology.all().order_by('type__weight'))
+    if project.meta_title and project.meta_description:
+        context['page_meta'] = {
+            'meta_title': project.meta_title,
+            'meta_description': project.meta_description,
+            'title': project.title
+        }
 
     return context

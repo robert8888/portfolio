@@ -27,6 +27,20 @@ class Project(TranslatableModel):
             verbose_name = gettext_lazy('Project title'),
         ),
 
+        meta_title = models.CharField(
+            max_length=55,
+            blank = True,
+            null = True,
+            verbose_name=gettext_lazy('Project page meta title')
+        ),
+
+        meta_description = models.CharField(
+            max_length=255,
+            blank = True,
+            null = True,
+            verbose_name=gettext_lazy('Project page meta description')
+        ),
+
         subtitle = models.CharField(
             max_length = 255,
             verbose_name = gettext_lazy('Project subtitle')

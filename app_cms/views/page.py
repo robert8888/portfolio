@@ -169,10 +169,13 @@ class PageView(View):
             context = {
                 **context,
                 **views_data,
-                'sections': sections['view_data'],
+                'meta': self.get_page_meta(page_id),
                 'menus': self.get_menus_raw(page_id),
-                'meta': self.get_page_meta(page_id)
+                'sections': sections['view_data'],
             }
+
+            if context.get('page_meta'):
+                context['meta'] = context['page_meta']
 
             return [page_template, context]
         except (Page.DoesNotExist, IndexError, LookupError):

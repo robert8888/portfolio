@@ -32,8 +32,12 @@ class ProjectAdmin(DynamicArrayMixin,SortableAdminMixin, TranslatableAdmin):
     filter_horizontal = ['related']
     inlines = [ProjectLinksInline]
     fieldsets = (
+        (None, {'fields': ['name']}),
+        ('Meta', {
+            'fields': ['meta_title', 'meta_description']
+        }),
         (None, {
-            'fields': ['name', 'title', 'subtitle', 'type', 'release_date',
+            'fields': ['title', 'subtitle', 'type', 'release_date',
              'update_date', 'gallery', 'autocomplete_hint', 'show_on_index']
         }),
         (None, {
