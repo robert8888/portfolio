@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -13,6 +14,7 @@ AWS_URL = os.getenv('AWS_URL')
 AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = 'eu-central-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
+
 AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN')
 
 
@@ -20,7 +22,6 @@ MEDIA_ROOT_PATH = "media/"
 MEDIA_ROOT = AWS_URL + MEDIA_ROOT_PATH
 MEDIA_URL = AWS_URL + MEDIA_ROOT_PATH
 DEFAULT_FILE_STORAGE = 'portfolio.storage.MediaStorage'
-
 
 STATIC_URL = '/static/'
 
@@ -37,13 +38,9 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ]
 
-
 COMPRESS_ENABLED = True
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter'
 ]
-
-# COMPRESS_URL = "http://compressor-test.s3.amazonaws.com/"
-# COMPRESS_STORAGE = 'portfolio.storage.AssetStorage'

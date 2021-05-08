@@ -18,7 +18,6 @@ def s3proxy(req):
             return HttpResponse(status=404)
 
         response = generatePresignedUrl(path)
-        print(response)
         return HttpResponseRedirect(response)
     except:
         return HttpResponse(status=404)
