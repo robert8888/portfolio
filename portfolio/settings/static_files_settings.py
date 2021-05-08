@@ -46,4 +46,7 @@ COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter'
 ]
+
+# COMPRESS_URL = "http://compressor-test.s3.amazonaws.com/"
+COMPRESS_STORAGE = 'portfolio.storage.AssetStorage'
 # COMPRESS_OFFLINE = os.getenv('DEBUG') != 'True'

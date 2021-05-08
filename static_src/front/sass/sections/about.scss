@@ -17,6 +17,7 @@
   &__photo{
     max-width: 100%;
     opacity: 0;
+    object-fit: contain;
   }
 
   &__content{

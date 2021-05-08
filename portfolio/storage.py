@@ -6,3 +6,9 @@ class MediaStorage(S3Boto3Storage):
     file_overwrite = False
     default_acl = 'private'
     custom_domain = os.getenv('AWS_S3_CUSTOM_DOMAIN')
+
+class AssetStorage(S3Boto3Storage):
+    location = 'assets'
+    file_overwrite = True
+    default_acl = 'private'
+    custom_domain = os.getenv('AWS_S3_CUSTOM_DOMAIN')

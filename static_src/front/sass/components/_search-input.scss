@@ -54,6 +54,7 @@
     border-left: 2px solid var(--color-pallet-primary);
     box-shadow: 0 8px 8px var(--color-background-primary);
     display: none;
+    @include stacking('dropdown');
     &--visible{
       display: block;
     }

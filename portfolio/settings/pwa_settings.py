@@ -18,12 +18,12 @@ PWA_APP_ICONS = [
         'sizes': '512x512'
     },
     {
-        'src': '/static/img/pwa-maskable-192x192.png',
+        'src': '/static/img/pwa_maskable_icon_192x192.png',
         'sizes': '192x192',
         "type": "image/png",
         "purpose": "any maskable"
     }, {
-        'src': '/static/img/pwa-maskable-512x512.png',
+        'src': '/static/img/pwa_maskable_icon_512x512.png',
         'sizes': '512x512',
         "type": "image/png",
         "purpose": "any maskable"

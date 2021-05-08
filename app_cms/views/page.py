@@ -8,6 +8,7 @@ from django.utils.translation import get_language
 from portfolio.utils.getAppsViewsList import getAppsViewsList
 from htmlmin.decorators import minified_response
 from django.conf import settings
+from django.utils.text import slugify
 from sqlescapy import sqlescape
 from django.http import HttpResponse
 from datetime import datetime
@@ -317,4 +318,4 @@ class PageView(View):
     @staticmethod
     def build_cache_key(request):
         key = request.path + '--' + '_'.join([key + '-' + value for key, value in request.GET.items()])
-        return key
+        return slugify(key)
