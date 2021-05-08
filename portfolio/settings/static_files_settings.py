@@ -38,8 +38,6 @@ STATICFILES_FINDERS = [
 ]
 
 
-
-
 COMPRESS_ENABLED = True
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_CSS_FILTERS = [
@@ -48,5 +46,4 @@ COMPRESS_CSS_FILTERS = [
 ]
 
 # COMPRESS_URL = "http://compressor-test.s3.amazonaws.com/"
-COMPRESS_STORAGE = 'portfolio.storage.AssetStorage'
-# COMPRESS_OFFLINE = os.getenv('DEBUG') != 'True'
+# COMPRESS_STORAGE = 'portfolio.storage.AssetStorage'
