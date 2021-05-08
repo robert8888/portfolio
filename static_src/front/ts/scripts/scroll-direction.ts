@@ -21,6 +21,7 @@
         const direction = getScrollDirection();
         if(!direction)
             return;
+
         document.body.setAttribute('data-scroll-direction', direction);
         wasScrolled = false;
     }
