@@ -1,8 +1,8 @@
 <template>
   <li class="gallery__item">
-    <img :src="src" alt="" :width="containerSize.w"
-         :height="height ? height : null"
-         loading="lazy" />
+     <img :src="src" alt="" :width="containerSize.w"
+       :height="height ? height : null"
+       loading="lazy" />
   </li>
 </template>
 
@@ -44,7 +44,7 @@ export default defineComponent({
       return this.containerSize.w > 300
           ? this.fullSrc || this.thumbSrc
           : this.thumbSrc;
-    }
+    },
   },
 
 })

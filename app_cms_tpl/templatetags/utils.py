@@ -31,3 +31,9 @@ def create_dict(str_dict):
 def to_camel_case(input_str):
     parts = re.split('[_-]', input_str)
     return parts[0] + ''.join([x.title() for x in parts[1:]])
+
+
+@register.simple_tag(takes_context=True)
+def support_webp(context):
+    request = context['request']
+    return request.META.get('HTTP_ACCEPT').find('image/webp') != -1
