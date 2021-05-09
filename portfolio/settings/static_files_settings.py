@@ -32,7 +32,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
 ]
 
-WHITENOISE_MAX_AGE = 60 * 60 * 24 * 365,
+
+def force_set_cache_header(headers, path, url):
+    headers['Cache-Control'] = f'max-age={60 * 60 * 24 * 180}, public'
+
+WHITENOISE_ADD_HEADERS_FUNCTION = force_set_cache_header
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
