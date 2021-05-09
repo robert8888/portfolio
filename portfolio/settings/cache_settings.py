@@ -29,7 +29,6 @@ def get_cache():
           }
         }
 
-# if not os.environ['DEBUG'] == 'True':
-#     CACHES = get_cache()
-
+if not os.environ['DEBUG'] == 'True':
+    CACHES = get_cache()
 
