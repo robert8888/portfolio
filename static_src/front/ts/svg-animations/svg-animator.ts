@@ -79,43 +79,41 @@ import getAttributeObserveValue from "./attribute-observe-value";
     }
 
 
-    (() => {
-        const logoWrapper =  document.getElementById("logoWrapper");
-        const logoContainer = document.getElementById("logoContainer");
+    const logoWrapper =  document.getElementById("logoWrapper");
+    const logoContainer = document.getElementById("logoContainer");
 
-        if(!logoWrapper || !logoContainer)
+    if(!logoWrapper || !logoContainer)
+        return;
+
+    logoWrapper.addEventListener("svg-animation-end", (e) => {
+        logoContainer.setAttribute("data-init-anim-finished", "true");
+
+        const initPosition = logoContainer.getBoundingClientRect();
+        logoWrapper.classList.remove('logo__wrapper--init');
+
+        if(noAnimation()){
+            setBodyScroll(false);
             return;
+        }
 
-        logoWrapper.addEventListener("svg-animation-end", (e) => {
-            logoContainer.setAttribute("data-init-anim-finished", "true");
-
-            const initPosition = logoContainer.getBoundingClientRect();
-            logoWrapper.classList.remove('logo__wrapper--init');
-
-            if(noAnimation()){
-                setBodyScroll(false);
-                return;
-            }
-
-            window.getComputedStyle(logoWrapper);
-            const targetPosition = logoContainer.getBoundingClientRect()
-            const diff = {
-                x: initPosition.x - targetPosition.x,
-                y: initPosition.y - targetPosition.y
-            }
-            const animation = logoContainer.animate([{
-                transform: `translate(${diff.x}px,${diff.y}px)`
-            },{
-                transform: `translate(0,0)`,
-            }], {
-                duration: 600,
-                fill: "forwards",
-                easing: "cubic-bezier(.43,.11,.49,1.35)"
-            })
-
-            animation.onfinish = () => {
-                setBodyScroll(false);
-            }
+        window.getComputedStyle(logoWrapper);
+        const targetPosition = logoContainer.getBoundingClientRect()
+        const diff = {
+            x: initPosition.x - targetPosition.x,
+            y: initPosition.y - targetPosition.y
+        }
+        const animation = logoContainer.animate([{
+            transform: `translate(${diff.x}px,${diff.y}px)`
+        },{
+            transform: `translate(0,0)`,
+        }], {
+            duration: 600,
+            fill: "forwards",
+            easing: "cubic-bezier(.43,.11,.49,1.35)"
         })
-    })()
+
+        animation.onfinish = () => {
+            setBodyScroll(false);
+        }
+    })
 })()
