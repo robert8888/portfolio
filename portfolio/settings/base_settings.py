@@ -31,4 +31,8 @@ DEBUG = os.getenv('DEBUG') == 'True'
 
 ROOT_URLCONF = 'portfolio.urls'
 
+if not os.getenv('SECURE_SSL_REDIRECT') == 'False':
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+
 WSGI_APPLICATION = 'portfolio.wsgi.application'
