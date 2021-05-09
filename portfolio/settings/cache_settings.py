@@ -1,5 +1,15 @@
 import os
 
+def default_cache():
+    return {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
+        },
+        'local': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
+        }
+    }
+
 def get_cache():
     import bmemcached
     import pickle
@@ -20,15 +30,15 @@ def get_cache():
                 'unpickler': pickle.Unpickler,
                 'pickle_protocol': 0
             }
+          },
+          'local': {
+              'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
           }
         }
     except:
-        return {
-          'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
-          }
-        }
+        return default_cache()
 
 if not os.environ['DEBUG'] == 'True':
     CACHES = get_cache()
-
+else:
+    CACHE = default_cache()
