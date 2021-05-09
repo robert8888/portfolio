@@ -18,7 +18,6 @@ import getAttributeObserveValue from "./attribute-observe-value";
 
     const noAnimation = () => noAnimationValue.current || dataInitScroll.value === "true";
 
-
     function animateSvg(target: HTMLElement ){
         const animations = animationsConfigs as any as AnimationKeyframes;
         const animationName = (target.getAttribute("data-svg-animation") || "" )
@@ -98,7 +97,6 @@ import getAttributeObserveValue from "./attribute-observe-value";
                 return;
             }
 
-            //forcing style calculation
             window.getComputedStyle(logoWrapper);
             const targetPosition = logoContainer.getBoundingClientRect()
             const diff = {

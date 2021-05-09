@@ -12,7 +12,7 @@
             lastScrollPosition = position;
             return diff < 0 ? "up" : "down"
         }
-        return ""
+        return "-"
     }
 
     const setDirection = () =>{
