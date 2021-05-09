@@ -20,7 +20,7 @@
 {% block headscripts %}
     {{ block.super }}
     {% compress js %}
-        {% include 'partial/script.html' with script_url='front/js/common.js' %}
+        {% include 'partial/script.html' with script_url='front/js/common.js' async=True  %}
     {% endcompress %}
 {% endblock %}
 

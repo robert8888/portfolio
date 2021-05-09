@@ -1,2 +1,2 @@
 {% load static %}
-<script src="{% static script_url %}"></script>
+<script  src="{% static script_url %}" {% if async %}async{% endif %}  {% if defer %}defer{% endif %}></script>
