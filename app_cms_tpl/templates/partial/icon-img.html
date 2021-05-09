@@ -1,7 +1,7 @@
 {% load l10n %}
 {% localize off %}
 {% if is_sprite %}
-<img style=" --x: {{ left }}px;--y: {{ top }}px; --w: {{ width }}px;--h: {{ height }}px;--url: url({{ url|safe }})" width="{{width}}" height="{{height}}"  src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" loading="lazy" alt="{{alt|default:'icon'}}">
+<img style=" --x: {{ left }}px;--y: {{ top }}px; --w: {{ width }}px;--h: {{ height }}px;--url: url({{ url|safe }})" width="{{img_org_width|default:width}}" height="{{img_org_height|default:height}}"  src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" loading="lazy" alt="{{alt|default:'icon'}}">
 {% else %}
 <img alt="{{alt|default:'icon'}}" width="img.width" height="{{img.height}}" loading="lazy" src="{{img.image.source.url}}"/>
 {% endif %}

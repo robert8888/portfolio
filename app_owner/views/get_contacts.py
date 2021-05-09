@@ -4,12 +4,12 @@ from portfolio.s3proxy import generatePresignedUrl
 from django.conf import settings
 
 def buildQuery(params):
-    def typeCondition():
+    def type_condition():
         if not params.get("type"): return ""
         value = sqlescape(params.get("type"), '')
         return 'contact.type = ' + value
 
-    def onIndexCondition():
+    def on_index_condition():
         if not params.get("on_index"): return ""
         value = params.get("on_index")
         value = "TRUE" if value else "FALSE"
@@ -18,7 +18,7 @@ def buildQuery(params):
     def where():
         conditions = [
             condition
-            for condition in [typeCondition(), onIndexCondition()]
+            for condition in [type_condition(), on_index_condition()]
             if condition != ""
         ]
         if not len(conditions): return ""
@@ -55,7 +55,9 @@ def buildQuery(params):
     END) as "img_height",
     app_owner_contactimagesprite.top as "img_top",
     app_owner_contactimagesprite.left as "img_left",
-    app_owner_contact.show_on_index as "on_index"
+    app_owner_contact.show_on_index as "on_index",
+    app_owner_image.height as "img_org_height",
+    app_owner_image.width as "img_org_width"
     FROM app_owner_contact
     LEFT JOIN app_owner_contactportal ON app_owner_contact.id = app_owner_contactportal.contact_ptr_id
     LEFT JOIN app_owner_contactnumber ON app_owner_contact.id = app_owner_contactnumber.contact_ptr_id
