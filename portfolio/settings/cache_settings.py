@@ -38,7 +38,7 @@ def get_cache():
     except:
         return default_cache()
 
-if not os.environ['DEBUG'] == 'True':
-    CACHES = get_cache()
-else:
-    CACHE = default_cache()
+# if not os.environ['DEBUG'] == 'True':
+#     CACHES = get_cache()
+# else:
+#     CACHE = default_cache()
