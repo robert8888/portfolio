@@ -32,7 +32,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
 ]
 
-WHITENOISE_MAX_AGE = 60 * 60 * 24 * 180,
+WHITENOISE_MAX_AGE = 60 * 60 * 24 * 365,
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
