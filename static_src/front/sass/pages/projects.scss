@@ -4,4 +4,4 @@
 
 @use "@sass/abstracts/animations" as *;
 
-@include page-fade-in(.1s, .2s);
+@include page-fade-in();

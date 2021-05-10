@@ -123,7 +123,7 @@ class PageView(View):
         template = cache.get(cache_key + '--template', None)
         context = cache.get(cache_key + '--context', None)
 
-        if not template or not context:
+        if not template or not context or os.getenv('DEBUG') == 'True':
             template, context = self.get_template_and_context(request, path)
             cache.set(cache_key + '--template', template, None)
             cache.set(cache_key + '--context', context, None)
