@@ -31,7 +31,7 @@ const sassEntries = [
 
 module.exports = [
     {
-    mode: 'development',
+    mode: 'production',
     entry: transformEntries(tsEntries),
     output:{
         path: path.resolve(__dirname, 'static_compiled'),

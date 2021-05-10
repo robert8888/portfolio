@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "outDir": "./static_compiled/",
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "strict": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    "downlevelIteration": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
