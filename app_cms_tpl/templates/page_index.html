@@ -10,7 +10,7 @@
 
 {% block scripts %}
     {% render_entrypoint 'main' %}
-    {% compress js %}
+    {% compress js inline %}
         {% include 'partial/script.html' with script_url='front/js/index.js' %}
         {% include 'partial/validation_msg.html' %}
     {% endcompress %}
