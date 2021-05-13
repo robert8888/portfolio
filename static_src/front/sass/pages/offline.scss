@@ -1,0 +1,29 @@
+@use "@sass/abstracts/colors--index";
+@use "@sass/layout/container";
+
+
+.l-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.svg__container{
+  --strokeColor: var(--color-pallet-primary);
+  --strokeWidth: 10;
+  svg{
+    max-width: 100%;
+    width: 475px;
+  }
+}
+
+.text{
+  font-size: clamp(.8rem,6vw,2rem);
+  margin-top: 1em;
+  span{
+    color: var(--color-pallet-primary);
+  }
+}

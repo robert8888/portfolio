@@ -19,7 +19,7 @@ def get_path_pattern(page_id=None, page_name = None):
             return None
         page_id = page_id_queryset[0].get('id')
 
-    path_queryset = Path.objects.filter(page = page_id, translations__language_code=get_language())
+    path_queryset = Path.objects.filter(page_id = page_id, translations__language_code=get_language())
 
     if not len(path_queryset):
         return None

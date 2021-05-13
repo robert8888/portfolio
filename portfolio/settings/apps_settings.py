@@ -6,6 +6,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webp_converter',
 
+    'app_cms_tpl.apps.CmsTplAppConfig',
+
     'storages',
     'webpack_loader',
     'solo.apps.SoloAppConfig',
@@ -26,10 +28,12 @@ INSTALLED_APPS = [
     'rosetta',
     'parler',
     'svg',
-    'pwa',
+
 
     'app_cms.apps.CmsAppConfig',
-    'app_cms_tpl.apps.CmsTplAppConfig',
+
     'app_projects.apps.ProjectsAppConfig',
-    'app_owner.apps.AppOwnerConfig'
+    'app_owner.apps.AppOwnerConfig',
+
+    'pwa',
 ]

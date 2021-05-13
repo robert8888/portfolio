@@ -8,7 +8,7 @@
         <card-project v-for="project in projects"
                       :key="project.title"
                       :id="project.slug"
-                      :href="'/project/' + project.slug"
+                      :href="project.path"
                       :more-text="project.moreText">
           <template #header>
             <a class="card-project__title-link" :href="project.path" v-html="project.title"></a>
@@ -19,7 +19,9 @@
               <gallery-item v-for="image in project.images" :key="image.url.slice(-10)" :thumb-src="image.url"></gallery-item>
             </gallery>
           </template>
-          <h4 class="card-project__subtitle" v-html="project.subtitle"></h4>
+          <h4 class="card-project__subtitle">
+            <a :href="project.path" v-html="project.subtitle"/>
+          </h4>
           <div class="card-project__text" v-html="project.description"></div>
           <ul class="card-project__tech-list">
             <li v-for="tech in project.technologies" :key="tech.name"

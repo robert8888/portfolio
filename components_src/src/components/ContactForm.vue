@@ -86,10 +86,13 @@ export default defineComponent({
 
       try{
         const response = await sendForm(data);
-        response.success
-            ? this.setSuccessMessage()
-            : this.setValidationMessages(response.errors as ErrorList);
-        (this.$refs.form as HTMLFormElement).reset();
+
+        if(response.success){
+          this.setSuccessMessage();
+          (this.$refs.form as HTMLFormElement).reset();
+        } else {
+          this.setValidationMessages(response.errors as ErrorList);
+        }
       } catch {
         this.message = this.errorMessage;
         this.isSuccessMessage = false;

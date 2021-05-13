@@ -6,7 +6,7 @@ import json
 
 
 
-def buildQuery(input):
+def build_query(input):
     input = sqlescape(input)
     print('input', input)
     word_list = [word.strip() for word in input.split(' ') if not word == '']
@@ -35,13 +35,12 @@ def buildQuery(input):
     ) as match WHERE match.rank > 0
     """
 
-def parseData(rows):
-    autocompleteList = [row[0] for row in rows]
-    noDuplicate = list(set(autocompleteList))
-    return noDuplicate
+def parse_data(rows):
+    autocomplete_list = [row[0] for row in rows]
+    no_duplicate = list(set(autocomplete_list))
+    return no_duplicate
 
 def process(request):
-    body_unicode = request.body.decode('utf-8')
     body_data = json.loads(request.body)
     input = body_data.get('input')
     if not input:
@@ -50,12 +49,12 @@ def process(request):
            'errors': ['No input string for autocomplete']
         })
 
-    query = buildQuery(input)
+    query = build_query(input)
     try:
         with connection.cursor() as cursor:
             cursor.execute(query)
             rows = cursor.fetchall()
-        data = parseData(rows)
+        data = parse_data(rows)
         return JsonResponse({
            'success': True,
            'data': data

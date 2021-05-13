@@ -190,7 +190,7 @@ def get(request, params, doSerialization = False):
             where += ' AND (app_projects_project.show_on_index = TRUE) '
         return where
 
-    def getProjects(input):
+    def get_projects(input):
         try:
             project_page_path = revers_page_path(page_name = 'Project').split('/')[0]
             if input:
@@ -203,14 +203,14 @@ def get(request, params, doSerialization = False):
         except:
             return {}
 
-    def getHighlightedTechnologyList(project):
+    def get_highlighted_technology_list(project):
         technologies = project.get('technologies', None)
         if not technologies: return []
         return [re.sub('\\<\/?b\\>', '', technology)
             for technology in technologies.split(',') if technology.startswith('<b>')]
 
 
-    def getProjectsTechnologies(projects):
+    def get_projects_technologies(projects):
         projects_ids_list = list(projects.keys())
 
         query = build_get_projects_technologies_query(projects_ids_list)
@@ -222,7 +222,7 @@ def get(request, params, doSerialization = False):
         technologies = group_by(technology_list, 'project_id', force_list = True)
 
         for project_id, technology_list in technologies.items():
-            highlightedTechnology = getHighlightedTechnologyList(projects.get(project_id))
+            highlightedTechnology = get_highlighted_technology_list(projects.get(project_id))
             for technology in technology_list:
                 isHighlighted = technology['name'] in highlightedTechnology
                 technology['isHighlighted'] =  isHighlighted
@@ -231,7 +231,7 @@ def get(request, params, doSerialization = False):
         return technologies
 
 
-    def getProjectsGalleries(projects):
+    def get_projects_galleries(projects):
         galleries_ids = [project.get('gallery') for project in projects.values()]
         images = ProjectGalleryImage.objects.filter(gallery__in = galleries_ids)
         galleries = {}
@@ -247,18 +247,18 @@ def get(request, params, doSerialization = False):
 
 
     try:
-        projects = getProjects(search_param)
+        projects = get_projects(search_param)
 
-        projects_technologies = getProjectsTechnologies(projects)
-        projects_galleries = getProjectsGalleries(projects)
+        projects_technologies = get_projects_technologies(projects)
+        projects_galleries = get_projects_galleries(projects)
 
-        def projectsCombine(project):
+        def projects_combine(project):
             project['technologies'] = projects_technologies.get(project.get('id'))
             project['images'] = projects_galleries.get(project.get('gallery'))
             del project['id']
             del project['gallery']
             return project
 
-        return list(map(projectsCombine, projects.values()))
+        return list(map(projects_combine, projects.values()))
     except:
         return []

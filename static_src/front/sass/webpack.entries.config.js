@@ -4,6 +4,7 @@ module.exports = [
     'front/sass/pages/projects.scss',
     'front/sass/pages/project.scss',
     'front/sass/pages/404.scss',
+    'front/sass/pages/offline.scss',
 
     'front/sass/sections/about.scss',
     'front/sass/sections/contact.scss',
