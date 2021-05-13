@@ -1,8 +1,10 @@
 
-var staticCacheName = "rkam-pwa-v" + new Date().getTime();
+var staticCacheName = "django-pwa-v" + new Date().getTime();
+
 var filesToCache = [
     '/offline/',
     '/pl/offline/',
+    '/manifest.json',
     '/static/css/django-pwa-app.css',
     '/static/images/icons/icon-72x72.png',
     '/static/images/icons/icon-96x96.png',
@@ -27,7 +29,6 @@ var filesToCache = [
 // Cache on install
 self.addEventListener("install", event => {
     this.skipWaiting();
-    console.log("install")
     event.waitUntil(
         caches.open(staticCacheName)
             .then(cache => {
@@ -38,12 +39,11 @@ self.addEventListener("install", event => {
 
 // Clear cache on activate
 self.addEventListener('activate', event => {
-    console.log('activete')
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames
-                    .filter(cacheName => (cacheName.startsWith("django-pwa-")))
+                    .filter(cacheName => (cacheName.startsWith("django-pwa")))
                     .filter(cacheName => (cacheName !== staticCacheName))
                     .map(cacheName => caches.delete(cacheName))
             );
@@ -53,15 +53,12 @@ self.addEventListener('activate', event => {
 
 // Serve from Cache
 self.addEventListener("fetch", event => {
-    console.log("fetch")
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                console.log("fetch")
                 return response || fetch(event.request);
             })
             .catch(() => {
-                console.log("you are offline")
                 return caches.match('/offline/');
             })
     )

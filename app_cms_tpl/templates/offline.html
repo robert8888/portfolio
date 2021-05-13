@@ -10,8 +10,10 @@
 {% endblock %}
 
 {% block pagestyle %}
-    {% include 'partial/style.html' with style_url='front/css/pages/common.css' %}
-    {% include 'partial/style.html' with style_url='front/css/pages/offline.css' %}
+    {% compress css inline %}
+        {% include 'partial/style.html' with style_url='front/css/pages/common.css' %}
+        {% include 'partial/style.html' with style_url='front/css/pages/offline.css' %}
+    {% endcompress %}
 {% endblock %}
 
 
