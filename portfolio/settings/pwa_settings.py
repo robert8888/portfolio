@@ -9,6 +9,7 @@ PWA_APP_SCOPE = '/'
 PWA_APP_ORIENTATION = 'any'
 PWA_APP_START_URL = '/'
 PWA_APP_STATUS_BAR_COLOR = '#101317'
+# PWA_SERVICE_WORKER_PATH = 'portfolio/templates/serviceworker.js'
 PWA_APP_ICONS = [
     {
         'src': '/static/img/pwa-192x192.png',
@@ -50,4 +51,4 @@ PWA_APP_SPLASH_SCREEN = [
 PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'en-US'
 
-PWA_APP_DEBUG_MODE = False
+# PWA_APP_DEBUG_MODE = False
