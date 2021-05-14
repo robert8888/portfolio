@@ -34,7 +34,6 @@ interface ComponentState{
 }
 
 export default defineComponent({
-  mixins: [scrollDisableMixin],
 
   data(): ComponentState{
     return {
@@ -48,6 +47,8 @@ export default defineComponent({
     return {
       expanded: computed(() => store.state.menu.mainExpanded),
       toggle: () => store.commit(MUTATIONS.TOGGLE_MENU_MAIN),
+      hide: () => store.commit(MUTATIONS.HIDE_MENU_MAIN),
+      show: () => store.commit(MUTATIONS.SHOW_MENU_MAIN),
     }
   },
 
@@ -65,23 +66,8 @@ export default defineComponent({
   methods:{
     mobileMatchChange(event: {matches: boolean}){
       this.isMobile = event.matches;
-    },
-    handleLocalLinksClicks(){
-      const localLinks = (this.$refs.container as HTMLElement).querySelectorAll('a[href*="#"]');
-      for(const link of localLinks){
-        link.addEventListener('click', () =>{
-          this.toggle();
-        })
-      }
     }
   },
-
-  watch: {
-    expanded: function(){
-      this.expanded && this.isMobile
-          ? this.scrollDisable() : this.scrollEnable();
-    }
-  }
 
 })
 
