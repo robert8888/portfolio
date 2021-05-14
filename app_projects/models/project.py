@@ -9,7 +9,7 @@ from django.db.models import Value
 from .project_search_autocomplete import ProjectSearchAutocomplete
 from .project_links import ProjectLink
 from sortedm2m.fields import SortedManyToManyField
-
+from django.utils.translation import get_language
 
 class Project(TranslatableModel):
     translations = TranslatedFields(
@@ -126,8 +126,9 @@ class Project(TranslatableModel):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        if self.id:
-            technologies = ' '.join([technology.name for technology in self.technology.all()])
+        technologies = ' '.join([technology.name for technology in self.technology.all()]) if self.id else ''
+        translations = len(self.translations.filter(language_code = get_language())) if self.id else None
+        if self.id and translations:
             self.search_vector = SearchVector(
                 SearchVector('name', weight="C")
                 + SearchVector('title', weight="A")
@@ -140,7 +141,7 @@ class Project(TranslatableModel):
 
     def delete(self, *args, **kwargs):
         ProjectSearchAutocomplete.objects.filter(source_id = self.id, type='project').delete()
-        super(Technology, self).delete(*args, **kwargs)
+        super(Project, self).delete(*args, **kwargs)
 
     class Meta:
         verbose_name = gettext_lazy('Project')

@@ -209,7 +209,7 @@ msgstr "Szerokośc"
 
 #: .\models\technology.py:119
 msgid "Height"
-msgstr "Wysokośc"
+msgstr "Wysokość"
 
 #: .\models\technology.py:127
 msgid "Image identification name"

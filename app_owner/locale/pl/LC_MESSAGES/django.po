@@ -354,7 +354,7 @@ msgstr "Zdjęcie"
 
 #: .\models\cv_doc_personal.py:20
 msgid "Name"
-msgstr "Imię"
+msgstr "Nazwa"
 
 #: .\models\cv_doc_personal.py:25
 msgid "Surname"
