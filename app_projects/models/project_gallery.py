@@ -9,6 +9,7 @@ class ProjectGallery(models.Model):
         verbose_name = gettext_lazy('Identification name')
     )
 
+    @property
     def images(self):
         return ProjectGalleryImage.objects.filter(gallery_id = self.id)
 

@@ -1,6 +1,6 @@
 <template>
   <li class="gallery__item">
-     <img :src="src" alt="" :width="containerSize.w"
+     <img :src="src" :alt="alt" :width="containerSize.w"
        :height="height ? height : null"
        loading="lazy" />
   </li>
@@ -36,6 +36,10 @@ export default defineComponent({
     height:{
       type: Number,
       default: 0
+    },
+    alt: {
+      type: String,
+      default: "image"
     }
   },
 

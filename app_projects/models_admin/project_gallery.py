@@ -20,7 +20,7 @@ class ProjectGalleryImageForm(forms.ModelForm):
 class ProjectGalleryImageInlineAdmin(PreviewAndPPOIMixin, NestedStackedInline):
     extra = 0
     sortable_field_name = 'order'
-    fields = ['ppoi', 'image', 'order']
+    fields = ['ppoi', 'image', 'order', 'alt']
     model = ProjectGalleryImage
     form = ProjectGalleryImageForm
 

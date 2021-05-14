@@ -60,6 +60,11 @@ class ProjectGalleryImage(models.Model):
 
     ppoi = PPOIField('Image PPOI')
 
+    alt = models.CharField(
+        max_length = 255,
+        default = 'image'
+    )
+
     def toJson(self):
         return {
             'width': self.width,

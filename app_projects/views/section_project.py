@@ -33,7 +33,15 @@ def process(request, config, context, *args):
         context['page_meta'] = {
             'meta_title': project.meta_title,
             'meta_description': project.meta_description,
-            'title': project.title
+            'title': project.title,
+            'locale': get_language(),
+            'image': {
+                'url': project.gallery.images[0].image.thumb,
+                'type': 'image/png',
+                'width': project.gallery.images[0].width,
+                'height': project.gallery.images[0].height,
+                'alt': project.gallery.images[0].alt,
+            }
         }
 
     return context

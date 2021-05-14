@@ -170,7 +170,7 @@ class PageView(View):
             context = {
                 **context,
                 **views_data,
-                'meta': self.get_page_meta(page_id),
+                'meta': self.get_page_meta(page_id, request),
                 'menus': self.get_menus_raw(page_id),
                 'sections': sections['view_data'],
             }
@@ -310,10 +310,21 @@ class PageView(View):
         return props
 
     @staticmethod
-    def get_page_meta(page_id):
+    def get_page_meta(page_id, request):
         query = build_select_page_meta_query(page_id, get_language())
         data, success, *_ = execute_query(query)
-        return data[0] if success and len(data) else {}
+        meta = data[0] if success and len(data) else None
+        if not meta: return {}
+        meta['locale'] = get_language()
+        meta['site_name'] = request.META['HTTP_HOST']
+        meta['image'] = {
+            'url': request.build_absolute_uri('/static/img/page_thumbnail.png'),
+            'type': 'image/png',
+            'width': 550,
+            'height': 540,
+            'alt': 'rkam page thumbnail',
+        }
+        return meta
 
     @staticmethod
     def build_cache_key(request):

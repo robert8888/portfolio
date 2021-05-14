@@ -5,6 +5,10 @@
     {% include 'partial/meta.html' %}
 {% endblock %}
 
+{% block opengraph %}
+    {% include 'partial/open_graph.html' %}
+{% endblock %}
+
 {% block head %}
     {{ block.super }}
     {% compress css inline %}
