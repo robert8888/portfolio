@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.translation import get_language
 from app_projects.models import Project
 from app_cms.utils.revers_path import revers_page_path
-
+import json
 
 def group_technologies_by_type(technologies):
     technology_grouped = {}
@@ -43,5 +43,5 @@ def process(request, config, context, *args):
                 'alt': project.gallery.images[0].alt,
             }
         }
-
+    context['json_ld'] = project.structured_data
     return context

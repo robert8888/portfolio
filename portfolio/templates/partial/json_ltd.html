@@ -1,0 +1,10 @@
+{% load utils %}
+{% if meta.json_ld %}
+<script type="application/ld+json">
+    {{meta.json_ld|pretty_json|safe}}
+</script>
+{% elif json_ld %}
+<script type="application/ld+json">
+    {{json_ld|pretty_json|safe}}
+</script>
+{% endif %}

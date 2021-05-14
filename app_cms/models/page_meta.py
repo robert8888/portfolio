@@ -26,6 +26,11 @@ class PageMeta(TranslatableModel):
             max_length = 255,
             default = ',',
             verbose_name=gettext_lazy('Page meta description')
+        ),
+        json_ld = models.JSONField(
+            verbose_name = "Json ld",
+            blank = True,
+            null = True
         )
     )
 

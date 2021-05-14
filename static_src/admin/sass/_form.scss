@@ -305,6 +305,12 @@ div.parler-language-tabs{
     }
 }
 
+.jsonwidget {
+    button{
+        @include button();
+    }
+}
+
 form .inline-group[data-inline-type=stacked] fieldset.module.section__view{
     display: block;
     button {

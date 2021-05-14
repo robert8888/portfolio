@@ -8,15 +8,13 @@
 {% block meta %}
 <title>Robert Kamiński</title>
 {% endblock %}
-{% block opengraph %}
-{% endblock %}
+{% block jsonltd %}{% endblock %}
+{% block opengraph %}{% endblock %}
 {% include "partial/tokens.html" %}
 <link rel="icon" href="{% static '/img/favicon.ico' %}">
 <link rel="manifest" href="/manifest.json">
-{% block head %}
-{% endblock %}
-{% block headscripts %}
-{% endblock %}
+{% block head %}{% endblock %}
+{% block headscripts %}{% endblock %}
 {% progressive_web_app_meta %}
 {% include 'partial/analytics.html' %}
 </head>

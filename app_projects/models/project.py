@@ -61,6 +61,12 @@ class Project(TranslatableModel):
             verbose_name = gettext_lazy('Autocomplete hint'),
             null = True,
             blank = True
+        ),
+
+        json_ld=models.JSONField(
+            verbose_name="Json ld",
+            blank=True,
+            null=True
         )
     )
 
@@ -112,14 +118,40 @@ class Project(TranslatableModel):
     def links(self):
         return ProjectLink.objects.filter(project_id = self.id)
 
-    def repo_link(self):
-        link_queryset = ProjectLink.objects.filter(project_id = self.id, type = 'repo')
+    def link(self, type):
+        link_queryset = ProjectLink.objects.filter(project_id = self.id, type = type)
         if not len(link_queryset):
             return ""
         urls = link_queryset[0].url
         if not len(urls):
             return ""
         return urls[0]
+
+    @property
+    def repo_link(self):
+        return self.link('repo')
+
+    @property
+    def host_link(self):
+        return self.link('host')
+
+    @property
+    def structured_data(self):
+        return {
+            "@context" : "http://schema.org",
+            "@type" : "SoftwareApplication",
+            "name" : self.name,
+            "image" : self.gallery.images[0].image.thumb,
+            "url" : self.host_link,
+            "abstract": self.meta_description,
+            "applicationCategory": self.type.display,
+            "author" : {
+                "@type" : "Person",
+                "name" : "Robert Kaminski"
+            },
+            "datePublished" : self.release_date.strftime("%Y-%M-%d"),
+            "downloadUrl" : self.repo_link,
+        }
 
     def __str__(self):
         return self.name
@@ -137,6 +169,7 @@ class Project(TranslatableModel):
                 + SearchVector('description_short', weight="B")
                 + SearchVector(Value(technologies, models.TextField()), weight="C")
             )
+        self.json_ld = self.structured_data
         return super(Project, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):

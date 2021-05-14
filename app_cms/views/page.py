@@ -102,7 +102,8 @@ def build_select_page_meta_query(page_id, lang):
     SELECT
     app_cms_page_meta_translation.title as "title",
     app_cms_page_meta_translation.meta_title as "meta_title",
-    app_cms_page_meta_translation.meta_description as "meta_description"
+    app_cms_page_meta_translation.meta_description as "meta_description",
+    app_cms_page_meta_translation.json_ld as "json_ld"
     FROM app_cms_page_meta 
     LEFT JOIN app_cms_page_meta_translation ON app_cms_page_meta_translation.master_id = app_cms_page_meta.id
     WHERE app_cms_page_meta.page_id = {page_id} AND app_cms_page_meta_translation.language_code = '{lang}'

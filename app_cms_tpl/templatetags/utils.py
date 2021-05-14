@@ -3,6 +3,7 @@ from django.template.defaultfilters import stringfilter
 register = template.Library()
 import ast
 import re
+import json
 
 @register.simple_tag
 def to_list(*args):
@@ -32,6 +33,15 @@ def to_camel_case(input_str):
     parts = re.split('[_-]', input_str)
     return parts[0] + ''.join([x.title() for x in parts[1:]])
 
+@register.filter
+def pretty_json(json_input):
+    print(json)
+    if isinstance(json_input, str):
+        return json.dumps(json.loads(json_input), indent=4)
+    elif isinstance(json_input, dict):
+        return json.dumps(json_input, indent=4)
+    else:
+        return json_input
 
 @register.simple_tag(takes_context=True)
 def support_webp(context):

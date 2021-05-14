@@ -5,6 +5,7 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from polymorphic.admin import PolymorphicInlineAdminForm
 from parler.admin import TranslatableStackedInline, TranslatableModelForm, TranslatableInlineModelAdmin, TranslatableAdmin
 from fieldsets_with_inlines import FieldsetsInlineMixin
+from prettyjson import PrettyJSONWidget
 
 from parler.admin import (
     TranslatableStackedInline,
@@ -29,8 +30,17 @@ from nested_admin import (
     NestedStackedPolymorphicInline
 )
 
+class PageMetaForm(TranslatableModelForm):
+    class Meta:
+        model = PageMeta
+        fields = "__all__"
+        widgets = {
+            'json_ld':  PrettyJSONWidget(attrs={'initial': 'parsed', 'class': 'test'})
+        }
+
 class PageMetaInline(TranslatableStackedInline, NestedStackedInline):
     model = PageMeta
+    form = PageMetaForm
 
 class PathsInline(TranslatableStackedInline, NestedStackedInline):
     extra = 0
