@@ -35,9 +35,9 @@ class ProjectAdmin(DynamicArrayMixin,SortableAdminMixin, TranslatableAdmin):
     fieldsets = (
         (None, {'fields': ['name']}),
         ('Meta', {
-            'fields': ['meta_title', 'meta_description']
+            'fields': ['meta_title', 'meta_description', 'application_cat', 'operating_system']
         }),
-        (None, {
+        ('Project', {
             'fields': ['title', 'subtitle', 'type', 'release_date',
              'update_date', 'gallery', 'autocomplete_hint', 'show_on_index']
         }),

@@ -10,6 +10,8 @@ from .project_search_autocomplete import ProjectSearchAutocomplete
 from .project_links import ProjectLink
 from sortedm2m.fields import SortedManyToManyField
 from django.utils.translation import get_language
+from django.conf import settings
+import re
 
 class Project(TranslatableModel):
     translations = TranslatedFields(
@@ -68,6 +70,56 @@ class Project(TranslatableModel):
             blank=True,
             null=True
         )
+    )
+
+    application_cat = models.CharField(
+        max_length=100,
+        choices=[
+            (type, ' '.join(re.findall('[A-Z][^A-Z]*', type)))
+            for type in sorted([
+                'GameApplication',
+                'SocialNetworkingApplication',
+                'TravelApplication',
+                'ShoppingApplication',
+                'SportsApplication',
+                'LifestyleApplication',
+                'BusinessApplication',
+                'DesignApplication',
+                'DeveloperApplication',
+                'DriverApplication',
+                'EducationalApplication',
+                'HealthApplication',
+                'FinanceApplication',
+                'SecurityApplication',
+                'BrowserApplication',
+                'CommunicationApplication',
+                'DesktopEnhancementApplication',
+                'EntertainmentApplication',
+                'MultimediaApplication',
+                'HomeApplication',
+                'UtilitiesApplication',
+                'ReferenceApplication'
+            ], key=str.lower)
+        ],
+        null=True,
+        blank=True,
+        default = 'UtilitiesApplication',
+        verbose_name='Seo app category'
+    )
+
+    operating_system = models.CharField(
+        max_length=255,
+        choices=[
+            (system, system) for system in [
+                'Unix',
+                'Windows',
+                'OSX',
+                'Android',
+                'Any'
+            ]
+        ],
+        default='Any',
+        verbose_name='SEO operating system'
     )
 
     type = models.ForeignKey(
@@ -138,13 +190,14 @@ class Project(TranslatableModel):
     @property
     def structured_data(self):
         return {
-            "@context" : "http://schema.org",
-            "@type" : "SoftwareSourceCode",
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
             "name" : self.name,
             "targetProduct": self.name,
+            "operatingSystem": self.operating_system,
             "image" : self.gallery.images[0].image.thumb,
             "abstract": self.meta_description,
-            "applicationCategory": self.type.display,
+            "applicationCategory": self.application_cat,
             "author" : {
                 "@type" : "Person",
                 "name" : "Robert Kaminski"
@@ -153,11 +206,23 @@ class Project(TranslatableModel):
             "codeRepository" : self.repo_link,
             "codeSampleType": self.host_link,
             "programmingLanguage": self.technologies_str_by_type('Language'),
-            "offers": "Offer"
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5",
+                "ratingCount": "1"
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": "0"
+            }
         }
 
     def update_json_ld(self):
-        self.json_ld = self.structured_data
+        languages = [lang[0] for lang in settings.LANGUAGES]
+        for lang in languages:
+            self.set_current_language(lang)
+            self.json_ld = self.structured_data
+
         self.save()
 
     @property

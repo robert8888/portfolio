@@ -35,7 +35,6 @@ def to_camel_case(input_str):
 
 @register.filter
 def pretty_json(json_input):
-    print(json)
     if isinstance(json_input, str):
         return json.dumps(json.loads(json_input), indent=4)
     elif isinstance(json_input, dict):
