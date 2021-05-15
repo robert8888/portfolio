@@ -32,18 +32,18 @@ def get_path_pattern(page_id=None, page_name = None):
 
     path_queryset = Path.objects.filter(page_id = page_id, translations__language_code=get_language())
 
+
     if not len(path_queryset):
         return None
     path = path_queryset[0]
+
     return path.pattern
 
 @cached
 def get_path_patterns(page_id=None, page_name=None):
     if not page_id and not page_name:
         return None
-    print('test')
     page_id = page_id if page_id else get_page_id(page_name)
-    print(page_id)
     path_querysets = [
         Path.objects.filter(page_id = page_id).language(lang_code)
         for lang_code, _ in settings.LANGUAGES
@@ -58,6 +58,7 @@ def revers_page_path(page_id=None, page_name = None, args = None):
     if not path_pattern:
         return ''
     pattern = replace_capture_groups_with_values(path_pattern, args ) if args else path_pattern
+
     return exrex.getone(pattern)
 
 @cached
