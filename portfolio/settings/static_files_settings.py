@@ -24,8 +24,8 @@ MEDIA_URL = AWS_URL + MEDIA_ROOT_PATH
 DEFAULT_FILE_STORAGE = 'portfolio.storage.MediaStorage'
 
 STATIC_URL = '/static/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_compiled'),

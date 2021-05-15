@@ -13,6 +13,9 @@ from django.conf.urls.i18n import i18n_patterns
 from app_cms.sitemaps import NotParameterizedViewSitemap
 from app_projects.sitemaps import ProjectViewSitemap
 
+handler404 = 'app_cms.views.handler404'
+handler500 = 'app_cms.views.handler500'
+
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('_nested_admin/', include('nested_admin.urls')),
@@ -41,3 +44,4 @@ urlpatterns += i18n_patterns(
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

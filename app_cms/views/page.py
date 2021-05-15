@@ -11,6 +11,7 @@ from django.conf import settings
 from django.utils.text import slugify
 from sqlescapy import sqlescape
 from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
 from django.db import connection
 from django.core.cache import cache
@@ -142,7 +143,7 @@ class PageView(View):
         try:
             context = {}
             if re.match('.*\.\w{,5}$', path): #file
-                return [None, {'status': 404}]
+                raise ObjectDoesNotExist('path')
 
             route = self.process_path(sqlescape(path), request)
 
@@ -180,7 +181,7 @@ class PageView(View):
                 context['meta'] = context['page_meta']
 
             return [page_template, context]
-        except (Page.DoesNotExist, IndexError, LookupError):
+        except (Page.DoesNotExist, IndexError, LookupError, ObjectDoesNotExist):
             context = {
                 'meta': {
                     'title': 'Page not found',
@@ -188,7 +189,7 @@ class PageView(View):
                     'meta_description': 'Page not found'
                 }
             }
-            return ['page_404.html', context]
+            return ['404.html', context]
 
     @staticmethod
     def get_groups(regex, str):
