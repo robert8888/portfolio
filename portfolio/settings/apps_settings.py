@@ -4,6 +4,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'webp_converter',
 
     'app_cms_tpl.apps.CmsTplAppConfig',
