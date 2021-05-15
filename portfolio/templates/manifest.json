@@ -13,5 +13,5 @@
   "icons": {{ PWA_APP_ICONS|js }},
   "dir": {{ PWA_APP_DIR|js }},
   "lang": {{ PWA_APP_LANG|js }},
-  "content_security_policy": "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://google-analytics.com; object-src 'self'; img-src: www.googletagmanager.com"
+  "content_security_policy": "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://google-analytics.com; object-src 'self'; img-src www.googletagmanager.com"
 }
