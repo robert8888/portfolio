@@ -139,10 +139,10 @@ class Project(TranslatableModel):
     def structured_data(self):
         return {
             "@context" : "http://schema.org",
-            "@type" : "SoftwareApplication",
+            "@type" : "SoftwareSourceCode",
             "name" : self.name,
+            "targetProduct": self.name,
             "image" : self.gallery.images[0].image.thumb,
-            "url" : self.host_link,
             "abstract": self.meta_description,
             "applicationCategory": self.type.display,
             "author" : {
@@ -150,15 +150,26 @@ class Project(TranslatableModel):
                 "name" : "Robert Kaminski"
             },
             "datePublished" : self.release_date.strftime("%Y-%M-%d"),
-            "downloadUrl" : self.repo_link,
+            "codeRepository" : self.repo_link,
+            "codeSampleType": self.host_link,
+            "programmingLanguage": self.technologies_str_by_type('Language'),
+            "offers": "Offer"
         }
 
-    def __str__(self):
-        return self.name
+    def update_json_ld(self):
+        self.json_ld = self.structured_data
+        self.save()
+
+    @property
+    def technologies_str(self):
+        return ' '.join([technology.name for technology in self.technology.all()]) if self.id else ''
+
+    def technologies_str_by_type(self, type = "Language"):
+        return ' '.join([technology.name for technology in self.technology.filter(type__translation__name = type)]) if self.id else ''
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        technologies = ' '.join([technology.name for technology in self.technology.all()]) if self.id else ''
+        technologies = self.technologies_str
         translations = len(self.translations.filter(language_code = get_language())) if self.id else None
         if self.id and translations:
             self.search_vector = SearchVector(
@@ -175,6 +186,9 @@ class Project(TranslatableModel):
     def delete(self, *args, **kwargs):
         ProjectSearchAutocomplete.objects.filter(source_id = self.id, type='project').delete()
         super(Project, self).delete(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = gettext_lazy('Project')

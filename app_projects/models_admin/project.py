@@ -10,6 +10,7 @@ from .actions import (
     addProjectAutocomplete,
     deleteProjectAutocomplete,
     updateProjectAutocomplete,
+    update_project_json_ld,
 )
 
 class ProjectForm(TranslatableModelForm):
@@ -47,7 +48,12 @@ class ProjectAdmin(DynamicArrayMixin,SortableAdminMixin, TranslatableAdmin):
             'fields': [ 'description_short', 'description_full']
         })
     )
-    actions = [addProjectAutocomplete, deleteProjectAutocomplete, updateProjectAutocomplete]
+    actions = [
+        addProjectAutocomplete,
+        deleteProjectAutocomplete,
+        updateProjectAutocomplete,
+        update_project_json_ld
+    ]
     def get_actions(self, request):
         actions = super().get_actions(request)
         if 'delete_selected' in actions:

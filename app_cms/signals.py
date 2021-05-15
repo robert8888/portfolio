@@ -4,5 +4,4 @@ from django.dispatch import receiver
 
 @receiver(post_save)
 def clear_the_cache(**kwargs):
-    print("clear cache")
     cache.clear()

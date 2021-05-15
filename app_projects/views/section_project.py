@@ -43,5 +43,5 @@ def process(request, config, context, *args):
                 'alt': project.gallery.images[0].alt,
             }
         }
-    context['json_ld'] = project.structured_data
+    context['json_ld'] = project.json_ld
     return context
