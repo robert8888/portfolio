@@ -5,7 +5,7 @@ from ..utils.email_sender import send as send_email
 import json
 import re
 import os
-
+import bleach
 
 
 def process(req):
@@ -74,8 +74,8 @@ def send(data, req):
     context = {
         'path': req.get_host(),
         'from':  data['emailField'],
-        'message':  data['messageField'],
-        'subject':  data['subjectField'],
+        'message':  bleach.clean(data['messageField']),
+        'subject':  bleach.clean(data['subjectField']),
     }
 
     template_names = {
