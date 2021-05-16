@@ -1,0 +1,1 @@
+export const extractTransformX = /matrix\((?:(?:\s|\d)*,){4}\s(?<translate>-?\d*)/
