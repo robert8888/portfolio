@@ -53,6 +53,9 @@ self.addEventListener('activate', event => {
 
 // Serve from Cache
 self.addEventListener("fetch", event => {
+    if(event.request.url.match(/.*googletagmanager.*/)){
+         return // hack for gtag to not be rejected if is called from sw
+    }
     event.respondWith(
         caches.match(event.request)
             .then(response => {
