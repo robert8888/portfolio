@@ -5,7 +5,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'components_src')
+VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_components_src')
 
 WEBPACK_LOADER = {
     'DEFAULT': {
