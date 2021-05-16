@@ -11,7 +11,11 @@
   });
 
   gtag('js', new Date());
-  gtag('config', '{{analyticsGCode}}');
+  gtag('config', '{{analyticsGCode}}',  {
+      "anonymize_ip": true,
+      "cookie_domain": '{{request.get_host}}',
+      "cookie_flags": 'SameSite=None;Secure'
+  });
 </script>
 
 
