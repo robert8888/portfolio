@@ -26,6 +26,7 @@ export type ErrorList = Array<{
 
 interface ComponentData {
   isSending: boolean;
+  lastSendTry: null | number;
 }
 
 
@@ -57,6 +58,7 @@ export default defineComponent({
   data(): ComponentData{
     return {
       isSending: false,
+      lastSendTry: null,
     }
   },
 
@@ -78,6 +80,13 @@ export default defineComponent({
   methods: {
     async submit(e: Event) {
       e.preventDefault();
+
+      const timeFromLastTry = new Date().getTime() - (this.lastSendTry || 0 )
+      this.lastSendTry = new Date().getTime();
+
+      if(timeFromLastTry < 2000){
+        return;
+      }
 
       this.isSending = true;
       this.clearValidation();

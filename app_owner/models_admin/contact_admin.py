@@ -4,6 +4,7 @@ from django import forms
 from app_owner.models import (
     Contact,
     ContactPortal,
+    ContactEmail,
     ContactNumber,
     ContactAddress,
     ContactImage,
@@ -80,10 +81,15 @@ class contactAddressAdmin(NestedPolymorphicInlineSupportMixin, NestedModelAdminM
     base_model = ContactAddress
     inlines = [ContactImageInline]
 
+@admin.register(ContactEmail)
+class ContactEmailAdmin(NestedPolymorphicInlineSupportMixin, NestedModelAdminMixin, PolymorphicChildModelAdmin):
+    def has_module_permission(self, request): return False
+    base_model = ContactEmail
+    inlines = [ContactImageInline]
 
 @admin.register(Contact)
 class contactAdmin(PolymorphicParentModelAdmin):
     polymorphic_list = True
-    list_display = ['name', 'type', 'order']
+    list_display = ['name', 'type', 'order', 'show_on_index', 'protected']
     base_model = Contact
-    child_models = (ContactPortal, ContactNumber, ContactAddress)
+    child_models = (ContactPortal, ContactEmail, ContactNumber, ContactAddress)

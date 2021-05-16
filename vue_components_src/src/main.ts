@@ -16,7 +16,7 @@ import GalleryItem from "@/components/GalleryItem.vue";
 import ContactForm from "@/components/ContactForm.vue";
 import FormLabel from "@/components/FormLabel.vue";
 import InputCheckbox from "@/components/InputCheckbox.vue";
-import ContactNumber from "@/components/ContactNumber.vue";
+import ContactProtected from "@/components/ContactProtected.vue";
 
 import CvDownloader from "@/components/CvDownloader.vue";
 import CvConfigurator from "@/components/CvConfigurator.vue";
@@ -41,7 +41,7 @@ defineVueComponent(
         ContactForm,
         FormLabel,
         InputCheckbox,
-        ContactNumber,
+        ContactProtected,
 
         CvDownloader,
 

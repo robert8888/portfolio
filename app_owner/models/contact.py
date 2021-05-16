@@ -22,6 +22,10 @@ class Contact(PolymorphicModel):
         default = True,
     )
 
+    protected = models.BooleanField(
+        verbose_name = gettext_lazy('Contact protected'),
+        default = False,
+    )
 
     def type(self):
         return self.TYPE
@@ -61,6 +65,24 @@ class ContactPortal(Contact):
 
     class Meta:
         verbose_name = gettext_lazy("Contact portal")
+
+class ContactEmail(Contact):
+    TYPE = gettext_lazy('Email')
+
+    email = models.CharField(
+        max_length = 100,
+        verbose_name = gettext_lazy('Email address')
+    )
+
+    def value(self):
+        return self.email
+
+    def value_display(self):
+        return re.sub('mailto:|https?://', '', self.email)
+
+    class Meta:
+        verbose_name = gettext_lazy('Contact email')
+
 
 class ContactNumber(Contact):
     TYPE = gettext_lazy('Number')

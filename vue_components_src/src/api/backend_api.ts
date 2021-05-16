@@ -78,6 +78,14 @@ export const getNumber = async (): Promise<Result<{number: string}>> => {
     return request<{number: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{number: string}>>
 }
 
+export const getEmail = async (): Promise<Result<{email: string}>> => {
+    const path = API_CONFIGURATION.GET_EMAIL_URL
+    const data = {
+        captchaToken: await getCaptchaToken()
+    }
+    return request<{email: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{email:string}>>
+}
+
 export const getProjects = async(data: Record<string, string>): Promise<Result<Project[]>> => {
     const apiPath = API_CONFIGURATION.GET_PROJECTS_URL
     return request<Record<string, string>, Record<string, string>>(buildPath(apiPath), data) as Promise<Result<Project[]>>

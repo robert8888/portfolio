@@ -28,11 +28,13 @@ def buildQuery(params):
     SELECT * FROM
     (SELECT
     app_owner_contact.name as "name",
+    app_owner_contact.protected as "protected",
     (CASE WHEN app_owner_contactnumber.number IS NOT NULL THEN TRUE ELSE FALSE END) as "is_number",
     (CASE
       WHEN app_owner_contactnumber.number IS NOT NULL THEN 'number'
       WHEN app_owner_contactaddress.address IS NOT NULL THEN 'address'
       WHEN app_owner_contactportal.url IS NOT NULL THEN 'portal'
+      WHEN app_owner_contactemail.email IS NOT NULL THEN 'email'
       ELSE ''
     END) as "type",
     (CASE
@@ -62,6 +64,7 @@ def buildQuery(params):
     LEFT JOIN app_owner_contactportal ON app_owner_contact.id = app_owner_contactportal.contact_ptr_id
     LEFT JOIN app_owner_contactnumber ON app_owner_contact.id = app_owner_contactnumber.contact_ptr_id
     LEFT JOIN app_owner_contactaddress ON app_owner_contact.id = app_owner_contactaddress.contact_ptr_id
+    LEFT JOIN app_owner_contactemail ON app_owner_contact.id = app_owner_contactemail.contact_ptr_id
     LEFT JOIN app_owner_contactimage ON app_owner_contact.id = app_owner_contactimage.contact_id
     LEFT JOIN app_owner_image ON app_owner_image.id = app_owner_contactimage.image_id
     LEFT JOIN app_owner_contactimagestandalone ON app_owner_contactimagestandalone.contactimage_ptr_id = app_owner_contactimage.id

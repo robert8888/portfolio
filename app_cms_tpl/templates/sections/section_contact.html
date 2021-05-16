@@ -12,12 +12,14 @@
                         {% for contact in contacts %}
                             {% with url=contact.img_url left=contact.img_left top=contact.img_top width=contact.img_width  height=contact.img_height is_sprite=contact.img_sprite %}
                             {% with img_org_width=contact.img_org_width default_height=contact.ing_org_height %}
-                                {% if not contact.is_number %}
+                                {% if contact.type == 'number' %}
+                                    {% include 'partial/contact-number-component.html' %}
+                                {% elif contact.type == 'email' %}
+                                    {% include 'partial/contact-email-component.html' %}
+                                {% else %}
                                     <a class="contact__portals__link contact__portals__link--{{ contact.name|slugify }}" href="{{contact.value}}" rel="noreferrer" target="_blank">
                                         {% include 'partial/icon-img.html' with alt=contact.name %}
                                     </a>
-                                {% else %}
-                                    {% include 'partial/contact-number-component.html' %}
                                 {% endif %}
                             {% endwith %}
                             {% endwith %}

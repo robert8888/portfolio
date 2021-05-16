@@ -1,19 +1,19 @@
 {% load i18n %}
 <vue-component>
-    <contact-protected type="number"
-                       class="contact__portals__link contact__portals__link--phone contact-protected"
+    <contact-protected type="email"
+                       class="contact__portals__link contact__portals__link--email contact-protected"
                        aria-role="link"
                        loading-label="{% translate 'Loading' %}">
         {% include 'partial/icon-img.html' with alt=contact.name %}
         <template #controls>
             <button class="contact-protected__btn contact-number__btn--copy"
                     data-action="copy"
-                    data-action-confirm="{% translate 'Number was copied to clipboard' %}">
+                    data-action-confirm="{% translate 'Email was copied to clipboard' %}">
                 {% translate 'copy' %}
             </button>
-            <button class="contact-protected__btn contact-protected__btn--call"
-                    data-action="call">
-                {% translate 'call' %}
+            <button class="contact-protected__btn contact-protected__btn--write"
+                    data-action="write">
+                {% translate 'write' %}
             </button>
         </template>
     </contact-protected>

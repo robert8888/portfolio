@@ -377,7 +377,10 @@
   }
 }
 
-.contact-number{
+
+
+
+.contact-protected{
   &__modal{
     width: 320px;
     height: 265px;
@@ -400,6 +403,10 @@
   }
   &__number{
     font-size: 1.5rem;
+    font-weight: bold;
+  }
+  &__email{
+    font-size: 1.25rem;
     font-weight: bold;
   }
   &__btn{
