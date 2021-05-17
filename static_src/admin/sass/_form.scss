@@ -207,7 +207,46 @@ form{
 
 }
 
+.module.filtered{
+    background: inherit;
+    h2 {
+        background: var(--color-pallet-4)
+    }
+    #changelist-filter{
+        background: var(--color-bg-secondary);
+        color:var(--color-text);
+        ul{
+            li.selected{
+                a {
+                    color: var(--color-text);
+                }
+            }
+            a:hover{
+                color: var(--color-pallet-1)
+            }
+        }
+    }
+}
 
+.changelist-form-container{
+    #toolbar{
+        background: inherit;
+        border-color: transparent;
+        input[type=submit]{
+            @include button();
+            padding: 5px 15px;
+        }
+        input[type=text]{
+            @include input();
+        }
+        label[for=searchbar] > img {
+            filter: contrast(0);
+        }
+    }
+    &, & > * {
+        background: var(--color-bg-primary);
+    }
+}
 
 
 .input-number{

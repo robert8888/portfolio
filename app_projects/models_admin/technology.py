@@ -75,6 +75,8 @@ class TechnologyAdmin(NestedPolymorphicModelAdmin):
     form = TechnologyAdminForm
     inlines = [TechnologyImageInline]
     actions = [addTechnologyAutocomplete, deleteTechnologyAutocomplete, updateTechnologyAutocomplete]
+    search_fields = ['name']
+    list_filter = ['type']
     def get_actions(self, request):
         actions = super().get_actions(request)
         if 'delete_selected' in actions:
