@@ -1,0 +1,96 @@
+{% load static i18n utils svg %}
+<section class="contact" id="{% translate 'contact' %}">
+    <div class="l-container">
+        <div class="l-row contact__container">
+            <div class="l-col-xs-12 l-col-lg-6">
+                {{ section.props.contact_form|safe}}
+            </div>
+            <div class="l-col-xs-12 l-col-lg-6 contact__info__container">
+                {{ section.props.contact_description|safe }}
+                <div class="contact__portals__container">
+                    <div class="contact__portals__wrapper">
+                        {% for contact in contacts %}
+                            {% with url=contact.img_url left=contact.img_left top=contact.img_top width=contact.img_width  height=contact.img_height is_sprite=contact.img_sprite %}
+                            {% with img_org_width=contact.img_org_width default_height=contact.ing_org_height %}
+                                {% if contact.type == 'number' %}
+                                    {% include 'partial/contact-number-component.html' %}
+                                {% elif contact.type == 'email' %}
+                                    {% include 'partial/contact-email-component.html' %}
+                                {% else %}
+                                    <a class="contact__portals__link contact__portals__link--{{ contact.name|slugify }}" href="{{contact.value}}" rel="noreferrer" target="_blank">
+                                        {% include 'partial/icon-img.html' with alt=contact.name %}
+                                    </a>
+                                {% endif %}
+                            {% endwith %}
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="contact-resume__container">
+                    <vue-component>
+                        <cv-downloader download-label="{% translate 'Download Resume' %}"
+                                       download-label-short="{% translate 'Download' %}"
+                                       spinner-label="{% translate 'Preloading' %}"
+                                       open-label="{% translate 'Open' %}" >
+                            <template #configurator>
+                                <cv-configurator download-label="{% translate 'Download' %}">
+                                    <template #colors>
+                                        {% for profile in cv_color_profiles %}
+                                        <cv-configurator-color name="{{profile.id_name}}"
+                                                               {% if forloop.counter == 1 %}
+                                                               :default="true"
+                                                               {% endif %}
+                                                               profile-id="{{profile.id}}"
+                                                               :colors="{{profile.to_js_obj_str}}"></cv-configurator-color>
+                                        {% endfor %}
+                                    </template>
+                                    {% for tpl_name in cv_template_names %}
+                                    {% concat_all 'pdf/cv_preview/' tpl_name.0 as svg_path %}
+                                    <cv-configurator-template name="{{tpl_name.1}}" template-id="{{tpl_name.0}}">{% svg svg_path %}</cv-configurator-template>
+                                    {% endfor %}
+                                </cv-configurator>
+                            </template>
+                            <template #form>
+                                <h3>{% translate 'Confirm your identify' %}</h3>
+                                <form-label for="emailField" label="Email" class="floating no-ident">
+                                    <input class="form__input form__input--email"
+                                           id="emailField"
+                                           name="emailField"
+                                           type="email"
+                                           placeholder=" "
+                                           autocomplete="email"
+                                           aria-label="email"
+                                           required>
+                                </form-label>
+                                <form-label for="companyField" label="{% translate 'Company' %}" class="floating no-ident">
+                                    <input class="form__input form__input--email"
+                                           id="companyField"
+                                           name="companyField"
+                                           minlength="8"
+                                           type="text"
+                                           placeholder=" "
+                                           autocomplete="none"
+                                           aria-label="{% translate 'Company' %}"
+                                           required>
+                                </form-label>
+
+                                <form-label for="agreementFields"  class="">
+                                    <input-checkbox id='agreementFields'
+                                                    name="agreementFields"
+                                                    placeholder=" "
+                                                    autocomplete="none"
+                                                    aria-label="{% translate 'Agreement' %}"
+                                                    class-name="form__input form__input--rule"
+                                                    required>
+                                        {{ section.props.cv_agreement|safe }}
+                                    </input-checkbox>
+                                </form-label>
+                            </template>
+                        </cv-downloader>
+                    </vue-component>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

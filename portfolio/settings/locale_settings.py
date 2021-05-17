@@ -28,6 +28,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'app_index/locale/'),
     os.path.join(BASE_DIR, 'app_owner/locale/'),
     os.path.join(BASE_DIR, 'app_projects/locale/'),
+    os.path.join(BASE_DIR, 'templates/locale')
 )
 
 PARLER_LANGUAGES = {

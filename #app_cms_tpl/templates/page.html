@@ -1,0 +1,46 @@
+{% extends "base_page.html" %}
+{% load compress static %}
+
+{% block meta %}
+    {% include 'partial/meta.html' %}
+{% endblock %}
+
+{% block opengraph %}
+    {% include 'partial/open_graph.html' %}
+{% endblock %}
+
+{% block jsonltd %}
+    {% include 'partial/json_ld.html' %}
+{% endblock %}
+
+{% block head %}
+    {{ block.super }}
+    {% compress css inline %}
+        {% include 'partial/style.html' with style_url='front/css/pages/common.css' %}
+    {% endcompress %}
+    {% compress css inline %}
+        {% block pagestyle %}{% endblock %}
+        {% for section in sections %}
+            {% include 'partial/style.html' with style_url=section.style %}
+        {% endfor %}
+    {% endcompress %}
+{% endblock %}
+{% block headscripts %}
+    {{ block.super }}
+    {% compress js %}
+        {% include 'partial/script.html' with script_url='front/js/common.js' async=True  %}
+    {% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+    {% for section in sections %}
+        {% include section.template %}
+    {% endfor %}
+
+    {% include 'test.html' %}
+{% endblock %}
+
+
+
+

@@ -1,0 +1,14 @@
+<html>
+<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+{% include 'pdf/partial/color_profile.html' %}
+<head>
+    <title>{{ cv.data.get_document_title }}</title>
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends "page.html" %}
+{% load render_entrypoint from webpack_loader %}
+{% load compress static  %}
+
+{% block pagestyle %}
+    {% include 'partial/style.html' with style_url='front/css/pages/project.css' %}
+{% endblock %}
+
+{% block scripts %}
+    {% render_entrypoint 'project' %}
+{% endblock %}

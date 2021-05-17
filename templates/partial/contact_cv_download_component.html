@@ -1,0 +1,29 @@
+{% load svg i18n utils %}
+<vue-component>
+    <pdf-preloader spinner-label="{% translate 'Preparing' %}"
+                   download-label="{% translate 'Download' %}"
+                   open-label="{% translate 'Open' %}"
+                   configurable>
+        <a class="contact-resume__btn-link contact-resume__btn-link--download link-btn btn btn--all"
+           href="{{cv_download_url}}"
+           target="_blank"
+           data-download-pdf="true">
+            {% translate "Download Reasume" %}
+        </a>
+        {% if cv_color_profiles and cv_template_names %}
+        <template #configurator>
+            <pdf-configurator download-label="{% translate 'Download' %}">
+                <template #colors>
+                    {% for profile in cv_color_profiles %}
+                        <pdf-configurator-color name="{{profile.id_name}}" profile-id="{{profile.id}}" :colors="{{profile.to_js_obj_str}}"></pdf-configurator-color>
+                    {% endfor %}
+                </template>
+                {% for tpl_name in cv_template_names %}
+                    {% concat_all 'pdf/cv_preview/' tpl_name.0 as svg_path %}
+                     <pdf-configurator-template name="{{tpl_name.1}}" template-id="{{tpl_name.0}}">{% svg svg_path %}</pdf-configurator-template>
+                {% endfor %}
+            </pdf-configurator>
+        </template>
+        {% endif%}
+    </pdf-preloader>
+</vue-component>

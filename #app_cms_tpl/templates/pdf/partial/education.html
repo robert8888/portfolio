@@ -1,0 +1,19 @@
+{% load utils %}
+<section class="section education">
+    <h3 class="section__title">{{cv.data.education.section_title}}</h3>
+    <ul class="education__list">
+        {% for school in cv.data.education.cvdocumenteducationschool_set.all %}
+        <li class="education__list-item school">
+            <div class="school__detail">
+                {% for field in education_school_field_order %}
+                {% concat_all 'pdf/partial/education_school_' field '.html' as template_part %}
+                {% include template_part %}
+                {% endfor %}
+            </div>
+            {% if description %}
+            {% include 'pdf/partial/education_school_description.html' %}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
