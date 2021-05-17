@@ -45,7 +45,7 @@ msgstr "kopiuj"
 
 #: .\templates\partial\contact-email-component.html:16
 msgid "write"
-msgstr ""
+msgstr "napisz"
 
 #: .\templates\partial\contact-number-component.html:11
 msgid "Number was copied to clipboard"
