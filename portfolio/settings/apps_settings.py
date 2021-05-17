@@ -7,8 +7,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'webp_converter',
 
-    # 'app_cms_tpl.apps.CmsTplAppConfig',
-
     'storages',
     'webpack_loader',
     'solo.apps.SoloAppConfig',

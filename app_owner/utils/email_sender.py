@@ -11,8 +11,8 @@ def send(req, context, template_names):
 
     subject = context['subject']
 
-    html_version = os.path.join(BASE_DIR, 'app_cms_tpl/templates/emails/' + template_names['html'])
-    plain_version = os.path.join(BASE_DIR, 'app_cms_tpl/templates/emails/' + template_names['plain'])
+    html_version = os.path.join(BASE_DIR, 'templates/emails/' + template_names['html'])
+    plain_version = os.path.join(BASE_DIR, 'templates/emails/' + template_names['plain'])
     html_message = render_to_string(html_version, context = context)
     plain_message = render_to_string(plain_version, context = context)
 

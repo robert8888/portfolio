@@ -73,7 +73,7 @@ msgstr "Otwórz"
 
 #: .\templates\partial\contact_cv_download_component.html:11
 msgid "Download Reasume"
-msgstr "Pobierz aplikację"
+msgstr "Pobierz CV"
 
 #: .\templates\partial\project-card.html:3
 msgid "get more"
