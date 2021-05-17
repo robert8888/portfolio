@@ -188,7 +188,7 @@ export default defineComponent({
     },
 
     updateStyle(position, animated){
-       this.list.style =  `transform: translateX(${position}px); transition: ${animated ? "transform 1s" : "none"}`;
+       this.list.style =  `transform: translateX(${position}px); transition: ${animated ? "transform .4s" : "none"}`;
     },
 
     setPosition(position, animated = true){
@@ -250,7 +250,7 @@ export default defineComponent({
         ){
           move = diffX > 0 ? 1 : -1;
         }
-        this.index = currentIndex + move;
+        this.setIndex(currentIndex + move);
         this.setPositionToIndex(this.index);
       }
 
