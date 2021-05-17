@@ -3,7 +3,6 @@ const components = [
     'contact-form',
     'contact-form-label',
     'input',
-    'textarea',
 ]
 
 

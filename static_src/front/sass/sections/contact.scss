@@ -294,6 +294,26 @@
         }
       }
     }
+
+    @include media-vertical('smd') {
+      h3 {
+        margin-bottom: 1rem;
+      }
+      label.floating {
+        margin: 0;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+      .contact__info__text {
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+      .form__label[for=rulesField] .checkbox {
+        margin-top: 0;
+      }
+    }
   }
 
 
