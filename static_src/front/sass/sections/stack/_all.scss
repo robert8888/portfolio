@@ -6,7 +6,9 @@
     margin: 25px;
     width: unset;
   }
-
+  .overlay__content{
+    padding: 0;
+  }
   &__row{
     justify-content: flex-start;
   }
@@ -65,13 +67,6 @@
       flex-direction: column;
       padding: 0 25px;
     }
-    //&__row:first-of-type{
-    //  margin-top: auto;
-    //  margin-bottom: 80px;
-    //}
-    //&__row:last-of-type{
-    //  margin-bottom: auto;
-    //}
   }
 }
 
