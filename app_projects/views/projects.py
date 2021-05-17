@@ -28,16 +28,16 @@ ordering = [{
     "text": gettext_lazy("Release date"),
     "textType": "↓"
 },{
-    "column": "app_projects_project_translation.name",
+    "column": "app_projects_project_translation.title",
     "type": "ASC",
-    "value": "name_asc",
-    "text": gettext_lazy("Name"),
+    "value": "title_asc",
+    "text": gettext_lazy("Title"),
     "textType": "A-Z"
 },{
-    "column": "app_projects_project_translation.name",
+    "column": "app_projects_project_translation.title",
     "type": "DESC",
-    "value": "name_dsc",
-    "text": gettext_lazy("Name"),
+    "value": "title_dsc",
+    "text": gettext_lazy("Title"),
     "textType": "Z-A"
 },{
     "column": "app_projects_project_type.value",
