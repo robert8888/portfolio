@@ -15,6 +15,7 @@ import os
 import datetime
 import json
 import pydash as py_
+import bleach
 
 class CvPdf(View):
     def render_cv_pdf(self, context, tpl_path):
@@ -106,8 +107,8 @@ class CvPdf(View):
             context = {
                 'path': req.get_host(),
                 'subject': 'Cv was downloaded',
-                'email':  data['recruiterEmail'],
-                'company':  data['recruiterCompany'],
+                'email':  bleach.clean(data['recruiterEmail']),
+                'company':  bleach.clean(data['recruiterCompany']),
             }
 
             template_names = {
