@@ -10,3 +10,5 @@ DATABASES = { 'default': {
     **dj_database_url.config(),
     **dj_database_url.config(os.getenv("DATABASE_URL"))
 }}
+
+DEBUG_DB_QUERIES = False

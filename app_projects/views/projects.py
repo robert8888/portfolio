@@ -89,6 +89,7 @@ def build_search_products_query(lang, input, filter, project_page_path):
     ts_headline(project.title, to_tsquery('{ts_query_phrase} | {ts_query_words}')) as title,
     ts_headline(project.subtitle, to_tsquery('{ts_query_phrase} | {ts_query_words}')) as subtitle,
     ts_headline(project.description, to_tsquery('{ts_query_phrase} | {ts_query_words}'), 'MinWords=200 MaxWords=500') as description,
+    project.json_ld as "json_ld",
     project.type as "type",
     project.type_value as "typeValue",
     project.gallery as "gallery",
@@ -130,6 +131,7 @@ def build_search_products_query(lang, input, filter, project_page_path):
     app_projects_project_translation.title,
     app_projects_project_translation.subtitle,
     app_projects_project_translation.description_short,
+    app_projects_project_translation.json_ld,
     app_projects_project_type.display,
     app_projects_project_type.value,
     app_projects_project_translation.search_vector
@@ -138,6 +140,8 @@ def build_search_products_query(lang, input, filter, project_page_path):
     """
 
 def build_get_projects_technologies_query(projects_ids_list):
+    if not len(projects_ids_list):
+        return None
     ids = ",".join([str(id) for id in projects_ids_list])
     return f"""
     SELECT

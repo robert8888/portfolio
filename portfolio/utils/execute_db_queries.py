@@ -1,4 +1,5 @@
 from django.db import connection
+from django.conf import settings
 
 def dictfetchall(cursor):
     "Return all rows from a cursor as a dict"
@@ -13,12 +14,19 @@ def execute_queries(queries = []):
     success_all = True
     with connection.cursor() as cursor:
         for query in queries:
+            if not query:
+                result_each.append({
+                    'success': False,
+                    'affected': None,
+                    'data': None
+                })
+                continue
             try:
                 cursor.execute(query)
                 affected = cursor.rowcount
                 try:
                     data = dictfetchall(cursor)
-                except:
+                except BaseException as error:
                     data = None
                 result_each.append({
                     'success': True,
@@ -26,7 +34,8 @@ def execute_queries(queries = []):
                     'data': data,
                 })
             except BaseException as error:
-#                 print(error)
+                if settings.DEBUG_DB_QUERIES == "True":
+                    print(error, query)
                 result_each.append({
                     'success': False,
                 })
