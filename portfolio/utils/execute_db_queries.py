@@ -34,7 +34,7 @@ def execute_queries(queries = []):
                     'data': data,
                 })
             except BaseException as error:
-                if settings.DEBUG_DB_QUERIES == "True":
+                if settings.DEBUG_DB_QUERIES:
                     print(error, query)
                 result_each.append({
                     'success': False,

@@ -21,6 +21,10 @@ class CV_Admin(admin.ModelAdmin):
         self.request = request
         return qs
 
+    def getattr(self, *args, **kwargs):
+        print(args, kwargs)
+        super(CV_Admin, self).getattr(*args, **kwrags)
+
     def get_fields(self, request, obj=None):
         fields = ['full_path_' + lang for lang in languages]
         fields += ['reset_slug', 'name',  'template', 'color_profile', 'data']

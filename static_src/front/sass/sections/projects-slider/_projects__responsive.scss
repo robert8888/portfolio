@@ -27,7 +27,7 @@
 }
 .projects[data-was-intersected]{
   .slider__item{
-    @include fade-up-animation(0, 2s);
+    @include scale-show-in(0, 1s);
     @for $i from 0 through 30{
       &[data-index='#{$i}']{
         animation-delay: calc(#{$i} * .3s);

@@ -11,4 +11,4 @@ DATABASES = { 'default': {
     **dj_database_url.config(os.getenv("DATABASE_URL"))
 }}
 
-DEBUG_DB_QUERIES = False
+DEBUG_DB_QUERIES = True if os.getenv("DEBUG_DB_QUERIES") == 'Ture' else False
