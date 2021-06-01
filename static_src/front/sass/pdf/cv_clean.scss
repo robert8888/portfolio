@@ -92,7 +92,7 @@ main{
     height: 5cm;
     border-radius: 50%;
     margin: 1.5cm -1cm;
-    object-fit: cover;
+    object-fit: contain;
   }
   &__profession{
     font-size: 1.5rem;
@@ -221,7 +221,7 @@ main{
 .agreements{
   position: fixed;
   bottom: .5cm;
-  width: 5cm;
+  width: 10cm;
   p {
     font-size: .75rem;
     color: var(--color-text);

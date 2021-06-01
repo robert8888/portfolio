@@ -17,7 +17,6 @@
 
     {% include 'pdf/partial/additional_strengths.html' %}
 
-    {% include 'pdf/partial/agreements.html' %}
 </aside>
 <main>
     <section class="section personal">
@@ -29,5 +28,7 @@
 
     {% to_list 'position' 'company_period' as experience_job_field_order %}
     {% include 'pdf/partial/experience.html' %}
+
+    {% include 'pdf/partial/agreements.html' %}
 </main>
 {% endblock %}

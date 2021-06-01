@@ -17,11 +17,11 @@ body{
 .grid{
   display: grid;
   grid-template-columns: .7fr 1fr;
-  grid-template-rows: .7fr 1fr;
+  grid-template-rows: .6fr 1fr;
   margin-top: 4.5cm;
   position: relative;
   z-index: 0;
-  height: calc(100% - 4.5cm);
+  height: calc(100% - 4cm);
 }
 
 
@@ -110,6 +110,7 @@ body{
     border-radius: 50%;
     z-index: 5;
     box-shadow: 0 0 2px black;
+    object-fit: contain;
   }
 
 }
@@ -233,8 +234,18 @@ body{
 }
 
 .experience{
-  .job__period{
-    @include time-separator('-')
+  .job{
+    &__detail__wrapper{
+      display: flex;
+      justify-content: space-between;
+    }
+    &__period{
+      @include time-separator('-');
+      margin-left: auto;
+    }
+    &__description{
+      margin-top: 1rem;
+    }
   }
 }
 
