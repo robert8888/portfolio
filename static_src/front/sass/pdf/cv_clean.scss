@@ -184,6 +184,9 @@ main{
 }
 
 .experience{
+  &.section:nth-child(n){
+    padding-bottom: 1rem;
+  }
   &__list{
     list-style: none;
     ul, ol {
@@ -220,10 +223,11 @@ main{
 
 .agreements{
   position: fixed;
-  bottom: .5cm;
+  bottom: .25cm;
   width: 10cm;
   p {
     font-size: .75rem;
+    margin-top: 0;
     color: var(--color-text);
     @include icon-before($info-svg, var(--color-text));
     &::before{
