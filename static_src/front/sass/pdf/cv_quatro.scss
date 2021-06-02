@@ -278,14 +278,14 @@ body{
 
 .agreements{
   position: fixed;
-  width: 7cm;
-  left: 1cm;
+  width: 10cm;
+  left: 9.65cm;
   bottom: .25cm;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   font-size: .6rem;
   opacity: .7;
   p{
-    @include icon-before($info-svg, var(--color-text)){
+    @include icon-before($info-svg, var(--color-text-secondary)){
       margin-right: .05em;
     }
   }
