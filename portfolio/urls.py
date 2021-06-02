@@ -20,7 +20,6 @@ handler500 = 'app_cms.views.handler500'
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('_nested_admin/', include('nested_admin.urls')),
-#     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
     path('robots.txt', process_robots_request),
 
     path('sitemap.xml', sitemap, {'sitemaps': {
