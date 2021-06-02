@@ -88,7 +88,6 @@ class CvPdf(View):
 
     def get(self, req, slug):
         try:
-            print(slug)
             response = get_cv_data(req, {
                 'slug': slug
             })
@@ -104,7 +103,6 @@ class CvPdf(View):
 
     def send_confirm_email(self, req, data):
         try:
-            print(data)
             context = {
                 'path': req.get_host(),
                 'subject': 'Cv was downloaded',
