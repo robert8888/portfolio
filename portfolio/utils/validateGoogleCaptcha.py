@@ -14,10 +14,6 @@ def validateCaptcha(token):
 
     res = requests.post(gcaptcha_url, data = captchaData)
 
-    print(res)
-    validate = {
-        'success': False,
-        'errors': []
-    }
+    print(res.json())
 
     return res.status_code == 200 and res.json()['success']
