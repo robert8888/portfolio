@@ -31,7 +31,7 @@ const request = async <D, I>(path: string, data: I, clean= false) => {
     const response = await fetch(`${origin}` + path, {
         method: 'POST',
         mode: 'cors',
-        credentials: 'same-origin',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             "X-CSRFToken": csrfToken
