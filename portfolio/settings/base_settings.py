@@ -20,8 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 ALLOWED_HOSTS = ["127.0.0.1", 'rkaminski.herokuapp.com','rkam.dev']
 
-CSRF_TRUSTED_ORIGINS = ["127.0.0.1", 'rkaminski.herokuapp.com','rkam.dev']
-# CSRF_COOKIE_DOMAIN  = ["127.0.0.1", 'rkaminski.herokuapp.com','rkam.dev']
+CSRF_TRUSTED_ORIGINS = ["127.0.0.1", '.rkaminski.herokuapp.com','.rkam.dev']
 CSRF_USE_SESSIONS = True
 
 # Quick-start development settings - unsuitable for production
