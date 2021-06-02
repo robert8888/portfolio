@@ -6,6 +6,7 @@ gcaptcha_key = os.getenv("GCAPTCHA_SECRET_KEY")
 gcaptcha_url = os.getenv('GCAPTCHA_VALIDATION_URL')
 
 def validateCaptcha(token):
+    print(token)
     captchaData = {
         "secret" :  gcaptcha_key,
         "response" : token
@@ -13,6 +14,7 @@ def validateCaptcha(token):
 
     res = requests.post(gcaptcha_url, data = captchaData)
 
+    print(res)
     validate = {
         'success': False,
         'errors': []
