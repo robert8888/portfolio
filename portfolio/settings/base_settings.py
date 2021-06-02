@@ -23,6 +23,7 @@ ALLOWED_HOSTS = ["127.0.0.1", 'rkaminski.herokuapp.com','rkam.dev']
 CSRF_TRUSTED_ORIGINS = ["127.0.0.1:8000", 'localhost','.rkaminski.herokuapp.com','.rkam.dev', 'rkam.dev']
 CSRF_COOKIE_DOMAIN =  ["localhost", '.rkaminski.herokuapp.com','.rkam.dev', 'rkam.dev']
 
+INDEXED_DOMAINS = ['rkam.dev']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/

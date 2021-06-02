@@ -175,6 +175,7 @@ class PageView(View):
                 'meta': self.get_page_meta(page_id, request),
                 'menus': self.get_menus_raw(page_id),
                 'sections': sections['view_data'],
+                'no_index': not request.get_host() in settings.INDEXED_DOMAINS
             }
 
             if context.get('page_meta'):
@@ -330,5 +331,5 @@ class PageView(View):
 
     @staticmethod
     def build_cache_key(request):
-        key = request.path + '--' + '_'.join([key + '-' + value for key, value in request.GET.items()])
+        key = request.get_host() + '/'+ request.path + '--' + '_'.join([key + '-' + value for key, value in request.GET.items()])
         return slugify(key)

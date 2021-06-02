@@ -5,17 +5,26 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1 maximum-scale=1"/>
+{% if no_index %}
+<meta name="robots" content="noindex">
+{% endif %}
+
 {% block meta %}
 <title>Robert Kamiński</title>
-{% endblock %}
-{% block jsonltd %}{% endblock %}
-{% block opengraph %}{% endblock %}
-{% include "partial/tokens.html" %}
 <link rel="icon" href="{% static '/img/favicon.ico' %}">
 <link rel="manifest" href="/manifest.json">
+{% endblock %}
+
+{% block jsonltd %}{% endblock %}
+{% block opengraph %}{% endblock %}
+
+{% include "partial/tokens.html" %}
+
 {% block head %}{% endblock %}
 {% block headscripts %}{% endblock %}
+
 {% progressive_web_app_meta %}
+
 {% include 'partial/analytics.html' %}
 </head>
 {% block body_tag %}

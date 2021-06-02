@@ -12,6 +12,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.conf.urls.i18n import i18n_patterns
 from app_cms.sitemaps import NotParameterizedViewSitemap
 from app_projects.sitemaps import ProjectViewSitemap
+from .robots_view import process_request as process_robots_request
 
 handler404 = 'app_cms.views.handler404'
 handler500 = 'app_cms.views.handler500'
@@ -19,14 +20,18 @@ handler500 = 'app_cms.views.handler500'
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('_nested_admin/', include('nested_admin.urls')),
-    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
+#     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
+    path('robots.txt', process_robots_request),
+
     path('sitemap.xml', sitemap, {'sitemaps': {
         'basic': NotParameterizedViewSitemap,
         'projects': ProjectViewSitemap
     }}),
 ]
 
-if 'rosetta' in settings.INSTALLED_APPS:
+
+
+if 'rosetta' in settings.INSTALLED_APPS and settings.DEBUG:
     urlpatterns += [
         re_path(r'^rosetta/', include('rosetta.urls'))
     ]
