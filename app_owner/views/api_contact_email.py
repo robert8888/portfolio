@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from portfolio.utils.validateGoogleCaptcha import validateCaptcha
+from portfolio.utils.validate_google_captcha import validate_captcha
 from app_owner.models import Contact, ContactEmail
 import json
 
@@ -14,7 +14,7 @@ def process(req):
 
     json_data = json.loads(req.body)
 
-    if(validateCaptcha(json_data['captchaToken'])):
+    if(validate_captcha(json_data['captchaToken'])):
         return JsonResponse({
             'success': True,
             'data': {

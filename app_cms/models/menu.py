@@ -1,6 +1,6 @@
 from django.db import models
 from .menu_item import MenuItem
-from ..utils.get_template_choices import getTemplatesChoices
+from ..utils.get_template_choices import get_templates_choices
 from ..utils.get_template_style import getTemplateStyle
 
 class Menu(models.Model):
@@ -15,7 +15,7 @@ class Menu(models.Model):
         max_length = 255,
         default = '',
         verbose_name = 'Menu template',
-        choices = getTemplatesChoices('menu')
+        choices = get_templates_choices('menu')
     )
 
     style = models.CharField(

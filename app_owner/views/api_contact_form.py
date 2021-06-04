@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from portfolio.utils.validateGoogleCaptcha import validateCaptcha
+from portfolio.utils.validate_google_captcha import validate_captcha
 from django.utils.translation import gettext_lazy, gettext
 from ..utils.email_sender import send as send_email
 import json
@@ -20,7 +20,7 @@ def process(req):
     }
 
     validate = {
-        'success': validateCaptcha(data['captcha']),
+        'success': validate_captcha(data['captcha']),
         'errors': []
     }
 

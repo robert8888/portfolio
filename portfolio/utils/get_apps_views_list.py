@@ -2,7 +2,8 @@ from django.apps import apps
 from functools import reduce
 import os
 import re
-def getAppsViewsList(pattern = '.*'):
+
+def get_apps_views_list(pattern = '.*'):
     regex = re.compile(pattern)
 
     view_dir_path = lambda path: os.path.join(path, 'views')

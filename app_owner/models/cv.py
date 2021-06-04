@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils.text import slugify
 from django.urls import reverse
-from app_cms.utils.get_template_choices import getTemplatesChoices
+from app_cms.utils.get_template_choices import get_templates_choices
 from django.db import transaction
 from nanoid import generate
 
@@ -26,7 +26,7 @@ class CV(models.Model):
         max_length = 255,
         verbose_name = gettext_lazy('PDF template'),
         blank = True,
-        choices = getTemplatesChoices('pdf'),
+        choices = get_templates_choices('pdf'),
     )
 
     color_profile = models.ForeignKey(

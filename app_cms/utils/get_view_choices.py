@@ -1,8 +1,8 @@
-from portfolio.utils.getAppsViewsList import getAppsViewsList
+from portfolio.utils.get_apps_views_list import get_apps_views_list
 import re
 
-def getViewChoices(pattern = '^section.*'):
-    view_list = getAppsViewsList(pattern)
+def get_view_choices(pattern = '^section.*'):
+    view_list = get_apps_views_list(pattern)
     def formatName(name):
         name = re.sub('\.py', "", name)
         name = re.sub('_', " ", name)

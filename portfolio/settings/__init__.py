@@ -13,5 +13,4 @@ from .front_settings import *
 from .pwa_settings import *
 from .admin_settings import *
 from .other_settings import *
-from .heroku_settings import *
 from .cache_settings import *

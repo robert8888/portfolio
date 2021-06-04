@@ -1,5 +1,5 @@
 from django.db import models
-from ..utils.get_template_choices import getTemplatesChoices
+from ..utils.get_template_choices import get_templates_choices
 from ..utils.get_template_style import getTemplateStyle
 from .view import View
 from .property import Property
@@ -17,7 +17,7 @@ class Section(models.Model):
         max_length = 255,
         default = '',
         verbose_name = 'Section template name',
-        choices = getTemplatesChoices('section')
+        choices = get_templates_choices('section')
     )
 
     style = models.CharField(

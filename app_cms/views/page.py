@@ -5,7 +5,7 @@ from django.shortcuts import render
 from app_cms.models import Page, PageSections, Path, View as ViewModel, Property
 from portfolio.utils.execute_db_queries import execute_query
 from django.utils.translation import get_language
-from portfolio.utils.getAppsViewsList import getAppsViewsList
+from portfolio.utils.get_apps_views_list import get_apps_views_list
 from htmlmin.decorators import minified_response
 from django.conf import settings
 from django.utils.text import slugify

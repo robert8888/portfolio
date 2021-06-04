@@ -7,8 +7,8 @@ from puppeteer_pdf import render_pdf_from_template
 from django.conf import settings
 from .get_cv_pdf_data import process as get_cv_data
 from django.utils.translation import get_language
-from portfolio.utils.validateGoogleCaptcha import validateCaptcha
-from portfolio.utils.readConfigJson import readConfigJson
+from portfolio.utils.validate_google_captcha import validate_captcha
+from portfolio.utils.read_config_json import read_config_json
 from ..utils.email_sender import send as send_email
 import tempfile
 import os
@@ -60,7 +60,7 @@ class CvPdf(View):
             body_unicode = req.body.decode('utf-8')
             post_data = json.loads(req.body)
 
-            if not validateCaptcha(post_data['captchaToken']):
+            if not validate_captcha(post_data['captchaToken']):
                  return HttpResponse(status=403)
 
             response = get_cv_data(req, {
@@ -76,7 +76,7 @@ class CvPdf(View):
                 'cv': response.data.cv
             }
 
-            template = py_.find(readConfigJson(['templates', 'TEMPLATES.json']).get('pdf', None), {'slug': post_data['templateId']})
+            template = py_.find(read_config_json(['templates', 'TEMPLATES.json']).get('pdf', None), {'slug': post_data['templateId']})
 
             self.send_confirm_email(req, post_data)
 

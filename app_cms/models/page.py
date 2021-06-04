@@ -1,5 +1,5 @@
 from django.db import models
-from ..utils.get_template_choices import getTemplatesChoices
+from ..utils.get_template_choices import get_templates_choices
 from django_better_admin_arrayfield.models.fields import ArrayField
 import re
 
@@ -18,7 +18,7 @@ class Page(models.Model):
         max_length = 255,
         default = '',
         verbose_name = 'Page template name',
-        choices = getTemplatesChoices('page')
+        choices = get_templates_choices('page')
     )
 
 

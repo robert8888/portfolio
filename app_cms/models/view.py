@@ -1,5 +1,5 @@
 from django.db import models
-from ..utils.get_view_choices import getViewChoices
+from ..utils.get_view_choices import get_view_choices
 
 class View(models.Model):
     section = models.ForeignKey(
@@ -10,7 +10,7 @@ class View(models.Model):
 
     module_name = models.CharField(
         max_length = 255,
-        choices = getViewChoices(),
+        choices = get_view_choices(),
         default = '',
         null = True,
     )
