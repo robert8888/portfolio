@@ -23,7 +23,8 @@ def s3proxy(req):
         return HttpResponse(status=404)
 
 def replaceImgUrl(html):
-    img_path = "(?:"+AWS_URL+")(.*\.(?:png|jpg|jpeg|gif))"
+    url = "https://" + AWS_CUSTOM_DOMAIN if AWS_CUSTOM_DOMAIN else AWS_URL
+    img_path = "(?:"+url+"/)(.*\.(?:png|jpg|jpeg|gif))"
     pattern = "(<img.*?src=\")"+img_path+".*\""
     transformed_html = re.sub(pattern, "\\1/s3image?p=\\2\"", html)
     return transformed_html
