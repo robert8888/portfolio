@@ -46,8 +46,8 @@
     opacity: 0;
     & > img{
       grid-area: content;
-      width: var(--w);
-      height: var(--h);
+      width: var(--w, 100px);
+      height: var(--h, 100px);
       //background-image: var(--url);
       background-position: var(--x) var(--y);
       background-repeat: no-repeat;

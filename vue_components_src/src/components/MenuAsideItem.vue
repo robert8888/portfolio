@@ -37,7 +37,7 @@ export default defineComponent({
   setup(props){
     const registerObservable = inject("registerObservable") as (index: number, selector: string) => void;
     const currentIntersected = inject("intersected") as number;
-    registerObservable(props.index + 1, props.href || "")
+    registerObservable(props.index + 1, props.href || "");
     return {
       currentIntersected,
       internalIndex: props.index + 1

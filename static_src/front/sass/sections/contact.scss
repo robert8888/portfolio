@@ -29,6 +29,10 @@
   }
 
   .form{
+    height: calc(100% - 28px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     &__summary{
       display: flex;
       flex-direction: column;

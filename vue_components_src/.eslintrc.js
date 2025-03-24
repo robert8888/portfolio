@@ -20,6 +20,11 @@ module.exports = {
     "@typescript-eslint/ban-ts-ignore": "off",
     "prefer-const": "warn",
     "vue/valid-template-root": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    'vue/no-multiple-template-root': 'off',
+    'vue/multi-word-component-names': 'off',
+    'vue/no-reserved-props': 'off',
+    'vue/no-unused-components': 'off',
+    'vue/return-in-computed-property': 'off',
   }
 }

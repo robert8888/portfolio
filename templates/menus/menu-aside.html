@@ -3,7 +3,7 @@
     <vue-component>
         <menu-aside index-link="{% translate '/' %}">
             {% for item in menu.items %}
-            <menu-aside-item href="{{item.url}}" {% if forloop.counter == 1 %}:default="true"{% endif%}>
+            <menu-aside-item href="{{item.url}}" index="{{ forloop.counter }}" {% if forloop.counter == 1 %}:default="true"{% endif%}>
                 {{item.text}}
             </menu-aside-item>
             {% endfor %}

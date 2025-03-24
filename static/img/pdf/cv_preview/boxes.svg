@@ -1,0 +1,70 @@
+<svg  viewBox="0 0 302 343"  fill="none" xmlns="http://www.w3.org/2000/svg">
+<g>
+    <rect x="0.5" y="0.5" width="301" height="342" rx="6.5" fill="var(--background)"/>
+    <g>
+        <rect x="-3" y="24" width="143" height="79" style="fill: var(--primary)"/>
+        <g style="fill: var(--text-primary)">
+            <rect x="25" y="44" width="71" height="11" rx="5.5"  />
+            <rect x="25" y="89" width="97" height="6" rx="3"  />
+            <rect x="25" y="64" width="87" height="11" rx="5.5"  />
+        </g>
+    </g>
+    <g style="fill: var(--text)">
+        <rect x="149" y="36" width="111" height="7" rx="3.5" />
+        <rect x="160.178" y="52" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="82" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="92" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="62" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="72" width="124.822" height="3" rx="1.5" />
+    </g>
+    <g style="fill: var(--text)">
+        <rect x="149" y="117" width="111" height="7" rx="3.5" />
+        <rect x="160.178" y="133" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="163" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="173" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="143" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="153" width="124.822" height="3" rx="1.5" />
+    </g>
+    <g style="fill: var(--text)">
+        <rect x="149" y="193" width="111" height="7" rx="3.5" />
+        <rect x="160.178" y="209" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="239" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="249" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="219" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="229" width="124.822" height="3" rx="1.5" />
+    </g>
+    <g style="fill: var(--text)">
+        <rect x="149" y="269" width="111" height="7" rx="3.5" />
+        <rect x="160.178" y="285" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="315" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="325" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="295" width="124.822" height="3" rx="1.5" />
+        <rect x="160.178" y="305" width="124.822" height="3" rx="1.5" />
+    </g>
+    <g>
+        <rect x="10" y="113" width="130" height="225"  style="fill: var(--secondary)"/>
+        <g style="fill: var(--text-secondary)">
+            <rect x="21" y="201" width="101" height="7" rx="3.5" />
+            <rect x="29.3014" y="217" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="247" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="227" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="237" width="92.6986" height="3" rx="1.5" />
+        </g>
+        <g style="fill: var(--text-secondary)">
+            <rect x="21" y="129" width="101" height="7" rx="3.5" />
+            <rect x="29.3014" y="145" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="175" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="155" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="165" width="92.6986" height="3" rx="1.5" />
+        </g>
+        <g style="fill: var(--text-secondary)">
+            <rect x="21" y="270" width="101" height="7" rx="3.5" />
+            <rect x="29.3014" y="286" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="316" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="296" width="92.6986" height="3" rx="1.5" />
+            <rect x="29.3014" y="306" width="92.6986" height="3" rx="1.5" />
+        </g>
+    </g>
+</g>
+<rect x="0.5" y="0.5" width="301" height="342" rx="6.5" style="stroke: var(--stroke)"/>
+</svg>

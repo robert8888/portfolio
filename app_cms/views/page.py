@@ -136,7 +136,6 @@ class PageView(View):
         if context.get('status'):
             return HttpResponse(status = context.get('status'))
 
-        print("---page render", datetime.now() - start)
         return render(request, template, context = {**context, **tokens})
 
     def get_template_and_context(self, request, path):
@@ -306,6 +305,7 @@ class PageView(View):
         section_ids = '(' + ','.join([str(id) for id in ids]) + ')'
         query = build_select_section_prop_query(section_ids, get_language())
         data, success, *_ = execute_query(query)
+
         props = {}
         for prop in data:
             props.setdefault(prop['id'], {})[prop['name']] = prop['value']

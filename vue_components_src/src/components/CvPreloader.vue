@@ -109,6 +109,8 @@ export default defineComponent({
     },
 
     downloadBlob(){
+      if(this.pdfBlobData === null) return;
+
       const a = document.createElement("a");
       a.href = URL.createObjectURL(this.pdfBlobData);
       a.download = this.pdfFilename;
@@ -116,6 +118,8 @@ export default defineComponent({
     },
 
     openBlob(){
+      if(this.pdfBlobData === null) return;
+
       const url = URL.createObjectURL(this.pdfBlobData)
       window.open(url, '_blank')
     },

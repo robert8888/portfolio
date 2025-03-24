@@ -26,7 +26,7 @@
 <script lang="ts">
 import {computed, defineComponent} from 'vue';
 import {useStore, MUTATIONS} from "@/store";
-import scrollDisableMixin from "./../mixins/scrollDisable";
+// import scrollDisableMixin from "./../mixins/scrollDisable";
 
 interface ComponentState{
   matchMobile: MediaQueryList | null;
@@ -34,6 +34,7 @@ interface ComponentState{
 }
 
 export default defineComponent({
+  // mixins: [scrollDisableMixin],
 
   data(): ComponentState{
     return {

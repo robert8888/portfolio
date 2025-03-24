@@ -67,14 +67,38 @@ module.exports = {
             .set('__STATIC__', 'static')
             //.set('vue', '@vue/runtime-dom')
 
+        // config.devServer
+        //     .public('http://localhost:8080')
+        //     .host('localhost')
+        //     .port(8080)
+        //     .hotOnly(true)
+        //     .watchOptions({poll: 1000})
+        //     .https(false)
+        //     .headers({"Access-Control-Allow-Origin": ["*"]})
+
+
+        config
+            .watchOptions({
+                poll: 1000,
+                ignored: /node_modules/,
+            });
+
+        // DevServer config
         config.devServer
-            .public('http://localhost:8080')
             .host('localhost')
             .port(8080)
-            .hotOnly(true)
-            .watchOptions({poll: 1000})
+            .hot('only')
+            .set('client', {
+                webSocketURL: {
+                    protocol: 'ws',
+                    hostname: 'localhost',
+                    port: 8080
+                }
+            })
             .https(false)
-            .headers({"Access-Control-Allow-Origin": ["*"]})
+            .headers({ 'Access-Control-Allow-Origin': ['*'] });
+
+        return config.toConfig();
 
     }
 };

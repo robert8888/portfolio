@@ -8,16 +8,16 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_URL = os.getenv('AWS_URL')
 AWS_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN')
-AWS_S3_REGION_NAME = 'eu-central-1'
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
 
-def s3proxy(req):
+def s3proxy(req, subpath):
     try:
         path = req.GET.get('p', None)
-
-        if not path:
+        print('PATH, ', path)
+        if not subpath:
             return HttpResponse(status=404)
 
-        response = generatePresignedUrl(path)
+        response = generatePresignedUrl(subpath)
         return HttpResponseRedirect(response)
     except:
         return HttpResponse(status=404)

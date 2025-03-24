@@ -36,7 +36,7 @@ if 'rosetta' in settings.INSTALLED_APPS and settings.DEBUG:
     ]
 
 urlpatterns += i18n_patterns(
-    path('s3image', s3proxy),
+    path('s3image/<path:subpath>', s3proxy),
     path('admin/', admin.site.urls),
     url('', include('pwa.urls')),
     path('', include('app_owner.urls')),
