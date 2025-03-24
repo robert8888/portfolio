@@ -23,6 +23,7 @@ ALLOWED_HOSTS = [
     'rkaminski.herokuapp.com',
     'rkam.dev',
     "rkam-dev-59a18043fcbb.herokuapp.com",
+    "www.rkam.dev"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
