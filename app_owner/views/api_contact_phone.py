@@ -3,10 +3,10 @@ from portfolio.utils.validate_google_captcha import validate_captcha
 from app_owner.models import Contact, ContactNumber
 import json
 
-
 def process(req):
-    contact_number = Contact.objects.instance_of(ContactNumber)
+    contact_number = Contact.objects.instance_of(ContactNumber);
     number = contact_number[0].number if len(contact_number) else None
+
     if number is None:
         return JsonResponse({
             'success': False

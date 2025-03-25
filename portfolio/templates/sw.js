@@ -1,4 +1,3 @@
-
 var staticCacheName = "django-pwa-v" + new Date().getTime();
 
 var filesToCache = [
@@ -51,20 +50,16 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Serve from Cache
-self.addEventListener("fetch", event => {
-    if(event.request.url.match(/googletagmanager/)){
-         return // hack for gtag to not be rejected if is called from sw
+// Serve from cache (Network-first, GET requests only!)
+self.addEventListener('fetch', event => {
+    if (event.request.method !== 'GET') {
+        event.respondWith(fetch(event.request));
+        return;
     }
-    // event.respondWith(
-    //     caches.match(event.request)
-    //         .then(response => {
-    //             return response || fetch(event.request);
-    //         })
-    //         .catch(() => {
-    //             return caches.match('/offline/');
-    //         })
-    // )3
+
+    if(event.request.url.match(/googletagmanager/)){
+        return; // Hack for GTM
+    }
 
     event.respondWith(
         fetch(event.request)
