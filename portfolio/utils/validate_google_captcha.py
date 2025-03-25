@@ -11,8 +11,9 @@ def validate_captcha(token):
         "secret" :  gcaptcha_key,
         "response" : token
     }
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
 
-    res = requests.post(gcaptcha_url, data = captchaData);
+    res = requests.post(gcaptcha_url, data = captchaData, headers = headers);
 
     print("DEBUG-validate captcha", res.json())
 
