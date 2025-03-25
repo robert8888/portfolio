@@ -56,13 +56,29 @@ self.addEventListener("fetch", event => {
     if(event.request.url.match(/googletagmanager/)){
          return // hack for gtag to not be rejected if is called from sw
     }
+    // event.respondWith(
+    //     caches.match(event.request)
+    //         .then(response => {
+    //             return response || fetch(event.request);
+    //         })
+    //         .catch(() => {
+    //             return caches.match('/offline/');
+    //         })
+    // )3
+
     event.respondWith(
-        caches.match(event.request)
+        fetch(event.request)
             .then(response => {
-                return response || fetch(event.request);
+                const clonedResponse = response.clone();
+                caches.open(staticCacheName).then(cache => {
+                    cache.put(event.request, clonedResponse);
+                });
+                return response;
             })
             .catch(() => {
-                return caches.match('/offline/');
+                return caches.match(event.request).then(cachedResponse => {
+                    return cachedResponse || caches.match('/offline/');
+                })
             })
-    )
+    );
 });
