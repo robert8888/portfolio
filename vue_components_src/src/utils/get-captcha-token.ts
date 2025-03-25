@@ -13,6 +13,5 @@ export default async function getCaptchaToken(): Promise<string>{
         { autoHideBadge: true })
 
 
-    await recaptcha.execute('login') as string;
-    return "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+    return await recaptcha.execute('login') as string;
 }
