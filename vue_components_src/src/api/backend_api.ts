@@ -74,7 +74,7 @@ export const sendForm = async (data:  Record<string, string>): Promise<Result<Re
 export const getNumber = async (): Promise<Result<{number: string}>> => {
     const path = API_CONFIGURATION.GET_NUMBER_URL
     const data = {
-        captchaToken: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"// await getCaptchaToken()
+        captchaToken:  await getCaptchaToken()
     }
     console.log(data.captchaToken)
     // return request<{number: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{number: string}>>

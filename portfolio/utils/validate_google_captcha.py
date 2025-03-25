@@ -29,7 +29,7 @@ gcaptcha_url = os.getenv("GCAPTCHA_VALIDATION_URL")
 def validate_captcha(token):
     print("DEBUG-validate captcha", token, gcaptcha_key)
 
-    params = {
+    captchaData = {
         "secret": gcaptcha_key,
         "response": token
     }
@@ -37,7 +37,7 @@ def validate_captcha(token):
     headers = {
         "Content-Type": "application/x-www-form-urlencoded"
     }
-    res = requests.post(gcaptcha_url, params=params, headers=headers)
+    res = requests.post(gcaptcha_url, data=captchaData, headers=headers)
 
     print("DEBUG-validate captcha response:", res.json())
 
