@@ -68,7 +68,7 @@ export const sendForm = async (data:  Record<string, string>): Promise<Result<Re
         gRrecaptchaRresponse: token,
         csrfMiddlewareToken: csrfToken
     })
-    return request<Record<string, string>, Record<string, string>>(location.pathname + path, data) as Promise<Result<Record<string, string>>>
+    return request<Record<string, string>, Record<string, string>>(`/${path}`, data) as Promise<Result<Record<string, string>>>
 }
 
 export const getNumber = async (): Promise<Result<{number: string}>> => {
