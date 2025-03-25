@@ -76,9 +76,6 @@ export const getNumber = async (): Promise<Result<{number: string}>> => {
     const data = {
         captchaToken:  await getCaptchaToken()
     }
-    console.log(data.captchaToken)
-    // return request<{number: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{number: string}>>
-    console.log("The path ", `/${path}`)
     return request<{number: string}, {captchaToken: string}>(`/${path}`, data) as Promise<Result<{number: string}>>
 }
 
@@ -87,7 +84,7 @@ export const getEmail = async (): Promise<Result<{email: string}>> => {
     const data = {
         captchaToken: await getCaptchaToken()
     }
-    return request<{email: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{email:string}>>
+    return request<{email: string}, {captchaToken: string}>(`/${path}`, data) as Promise<Result<{email:string}>>
 }
 
 export const getProjects = async(data: Record<string, string>): Promise<Result<Project[]>> => {
