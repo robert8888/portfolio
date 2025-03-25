@@ -77,7 +77,7 @@ export const getNumber = async (): Promise<Result<{number: string}>> => {
         captchaToken:  await getCaptchaToken()
     }
     // return request<{number: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{number: string}>>
-    console.log("The path", `/${path}`)
+    console.log("The path ", `/${path}`)
     return request<{number: string}, {captchaToken: string}>(`/${path}`, data) as Promise<Result<{number: string}>>
 }
 
