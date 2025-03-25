@@ -57,6 +57,10 @@ self.addEventListener('fetch', event => {
         return;
     }
 
+    if (event.request.url.startsWith('chrome-extension://')) {
+        return; // Skip caching for chrome extensions
+    }
+
     if(event.request.url.match(/googletagmanager/)){
         return; // Hack for GTM
     }
