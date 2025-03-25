@@ -76,7 +76,8 @@ export const getNumber = async (): Promise<Result<{number: string}>> => {
     const data = {
         captchaToken:  await getCaptchaToken()
     }
-    return request<{number: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{number: string}>>
+    // return request<{number: string}, {captchaToken: string}>(location.pathname + path, data) as Promise<Result<{number: string}>>
+    return request<{number: string}, {captchaToken: string}>(`/${path}`, data) as Promise<Result<{number: string}>>
 }
 
 export const getEmail = async (): Promise<Result<{email: string}>> => {
