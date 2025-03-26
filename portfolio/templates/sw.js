@@ -61,6 +61,10 @@ self.addEventListener('fetch', event => {
         return; // Skip caching for chrome extensions
     }
 
+    if (event.request.url.match('amazonaws.com')) {
+        return; // Skip caching for chrome extensions
+    }
+
     if(event.request.url.match(/googletagmanager/)){
         return; // Hack for GTM
     }
