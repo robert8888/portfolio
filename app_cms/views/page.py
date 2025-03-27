@@ -58,6 +58,7 @@ def build_select_page_menus_query(page_id, lang):
     LEFT JOIN "app_cms_menuitem_translation" ON "app_cms_menuitem_translation"."master_id" = "app_cms_menuitem"."id"
     WHERE "app_cms_page_menu"."page_id" = {page_id}
     AND "app_cms_menuitem_translation"."language_code" = '{lang}'
+    ORDER BY app_cms_menuitem."order"
     """
 
 def build_select_section_query(page_id):
@@ -176,7 +177,7 @@ class PageView(View):
                 'sections': sections['view_data'],
                 'no_index': not request.get_host() in settings.INDEXED_DOMAINS
             }
-
+            # print(context.get('menus'))
             if context.get('page_meta'):
                 context['meta'] = context['page_meta']
 
@@ -263,6 +264,7 @@ class PageView(View):
     def get_menus_raw(page_id):
         query = build_select_page_menus_query(page_id, get_language())
         data, success, *_ = execute_query(query)
+
         menus = {}
         for row in data:
             menus.setdefault(row.get('id'), {

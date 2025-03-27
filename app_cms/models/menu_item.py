@@ -9,6 +9,11 @@ class MenuItem(TranslatableModel):
         on_delete = models.CASCADE
     )
 
+    order = models.IntegerField(
+        verbose_name = 'Order',
+        default = 0
+    )
+
     translations = TranslatedFields(
         text = models.CharField(
             max_length = 255,
