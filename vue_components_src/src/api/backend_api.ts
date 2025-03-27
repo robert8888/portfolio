@@ -18,7 +18,8 @@ interface Result<D>{
 
 
 const getLanguageFromPath = () =>{
-    const langPath = location.pathname.split("/")[1]
+    const langPath = location.pathname.split("/")[1];
+    if(langPath === "en") return "";
     return langPath.length === 2 ? langPath + '/' : '';
 }
 
@@ -48,7 +49,6 @@ const request = async <D, I>(path: string, data: I, clean= false) => {
         errors: [{field: "_server", message: ''}],
         data: {}
     }
-
 }
 
 
@@ -76,7 +76,7 @@ export const getNumber = async (): Promise<Result<{number: string}>> => {
     const data = {
         captchaToken:  await getCaptchaToken()
     }
-    return request<{number: string}, {captchaToken: string}>(`/${path}`, data) as Promise<Result<{number: string}>>
+    return request<{number: string}, {captchaToken: string}>(buildPath(path), data) as Promise<Result<{number: string}>>
 }
 
 export const getEmail = async (): Promise<Result<{email: string}>> => {
@@ -84,7 +84,7 @@ export const getEmail = async (): Promise<Result<{email: string}>> => {
     const data = {
         captchaToken: await getCaptchaToken()
     }
-    return request<{email: string}, {captchaToken: string}>(`/${path}`, data) as Promise<Result<{email:string}>>
+    return request<{email: string}, {captchaToken: string}>(buildPath(path), data) as Promise<Result<{email:string}>>
 }
 
 export const getProjects = async(data: Record<string, string>): Promise<Result<Project[]>> => {
@@ -106,6 +106,7 @@ export type GetCVPayload = {
     captchaToken?: string;
 }
 export const getCv = async (data: GetCVPayload): Promise<Response> => {
+    console.log("the data", data)
     const apiPath = API_CONFIGURATION.GET_CV;
     data.captchaToken = await getCaptchaToken()
     return request(buildPath(apiPath), data, true) as Promise<Response>

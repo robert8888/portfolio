@@ -70,7 +70,7 @@ class CvPdf(View):
             })
 
             if not response.success:
-                raise Exception('cv data not found for slug' + slug)
+                raise Exception('cv data not found for slug' + post_data['slug'])
 
             context = {
                 'cv': response.data.cv
