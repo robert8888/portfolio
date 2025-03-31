@@ -9,35 +9,30 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 14:42+0000\n"
-"PO-Revision-Date: 2021-05-04 04:20+0000\n"
-"Last-Translator: b'  <robert.kami88@gmail.com>'\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
-"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Translated-Using: django-rosetta 0.9.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app_projects/apps.py:6 app_projects/models/project.py:260
 msgid "Projects"
-msgstr "Projekty"
+msgstr ""
 
 #: app_projects/models/project.py:20
 msgid "Project name"
-msgstr "Nazwa projektu"
+msgstr ""
 
 #: app_projects/models/project.py:29
 msgid "Project title"
-msgstr "Tytuł projektu"
+msgstr ""
 
 #: app_projects/models/project.py:36
-#, fuzzy
-#| msgid "Project title"
 msgid "Project page meta title"
-msgstr "Tytuł projektu"
+msgstr ""
 
 #: app_projects/models/project.py:43
 msgid "Project page meta description"
@@ -45,230 +40,226 @@ msgstr ""
 
 #: app_projects/models/project.py:48
 msgid "Project subtitle"
-msgstr "Podtytuł projektu"
+msgstr ""
 
 #: app_projects/models/project.py:52
 msgid "Description short"
-msgstr "Krótki opis"
+msgstr ""
 
 #: app_projects/models/project.py:56
 msgid "Description long"
-msgstr "Długi opis"
+msgstr ""
 
 #: app_projects/models/project.py:62
 msgid "hint"
-msgstr "wskazówka"
+msgstr ""
 
 #: app_projects/models/project.py:63
 msgid "Autocomplete hint"
-msgstr "Wskazówka auto podpowiedzi "
+msgstr ""
 
 #: app_projects/models/project.py:133 app_projects/models/technology.py:62
 msgid "Technologies"
-msgstr "Technologie"
+msgstr ""
 
 #: app_projects/models/project.py:138
 msgid "Related"
-msgstr "Powiązane"
+msgstr ""
 
 #: app_projects/models/project.py:144
 msgid "Gallery"
-msgstr "Galerie "
+msgstr ""
 
 #: app_projects/models/project.py:150 app_projects/views/projects.py:22
 #: app_projects/views/projects.py:28
 msgid "Release date"
-msgstr "Data realizacji"
+msgstr ""
 
 #: app_projects/models/project.py:156
 msgid "Last update date"
-msgstr "Data akutualizacji"
+msgstr ""
 
 #: app_projects/models/project.py:161 app_projects/models/technology.py:42
 msgid "Show on main page"
-msgstr "Pokaż na stronie głownej"
+msgstr ""
 
 #: app_projects/models/project.py:166
 msgid "Default sort weight"
-msgstr "Domyślna waga sortowania "
+msgstr ""
 
 #: app_projects/models/project.py:259
 msgid "Project"
-msgstr "Projekt"
+msgstr ""
 
 #: app_projects/models/project_gallery.py:9
 msgid "Identification name"
-msgstr "Identyfikator"
+msgstr ""
 
 #: app_projects/models/project_gallery.py:20
 msgid "Project gallery"
-msgstr "Galeria projektu"
+msgstr ""
 
 #: app_projects/models/project_gallery.py:21
 msgid "Projects gallery"
-msgstr "Galerie projektów"
+msgstr ""
 
 #: app_projects/models/project_gallery_image.py:40
 #: app_projects/models/technology.py:144
 msgid "Image"
-msgstr "Obraz"
+msgstr ""
 
 #: app_projects/models/project_gallery_image.py:54
 msgid "Image width"
-msgstr "Szerokość obrazka"
+msgstr ""
 
 #: app_projects/models/project_gallery_image.py:58
 msgid "Image height"
-msgstr "Wysokość obrazka"
+msgstr ""
 
 #: app_projects/models/project_gallery_image.py:79
 msgid "Gallery Image"
-msgstr "Obrazek galerii"
+msgstr ""
 
 #: app_projects/models/project_gallery_image.py:80
 msgid "Gallery Images"
-msgstr "Obrazki gallerii"
+msgstr ""
 
 #: app_projects/models/project_links.py:7
 msgid "Host"
-msgstr "Host"
+msgstr ""
 
 #: app_projects/models/project_links.py:8
 msgid "Repository"
-msgstr "Repoztytorium"
+msgstr ""
 
 #: app_projects/models/project_links.py:9
 msgid "Demo"
-msgstr "Demo"
+msgstr ""
 
 #: app_projects/models/project_links.py:10
 msgid "Documentation"
-msgstr "Dokumentacja"
+msgstr ""
 
 #: app_projects/models/project_links.py:26
 msgid "Link"
-msgstr "Link"
+msgstr ""
 
 #: app_projects/models/project_links.py:31
 msgid "Project link"
-msgstr "Link projektu"
+msgstr ""
 
 #: app_projects/models/project_links.py:32
 msgid "Project links"
-msgstr "Linki projektu"
+msgstr ""
 
 #: app_projects/models/project_type.py:23
 msgid "Project type"
-msgstr "Typ projektu"
+msgstr ""
 
 #: app_projects/models/project_type.py:24
 msgid "Project types"
-msgstr "Typy projektów"
+msgstr ""
 
 #: app_projects/models/technology.py:16
 msgid "Technology name"
-msgstr "Nazwa technologii"
+msgstr ""
 
 #: app_projects/models/technology.py:21
 msgid "Technology link"
-msgstr "Nazwy technologii"
+msgstr ""
 
 #: app_projects/models/technology.py:26
 msgid "Color"
-msgstr "Kolor"
+msgstr ""
 
 #: app_projects/models/technology.py:36
 msgid "Skill level"
-msgstr "Poziom umiejętności"
+msgstr ""
 
 #: app_projects/models/technology.py:47
 msgid "Show on main page in all section"
-msgstr "Pokaż na stronie głównej w sekcji wszystkie"
+msgstr ""
 
 #: app_projects/models/technology.py:61
 msgid "Technology"
-msgstr "Technologie"
+msgstr ""
 
 #: app_projects/models/technology.py:68
 msgid "Name"
-msgstr "Nazwa"
+msgstr ""
 
 #: app_projects/models/technology.py:74
 msgid "Weight"
-msgstr "Waga"
+msgstr ""
 
 #: app_projects/models/technology.py:81
 msgid "Technology type"
-msgstr "Typ technologii"
+msgstr ""
 
 #: app_projects/models/technology.py:82
 msgid "Technology types"
-msgstr "Typy technologii"
+msgstr ""
 
 #: app_projects/models/technology.py:97
 msgid "Technology image"
-msgstr "Obrazki technologii"
+msgstr ""
 
 #: app_projects/models/technology.py:101
 msgid "Top"
-msgstr "Góra"
+msgstr ""
 
 #: app_projects/models/technology.py:107
 msgid "Left"
-msgstr "Lewa"
+msgstr ""
 
 #: app_projects/models/technology.py:113
 msgid "Width"
-msgstr "Szerokośc"
+msgstr ""
 
 #: app_projects/models/technology.py:119
 msgid "Height"
-msgstr "Wysokość"
+msgstr ""
 
 #: app_projects/models/technology.py:127
 msgid "Image identification name"
-msgstr "Nazwa indetyfikacyjna"
+msgstr ""
 
 #: app_projects/models_admin/actions/add_project_autocomplete.py:58
 #: app_projects/models_admin/actions/add_technology_autocomplete.py:34
-#, fuzzy, python-format
-#| msgid ""
-#| "Add to autocomplete dictionary. Removed %(0) term and added %(1) terms"
+#, python-format
 msgid ""
 "Add to autocomplete dictionary. Removed %(0)s term and added %(1)s terms"
 msgstr ""
-"Dodano do słownika podpowiedzi. Usunięto %(0) wskazówek i dodano %(1) "
-"wskazówek. "
 
 #: app_projects/models_admin/actions/add_project_autocomplete.py:59
 #: app_projects/models_admin/actions/add_technology_autocomplete.py:35
 #: app_projects/models_admin/actions/update_technology_autocompletes.py:15
 msgid "Adding to autocomplete dictionary fail"
-msgstr "Dodawanie do słownika wskazówek nie powiodło się"
+msgstr ""
 
 #: app_projects/models_admin/actions/add_project_autocomplete.py:69
 #: app_projects/models_admin/actions/add_technology_autocomplete.py:40
 msgid "Add to autocomplete"
-msgstr "Dodaj do słownika wskazówek"
+msgstr ""
 
 #: app_projects/models_admin/actions/delete_project_autocomplete.py:19
 #, python-format
 msgid "Delete %d terms from autocomplete dictionary"
-msgstr "Usunięto %d terminów z słownika auto podpowiedzi "
+msgstr ""
 
 #: app_projects/models_admin/actions/delete_project_autocomplete.py:20
 #: app_projects/models_admin/actions/delete_technology_autocomplete.py:19
 msgid "Removing terms from dictionary fail"
-msgstr "Usuwanie z słownika podpowiedzi wyszukiwarki"
+msgstr ""
 
 #: app_projects/models_admin/actions/delete_project_autocomplete.py:30
 #: app_projects/models_admin/actions/delete_technology_autocomplete.py:29
 msgid "Delete from autocomplete"
-msgstr "Usuń z słownika podpowiedzi wyszukiwarki "
+msgstr ""
 
 #: app_projects/models_admin/actions/delete_technology_autocomplete.py:18
 msgid "Delete %(0) terms from autocomplete dictionary"
-msgstr "Usunięto %(0) wskazówek z słownika podpowiedzi"
+msgstr ""
 
 #: app_projects/models_admin/actions/upadate_project_json_ld_data.py:11
 #, python-format
@@ -289,39 +280,28 @@ msgid ""
 "Updated terms in autocomplete dictionary. Rebuild %(0) term and added %(1) "
 "terms"
 msgstr ""
-"Aktualizowanie słownika powiedzie udane. Przebudowano słownik. Usunięto %(0) "
-"wskazówek i dodatno %(1)"
 
 #: app_projects/models_admin/actions/update_project_autocomplete.py:16
 msgid "Updating autocomplete dictionary fail"
-msgstr "Aktualizacja słownika podpowiedzi nie powiodła się "
+msgstr ""
 
 #: app_projects/models_admin/actions/update_project_autocomplete.py:26
 #: app_projects/models_admin/actions/update_technology_autocompletes.py:20
 msgid "Update autocomplete"
-msgstr "Aktualizuj słownik podpowiedzi"
+msgstr ""
 
 #: app_projects/models_admin/actions/update_technology_autocompletes.py:14
 msgid "Add to autocomplete dictionary. Removed %d term and added %(0) terms"
-msgstr "Dodano do słownika auto podpowiedzi. Usunięto %d terminy i dodano %(0)"
+msgstr ""
 
 #: app_projects/views/projects.py:15
 msgid "Default"
-msgstr "Domyślny"
+msgstr ""
 
 #: app_projects/views/projects.py:34 app_projects/views/projects.py:40
 msgid "Title"
-msgstr "Tytuł"
+msgstr ""
 
 #: app_projects/views/projects.py:46 app_projects/views/projects.py:52
 msgid "Type"
-msgstr "Typ"
-
-#~ msgid "get more"
-#~ msgstr "więcej"
-
-#~ msgid "Related Projects"
-#~ msgstr "Projekty powiązane"
-
-#~ msgid "Stack"
-#~ msgstr "Technologie"
+msgstr ""

@@ -227,6 +227,9 @@ class PageView(View):
         query = build_select_path_query(path)
         data, success, *_ = execute_query(query)
 
+        if not success or data is None:
+            return {'not_found': True}
+
         path_item = py_.find(data, lambda item: item['lang'] == get_language())
 
         if not path_item and len(data):

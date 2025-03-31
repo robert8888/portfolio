@@ -9,170 +9,159 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 14:42+0000\n"
-"PO-Revision-Date: 2025-03-31 14:48+0000\n"
-"Last-Translator: b'  <robert.kami88@gmail.com>'\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Translated-Using: django-rosetta 0.9.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/menus/menu-aside.html:4
 msgid "/en/"
-msgstr "/pl/"
+msgstr ""
 
 #: templates/partial/contact-email-component.html:6
 #: templates/partial/contact-number-component.html:6
-#, fuzzy
-#| msgid "Preloading"
 msgid "Loading"
-msgstr "Przygotowuje"
+msgstr ""
 
 #: templates/partial/contact-email-component.html:11
-#, fuzzy
-#| msgid "Number was copied to clipboard"
 msgid "Email was copied to clipboard"
-msgstr "Numer został skopiowany do schowka"
+msgstr ""
 
 #: templates/partial/contact-email-component.html:12
 #: templates/partial/contact-number-component.html:12
 msgid "copy"
-msgstr "kopiuj"
+msgstr ""
 
 #: templates/partial/contact-email-component.html:16
 msgid "write"
-msgstr "napisz"
+msgstr ""
 
 #: templates/partial/contact-number-component.html:11
 msgid "Number was copied to clipboard"
-msgstr "Numer został skopiowany do schowka"
+msgstr ""
 
 #: templates/partial/contact-number-component.html:16
 msgid "call"
-msgstr "zadzwoń"
+msgstr ""
 
 #: templates/partial/contact_cv_download_component.html:3
 msgid "Preparing"
-msgstr "Przygotowuję"
+msgstr ""
 
 #: templates/partial/contact_cv_download_component.html:4
 #: templates/partial/contact_cv_download_component.html:15
 #: templates/sections/section_contact.html:32
 #: templates/sections/section_contact.html:36
 msgid "Download"
-msgstr "Pobierz"
+msgstr ""
 
 #: templates/partial/contact_cv_download_component.html:5
 #: templates/sections/section_contact.html:34
 msgid "Open"
-msgstr "Otwórz"
+msgstr ""
 
 #: templates/partial/contact_cv_download_component.html:11
 msgid "Download Reasume"
-msgstr "Pobierz CV"
+msgstr ""
 
 #: templates/partial/project-card.html:3
 msgid "get more"
-msgstr "więcej "
+msgstr ""
 
 #: templates/partial/validation_msg.html:4
 msgid "[field] bad input"
-msgstr "Pole [field] ma zły format"
+msgstr ""
 
 #: templates/partial/validation_msg.html:5
 msgid "[field] has not correct value"
-msgstr "Pole [field] ma niepoprawną wartość"
+msgstr ""
 
 #: templates/partial/validation_msg.html:6
 msgid "[field] don't fit to range. Value to big"
-msgstr "Pole [field] nie mieści się w przedziale. Wartość zbyt duża"
+msgstr ""
 
 #: templates/partial/validation_msg.html:8
 msgid "[field] not correct value"
-msgstr "Pole [field] posiada nieprawidłową wartość"
+msgstr ""
 
 #: templates/partial/validation_msg.html:9
 msgid "Value of [field] is to short"
-msgstr "Wartość pola [field] jest zbyt krótka"
+msgstr ""
 
 #: templates/partial/validation_msg.html:10
 msgid "[field] value is to long"
-msgstr "Pole [field] wartość jest zbyt długa"
+msgstr ""
 
 #: templates/partial/validation_msg.html:11
 msgid "[field] type value is not correct"
-msgstr "Pole [field] posiada nieprawidłowy typ."
+msgstr ""
 
 #: templates/partial/validation_msg.html:12
 msgid "[field] value is required"
-msgstr "Pole [field] jest wymagane. "
+msgstr ""
 
 #: templates/sections/section_about.html:2
 msgid "about"
-msgstr "historia"
+msgstr ""
 
 #: templates/sections/section_contact.html:2
 msgid "contact"
-msgstr "kontakt"
+msgstr ""
 
 #: templates/sections/section_contact.html:31
 msgid "Download Resume"
-msgstr "Pobierz aplikację"
+msgstr ""
 
 #: templates/sections/section_contact.html:33
 msgid "Preloading"
-msgstr "Przygotowuje"
+msgstr ""
 
 #: templates/sections/section_contact.html:54
 msgid "Confirm your identify"
-msgstr "Potwierdź swoją tożsamość"
+msgstr ""
 
 #: templates/sections/section_contact.html:65
 #: templates/sections/section_contact.html:73
 msgid "Company"
-msgstr "Firma"
+msgstr ""
 
 #: templates/sections/section_contact.html:82
 msgid "Agreement"
-msgstr "Uzgodnienia"
+msgstr ""
 
 #: templates/sections/section_footer.html:9
 msgid "All Rights Reserved"
-msgstr "Wszelkie prawa zastrzeżone"
+msgstr ""
 
 #: templates/sections/section_project.html:26
 msgid "Sources"
-msgstr "Zródła"
+msgstr ""
 
 #: templates/sections/section_project.html:41
 msgid "Related Projects"
-msgstr "Powiązane projekty"
+msgstr ""
 
 #: templates/sections/section_project.html:51
 msgid "Stack"
-msgstr "Stack"
+msgstr ""
 
 #: templates/sections/section_projects-slider.html:2
 msgid "projects"
-msgstr "projekty"
+msgstr ""
 
 #: templates/sections/section_projects-slider.html:19
 #: templates/sections/section_stack.html:28
 msgid "See all"
-msgstr "Zobacz wszystkie"
+msgstr ""
 
 #: templates/sections/section_stack.html:2
 msgid "technology"
-msgstr "technologie"
+msgstr ""
 
 #: templates/sections/section_welcome.html:2
 msgid "welcome"
-msgstr "witaj"
-
-#~ msgid "/"
-#~ msgstr "/pl"
-
-#~ msgid "[field] don't fit to range. Value to small"
-#~ msgstr "Pole [field] nie mieści się w przedziale. Wartość zbyt mała"
+msgstr ""

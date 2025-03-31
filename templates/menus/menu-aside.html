@@ -1,7 +1,7 @@
 {% load i18n %}
 <div class="navigation__wrapper--aside">
     <vue-component>
-        <menu-aside index-link="{% translate '/' %}">
+        <menu-aside index-link="{% translate '/en/' %}">
             {% for item in menu.items %}
             <menu-aside-item href="{{item.url}}" index="{{ forloop.counter }}" {% if forloop.counter == 1 %}:default="true"{% endif%}>
                 {{item.text}}

@@ -9,190 +9,181 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-31 14:42+0000\n"
-"PO-Revision-Date: 2021-04-23 07:52+0000\n"
-"Last-Translator: b'  <robert.kami88@gmail.com>'\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
-"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Translated-Using: django-rosetta 0.9.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app_owner/apps.py:6
 msgid "Owner"
-msgstr "Właściciel"
+msgstr ""
 
 #: app_owner/models/contact.py:12
 msgid "Contact name"
-msgstr "Identyfikator kontaktu"
+msgstr ""
 
 #: app_owner/models/contact.py:16
 msgid "Weight"
-msgstr "Waga"
+msgstr ""
 
 #: app_owner/models/contact.py:21
 msgid "Show on main page"
-msgstr "Pokaż na głównej stronie"
+msgstr ""
 
 #: app_owner/models/contact.py:26
-#, fuzzy
-#| msgid "Contact portal"
 msgid "Contact protected"
-msgstr "Kontakt portal"
+msgstr ""
 
 #: app_owner/models/contact.py:33
 msgid "Contact type"
-msgstr "Identyfikator kontaktu"
+msgstr ""
 
 #: app_owner/models/contact.py:46 app_owner/models/cv_doc.py:52
 msgid "Contact"
-msgstr "Kontakt"
+msgstr ""
 
 #: app_owner/models/contact.py:51
 msgid "Portal"
-msgstr "Portal"
+msgstr ""
 
 #: app_owner/models/contact.py:55
 msgid "Contact url"
-msgstr "Kontakt url"
+msgstr ""
 
 #: app_owner/models/contact.py:67
 msgid "Contact portal"
-msgstr "Kontakt portal"
+msgstr ""
 
 #: app_owner/models/contact.py:70
 msgid "Email"
 msgstr ""
 
 #: app_owner/models/contact.py:74
-#, fuzzy
-#| msgid "Email address not valid"
 msgid "Email address"
-msgstr "Adres email nieprawidłowy"
+msgstr ""
 
 #: app_owner/models/contact.py:84
-#, fuzzy
-#| msgid "Contact image"
 msgid "Contact email"
-msgstr "Kontakt obraz"
+msgstr ""
 
 #: app_owner/models/contact.py:88
 msgid "Number"
-msgstr "Numer"
+msgstr ""
 
 #: app_owner/models/contact.py:92 app_owner/models/contact.py:109
 msgid "Contact number"
-msgstr "Numer kontaktowy"
+msgstr ""
 
 #: app_owner/models/contact.py:112 app_owner/models/contact.py:115
 #: app_owner/models/cv_doc_exp.py:42
 msgid "Address"
-msgstr "Adres"
+msgstr ""
 
 #: app_owner/models/contact.py:126
 msgid "Contact address"
-msgstr "Identyfikator kontaktu"
+msgstr ""
 
 #: app_owner/models/contact_img.py:27
 msgid "Contact image"
-msgstr "Kontakt obraz"
+msgstr ""
 
 #: app_owner/models/contact_img.py:32 app_owner/models/contact_img.py:88
 #: app_owner/models/cv_doc_photo.py:13
 msgid "Image"
-msgstr "Obraz"
+msgstr ""
 
 #: app_owner/models/contact_img.py:39
 msgid "Top"
-msgstr "Góra"
+msgstr ""
 
 #: app_owner/models/contact_img.py:45
 msgid "Left"
-msgstr "Lewa"
+msgstr ""
 
 #: app_owner/models/contact_img.py:51
 msgid "Width"
-msgstr "Szerokość"
+msgstr ""
 
 #: app_owner/models/contact_img.py:57
 msgid "Height"
-msgstr "Wysokośc"
+msgstr ""
 
 #: app_owner/models/contact_img.py:64
 msgid "Sprite image"
-msgstr "Obrazek sprite"
+msgstr ""
 
 #: app_owner/models/contact_img.py:71
 msgid "Image identification name"
-msgstr "Identyfikator obrazu"
+msgstr ""
 
 #: app_owner/models/cv.py:15
 msgid "Slug"
-msgstr "Slug"
+msgstr ""
 
 #: app_owner/models/cv.py:22
 msgid "Version name"
-msgstr "Nazwa wersji"
+msgstr ""
 
 #: app_owner/models/cv.py:27
 msgid "PDF template"
-msgstr "Szablon PDF"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:9
 msgid "Color profile identification name"
-msgstr "Identyfikator obrazu"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:13
 msgid "Base background color"
-msgstr "Bazowy kolor tła"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:18
 msgid "Base text color"
-msgstr "Bazowy kolor text"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:23
 msgid "Base text focus color"
-msgstr "Bazowy kolor tekstu - wyróżniony"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:27
 msgid "Primary color"
-msgstr "Pierwszoplanowy kolor"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:32
 msgid "Primary text color"
-msgstr "Pierwszoplanowy kolor tekstu"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:38
 msgid "Primary text color - focus"
-msgstr "Pierwszoplanowy kolor wyróżnionego tekstu"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:43
 msgid "Secondary color"
-msgstr "Drugoplanowy kolor"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:48
 msgid "Secondary text color"
-msgstr "Drugoplanowy kolor tekstu"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:53
 msgid "Secondary text color - focus"
-msgstr "Drugoplanowy kolor wyróżnionego"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:86
 msgid "Cv Color Profile"
-msgstr "Profile kolorów CV"
+msgstr ""
 
 #: app_owner/models/cv_color_profile.py:87
 msgid "Cv Color Profiles"
-msgstr "Profile kolorów CV"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:13 app_owner/models_admin/cv_doc_admin.py:20
 #: app_owner/models_admin/cv_doc_admin.py:21
 msgid "Additional information"
-msgstr "Dodatkowe informacje"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:19 app_owner/models/cv_doc_additional.py:9
 #: app_owner/models/cv_doc_agreements.py:8
@@ -200,301 +191,286 @@ msgstr "Dodatkowe informacje"
 #: app_owner/models/cv_doc_exp.py:9 app_owner/models/cv_doc_personal.py:9
 #: app_owner/models/cv_doc_skills.py:14 app_owner/models/cv_doc_summary.py:8
 msgid "Identification name"
-msgstr "Identyfikator obrazu"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:24
 msgid "Link on main page"
-msgstr "Link na głównej stronie"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:29
 msgid "Document title"
-msgstr "Tytuł dokumentu"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:31 app_owner/models/cv_doc.py:38
 msgid "If not present default: Name + Surname"
-msgstr "Jeśli nie jest wypełnione użyje: Imię + Nazwisko "
+msgstr ""
 
 #: app_owner/models/cv_doc.py:36
 msgid "Document download filename"
-msgstr "Nazwa pliku pobieranego dokumentu"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:44
 msgid "Personal"
-msgstr "Dane osobiste"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:58
 msgid "Summary"
-msgstr "Podsumowanie"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:64
 msgid "Education"
-msgstr "Edukacja"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:70
 msgid "Experience"
-msgstr "Doświadczenie"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:76 app_owner/models/cv_doc_skills.py:118
 msgid "Skills"
-msgstr "Umiejętności"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:82
 msgid "Rodo agreements"
-msgstr "Zgody rodo"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:89 app_owner/models_admin/cv_doc_admin.py:13
 msgid "Additional"
-msgstr "Dodatkowe"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:124
 msgid "CV Document"
-msgstr "Dokument CV"
+msgstr ""
 
 #: app_owner/models/cv_doc.py:125
 msgid "CV Documents"
-msgstr "Dokument CV"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:14
 msgid "Hobby"
-msgstr "Hobby"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:15
 msgid "Strengths"
-msgstr "Mocne storny"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:16
 msgid "Achievements"
-msgstr "Osiągnięcia"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:17
 msgid "Other"
-msgstr "Inne"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:22
 msgid "Type"
-msgstr "Typ"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:29 app_owner/models/cv_doc_edu.py:17
 #: app_owner/models/cv_doc_exp.py:16 app_owner/models/cv_doc_skills.py:20
 msgid "Section title"
-msgstr "Tytuł sekcji"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:34
 msgid "Items"
-msgstr "Elementy"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:43
 msgid "CV document additional info"
-msgstr "Dodatkowe informacje dokumentu cv"
+msgstr ""
 
 #: app_owner/models/cv_doc_additional.py:44
 msgid "CV document additional infos"
-msgstr "Dodatkowe informacje dokumentu cv"
+msgstr ""
 
 #: app_owner/models/cv_doc_agreements.py:13
 msgid "Agreements text"
-msgstr "Tekst sekcji warunki"
+msgstr ""
 
 #: app_owner/models/cv_doc_agreements.py:21
 #: app_owner/models/cv_doc_agreements.py:22
 msgid "Cv document agreements"
-msgstr "Dokument CV - warunki"
+msgstr ""
 
 #: app_owner/models/cv_doc_contact.py:32
 msgid "Contact section title"
-msgstr "Kontakt portal"
+msgstr ""
 
 #: app_owner/models/cv_doc_contact.py:39
 msgid "Contacts"
-msgstr "Kontakt"
+msgstr ""
 
 #: app_owner/models/cv_doc_contact.py:60
 msgid "CV Document contact"
-msgstr "Dokument CV - kontakt"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:26
 msgid "CV document education"
-msgstr "Dokument CV - edukacja"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:27
 msgid "CV documents educations"
-msgstr "Dokumenty CV - edukacja"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:40 app_owner/models/cv_doc_exp.py:48
 msgid "From"
-msgstr "Od"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:45 app_owner/models/cv_doc_exp.py:53
 msgid "To"
-msgstr "Do"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:51
 msgid "School name"
-msgstr "Nazwa szkoły"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:56
 msgid "Field of study"
-msgstr "Kierunek szkoły"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:60 app_owner/models/cv_doc_exp.py:65
 msgid "Description"
-msgstr "Opis"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:65
 msgid "School"
-msgstr "Szkoła"
+msgstr ""
 
 #: app_owner/models/cv_doc_edu.py:66
 msgid "Schools"
-msgstr "Szkoły"
+msgstr ""
 
 #: app_owner/models/cv_doc_exp.py:24
 msgid "CV document experience"
-msgstr "Dokument CV - doświadczenie"
+msgstr ""
 
 #: app_owner/models/cv_doc_exp.py:25
 msgid "CV documents experiences"
-msgstr "Dokumenty CV - doświadczenie"
+msgstr ""
 
 #: app_owner/models/cv_doc_exp.py:37
 msgid "Company"
-msgstr "Firma"
+msgstr ""
 
 #: app_owner/models/cv_doc_exp.py:61
 msgid "Job position"
-msgstr "Stanowisko"
+msgstr ""
 
 #: app_owner/models/cv_doc_exp.py:73
 msgid "Job"
-msgstr "Praca"
+msgstr ""
 
 #: app_owner/models/cv_doc_exp.py:74
 msgid "Jobs"
-msgstr "Prace"
+msgstr ""
 
 #: app_owner/models/cv_doc_personal.py:15 app_owner/models/cv_doc_photo.py:38
 msgid "Photo"
-msgstr "Zdjęcie"
+msgstr ""
 
 #: app_owner/models/cv_doc_personal.py:20
 msgid "Name"
-msgstr "Nazwa"
+msgstr ""
 
 #: app_owner/models/cv_doc_personal.py:25
 msgid "Surname"
-msgstr "Nazwisko"
+msgstr ""
 
 #: app_owner/models/cv_doc_personal.py:30
 msgid "Birthday"
-msgstr "Urodziny"
+msgstr ""
 
 #: app_owner/models/cv_doc_personal.py:37
 msgid "Position title"
-msgstr "Tytuł stanowiska"
+msgstr ""
 
 #: app_owner/models/cv_doc_personal.py:49
 msgid "CV Document personal"
-msgstr "Dokument CV - dane osobowe"
+msgstr ""
 
 #: app_owner/models/cv_doc_photo.py:9
-#, fuzzy
-#| msgid "Image identification name"
 msgid "Photo identification name"
-msgstr "Identyfikator obrazu"
+msgstr ""
 
 #: app_owner/models/cv_doc_photo.py:24
 msgid "Image width"
-msgstr "Szerokość obrazka"
+msgstr ""
 
 #: app_owner/models/cv_doc_photo.py:28
 msgid "Image height"
-msgstr "Wysokość obrazka"
+msgstr ""
 
 #: app_owner/models/cv_doc_photo.py:39
 msgid "Photos"
-msgstr "Zdjęcie"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:27
 msgid "Technologies"
-msgstr "Technologie"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:41
 msgid "Document skills"
-msgstr "Dokument CV - umiejętności"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:42
 msgid "Documents skills"
-msgstr "Dokumenty CV - umiejętności"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:54 app_owner/models/cv_doc_skills.py:117
 msgid "Skill"
-msgstr "Umiejętności"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:70
 msgid "Language name"
-msgstr "Język"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:85 app_owner/models/cv_doc_skills.py:110
 msgid "Level"
-msgstr "Poziom"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:93
 msgid "Language"
-msgstr "Język"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:94
 msgid "Languages"
-msgstr "Języki"
+msgstr ""
 
 #: app_owner/models/cv_doc_skills.py:103
 msgid "Text"
-msgstr "Tekst"
+msgstr ""
 
 #: app_owner/models/cv_doc_summary.py:15
 msgid "Summary section tittle"
-msgstr "Tytuł sekcji podsumowania"
+msgstr ""
 
 #: app_owner/models/cv_doc_summary.py:19
 msgid "Summary content"
-msgstr "Zawartość sekcji podsumowanie"
+msgstr ""
 
 #: app_owner/models/cv_doc_summary.py:27
 msgid "CV document Summary"
-msgstr "Dokument CV - podsumowanie"
+msgstr ""
 
 #: app_owner/models_admin/cv_admin.py:47
-#, fuzzy
-#| msgid "Download link"
 msgid "Download link en"
-msgstr "Link do pobrania"
+msgstr ""
 
 #: app_owner/models_admin/cv_admin.py:57
-#, fuzzy
-#| msgid "Download link"
 msgid "Download link pl"
-msgstr "Link do pobrania"
+msgstr ""
 
 #: app_owner/views/api_contact_form.py:29
 msgid "Google Recaptcha authorization fail"
-msgstr "Autoryzacja Google Recaptcha"
+msgstr ""
 
 #: app_owner/views/api_contact_form.py:49
 msgid "Email address not valid"
-msgstr "Adres email nieprawidłowy"
+msgstr ""
 
 #: app_owner/views/api_contact_form.py:53
 msgid "Subject value too short, min 6 chars"
-msgstr "Długość tematu za krótka. minimum 6 znaków"
+msgstr ""
 
 #: app_owner/views/api_contact_form.py:57
 msgid "Message value too short, min 20 chars"
-msgstr "Długość wiadomości za krótka. minimum 20 znaków"
-
-#~ msgid "YES"
-#~ msgstr "TAK"
-
-#~ msgid " - "
-#~ msgstr "-"
-
-#~ msgid "Is number ?"
-#~ msgstr "Jest numerem?"
+msgstr ""
