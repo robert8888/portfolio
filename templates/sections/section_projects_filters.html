@@ -7,7 +7,9 @@
                         <vue-component>
                             <projects-filter label="Filter" param="type">
                                 {% for type in project_types %}
-                                <select-item value="{{type.value}}"> {{type.display}} </select-item>
+                                <select-item value="{{type.value}}" :index="{{ forloop.counter }}">
+                                    {{type.display}}
+                                </select-item>
                                 {% endfor %}
                             </projects-filter>
                         </vue-component>
@@ -18,7 +20,7 @@
                         <vue-component>
                             <projects-order label="Order" param="order">
                                 {% for type in project_ordering %}
-                                    <select-item value="{{type.value}}">
+                                    <select-item value="{{type.value}}" :index="{{ forloop.counter }}">
                                         {{type.text}} <span class="dropdown__text--right">{{type.text_type}}</span>
                                     </select-item>
                                 {% endfor %}
