@@ -54,12 +54,12 @@ def get_path_patterns(page_id=None, page_name=None):
 @cached
 def revers_page_path(page_id=None, page_name = None, args = None):
     path_pattern = get_path_pattern(page_id=page_id, page_name=page_name)
-
     if not path_pattern:
         return ''
     pattern = replace_capture_groups_with_values(path_pattern, args ) if args else path_pattern
+    path = exrex.getone(pattern)
+    return "/" + path if not path.startswith("/") else path
 
-    return exrex.getone(pattern)
 
 @cached
 def revers_page_paths(page_name = None, lang_args = None):
