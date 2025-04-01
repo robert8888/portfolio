@@ -116,7 +116,8 @@ class PageView(View):
 
     @minified_response
     def get(self, request, path):
-        start = datetime.now()
+        path = "pl/" + path if not path.startswith("en") else path
+
         tokens = {
            'gCaptchaPublicKey':  os.getenv("GCAPTCHA_PUBLIC_KEY"),
            'csrfToken': get_token(request),

@@ -23,7 +23,6 @@ def get_page_id(page_name):
 
     return page_id_queryset[0].get('id')
 
-@cached
 def get_path_pattern(page_id=None, page_name = None):
     if not page_id and not page_name:
         return None
@@ -32,14 +31,12 @@ def get_path_pattern(page_id=None, page_name = None):
 
     path_queryset = Path.objects.filter(page_id = page_id, translations__language_code=get_language())
 
-
     if not len(path_queryset):
         return None
     path = path_queryset[0]
 
     return path.pattern
 
-@cached
 def get_path_patterns(page_id=None, page_name=None):
     if not page_id and not page_name:
         return None
@@ -51,17 +48,17 @@ def get_path_patterns(page_id=None, page_name=None):
     return list(chain(*path_querysets))
 
 
-@cached
 def revers_page_path(page_id=None, page_name = None, args = None):
     path_pattern = get_path_pattern(page_id=page_id, page_name=page_name)
+
     if not path_pattern:
         return ''
     pattern = replace_capture_groups_with_values(path_pattern, args ) if args else path_pattern
     path = exrex.getone(pattern)
+
     return "/" + path if not path.startswith("/") else path
 
 
-@cached
 def revers_page_paths(page_name = None, lang_args = None):
     paths_queries = [(path.pattern, path.language_code )for path in get_path_patterns(page_name = page_name)]
     paths = []
