@@ -29,6 +29,9 @@ class Path(TranslatableModel):
         return ""
 
     def save(self):
+        if not self.url:
+            return
+
         url = self.url[1:] if self.url.startswith('/') else self.url
         self.pattern = '^' + re.sub('(?<![\\/])\/', '\/', url + '$')
         super(Path, self).save()

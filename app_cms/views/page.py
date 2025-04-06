@@ -116,7 +116,8 @@ class PageView(View):
 
     @minified_response
     def get(self, request, path):
-        path = "pl/" + path if not path.startswith("en") else path
+        # hack for the issue with not respecting PREFIX_DEFAULT_LANGUAGE = False
+        path = "pl/" + path if path and not path.startswith("en") else path
 
         tokens = {
            'gCaptchaPublicKey':  os.getenv("GCAPTCHA_PUBLIC_KEY"),
