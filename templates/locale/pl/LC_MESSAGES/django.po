@@ -119,7 +119,7 @@ msgstr "kontakt"
 
 #: templates/sections/section_contact.html:31
 msgid "Download Resume"
-msgstr "Pobierz aplikację"
+msgstr "Pobierz CV"
 
 #: templates/sections/section_contact.html:33
 msgid "Preloading"
