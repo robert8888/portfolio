@@ -25,6 +25,8 @@ def buildQuery():
     SELECT
     app_projects_technologytype_translation.name as "technology_type",
     app_projects_technology.name as "name",
+    app_projects_technology.weight as "weight",
+    app_projects_technology.skill_level as "level",
     app_projects_technology.show_on_index as "show_on_index",
     app_projects_technology.show_on_index_all as "show_on_index_all",
     app_projects_technology.color as "color",
@@ -57,7 +59,7 @@ def buildQuery():
     WHERE (app_projects_technology.show_on_index = TRUE
     OR app_projects_technology.show_on_index_all = TRUE)
     AND app_projects_technologytype_translation.language_code = '{lang}'
-    ORDER BY app_projects_technologytype.weight
+    ORDER BY app_projects_technologytype.weight, app_projects_technology.weight
     """
 def map_images(technology):
     if technology['image_url']:
