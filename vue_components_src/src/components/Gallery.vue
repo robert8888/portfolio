@@ -182,7 +182,7 @@ export default defineComponent({
 <style lang="scss">
 .gallery{
   &__container{
-    overflow-x: hidden;
+    overflow: hidden;
   }
   &__list{
     display: flex;
