@@ -47,6 +47,11 @@ class Technology(models.Model):
         verbose_name = gettext_lazy('Show on main page in all section')
     )
 
+    weight  = models.IntegerField(
+        default = 0,
+        verbose_name = gettext_lazy('Weight')
+    )
+
     def delete(self, *args, **kwargs):
         ProjectSearchAutocomplete.objects.filter(source_id = self.id, type='technology').delete()
         super(Technology, self).delete(*args, **kwargs)
