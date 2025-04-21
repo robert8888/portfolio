@@ -1,3 +1,5 @@
+{% load sort_filters %}
+
 <section class="section skills">
     <h3 class="section__title">{{cv.data.skills.section_title}}</h3>
     <div class="skills__group languages">
@@ -8,7 +10,7 @@
     </div>
     <div class="skills__group technologies">
         <ul>
-            {% for technology in cv.data.skills.technologies.all %}
+            {% for technology in cv.data.skills.technologies.all|group_and_sort %}
             <li style="--progress: {{ technology.skill_level_percentage }}">
                 <span>{{technology.name}}</span>
             </li>
