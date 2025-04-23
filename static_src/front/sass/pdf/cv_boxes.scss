@@ -78,6 +78,7 @@ header{
   grid-template-columns: 9.5cm auto;
   grid-template-rows: 1fr;
   .col{
+    position: relative;
     padding: .5cm;
     &:first-of-type{
       margin-top: 7.25cm;
@@ -99,6 +100,9 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    &.top {
+      justify-content: space-between;
+    }
   }
 }
 
@@ -144,6 +148,9 @@ header{
 }
 
 .experience{
+  position: absolute;
+  top: 300px;
+
   & > ul > li {
       padding-bottom: .5rem;
   }

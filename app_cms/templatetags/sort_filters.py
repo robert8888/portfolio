@@ -6,5 +6,5 @@ register = template.Library()
 def group_and_sort(technologies):
     return sorted(
         technologies,
-        key=lambda tech: (tech.type.weight, tech.weight, -tech.skill_level)
+        key=lambda tech: ( tech.weight_cv)
     )

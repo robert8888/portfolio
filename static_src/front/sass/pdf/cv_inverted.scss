@@ -206,6 +206,9 @@ main{
       }
     }
   }
+  .contact__portfolio {
+      color: var(--color-primary);
+  }
 }
 
 .strengths{
@@ -293,26 +296,25 @@ h6, h4{
 
 .education{
   &__list-item{
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   .school{
     &__detail{
       position: relative;
-      padding-right: 5rem;
+      //padding-right: 5.5rem;
     }
     &__period{
-      position: absolute;
-      right: 0;
-      top: .2rem;
+      margin-bottom: .35rem;
       opacity: .8;
       font-size: .65rem;
       @include time-separator('-');
     }
     &__field{
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: var(--color-text-focus);
-      opacity: 1;
+      color: var(--color-text-secondary);
+      opacity: .9;
+      margin-bottom: .5rem;
     }
     &__name{
       opacity: .8;

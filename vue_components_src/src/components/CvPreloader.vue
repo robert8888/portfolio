@@ -69,7 +69,7 @@ export default defineComponent({
   },
 
   mounted() {
-    this.fetchPdf();
+    void this.fetchPdf();
   },
 
   methods:{

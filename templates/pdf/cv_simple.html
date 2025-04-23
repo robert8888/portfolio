@@ -13,7 +13,7 @@
         <div class="personal">
             <h4 class="personal__name">{{cv.data.personal.full_name}}</h4>
             <span class="personal__birthday">{{cv.data.personal.birthday|date:"Y/m/d"}}</span>
-            {% to_list 'address' 'number' 'email' as contact_field_order %}
+            {% to_list 'address' 'email' 'number'  as contact_field_order %}
             {% include 'pdf/partial/contact_list.html' %}
         </div>
     </div>

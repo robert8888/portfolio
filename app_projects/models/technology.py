@@ -47,9 +47,14 @@ class Technology(models.Model):
         verbose_name = gettext_lazy('Show on main page in all section')
     )
 
-    weight  = models.IntegerField(
+    weight = models.IntegerField(
         default = 0,
         verbose_name = gettext_lazy('Weight')
+    )
+
+    weight_cv = models.IntegerField(
+        default = 0,
+        verbose_name = gettext_lazy('WeightCV')
     )
 
     def delete(self, *args, **kwargs):

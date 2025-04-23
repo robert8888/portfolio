@@ -233,20 +233,27 @@ class Project(TranslatableModel):
         return ' '.join([technology.name for technology in self.technology.filter(type__translation__name = type)]) if self.id else ''
 
     def save(self, *args, **kwargs):
+        from django.db.models import Value, TextField
+        from django.contrib.postgres.search import SearchVector
+
         self.slug = slugify(self.title)
-        technologies = self.technologies_str
-        translations = len(self.translations.filter(language_code = get_language())) if self.id else None
-        if self.id and translations:
-            self.search_vector = SearchVector(
-                SearchVector('name', weight="C")
-                + SearchVector('title', weight="A")
-                + SearchVector('subtitle', weight="A")
-                + SearchVector('autocomplete_hint', weight="A")
-                + SearchVector('description_short', weight="B")
-                + SearchVector(Value(technologies, models.TextField()), weight="C")
-            )
         self.json_ld = self.structured_data
-        return super(Project, self).save(*args, **kwargs)
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+
+        if not is_new and self.translations.filter(language_code=get_language()).exists():
+            tech = self.technologies_str
+            self.translations.filter(language_code=get_language()).update(
+                search_vector=(
+                        SearchVector('name', weight="C")
+                        + SearchVector('title', weight="A")
+                        + SearchVector('subtitle', weight="A")
+                        + SearchVector('autocomplete_hint', weight="A")
+                        + SearchVector('description_short', weight="B")
+                        + SearchVector(Value(tech, output_field=TextField()), weight="C")
+                )
+            )
+
 
     def delete(self, *args, **kwargs):
         ProjectSearchAutocomplete.objects.filter(source_id = self.id, type='project').delete()
