@@ -111,7 +111,8 @@ export default defineComponent({
     },
 
     formatPhoneNumber(number: string): string{
-      const match = number.toString().match(new RegExp("(.{3})".repeat(4) + "?"))
+      const cleanNumber = this.formatStripFormatting(number.toString());
+      const match = cleanNumber.toString().match(new RegExp("(.{3})".repeat(4) + "?"))
       return match ? match.slice(1).join(" ") : "Ops. :("
     },
 

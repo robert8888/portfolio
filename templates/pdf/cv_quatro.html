@@ -25,8 +25,12 @@
     {% to_list 'number' 'email' 'linkedin' 'portfolio' 'address' as contact_field_order %}
     {% include 'pdf/partial/contact.html' %}
 
-    {% to_list 'field' 'name' 'period' as education_school_field_order %}
-    {% include 'pdf/partial/education.html' with description=True %}
+    <section class="section education-and-strengths">
+        {% to_list 'field' 'name' 'period' as education_school_field_order %}
+        {% include 'pdf/partial/education.html' %}
+
+        {% include 'pdf/partial/additional_strengths.html' %}
+    </section>
 
     {% to_list 'position' 'company_period' as experience_job_field_order %}
     {% include 'pdf/partial/experience.html' %}

@@ -72,13 +72,13 @@ main{
   margin-top: 3.75cm;
   padding-left: 1cm;
   padding-top: 1.25cm;
-  height: calc(100% - 5cm);
+  height: calc(100% - 4cm);
   .section{
     padding: 0  1cm .75rem 0;
     &__title{
       background: var(--color-primary);
       color: var(--color-text-primary);
-      padding: .35em;
+      padding: .5em;
       font-family: Roboto, sans-serif;
       text-transform: uppercase;
       font-weight: 500;
@@ -207,7 +207,8 @@ main{
     }
   }
   .contact__portfolio {
-      color: var(--color-primary);
+    font-weight: 700;
+      //color: var(--color-primary);
   }
 }
 
@@ -326,6 +327,12 @@ h6, h4{
 
 .section.agreements{
   margin-top: auto;
+  padding: 0;
+
+  position: fixed;
+  bottom: .5cm;
+  left: 1cm;
+  width: 10cm;
   p {
     font-size: .7rem;
     @include icon-before($info-svg, var(--color-text-secondary));
