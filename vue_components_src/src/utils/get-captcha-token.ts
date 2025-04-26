@@ -5,13 +5,17 @@ declare global {
         gCaptchaPublicKey: string;
     }
 }
-export default async function getCaptchaToken(): Promise<string>{
-    console.log("the public key", window.gCaptchaPublicKey)
 
-    const recaptcha = await load(
-        window.gCaptchaPublicKey,
-        { autoHideBadge: true })
+export default async function getCaptchaToken(): Promise<string> {
+    console.log("the public key", window.gCaptchaPublicKey);
 
+    const recaptcha = await load(window.gCaptchaPublicKey, { autoHideBadge: true });
 
-    return await recaptcha.execute('login') as string;
+    return new Promise<string>((resolve, reject) => {
+        grecaptcha.ready(() => {
+            recaptcha.execute('login')
+                .then((token) => resolve(token as string))
+                .catch(reject);
+        });
+    });
 }
