@@ -3,7 +3,8 @@
     <contact-protected type="number"
                        class="contact__portals__link contact__portals__link--phone contact-protected"
                        aria-role="link"
-                       loading-label="{% translate 'Loading' %}">
+                       loading-label="{% translate 'Loading' %}"
+                       {% include 'partial/captchaErrorMessages.html' %} >
         {% include 'partial/icon-img.html' with alt=contact.name %}
         <template #controls>
             <button class="contact-protected__btn contact-number__btn--copy"

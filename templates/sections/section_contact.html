@@ -1,4 +1,5 @@
 {% load static i18n utils svg %}
+{% translate 'Your Brave browser is blocking CAPTCHA. Please disable Shields for this site.' as brave_shields %}
 <section class="contact" id="{% translate 'contact' %}">
     <div class="l-container">
         <div class="l-row contact__container">
@@ -31,7 +32,8 @@
                         <cv-downloader download-label="{% translate 'Download Resume' %}"
                                        download-label-short="{% translate 'Download' %}"
                                        spinner-label="{% translate 'Preloading' %}"
-                                       open-label="{% translate 'Open' %}" >
+                                       open-label="{% translate 'Open' %}"
+                                       {% include 'partial/captchaErrorMessages.html' %}>
                             <template #configurator>
                                 <cv-configurator download-label="{% translate 'Download' %}">
                                     <template #colors>

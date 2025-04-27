@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-31 14:42+0000\n"
+"POT-Creation-Date: 2025-04-26 22:03+0000\n"
 "PO-Revision-Date: 2025-03-31 14:48+0000\n"
 "Last-Translator: b'  <robert.kami88@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,32 +16,50 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
 #: templates/menus/menu-aside.html:4
 msgid "/en/"
 msgstr "/pl/"
 
-#: templates/partial/contact-email-component.html:6
+#: templates/partial/captchaErrorMessages.html:3
+msgid "Your Brave browser is blocking CAPTCHA. Please disable Shields for this site."
+msgstr "Twoja przeglądarka Brave blokuje CAPTCHA. Wyłącz Shields dla tej strony."
+
+#: templates/partial/captchaErrorMessages.html:4
+msgid "Your browser settings are blocking CAPTCHA. Check ad blockers or privacy settings."
+msgstr "Twoje ustawienia przeglądarki blokują CAPTCHA. Sprawdź blokery lub ustawienia prywatności."
+
+#: templates/partial/captchaErrorMessages.html:5
+msgid "An error occurred while loading CAPTCHA. Please try again."
+msgstr "Wystąpił błąd podczas ładowania CAPTCHA. Spróbuj ponownie"
+
+#: templates/partial/captchaErrorMessages.html:6
+msgid "An unexpected error occurred. Please try again later."
+msgstr "Wystąpił nieoczekiwany błąd. Spróbuj później."
+
+#: templates/partial/contact-email-component.html:7
 #: templates/partial/contact-number-component.html:6
 #, fuzzy
 #| msgid "Preloading"
 msgid "Loading"
 msgstr "Przygotowuje"
 
-#: templates/partial/contact-email-component.html:11
+#: templates/partial/contact-email-component.html:12
 #, fuzzy
 #| msgid "Number was copied to clipboard"
 msgid "Email was copied to clipboard"
 msgstr "Numer został skopiowany do schowka"
 
-#: templates/partial/contact-email-component.html:12
+#: templates/partial/contact-email-component.html:13
 #: templates/partial/contact-number-component.html:12
 msgid "copy"
 msgstr "kopiuj"
 
-#: templates/partial/contact-email-component.html:16
+#: templates/partial/contact-email-component.html:17
 msgid "write"
 msgstr "napisz"
 
@@ -59,13 +77,13 @@ msgstr "Przygotowuję"
 
 #: templates/partial/contact_cv_download_component.html:4
 #: templates/partial/contact_cv_download_component.html:15
-#: templates/sections/section_contact.html:32
-#: templates/sections/section_contact.html:36
+#: templates/sections/section_contact.html:34
+#: templates/sections/section_contact.html:38
 msgid "Download"
 msgstr "Pobierz"
 
 #: templates/partial/contact_cv_download_component.html:5
-#: templates/sections/section_contact.html:34
+#: templates/sections/section_contact.html:36
 msgid "Open"
 msgstr "Otwórz"
 
@@ -113,28 +131,28 @@ msgstr "Pole [field] jest wymagane. "
 msgid "about"
 msgstr "historia"
 
-#: templates/sections/section_contact.html:2
+#: templates/sections/section_contact.html:3
 msgid "contact"
 msgstr "kontakt"
 
-#: templates/sections/section_contact.html:31
+#: templates/sections/section_contact.html:33
 msgid "Download Resume"
 msgstr "Pobierz CV"
 
-#: templates/sections/section_contact.html:33
+#: templates/sections/section_contact.html:35
 msgid "Preloading"
 msgstr "Przygotowuje"
 
-#: templates/sections/section_contact.html:54
+#: templates/sections/section_contact.html:56
 msgid "Confirm your identify"
 msgstr "Potwierdź swoją tożsamość"
 
-#: templates/sections/section_contact.html:65
-#: templates/sections/section_contact.html:73
+#: templates/sections/section_contact.html:67
+#: templates/sections/section_contact.html:75
 msgid "Company"
 msgstr "Firma"
 
-#: templates/sections/section_contact.html:82
+#: templates/sections/section_contact.html:84
 msgid "Agreement"
 msgstr "Uzgodnienia"
 

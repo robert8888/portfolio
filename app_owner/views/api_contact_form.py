@@ -9,7 +9,6 @@ import bleach
 
 
 def process(req):
-    body_unicode = req.body.decode('utf-8')
     json_data = json.loads(req.body)
 
     data = {
@@ -17,6 +16,7 @@ def process(req):
         'emailField': json_data['emailField'],
         'subjectField': json_data['subjectField'],
         'messageField': json_data['messageField'],
+        'path': req.path,
     }
 
     validate = {

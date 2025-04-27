@@ -7,8 +7,6 @@ declare global {
 }
 
 export default async function getCaptchaToken(): Promise<string> {
-    console.log("the public key", window.gCaptchaPublicKey);
-
     const recaptcha = await load(window.gCaptchaPublicKey, { autoHideBadge: true });
 
     return new Promise<string>((resolve, reject) => {

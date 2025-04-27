@@ -1,6 +1,7 @@
 import {API_CONFIGURATION} from "./api_configuration";
 import getCaptchaToken from "@/utils/get-captcha-token";
 import {Project} from "@/store/modules/projects";
+import {handleCaptchaError} from "@/utils/handleCaptchaError";
 
 declare global{
     interface Window{
@@ -73,17 +74,21 @@ export const sendForm = async (data:  Record<string, string>): Promise<Result<Re
 
 export const getNumber = async (): Promise<Result<{number: string}>> => {
     const path = API_CONFIGURATION.GET_NUMBER_URL
-    const data = {
-        captchaToken:  await getCaptchaToken()
+    const captchaToken = await getCaptchaToken();
+    if(!captchaToken) {
+        await handleCaptchaError()
     }
+    const data = { captchaToken };
     return request<{number: string}, {captchaToken: string}>(buildPath(path), data) as Promise<Result<{number: string}>>
 }
 
 export const getEmail = async (): Promise<Result<{email: string}>> => {
     const path = API_CONFIGURATION.GET_EMAIL_URL
-    const data = {
-        captchaToken: await getCaptchaToken()
+    const captchaToken = await getCaptchaToken();
+    if(!captchaToken) {
+        await handleCaptchaError()
     }
+    const data = { captchaToken };
     return request<{email: string}, {captchaToken: string}>(buildPath(path), data) as Promise<Result<{email:string}>>
 }
 
@@ -106,8 +111,10 @@ export type GetCVPayload = {
     captchaToken?: string;
 }
 export const getCv = async (data: GetCVPayload): Promise<Response> => {
-    console.log("the data", data)
     const apiPath = API_CONFIGURATION.GET_CV;
-    data.captchaToken = await getCaptchaToken()
+    data.captchaToken = await getCaptchaToken();
+    if(!data.captchaToken) {
+        await handleCaptchaError()
+    }
     return request(buildPath(apiPath), data, true) as Promise<Response>
 }

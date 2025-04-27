@@ -174,4 +174,8 @@
     height: 5rem;
     @include svg-mask($sad-svg, var(--color-pallet-warning),  var(--color-pallet-warning))
   }
+  &__error-message {
+    text-align: center;
+    line-height: 1.5em;
+  }
 }

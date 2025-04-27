@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-31 14:42+0000\n"
+"POT-Creation-Date: 2025-04-26 22:03+0000\n"
 "PO-Revision-Date: 2021-05-04 04:20+0000\n"
 "Last-Translator: b'  <robert.kami88@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: app_projects/apps.py:6 app_projects/models/project.py:260
+#: app_projects/apps.py:6 app_projects/models/project.py:267
 msgid "Projects"
 msgstr "Projekty"
 
@@ -63,7 +63,7 @@ msgstr "wskazówka"
 msgid "Autocomplete hint"
 msgstr "Wskazówka auto podpowiedzi "
 
-#: app_projects/models/project.py:133 app_projects/models/technology.py:62
+#: app_projects/models/project.py:133 app_projects/models/technology.py:72
 msgid "Technologies"
 msgstr "Technologie"
 
@@ -92,7 +92,7 @@ msgstr "Pokaż na stronie głownej"
 msgid "Default sort weight"
 msgstr "Domyślna waga sortowania "
 
-#: app_projects/models/project.py:259
+#: app_projects/models/project.py:266
 msgid "Project"
 msgstr "Projekt"
 
@@ -109,7 +109,7 @@ msgid "Projects gallery"
 msgstr "Galerie projektów"
 
 #: app_projects/models/project_gallery_image.py:40
-#: app_projects/models/technology.py:144
+#: app_projects/models/technology.py:154
 msgid "Image"
 msgstr "Obraz"
 
@@ -185,47 +185,53 @@ msgstr "Poziom umiejętności"
 msgid "Show on main page in all section"
 msgstr "Pokaż na stronie głównej w sekcji wszystkie"
 
-#: app_projects/models/technology.py:61
-msgid "Technology"
-msgstr "Technologie"
-
-#: app_projects/models/technology.py:68
-msgid "Name"
-msgstr "Nazwa"
-
-#: app_projects/models/technology.py:74
+#: app_projects/models/technology.py:52 app_projects/models/technology.py:84
 msgid "Weight"
 msgstr "Waga"
 
-#: app_projects/models/technology.py:81
+#: app_projects/models/technology.py:57
+#, fuzzy
+#| msgid "Weight"
+msgid "WeightCV"
+msgstr "Waga"
+
+#: app_projects/models/technology.py:71
+msgid "Technology"
+msgstr "Technologie"
+
+#: app_projects/models/technology.py:78
+msgid "Name"
+msgstr "Nazwa"
+
+#: app_projects/models/technology.py:91
 msgid "Technology type"
 msgstr "Typ technologii"
 
-#: app_projects/models/technology.py:82
+#: app_projects/models/technology.py:92
 msgid "Technology types"
 msgstr "Typy technologii"
 
-#: app_projects/models/technology.py:97
+#: app_projects/models/technology.py:107
 msgid "Technology image"
 msgstr "Obrazki technologii"
 
-#: app_projects/models/technology.py:101
+#: app_projects/models/technology.py:111
 msgid "Top"
 msgstr "Góra"
 
-#: app_projects/models/technology.py:107
+#: app_projects/models/technology.py:117
 msgid "Left"
 msgstr "Lewa"
 
-#: app_projects/models/technology.py:113
+#: app_projects/models/technology.py:123
 msgid "Width"
 msgstr "Szerokośc"
 
-#: app_projects/models/technology.py:119
+#: app_projects/models/technology.py:129
 msgid "Height"
 msgstr "Wysokość"
 
-#: app_projects/models/technology.py:127
+#: app_projects/models/technology.py:137
 msgid "Image identification name"
 msgstr "Nazwa indetyfikacyjna"
 

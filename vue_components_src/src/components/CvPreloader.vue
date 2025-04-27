@@ -17,6 +17,9 @@
     </div>
     <div class="cv-configurator__sad-smile-wrapper" v-if="fail">
       <i class="cv-configurator__sad-smile"/>
+      <p class="cv-configurator__error-message">
+        {{errorMessage}}
+      </p>
     </div>
   </div>
 </template>
@@ -26,18 +29,23 @@ import Spinner from "@/components/Spinner.vue";
 import {getCv, GetCVPayload} from "@/api/backend_api";
 import {getResponseFilename} from "@/utils/get_response_filename";
 import {GETTERS, useStore} from "@/store";
+import HandleCaptchaErrorMixin from '@/mixins/handleCaptchaError'
 
 interface ComponentData{
   isLoading: boolean;
   fail: boolean;
   pdfBlobData: Blob | null;
   pdfFilename: string;
+  errorMessage: string;
 }
 
 
 export default defineComponent({
   components: {Spinner},
+  mixins: [HandleCaptchaErrorMixin],
+
   emits: ['finish'],
+
   props:{
     spinnerLabel: {
       type: String,
@@ -64,7 +72,8 @@ export default defineComponent({
       isLoading: true,
       fail: false,
       pdfBlobData: null,
-      pdfFilename: ''
+      pdfFilename: '',
+      errorMessage: ''
     }
   },
 
@@ -89,8 +98,10 @@ export default defineComponent({
         this.pdfFilename = getResponseFilename(response)
         this.isLoading = false;
         return true;
-      } catch {
+      } catch(error){
+        console.log(error)
         this.fail = true;
+        this.errorMessage = this.getErrorMessage(error as Error)
         return false;
       } finally {
         this.isLoading = false;

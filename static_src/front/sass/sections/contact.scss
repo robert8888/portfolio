@@ -441,4 +441,9 @@
       mask-image: $call-svg;
     }
   }
+  &__error-message{
+    margin-inline: 2rem;
+    text-align: center;
+    line-height: 1.5em;
+  }
 }

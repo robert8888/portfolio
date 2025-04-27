@@ -23,6 +23,7 @@ import {defineComponent, nextTick} from "vue";
 import Modal from "./Modal.vue";
 import Spinner from "@/components/Spinner.vue";
 import {getNumber, getEmail} from "@/api/backend_api";
+import HandleCaptchaErrorMixin from '@/mixins/handleCaptchaError'
 
 declare global {
   interface Window {
@@ -32,22 +33,19 @@ declare global {
 
 export default defineComponent({
   components: {Spinner, Modal},
+  mixins: [HandleCaptchaErrorMixin],
 
   props: {
     class: {
       type: String
     },
-    loadingLabel:{
+    loadingLabel: {
       type: String,
-    },
-    errorMessage:{
-      type: String,
-      default: "Ops. What a shame :("
     },
     type:{
       type: String,
       required: true
-    }
+    },
   },
 
   data(){
@@ -57,6 +55,7 @@ export default defineComponent({
       isLoading: false,
       isSuccess: true,
       confirmMessage: "",
+      errorMessage: ""
     }
   },
 
@@ -67,26 +66,34 @@ export default defineComponent({
         const response = await getNumber()
         if(response.success)
           this.data = this.formatPhoneNumber(response.data.number);
-        else
+        else {
           this.isSuccess = false;
+          this.errorMessage = this.unknownErrorMessage;
+        }
       } catch(error){
         this.isSuccess = false;
+        this.errorMessage = this.getErrorMessage(error as Error)
       } finally{
         this.isLoading = false;
       }
     },
 
     async getEmail(){
+      console.log(this)
       try{
         this.isLoading = true;
         const response = await getEmail();
-        if(response.success)
+
+        if(response.success){
           this.data = response.data.email;
-        else
+        }
+        else {
           this.isSuccess = false;
+          this.errorMessage = this.unknownErrorMessage;
+        }
       } catch(error) {
         this.isSuccess = false;
-        console.log('error')
+        this.errorMessage = this.getErrorMessage(error as Error)
       } finally {
         this.isLoading = false;
       }

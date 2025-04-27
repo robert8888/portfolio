@@ -21,7 +21,11 @@
         <cv-preloader :download-label="downloadLabelShort"
                       :spinner-label="spinnerLabel"
                       :open-label="openLabel"
-                      @finish="modalOpen = false"/>
+                      @finish="modalOpen = false"
+                      :brave-shields-captcha-error-message="braveShieldsCaptchaErrorMessage"
+                      :browser-settings-captcha-error-message="browserSettingsCaptchaErrorMessage"
+                      :captcha-error-message="captchaErrorMessage"
+                      :unknown-error-message="unknownErrorMessage"/>
       </div>
     </div>
   </modal>
@@ -35,10 +39,13 @@ import {ACTIONS, GETTERS, useStore} from "@/store";
 import {PROCESS_STEP, Recruiter} from "@/store/modules/cv";
 import useFromDataMapper from "@/hooks/useFromDataMapper";
 import CvPreloader from "@/components/CvPreloader.vue"
+import HandleCaptchaErrorMixin from '@/mixins/handleCaptchaError'
 
 
 export default defineComponent({
   components: {Modal, CustomFrom, CvPreloader},
+
+  mixins: [HandleCaptchaErrorMixin],
 
   props:{
     downloadLabel:{
@@ -86,6 +93,7 @@ export default defineComponent({
     start(){
       this.restart();
       this.modalOpen = true;
+      console.log(this)
     },
     recruiterFormMounted(form: HTMLFormElement){
       this.setFormRef(form)

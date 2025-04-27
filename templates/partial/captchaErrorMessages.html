@@ -1,0 +1,13 @@
+{% load static i18n utils svg %}
+
+{% translate 'Your Brave browser is blocking CAPTCHA. Please disable Shields for this site.' as brave_shields %}
+{% translate 'Your browser settings are blocking CAPTCHA. Check ad blockers or privacy settings.' as browser_settings %}
+{% translate 'An error occurred while loading CAPTCHA. Please try again.' as general %}
+{% translate 'An unexpected error occurred. Please try again later.' as unknown %}
+
+
+
+brave-shields-captcha-error-message="{{brave_shields}}"
+browser-settings-captcha-error-message="{{browser_settings}}"
+captcha-error-message="{{general}}"
+unknown-error-message="{{unknown}}"
